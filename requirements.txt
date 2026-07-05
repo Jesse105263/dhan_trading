@@ -1,0 +1,8 @@
+dhanhq
+pandas
+numpy
+requests
+python-dotenv
+psycopg[binary]
+redis
+sqlalchemy
