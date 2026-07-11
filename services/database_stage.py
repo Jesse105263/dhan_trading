@@ -13,6 +13,7 @@ REQUIRED_TABLES = {
     "pipeline_runs",
     "scanner_snapshots",
     "market_features",
+    "scheduler_locks",
 }
 
 

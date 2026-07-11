@@ -2,35 +2,33 @@
 
 ## Phase
 
-Stable Market Core
+Phase 2 — Option Data Platform
 
 ## Milestone
 
-Scheduling Foundation
+Milestone 2.1 — Derivative Contract Schema
 
 ## Objective
 
-Create a safe scheduling foundation for recurring market-day pipeline execution.
+Create the PostgreSQL schema and repository foundation for normalized futures and options contract metadata.
 
 ## Tasks
 
-1. Add Indian market-session configuration.
-2. Add weekday and market-hours validation.
-3. Add exchange-holiday support.
-4. Add PostgreSQL run locking.
-5. Prevent overlapping pipeline runs.
-6. Add stale-lock recovery.
-7. Add manual execution override.
-8. Add scheduler status reporting.
-9. Add scheduler unit tests.
-10. Preserve direct pipeline execution.
+1. Define the derivative-contract data model.
+2. Create the derivative contracts migration.
+3. Store exchange, segment, security ID and trading symbol.
+4. Store underlying symbol, instrument type, expiry, strike and option type.
+5. Store lot size and tick size.
+6. Add uniqueness constraints for Dhan contract identity.
+7. Add indexes for active contracts, expiries, strikes and underlyings.
+8. Add repository contracts and PostgreSQL implementation.
+9. Add migration and repository tests.
+10. Preserve the existing equity collection pipeline.
 
 ## Definition of Done
 
-- The pipeline can run on a controlled recurring schedule.
-- Runs outside configured market hours are skipped by default.
-- Exchange holidays can be configured.
-- Concurrent production runs are prevented.
-- Stale locks can be recovered safely.
-- Manual runs remain available.
-- Scheduler behavior has automated test coverage.
+- Futures and options contracts can be stored without CSV runtime dependency.
+- Contract identity is protected by database constraints.
+- Active contracts can be queried efficiently by underlying and expiry.
+- Repository behavior has automated test coverage.
+- Existing production pipeline and scheduler tests remain green.

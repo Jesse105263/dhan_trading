@@ -229,3 +229,21 @@ Official transition from script-based development to platform architecture.
 - Added stage-metrics smoke-test coverage.
 - Verified seven stage metrics for a successful pipeline run.
 - Verified 209 requested, received and written records across production data stages.
+## 2026-07-12
+
+### Scheduling Foundation
+
+- Added configurable Indian market timezone and session hours.
+- Added weekday, market-hours and exchange-holiday validation.
+- Added PostgreSQL-backed scheduler locks.
+- Added overlap prevention for recurring production runs.
+- Added stale-lock recovery through lock expiry.
+- Added manual calendar override while preserving lock safety.
+- Added scheduler status reporting.
+- Added one-shot and recurring scheduler commands.
+- Preserved direct production pipeline execution through `run_pipeline.py`.
+- Added scheduler unit tests covering market gating, overlap prevention, stale locks and failure cleanup.
+- Added `004_scheduler_foundation.sql` migration.
+- Verified all 24 automated tests pass, with 3 opt-in PostgreSQL integration tests skipped by default.
+- Verified the seven-stage production pipeline completes successfully.
+- Verified scheduler locks are released after execution and failure.

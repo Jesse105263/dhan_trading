@@ -15,7 +15,7 @@ v1.0.0
 
 ### Status
 
-In progress.
+Complete.
 
 ### Completed
 
@@ -35,7 +35,7 @@ In progress.
 - Smoke tests.
 - Migration tests.
 
-### Remaining
+### Completed Milestones
 
 #### Milestone 1.1 — Repository Contracts
 
@@ -64,10 +64,15 @@ Status: Complete.
 
 #### Milestone 1.4 — Scheduling Foundation
 
-- Add market-calendar support.
-- Add run lock.
-- Add manual schedule command.
-- Prevent overlapping runs.
+Status: Complete.
+
+- Market-calendar support added.
+- PostgreSQL run locking added.
+- Manual and recurring scheduler commands added.
+- Overlapping runs prevented.
+- Stale-lock recovery added.
+- Scheduler status reporting added.
+- Automated scheduler tests added.
 
 ### Phase 1 Exit Criteria
 

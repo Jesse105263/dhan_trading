@@ -10,11 +10,11 @@ The ordered implementation plan is documented in:
 
 ## Current Phase
 
-Phase 1 — Stable Market Core
+Phase 2 — Option Data Platform
 
 ## Current Milestone
 
-Repository Contracts and Integration Tests
+Derivative Contract Schema
 
 ## Version Targets
 

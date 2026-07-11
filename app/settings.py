@@ -1,5 +1,7 @@
 import os
 from dataclasses import dataclass
+from datetime import date, time
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from dotenv import load_dotenv
 
@@ -51,12 +53,91 @@ def _read_log_level() -> str:
     return value
 
 
+def _read_time(
+    name: str,
+    default: str,
+) -> time:
+    raw_value = os.getenv(name, default).strip()
+
+    try:
+        return time.fromisoformat(raw_value)
+    except ValueError as error:
+        raise RuntimeError(
+            f"{name} must use HH:MM or HH:MM:SS format."
+        ) from error
+
+
+def _read_timezone(
+    name: str,
+    default: str,
+) -> ZoneInfo:
+    value = os.getenv(name, default).strip()
+
+    try:
+        return ZoneInfo(value)
+    except ZoneInfoNotFoundError as error:
+        raise RuntimeError(
+            f"{name} is not a valid IANA timezone: {value}"
+        ) from error
+
+
+def _read_dates(
+    name: str,
+) -> frozenset[date]:
+    raw_value = os.getenv(name, "").strip()
+
+    if not raw_value:
+        return frozenset()
+
+    parsed_dates: set[date] = set()
+
+    for raw_date in raw_value.split(","):
+        value = raw_date.strip()
+
+        if not value:
+            continue
+
+        try:
+            parsed_dates.add(date.fromisoformat(value))
+        except ValueError as error:
+            raise RuntimeError(
+                f"{name} contains an invalid ISO date: {value}"
+            ) from error
+
+    return frozenset(parsed_dates)
+
+
+def _read_non_empty_string(
+    name: str,
+    default: str,
+) -> str:
+    value = os.getenv(name, default).strip()
+
+    if not value:
+        raise RuntimeError(
+            f"{name} must not be empty."
+        )
+
+    return value
+
+
 @dataclass(frozen=True)
 class PipelineSettings:
     dhan_request_timeout_seconds: int
     dhan_max_instruments_per_request: int
     feature_lookback_runs: int
     log_level: str
+
+
+@dataclass(frozen=True)
+class SchedulerSettings:
+    timezone: ZoneInfo
+    market_open_time: time
+    market_close_time: time
+    market_holidays: frozenset[date]
+    lock_name: str
+    lock_ttl_seconds: int
+    interval_seconds: int
 
 
 PIPELINE_SETTINGS = PipelineSettings(
@@ -80,3 +161,44 @@ PIPELINE_SETTINGS = PipelineSettings(
     ),
     log_level=_read_log_level(),
 )
+
+
+SCHEDULER_SETTINGS = SchedulerSettings(
+    timezone=_read_timezone(
+        "MARKET_TIMEZONE",
+        "Asia/Kolkata",
+    ),
+    market_open_time=_read_time(
+        "MARKET_OPEN_TIME",
+        "09:15",
+    ),
+    market_close_time=_read_time(
+        "MARKET_CLOSE_TIME",
+        "15:30",
+    ),
+    market_holidays=_read_dates(
+        "MARKET_HOLIDAYS"
+    ),
+    lock_name=_read_non_empty_string(
+        "SCHEDULER_LOCK_NAME",
+        "production-market-pipeline",
+    ),
+    lock_ttl_seconds=_read_positive_integer(
+        "SCHEDULER_LOCK_TTL_SECONDS",
+        1800,
+    ),
+    interval_seconds=_read_positive_integer(
+        "SCHEDULER_INTERVAL_SECONDS",
+        300,
+    ),
+)
+
+
+if (
+    SCHEDULER_SETTINGS.market_close_time
+    <= SCHEDULER_SETTINGS.market_open_time
+):
+    raise RuntimeError(
+        "MARKET_CLOSE_TIME must be later than "
+        "MARKET_OPEN_TIME."
+    )

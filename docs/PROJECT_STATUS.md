@@ -2,7 +2,7 @@
 
 ## Current Phase
 
-Phase 1 — Stable Market Core
+Phase 2 — Option Data Platform
 
 ## Completed
 
@@ -11,7 +11,7 @@ Phase 1 — Stable Market Core
 - Redis configured.
 - Git and GitHub configured.
 - Environment configuration hardened.
-- Centralized pipeline settings added.
+- Centralized pipeline and scheduler settings added.
 - Structured logging added.
 - Ordered database migration framework added.
 - Migration checksums and version history added.
@@ -36,12 +36,21 @@ Phase 1 — Stable Market Core
 - Real feature stage created.
 - 209 market features persisted per run.
 - CSV runtime dependency removed from the production path.
+- Indian market-session validation added.
+- Exchange-holiday configuration added.
+- PostgreSQL scheduler locking added.
+- Overlapping production runs prevented.
+- Stale scheduler locks recoverable.
+- Scheduler status, one-shot and recurring commands added.
+- Direct pipeline execution preserved.
+- Scheduler unit tests added and verified.
 
 ## Database Migrations
 
 - `001_initial_platform_schema.sql`
 - `002_pipeline_failures.sql`
 - `003_stage_metrics.sql`
+- `004_scheduler_foundation.sql`
 
 ## Operational Monitoring
 
@@ -59,8 +68,25 @@ The platform records:
 - Failure count
 - Snapshot count
 - Feature count
+- Market-calendar status
+- Scheduler-lock status
 
 Health report command:
 
 ```bash
 python -m scripts.health_report
+```
+
+Scheduler status command:
+
+```bash
+python -m scripts.scheduler status
+```
+
+## Verification
+
+- Scheduler tests: 9 passed.
+- Full automated suite: 24 passed, 3 opt-in database integration tests skipped.
+- Production pipeline: 7 stages completed successfully.
+- Scheduler lock table verified.
+- Scheduler lock cleanup verified.
