@@ -6,28 +6,29 @@ Stable Market Core
 
 ## Milestone
 
-Pipeline Failure Model
+Operational Metrics
 
 ## Objective
 
-Persist stage-level and symbol-level failures with sanitized error details and retry metadata.
+Persist pipeline and stage-level operational metrics for monitoring, diagnosis and future dashboards.
 
 ## Tasks
 
-1. Create the `pipeline_failures` migration.
-2. Create a failure repository.
-3. Persist failed stage names.
-4. Persist sanitized exception types and messages.
-5. Add retryable status.
-6. Prevent credentials from appearing in errors.
-7. Add failure repository tests.
-8. Verify failed pipeline auditing.
-9. Preserve successful pipeline behavior.
+1. Create stage metrics migration.
+2. Persist stage start and completion times.
+3. Persist stage duration.
+4. Persist records requested.
+5. Persist records received.
+6. Persist records written.
+7. Persist data freshness.
+8. Add metrics repository tests.
+9. Add health-report command.
+10. Preserve current pipeline behavior.
 
 ## Definition of Done
 
-- Failed stages are persisted in PostgreSQL.
-- Failure records are linked to pipeline run IDs.
-- Sensitive values are excluded from stored errors.
-- Retryable and non-retryable failures are distinguishable.
-- Failure persistence has automated test coverage.
+- Every production stage records operational metrics.
+- Pipeline runs expose record counts and duration.
+- Data freshness is queryable.
+- Metrics are covered by tests.
+- Production behavior remains unchanged.

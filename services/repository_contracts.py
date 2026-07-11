@@ -1,20 +1,35 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import Iterable, Protocol, TYPE_CHECKING
+from typing import (
+    Iterable,
+    Protocol,
+    TYPE_CHECKING,
+)
 
 
 if TYPE_CHECKING:
+    from services.failure_repository import (
+        PipelineFailure,
+    )
     from services.feature_repository import (
         FeatureInput,
         MarketFeature,
     )
-    from services.instrument_repository import Instrument
-    from services.snapshot_repository import ScannerSnapshot
-    from services.underlying_quote_repository import UnderlyingQuote
+    from services.instrument_repository import (
+        Instrument,
+    )
+    from services.snapshot_repository import (
+        ScannerSnapshot,
+    )
+    from services.underlying_quote_repository import (
+        UnderlyingQuote,
+    )
 
 
-class InstrumentRepositoryContract(Protocol):
+class InstrumentRepositoryContract(
+    Protocol
+):
     def list_active_quote_instruments(
         self,
     ) -> list[Instrument]:
@@ -30,7 +45,9 @@ class InstrumentRepositoryContract(Protocol):
         ...
 
 
-class UnderlyingQuoteRepositoryContract(Protocol):
+class UnderlyingQuoteRepositoryContract(
+    Protocol
+):
     def latest_batch_timestamp(
         self,
     ) -> datetime | None:
@@ -42,7 +59,9 @@ class UnderlyingQuoteRepositoryContract(Protocol):
         ...
 
 
-class SnapshotRepositoryContract(Protocol):
+class SnapshotRepositoryContract(
+    Protocol
+):
     def start_run(
         self,
         run_id: str,
@@ -62,7 +81,9 @@ class SnapshotRepositoryContract(Protocol):
 
     def bulk_insert(
         self,
-        snapshots: Iterable[ScannerSnapshot],
+        snapshots: Iterable[
+            ScannerSnapshot
+        ],
     ) -> int:
         ...
 
@@ -73,7 +94,9 @@ class SnapshotRepositoryContract(Protocol):
         ...
 
 
-class FeatureRepositoryContract(Protocol):
+class FeatureRepositoryContract(
+    Protocol
+):
     def list_inputs_for_run(
         self,
         run_id: str,
@@ -83,7 +106,9 @@ class FeatureRepositoryContract(Protocol):
 
     def bulk_upsert(
         self,
-        features: Iterable[MarketFeature],
+        features: Iterable[
+            MarketFeature
+        ],
     ) -> int:
         ...
 
@@ -102,7 +127,9 @@ class FeatureRepositoryContract(Protocol):
         ...
 
 
-class PipelineRunRepositoryContract(Protocol):
+class PipelineRunRepositoryContract(
+    Protocol
+):
     def start_run(
         self,
         run_id: str,
@@ -122,4 +149,20 @@ class PipelineRunRepositoryContract(Protocol):
         run_id: str,
         completed_at: datetime,
     ) -> None:
+        ...
+
+
+class FailureRepositoryContract(
+    Protocol
+):
+    def insert(
+        self,
+        failure: PipelineFailure,
+    ) -> int:
+        ...
+
+    def count_for_run(
+        self,
+        run_id: str,
+    ) -> int:
         ...

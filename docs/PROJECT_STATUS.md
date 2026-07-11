@@ -15,11 +15,13 @@ Phase 1 — Stable Market Core
 - Structured logging added.
 - Ordered database migration framework added.
 - Migration checksums and version history added.
-- Pipeline success and failure persistence added.
+- Pipeline success and failure status persisted.
+- Pipeline failure records persisted.
+- Failed stage names persisted.
+- Sensitive error details sanitized.
+- Retryable failures classified.
 - Explicit repository contracts added.
-- Repository dependency inversion added.
 - PostgreSQL repository integration tests added.
-- Automated cleanup of integration-test data verified.
 - Automated migration tests added.
 - Automated pipeline smoke tests added.
 - Production instrument repository created.
@@ -32,23 +34,21 @@ Phase 1 — Stable Market Core
 - 209 market features persisted per run.
 - CSV runtime dependency removed from the production path.
 
+## Database Migrations
+
+- `001_initial_platform_schema.sql`
+- `002_pipeline_failures.sql`
+
 ## Automated Tests
 
-### Unit and Smoke Tests
-
+- Error sanitization
+- Retryable failure classification
+- Pipeline failure persistence
+- Pipeline success persistence
 - Migration ordering
 - Migration checksum validation
 - Duplicate migration rejection
-- Successful pipeline execution
-- Failed pipeline execution
-
-### PostgreSQL Integration Tests
-
-- Instrument repository
-- Underlying quote repository
-- Snapshot repository
-- Feature repository
-- Integration-test cleanup
+- PostgreSQL repository integration tests
 
 ## Current Production Pipeline
 
@@ -68,7 +68,8 @@ Phase 1 — Stable Market Core
 14. Risk stage placeholder
 15. Signal stage placeholder
 16. Pipeline completion or failure persistence
+17. Failure-detail persistence when a stage fails
 
 ## Next Milestone
 
-Persist pipeline and stage failures with sanitized error details and retry metadata.
+Add operational metrics for pipeline stages, record counts and data freshness.

@@ -3,6 +3,14 @@ from datetime import datetime
 from typing import Any
 from uuid import uuid4
 
+from services.error_sanitizer import (
+    classify_retryable,
+    sanitize_error_message,
+)
+from services.failure_repository import (
+    FailureRepository,
+    PipelineFailure,
+)
 from services.pipeline_run_repository import (
     PipelineRunRepository,
 )
@@ -19,13 +27,22 @@ class Pipeline:
         run_repository: (
             PipelineRunRepository | None
         ) = None,
-    ):
+        failure_repository: (
+            FailureRepository | None
+        ) = None,
+    ) -> None:
         self.stages = stages
         self.context: dict[str, Any] = {}
         self.started_at: datetime | None = None
+
         self.run_repository = (
             run_repository
             or PipelineRunRepository()
+        )
+
+        self.failure_repository = (
+            failure_repository
+            or FailureRepository()
         )
 
     def start(self) -> None:
@@ -37,7 +54,9 @@ class Pipeline:
         self.context["pipeline_started_at"] = (
             self.started_at
         )
-        self.context["pipeline_status"] = "RUNNING"
+        self.context["pipeline_status"] = (
+            "RUNNING"
+        )
 
         self.run_repository.start_run(
             run_id=run_id,
@@ -52,13 +71,60 @@ class Pipeline:
         try:
             for stage in self.stages:
                 stage.execute(self.context)
-        except Exception:
-            failed_at = datetime.now()
 
-            self.context["pipeline_status"] = "FAILED"
-            self.context["pipeline_finished_at"] = (
-                failed_at
+        except Exception as error:
+            failed_at = datetime.now()
+            failed_stage = str(
+                self.context.get(
+                    "failed_stage",
+                    self.context.get(
+                        "current_stage",
+                        "UNKNOWN",
+                    ),
+                )
             )
+
+            sanitized_message = (
+                sanitize_error_message(
+                    str(error)
+                )
+            )
+
+            failure = PipelineFailure(
+                run_id=run_id,
+                stage_name=failed_stage,
+                error_type=type(error).__name__,
+                error_message=sanitized_message,
+                retryable=classify_retryable(
+                    error
+                ),
+                occurred_at=failed_at,
+                symbol=self._extract_symbol(),
+            )
+
+            try:
+                failure_id = (
+                    self.failure_repository
+                    .insert(failure)
+                )
+
+                self.context["failure_id"] = (
+                    failure_id
+                )
+
+            except Exception:
+                logger.exception(
+                    "Unable to persist pipeline "
+                    "failure | run_id=%s",
+                    run_id,
+                )
+
+            self.context["pipeline_status"] = (
+                "FAILED"
+            )
+            self.context[
+                "pipeline_finished_at"
+            ] = failed_at
 
             self.run_repository.fail_run(
                 run_id=run_id,
@@ -66,20 +132,23 @@ class Pipeline:
             )
 
             logger.exception(
-                "Pipeline failed | run_id=%s",
+                "Pipeline failed | run_id=%s | "
+                "stage=%s",
                 run_id,
+                failed_stage,
             )
 
             raise
+
         else:
             completed_at = datetime.now()
 
             self.context["pipeline_status"] = (
                 "COMPLETED"
             )
-            self.context["pipeline_finished_at"] = (
-                completed_at
-            )
+            self.context[
+                "pipeline_finished_at"
+            ] = completed_at
 
             self.run_repository.complete_run(
                 run_id=run_id,
@@ -90,6 +159,7 @@ class Pipeline:
                 "Pipeline completed | run_id=%s",
                 run_id,
             )
+
         finally:
             self.finish()
 
@@ -104,9 +174,14 @@ class Pipeline:
             datetime.now(),
         )
 
-        duration = finished_at - self.started_at
+        duration = (
+            finished_at
+            - self.started_at
+        )
 
-        self.context["pipeline_duration"] = duration
+        self.context[
+            "pipeline_duration"
+        ] = duration
 
         logger.info(
             "Pipeline summary | run_id=%s | "
@@ -118,3 +193,17 @@ class Pipeline:
             ),
             duration,
         )
+
+    def _extract_symbol(
+        self,
+    ) -> str | None:
+        symbol = self.context.get(
+            "current_symbol"
+        )
+
+        if symbol is None:
+            return None
+
+        cleaned = str(symbol).strip().upper()
+
+        return cleaned or None

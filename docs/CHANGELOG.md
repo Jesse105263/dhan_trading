@@ -193,3 +193,19 @@ Official transition from script-based development to platform architecture.
 - Added automatic integration-test cleanup.
 - Verified no test data remained after execution.
 - Verified production pipeline behavior remained unchanged.
+
+## 2026-07-11
+
+### Pipeline Failure Model
+
+- Added `pipeline_failures` migration.
+- Added PostgreSQL failure repository.
+- Added failed-stage tracking.
+- Added sanitized error persistence.
+- Added retryable failure classification.
+- Added symbol-level failure support.
+- Added access-token, client-ID, password and JWT redaction.
+- Added failure persistence to the pipeline.
+- Added error sanitizer unit tests.
+- Added pipeline failure smoke tests.
+- Verified successful runs create zero failure records.
