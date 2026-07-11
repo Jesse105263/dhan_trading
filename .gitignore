@@ -1,27 +1,25 @@
-# Python
-__pycache__/
-*.pyc
-
-# Virtual Environment
-.venv/
-
-# Environment Variables
 .env
-
-# macOS
+.venv/
+__pycache__/
+*.py[cod]
 .DS_Store
 
-# Logs
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
 *.log
-data/logs/
+data/
 
-# CSV Data
-data/csv/
+daily_scanner.csv
+trade_candidates.csv
+scanner_previous_snapshot.csv
+volatility_ranking.csv
+option_chain_scanner.csv
+option_chain_details.csv
+security_id_list.csv
 
-# IDE
-.vscode/
-
-# Database
-*.db
-*.sqlite
-*.sqlite3
+milestone2_review.txt
+docs.zip

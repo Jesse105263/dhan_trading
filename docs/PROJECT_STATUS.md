@@ -94,3 +94,32 @@ Replace CSV architecture with PostgreSQL tables.
 ## Next Milestone
 
 Design production database schema.
+
+## Current Status (2026-07-11)
+
+### Completed
+
+- Docker Desktop installed and verified
+- PostgreSQL (TimescaleDB) running in Docker
+- Redis running in Docker
+- Git initialized
+- First Git commit created
+- Project folder restructured
+- Documentation moved to docs/
+- Database connection service implemented
+- Database initialization implemented
+- Service layer created
+    - config.py
+    - database.py
+    - collector.py
+    - feature_engine.py
+    - ranking_engine.py
+    - risk_engine.py
+    - signal_engine.py
+    - snapshot_engine.py
+
+### Current Architecture
+
+Current scanner is still a monolithic implementation (daily_scanner_v8.py).
+
+Refactoring into modular services has started but is not yet complete.

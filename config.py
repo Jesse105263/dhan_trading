@@ -1,2 +1,27 @@
-CLIENT_ID = "1112115456"
-ACCESS_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzgzMjQyMzA3LCJpYXQiOjE3ODMxNTU5MDcsInRva2VuQ29uc3VtZXJUeXBlIjoiU0VMRiIsIndlYmhvb2tVcmwiOiIiLCJkaGFuQ2xpZW50SWQiOiIxMTEyMTE1NDU2In0.3z2rZehx9qqTHjOKgvMZCM50C-55IKL1Cgx2NuG_Pl-7uWQbvWoT2Iz6zvFXRMl7ULvP4zDfRsIf5RCzSPRMLQ"
+import os
+
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+
+CLIENT_ID = os.getenv("DHAN_CLIENT_ID", "").strip()
+ACCESS_TOKEN = os.getenv("DHAN_ACCESS_TOKEN", "").strip()
+
+
+def validate_dhan_credentials() -> None:
+    missing: list[str] = []
+
+    if not CLIENT_ID:
+        missing.append("DHAN_CLIENT_ID")
+
+    if not ACCESS_TOKEN:
+        missing.append("DHAN_ACCESS_TOKEN")
+
+    if missing:
+        missing_values = ", ".join(missing)
+
+        raise RuntimeError(
+            f"Missing required Dhan environment variables: {missing_values}"
+        )
