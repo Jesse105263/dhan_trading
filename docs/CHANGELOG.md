@@ -140,3 +140,20 @@ Official transition from script-based development to platform architecture.
 - Added per-run feature persistence and validation.
 - Verified 209 feature rows for 209 production instruments.
 - Verified full snapshot-to-feature count consistency.
+
+## 2026-07-11
+
+### Architecture Stabilization
+
+- Added centralized application settings.
+- Added environment-driven pipeline configuration.
+- Added structured application logging.
+- Replaced stage lifecycle prints with structured logs.
+- Added pipeline run repository.
+- Added persistent pipeline success and failure states.
+- Added configurable Dhan request timeout.
+- Added configurable Dhan batch size.
+- Added configurable feature lookback window.
+- Added automated pipeline smoke tests.
+- Verified successful pipeline completion persistence.
+- Verified failed pipeline persistence.

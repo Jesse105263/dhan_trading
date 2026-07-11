@@ -1,6 +1,8 @@
 from datetime import datetime
 from typing import Any
 
+from app.settings import PIPELINE_SETTINGS
+
 from services.feature_repository import (
     FeatureInput,
     FeatureRepository,
@@ -9,7 +11,9 @@ from services.feature_repository import (
 from services.stage import Stage
 
 
-LOOKBACK_RUNS = 20
+LOOKBACK_RUNS = (
+    PIPELINE_SETTINGS.feature_lookback_runs
+)
 
 
 class FeatureStage(Stage):

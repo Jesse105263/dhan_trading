@@ -4,6 +4,7 @@ from typing import Any
 
 import requests
 
+from app.settings import PIPELINE_SETTINGS
 from services.config import DHAN_SETTINGS
 from services.database import get_connection
 from services.instrument_repository import (
@@ -14,8 +15,12 @@ from services.stage import Stage
 
 
 DHAN_QUOTE_URL = "https://api.dhan.co/v2/marketfeed/quote"
-REQUEST_TIMEOUT_SECONDS = 30
-MAX_INSTRUMENTS_PER_REQUEST = 1000
+REQUEST_TIMEOUT_SECONDS = (
+    PIPELINE_SETTINGS.dhan_request_timeout_seconds
+)
+MAX_INSTRUMENTS_PER_REQUEST = (
+    PIPELINE_SETTINGS.dhan_max_instruments_per_request
+)
 
 
 class CollectorStage(Stage):

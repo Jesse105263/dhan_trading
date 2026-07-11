@@ -1,5 +1,6 @@
 from typing import Any
 
+from app.logging_config import configure_logging
 from services.collector import CollectorStage
 from services.database_stage import DatabaseStage
 from services.feature_engine import FeatureStage
@@ -12,7 +13,10 @@ class RankingStage(Stage):
     def __init__(self) -> None:
         super().__init__("Ranking Engine")
 
-    def run(self, context: dict[str, Any]) -> None:
+    def run(
+        self,
+        context: dict[str, Any],
+    ) -> None:
         context["ranking_complete"] = True
 
 
@@ -20,7 +24,10 @@ class RiskStage(Stage):
     def __init__(self) -> None:
         super().__init__("Risk Engine")
 
-    def run(self, context: dict[str, Any]) -> None:
+    def run(
+        self,
+        context: dict[str, Any],
+    ) -> None:
         context["risk_complete"] = True
 
 
@@ -28,11 +35,16 @@ class SignalStage(Stage):
     def __init__(self) -> None:
         super().__init__("Signal Engine")
 
-    def run(self, context: dict[str, Any]) -> None:
+    def run(
+        self,
+        context: dict[str, Any],
+    ) -> None:
         context["signal_complete"] = True
 
 
 def main() -> None:
+    configure_logging()
+
     pipeline = Pipeline(
         stages=[
             DatabaseStage(),

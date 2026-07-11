@@ -2,7 +2,7 @@
 
 ## Current Phase
 
-Milestone 2 — Production Refactor
+Architecture Stabilization
 
 ## Completed
 
@@ -12,68 +12,58 @@ Milestone 2 — Production Refactor
 - Git and GitHub configured.
 - Documentation centralized.
 - Environment configuration hardened.
+- Centralized pipeline settings added.
+- Structured logging added.
+- Pipeline run repository added.
+- Pipeline success persistence added.
+- Pipeline failure persistence added.
+- Automated smoke tests added.
 - Production pipeline orchestration created.
-- Pipeline stage interface created.
 - UUID-based pipeline run IDs implemented.
-- PostgreSQL health-check stage implemented.
 - Production instrument repository created.
 - 209 production F&O equities loaded.
 - Production Dhan quote collector created.
 - 209 of 209 quotes collected and persisted.
-- Underlying quote repository created.
 - Scanner snapshot repository created.
 - Real snapshot stage created.
 - 209 snapshots persisted per pipeline run.
 - Production feature repository created.
 - Real feature stage created.
-- Price and volume changes calculated.
-- Relative volume calculated from snapshot history.
-- 209 of 209 feature rows persisted and validated.
+- 209 feature rows persisted and validated.
 - CSV runtime dependency removed from the production path.
 
 ## Current Production Pipeline
 
-1. Database health check
-2. Instrument repository lookup
-3. Dhan market quote collection
-4. Underlying quote persistence
-5. Latest quote batch retrieval
-6. Pipeline run creation
-7. Scanner snapshot persistence
-8. Snapshot validation
-9. Snapshot history retrieval
-10. Market feature calculation
-11. Feature persistence
-12. Feature validation
-13. Ranking stage placeholder
-14. Risk stage placeholder
-15. Signal stage placeholder
+1. Pipeline run creation
+2. Database health check
+3. Instrument repository lookup
+4. Dhan market quote collection
+5. Underlying quote persistence
+6. Scanner snapshot persistence
+7. Snapshot validation
+8. Snapshot history retrieval
+9. Market feature calculation
+10. Feature persistence
+11. Feature validation
+12. Ranking stage placeholder
+13. Risk stage placeholder
+14. Signal stage placeholder
+15. Pipeline completion or failure persistence
 
-## Database Tables
+## Configuration
 
-- instruments
-- underlying_quotes
-- option_quotes
-- trade_signals
-- pipeline_runs
-- scanner_snapshots
-- market_features
+Environment-driven values:
 
-## Instrument Universe
+- LOG_LEVEL
+- DHAN_REQUEST_TIMEOUT_SECONDS
+- DHAN_MAX_INSTRUMENTS_PER_REQUEST
+- FEATURE_LOOKBACK_RUNS
 
-- Production F&O equities: 209
-- Exchange segment: NSE_EQ
-- Test instruments: 0
-- Missing quote instruments: 0
+## Automated Tests
 
-## Feature State
-
-- Latest feature count: 209
-- Distinct feature symbols: 209
-- Price-change coverage: 209
-- Relative-volume coverage: 209
-- Lookback window: 20 runs
+- Successful pipeline smoke test
+- Failed pipeline smoke test
 
 ## Next Milestone
 
-Build the production ranking engine using persisted market features.
+Create a proper migration framework and move schema changes out of `services/database.py`.
