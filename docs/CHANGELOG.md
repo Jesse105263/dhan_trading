@@ -103,3 +103,20 @@ Official transition from script-based development to platform architecture.
 - Added multi-instrument Dhan quote collection.
 - Verified 209 of 209 live quotes were collected and persisted.
 - Confirmed zero missing instruments in the latest collection batch.
+
+## 2026-07-11
+
+### Snapshot Engine
+
+- Added UUID-based pipeline run IDs.
+- Added pipeline run status and timing metadata.
+- Added PostgreSQL `pipeline_runs` table.
+- Added underlying quote repository.
+- Added scanner snapshot repository.
+- Replaced the placeholder snapshot stage.
+- Added latest quote batch retrieval.
+- Added source quote timestamp validation.
+- Added snapshot batch persistence.
+- Added per-run snapshot count validation.
+- Persisted 209 snapshots for the verified production universe.
+- Added snapshot auditability by run ID.

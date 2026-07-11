@@ -109,6 +109,14 @@ def initialize_database() -> None:
 
             cursor.execute(
                 """
+                CREATE INDEX IF NOT EXISTS
+                idx_underlying_timestamp
+                ON underlying_quotes(timestamp DESC);
+                """
+            )
+
+            cursor.execute(
+                """
                 CREATE TABLE IF NOT EXISTS option_quotes
                 (
                     id BIGSERIAL PRIMARY KEY,
@@ -154,6 +162,30 @@ def initialize_database() -> None:
 
             cursor.execute(
                 """
+                CREATE TABLE IF NOT EXISTS pipeline_runs
+                (
+                    run_id VARCHAR(36) PRIMARY KEY,
+                    status VARCHAR(20) NOT NULL,
+                    started_at TIMESTAMP NOT NULL,
+                    completed_at TIMESTAMP,
+                    quote_timestamp TIMESTAMP,
+                    instrument_count INTEGER,
+                    snapshot_count INTEGER,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                );
+                """
+            )
+
+            cursor.execute(
+                """
+                CREATE INDEX IF NOT EXISTS
+                idx_pipeline_runs_started_at
+                ON pipeline_runs(started_at DESC);
+                """
+            )
+
+            cursor.execute(
+                """
                 CREATE TABLE IF NOT EXISTS scanner_snapshots
                 (
                     id BIGSERIAL PRIMARY KEY,
@@ -167,6 +199,66 @@ def initialize_database() -> None:
                     put_wall DOUBLE PRECISION,
                     snapshot_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 );
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE scanner_snapshots
+                ADD COLUMN IF NOT EXISTS run_id VARCHAR(36);
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE scanner_snapshots
+                ADD COLUMN IF NOT EXISTS spot_price DOUBLE PRECISION;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE scanner_snapshots
+                ADD COLUMN IF NOT EXISTS volume BIGINT;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE scanner_snapshots
+                ADD COLUMN IF NOT EXISTS underlying_oi BIGINT;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE scanner_snapshots
+                ADD COLUMN IF NOT EXISTS source_quote_timestamp TIMESTAMP;
+                """
+            )
+
+            cursor.execute(
+                """
+                CREATE UNIQUE INDEX IF NOT EXISTS
+                idx_scanner_snapshots_run_symbol
+                ON scanner_snapshots(run_id, symbol)
+                WHERE run_id IS NOT NULL;
+                """
+            )
+
+            cursor.execute(
+                """
+                CREATE INDEX IF NOT EXISTS
+                idx_scanner_snapshots_time
+                ON scanner_snapshots(snapshot_time DESC);
+                """
+            )
+
+            cursor.execute(
+                """
+                CREATE INDEX IF NOT EXISTS
+                idx_scanner_snapshots_symbol_time
+                ON scanner_snapshots(symbol, snapshot_time DESC);
                 """
             )
 

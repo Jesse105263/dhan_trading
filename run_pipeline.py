@@ -3,15 +3,8 @@ from typing import Any
 from services.collector import CollectorStage
 from services.database_stage import DatabaseStage
 from services.pipeline import Pipeline
+from services.snapshot_engine import SnapshotStage
 from services.stage import Stage
-
-
-class SnapshotStage(Stage):
-    def __init__(self) -> None:
-        super().__init__("Snapshot Engine")
-
-    def run(self, context: dict[str, Any]) -> None:
-        context["snapshot_complete"] = True
 
 
 class FeatureStage(Stage):

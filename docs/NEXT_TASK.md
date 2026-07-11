@@ -2,25 +2,25 @@
 
 ## Milestone
 
-Production Snapshot Repository
+Production Feature Engine
 
 ## Objective
 
-Replace the placeholder snapshot stage with PostgreSQL-backed quote retrieval and scanner snapshot persistence.
+Replace the placeholder feature stage with PostgreSQL-backed feature calculation using scanner snapshot history.
 
 ## Tasks
 
-1. Create an underlying quote repository.
-2. Load the latest quote batch from PostgreSQL.
-3. Create a scanner snapshot repository.
-4. Persist snapshot records in PostgreSQL.
-5. Add batch-level validation.
-6. Add snapshot execution metrics.
-7. Remove the placeholder snapshot stage.
+1. Create a snapshot history query.
+2. Calculate price change between runs.
+3. Calculate volume change between runs.
+4. Calculate relative volume using historical snapshots.
+5. Persist calculated features.
+6. Add feature batch validation.
+7. Replace the placeholder feature stage.
 
 ## Definition of Done
 
-- Latest underlying quotes are loaded through a repository.
-- Snapshot records are persisted in PostgreSQL.
-- The production pipeline contains a real snapshot stage.
+- Features are calculated from PostgreSQL snapshot history.
+- Feature rows are linked to a pipeline run ID.
+- Feature counts match snapshot counts.
 - No CSV file is required at runtime.
