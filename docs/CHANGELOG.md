@@ -247,3 +247,4 @@ Official transition from script-based development to platform architecture.
 - Verified all 24 automated tests pass, with 3 opt-in PostgreSQL integration tests skipped by default.
 - Verified the seven-stage production pipeline completes successfully.
 - Verified scheduler locks are released after execution and failure.
+- Verified scheduler lock acquisition and automatic release using PostgreSQL.

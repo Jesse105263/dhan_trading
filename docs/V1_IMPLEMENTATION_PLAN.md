@@ -3,7 +3,7 @@
 
 ## Current Version
 
-v0.2.x
+v0.3.0
 
 ## Target Version
 
