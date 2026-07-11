@@ -2,7 +2,7 @@
 
 ## Current Phase
 
-Architecture Stabilization
+Phase 1 — Stable Market Core
 
 ## Completed
 
@@ -10,45 +10,58 @@ Architecture Stabilization
 - PostgreSQL configured.
 - Redis configured.
 - Git and GitHub configured.
-- Documentation centralized.
 - Environment configuration hardened.
 - Centralized pipeline settings added.
 - Structured logging added.
-- Pipeline run repository added.
-- Pipeline success persistence added.
-- Pipeline failure persistence added.
-- Ordered SQL migration framework added.
-- Migration version history persisted.
-- Migration checksum validation added.
-- Transactional migration execution added.
+- Ordered database migration framework added.
+- Migration checksums and version history added.
+- Pipeline success and failure persistence added.
+- Explicit repository contracts added.
+- Repository dependency inversion added.
+- PostgreSQL repository integration tests added.
+- Automated cleanup of integration-test data verified.
 - Automated migration tests added.
 - Automated pipeline smoke tests added.
-- Production pipeline orchestration created.
-- UUID-based pipeline run IDs implemented.
 - Production instrument repository created.
 - 209 production F&O equities loaded.
 - Production Dhan quote collector created.
 - 209 of 209 quotes collected and persisted.
-- Scanner snapshot repository created.
-- Real snapshot stage created.
-- 209 snapshots persisted per pipeline run.
-- Production feature repository created.
+- Real scanner snapshot stage created.
+- 209 snapshots persisted per run.
 - Real feature stage created.
-- 209 feature rows persisted and validated.
+- 209 market features persisted per run.
 - CSV runtime dependency removed from the production path.
+
+## Automated Tests
+
+### Unit and Smoke Tests
+
+- Migration ordering
+- Migration checksum validation
+- Duplicate migration rejection
+- Successful pipeline execution
+- Failed pipeline execution
+
+### PostgreSQL Integration Tests
+
+- Instrument repository
+- Underlying quote repository
+- Snapshot repository
+- Feature repository
+- Integration-test cleanup
 
 ## Current Production Pipeline
 
 1. Pipeline run creation
-2. Database migration verification
+2. Migration verification
 3. Database health check
 4. Instrument repository lookup
 5. Dhan market quote collection
 6. Underlying quote persistence
 7. Scanner snapshot persistence
 8. Snapshot validation
-9. Snapshot history retrieval
-10. Market feature calculation
+9. Historical snapshot retrieval
+10. Feature calculation
 11. Feature persistence
 12. Feature validation
 13. Ranking stage placeholder
@@ -56,22 +69,6 @@ Architecture Stabilization
 15. Signal stage placeholder
 16. Pipeline completion or failure persistence
 
-## Database Management
-
-- Migration directory: `migrations/`
-- Applied migration history: `schema_migrations`
-- Current applied migrations: 1
-- Applied migration checksums: enforced
-- Migration execution: transactional
-
-## Automated Tests
-
-- Successful pipeline smoke test
-- Failed pipeline smoke test
-- Migration ordering test
-- Migration checksum test
-- Duplicate migration version test
-
 ## Next Milestone
 
-Add repository abstractions and integration tests before beginning option-chain ingestion.
+Persist pipeline and stage failures with sanitized error details and retry metadata.

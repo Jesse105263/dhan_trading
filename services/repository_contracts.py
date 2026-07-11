@@ -1,0 +1,125 @@
+from __future__ import annotations
+
+from datetime import datetime
+from typing import Iterable, Protocol, TYPE_CHECKING
+
+
+if TYPE_CHECKING:
+    from services.feature_repository import (
+        FeatureInput,
+        MarketFeature,
+    )
+    from services.instrument_repository import Instrument
+    from services.snapshot_repository import ScannerSnapshot
+    from services.underlying_quote_repository import UnderlyingQuote
+
+
+class InstrumentRepositoryContract(Protocol):
+    def list_active_quote_instruments(
+        self,
+    ) -> list[Instrument]:
+        ...
+
+    def count(self) -> int:
+        ...
+
+    def bulk_upsert(
+        self,
+        instruments: Iterable[Instrument],
+    ) -> int:
+        ...
+
+
+class UnderlyingQuoteRepositoryContract(Protocol):
+    def latest_batch_timestamp(
+        self,
+    ) -> datetime | None:
+        ...
+
+    def list_latest_batch(
+        self,
+    ) -> list[UnderlyingQuote]:
+        ...
+
+
+class SnapshotRepositoryContract(Protocol):
+    def start_run(
+        self,
+        run_id: str,
+        started_at: datetime,
+        quote_timestamp: datetime,
+        instrument_count: int,
+    ) -> None:
+        ...
+
+    def complete_run(
+        self,
+        run_id: str,
+        completed_at: datetime,
+        snapshot_count: int,
+    ) -> None:
+        ...
+
+    def bulk_insert(
+        self,
+        snapshots: Iterable[ScannerSnapshot],
+    ) -> int:
+        ...
+
+    def count_for_run(
+        self,
+        run_id: str,
+    ) -> int:
+        ...
+
+
+class FeatureRepositoryContract(Protocol):
+    def list_inputs_for_run(
+        self,
+        run_id: str,
+        lookback_runs: int = 20,
+    ) -> list[FeatureInput]:
+        ...
+
+    def bulk_upsert(
+        self,
+        features: Iterable[MarketFeature],
+    ) -> int:
+        ...
+
+    def count_for_run(
+        self,
+        run_id: str,
+    ) -> int:
+        ...
+
+    def complete_run(
+        self,
+        run_id: str,
+        feature_count: int,
+        completed_at: datetime,
+    ) -> None:
+        ...
+
+
+class PipelineRunRepositoryContract(Protocol):
+    def start_run(
+        self,
+        run_id: str,
+        started_at: datetime,
+    ) -> None:
+        ...
+
+    def complete_run(
+        self,
+        run_id: str,
+        completed_at: datetime,
+    ) -> None:
+        ...
+
+    def fail_run(
+        self,
+        run_id: str,
+        completed_at: datetime,
+    ) -> None:
+        ...

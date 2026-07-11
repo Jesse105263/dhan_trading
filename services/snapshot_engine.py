@@ -1,6 +1,10 @@
 from datetime import datetime
 from typing import Any
 
+from services.repository_contracts import (
+    SnapshotRepositoryContract,
+    UnderlyingQuoteRepositoryContract,
+)
 from services.snapshot_repository import (
     ScannerSnapshot,
     SnapshotRepository,
@@ -14,8 +18,12 @@ from services.underlying_quote_repository import (
 class SnapshotStage(Stage):
     def __init__(
         self,
-        quote_repository: UnderlyingQuoteRepository | None = None,
-        snapshot_repository: SnapshotRepository | None = None,
+        quote_repository: (
+            UnderlyingQuoteRepositoryContract | None
+        ) = None,
+        snapshot_repository: (
+            SnapshotRepositoryContract | None
+        ) = None,
     ) -> None:
         super().__init__("Snapshot Engine")
 
@@ -29,9 +37,14 @@ class SnapshotStage(Stage):
             or SnapshotRepository()
         )
 
-    def run(self, context: dict[str, Any]) -> None:
+    def run(
+        self,
+        context: dict[str, Any],
+    ) -> None:
         run_id = context.get("run_id")
-        started_at = context.get("pipeline_started_at")
+        started_at = context.get(
+            "pipeline_started_at"
+        )
 
         if not run_id:
             raise RuntimeError(
@@ -119,6 +132,13 @@ class SnapshotStage(Stage):
             .count_for_run(run_id)
         )
 
+        if inserted_count != len(snapshots):
+            raise RuntimeError(
+                "Snapshot insert count validation failed. "
+                f"Expected: {len(snapshots)}, "
+                f"Inserted: {inserted_count}"
+            )
+
         if persisted_count != len(quotes):
             raise RuntimeError(
                 "Snapshot persistence validation failed. "
@@ -141,14 +161,12 @@ class SnapshotStage(Stage):
 
         print(f"Run ID: {run_id}")
         print(
-            f"Source quote timestamp: "
+            "Source quote timestamp: "
             f"{quote_timestamp}"
         )
         print(
-            f"Snapshots prepared: "
-            f"{len(snapshots)}"
+            f"Snapshots prepared: {len(snapshots)}"
         )
         print(
-            f"Snapshots persisted: "
-            f"{persisted_count}"
+            f"Snapshots persisted: {persisted_count}"
         )

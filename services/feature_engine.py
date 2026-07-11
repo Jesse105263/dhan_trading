@@ -2,11 +2,13 @@ from datetime import datetime
 from typing import Any
 
 from app.settings import PIPELINE_SETTINGS
-
 from services.feature_repository import (
     FeatureInput,
     FeatureRepository,
     MarketFeature,
+)
+from services.repository_contracts import (
+    FeatureRepositoryContract,
 )
 from services.stage import Stage
 
@@ -19,7 +21,9 @@ LOOKBACK_RUNS = (
 class FeatureStage(Stage):
     def __init__(
         self,
-        repository: FeatureRepository | None = None,
+        repository: (
+            FeatureRepositoryContract | None
+        ) = None,
     ) -> None:
         super().__init__("Feature Engine")
 
@@ -28,9 +32,14 @@ class FeatureStage(Stage):
             or FeatureRepository()
         )
 
-    def run(self, context: dict[str, Any]) -> None:
+    def run(
+        self,
+        context: dict[str, Any],
+    ) -> None:
         run_id = context.get("run_id")
-        snapshot_count = context.get("snapshot_count")
+        snapshot_count = context.get(
+            "snapshot_count"
+        )
 
         if not run_id:
             raise RuntimeError(
@@ -39,7 +48,8 @@ class FeatureStage(Stage):
 
         if snapshot_count is None:
             raise RuntimeError(
-                "Pipeline context is missing snapshot_count."
+                "Pipeline context is missing "
+                "snapshot_count."
             )
 
         inputs = self.repository.list_inputs_for_run(
@@ -72,13 +82,24 @@ class FeatureStage(Stage):
             for feature_input in inputs
         ]
 
-        upserted_count = self.repository.bulk_upsert(
-            features
+        upserted_count = (
+            self.repository.bulk_upsert(
+                features
+            )
         )
 
-        persisted_count = self.repository.count_for_run(
-            run_id
+        persisted_count = (
+            self.repository.count_for_run(
+                run_id
+            )
         )
+
+        if upserted_count != len(features):
+            raise RuntimeError(
+                "Feature upsert count validation failed. "
+                f"Expected: {len(features)}, "
+                f"Upserted: {upserted_count}"
+            )
 
         if persisted_count != snapshot_count:
             raise RuntimeError(
@@ -112,8 +133,12 @@ class FeatureStage(Stage):
         )
 
         print(f"Feature inputs: {len(inputs)}")
-        print(f"Features upserted: {upserted_count}")
-        print(f"Features persisted: {persisted_count}")
+        print(
+            f"Features upserted: {upserted_count}"
+        )
+        print(
+            f"Features persisted: {persisted_count}"
+        )
         print(
             "Features with history: "
             f"{features_with_history}"
@@ -132,13 +157,19 @@ class FeatureStage(Stage):
         price_change = None
         price_change_pct = None
 
-        if feature_input.previous_spot_price is not None:
+        if (
+            feature_input.previous_spot_price
+            is not None
+        ):
             price_change = (
                 feature_input.spot_price
                 - feature_input.previous_spot_price
             )
 
-            if feature_input.previous_spot_price != 0:
+            if (
+                feature_input.previous_spot_price
+                != 0
+            ):
                 price_change_pct = (
                     price_change
                     / feature_input.previous_spot_price
@@ -149,14 +180,18 @@ class FeatureStage(Stage):
 
         if (
             feature_input.volume is not None
-            and feature_input.previous_volume is not None
+            and feature_input.previous_volume
+            is not None
         ):
             volume_change = (
                 feature_input.volume
                 - feature_input.previous_volume
             )
 
-            if feature_input.previous_volume != 0:
+            if (
+                feature_input.previous_volume
+                != 0
+            ):
                 volume_change_pct = (
                     volume_change
                     / feature_input.previous_volume
@@ -168,7 +203,8 @@ class FeatureStage(Stage):
             feature_input.volume is not None
             and feature_input.average_prior_volume
             is not None
-            and feature_input.average_prior_volume > 0
+            and feature_input.average_prior_volume
+            > 0
         ):
             relative_volume = (
                 feature_input.volume
@@ -194,6 +230,8 @@ class FeatureStage(Stage):
                 feature_input.average_prior_volume
             ),
             relative_volume=relative_volume,
-            history_count=feature_input.history_count,
+            history_count=(
+                feature_input.history_count
+            ),
             calculated_at=calculated_at,
         )

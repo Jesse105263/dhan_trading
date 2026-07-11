@@ -6,27 +6,28 @@ Stable Market Core
 
 ## Milestone
 
-Repository Contracts and Integration Tests
+Pipeline Failure Model
 
 ## Objective
 
-Introduce explicit repository contracts and validate the PostgreSQL repositories independently from the pipeline stages.
+Persist stage-level and symbol-level failures with sanitized error details and retry metadata.
 
 ## Tasks
 
-1. Define repository protocols.
-2. Update stages to depend on protocols.
-3. Add database test helpers.
-4. Add instrument repository integration tests.
-5. Add underlying quote repository integration tests.
-6. Add snapshot repository integration tests.
-7. Add feature repository integration tests.
-8. Verify transaction rollback behavior.
-9. Preserve existing pipeline behavior.
+1. Create the `pipeline_failures` migration.
+2. Create a failure repository.
+3. Persist failed stage names.
+4. Persist sanitized exception types and messages.
+5. Add retryable status.
+6. Prevent credentials from appearing in errors.
+7. Add failure repository tests.
+8. Verify failed pipeline auditing.
+9. Preserve successful pipeline behavior.
 
 ## Definition of Done
 
-- Stage dependencies use explicit repository contracts.
-- Core repositories have PostgreSQL integration coverage.
-- Repository transactions are independently validated.
-- Production pipeline output remains unchanged.
+- Failed stages are persisted in PostgreSQL.
+- Failure records are linked to pipeline run IDs.
+- Sensitive values are excluded from stored errors.
+- Retryable and non-retryable failures are distinguishable.
+- Failure persistence has automated test coverage.

@@ -176,3 +176,20 @@ Official transition from script-based development to platform architecture.
 - Added duplicate-version tests.
 - Verified migration idempotency.
 - Verified existing production data remained intact.
+
+## 2026-07-11
+
+### Repository Contracts and Integration Tests
+
+- Added explicit repository protocols.
+- Applied dependency inversion to the snapshot engine.
+- Applied dependency inversion to the feature engine.
+- Added snapshot insert-count validation.
+- Added feature upsert-count validation.
+- Added PostgreSQL instrument repository integration test.
+- Added PostgreSQL underlying quote repository integration test.
+- Added PostgreSQL snapshot repository integration test.
+- Added PostgreSQL feature repository integration test.
+- Added automatic integration-test cleanup.
+- Verified no test data remained after execution.
+- Verified production pipeline behavior remained unchanged.
