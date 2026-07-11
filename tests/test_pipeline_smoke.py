@@ -55,6 +55,28 @@ class FakeFailureRepository:
         )
 
 
+class FakeMetricsRepository:
+    def __init__(self) -> None:
+        self.metrics = []
+
+    def insert(
+        self,
+        metric,
+    ) -> int:
+        self.metrics.append(metric)
+        return len(self.metrics)
+
+    def count_for_run(
+        self,
+        run_id,
+    ) -> int:
+        return sum(
+            1
+            for metric in self.metrics
+            if metric.run_id == run_id
+        )
+
+
 class SuccessfulStage(Stage):
     def __init__(self) -> None:
         super().__init__(
@@ -66,6 +88,12 @@ class SuccessfulStage(Stage):
         context: dict[str, Any],
     ) -> None:
         context["smoke_test"] = "passed"
+        context["stage_metric_data"] = {
+            "records_requested": 1,
+            "records_received": 1,
+            "records_written": 1,
+            "source_timestamp": None,
+        }
 
 
 class FailingStage(Stage):
@@ -87,6 +115,21 @@ class FailingStage(Stage):
         )
 
 
+class TimeoutStage(Stage):
+    def __init__(self) -> None:
+        super().__init__(
+            "Timeout Stage"
+        )
+
+    def run(
+        self,
+        context: dict[str, Any],
+    ) -> None:
+        raise TimeoutError(
+            "Request timeout"
+        )
+
+
 class PipelineSmokeTest(
     unittest.TestCase
 ):
@@ -99,12 +142,18 @@ class PipelineSmokeTest(
         failure_repository = (
             FakeFailureRepository()
         )
+        metrics_repository = (
+            FakeMetricsRepository()
+        )
 
         pipeline = Pipeline(
             stages=[SuccessfulStage()],
             run_repository=run_repository,
             failure_repository=(
                 failure_repository
+            ),
+            metrics_repository=(
+                metrics_repository
             ),
         )
 
@@ -119,18 +168,56 @@ class PipelineSmokeTest(
         self.assertFalse(
             run_repository.failed
         )
+
         self.assertEqual(
             len(
                 failure_repository.failures
             ),
             0,
         )
+
+        self.assertEqual(
+            len(
+                metrics_repository.metrics
+            ),
+            1,
+        )
+
+        self.assertEqual(
+            metrics_repository
+            .metrics[0]
+            .status,
+            "COMPLETED",
+        )
+
+        self.assertEqual(
+            metrics_repository
+            .metrics[0]
+            .records_requested,
+            1,
+        )
+
+        self.assertEqual(
+            metrics_repository
+            .metrics[0]
+            .records_received,
+            1,
+        )
+
+        self.assertEqual(
+            metrics_repository
+            .metrics[0]
+            .records_written,
+            1,
+        )
+
         self.assertEqual(
             pipeline.context[
                 "pipeline_status"
             ],
             "COMPLETED",
         )
+
         self.assertEqual(
             pipeline.context[
                 "smoke_test"
@@ -147,12 +234,18 @@ class PipelineSmokeTest(
         failure_repository = (
             FakeFailureRepository()
         )
+        metrics_repository = (
+            FakeMetricsRepository()
+        )
 
         pipeline = Pipeline(
             stages=[FailingStage()],
             run_repository=run_repository,
             failure_repository=(
                 failure_repository
+            ),
+            metrics_repository=(
+                metrics_repository
             ),
         )
 
@@ -170,11 +263,26 @@ class PipelineSmokeTest(
         self.assertTrue(
             run_repository.failed
         )
+
         self.assertEqual(
             len(
                 failure_repository.failures
             ),
             1,
+        )
+
+        self.assertEqual(
+            len(
+                metrics_repository.metrics
+            ),
+            1,
+        )
+
+        self.assertEqual(
+            metrics_repository
+            .metrics[0]
+            .status,
+            "FAILED",
         )
 
         failure = (
@@ -186,13 +294,16 @@ class PipelineSmokeTest(
             failure.stage_name,
             "Failing Stage",
         )
+
         self.assertEqual(
             failure.error_type,
             "RuntimeError",
         )
+
         self.assertFalse(
             failure.retryable
         )
+
         self.assertEqual(
             pipeline.context[
                 "pipeline_status"
@@ -209,6 +320,9 @@ class PipelineSmokeTest(
         failure_repository = (
             FakeFailureRepository()
         )
+        metrics_repository = (
+            FakeMetricsRepository()
+        )
 
         pipeline = Pipeline(
             stages=[
@@ -220,6 +334,9 @@ class PipelineSmokeTest(
             run_repository=run_repository,
             failure_repository=(
                 failure_repository
+            ),
+            metrics_repository=(
+                metrics_repository
             ),
         )
 
@@ -238,33 +355,30 @@ class PipelineSmokeTest(
             "secret-token-value",
             stored_message,
         )
+
         self.assertIn(
             "[REDACTED]",
             stored_message,
         )
 
+        self.assertEqual(
+            metrics_repository
+            .metrics[0]
+            .status,
+            "FAILED",
+        )
+
     def test_timeout_is_retryable(
         self,
     ) -> None:
-        class TimeoutStage(Stage):
-            def __init__(self) -> None:
-                super().__init__(
-                    "Timeout Stage"
-                )
-
-            def run(
-                self,
-                context: dict[str, Any],
-            ) -> None:
-                raise TimeoutError(
-                    "Request timeout"
-                )
-
         run_repository = (
             FakePipelineRunRepository()
         )
         failure_repository = (
             FakeFailureRepository()
+        )
+        metrics_repository = (
+            FakeMetricsRepository()
         )
 
         pipeline = Pipeline(
@@ -272,6 +386,9 @@ class PipelineSmokeTest(
             run_repository=run_repository,
             failure_repository=(
                 failure_repository
+            ),
+            metrics_repository=(
+                metrics_repository
             ),
         )
 
@@ -284,6 +401,13 @@ class PipelineSmokeTest(
             failure_repository
             .failures[0]
             .retryable
+        )
+
+        self.assertEqual(
+            metrics_repository
+            .metrics[0]
+            .status,
+            "FAILED",
         )
 
 

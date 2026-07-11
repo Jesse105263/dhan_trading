@@ -25,6 +25,9 @@ if TYPE_CHECKING:
     from services.underlying_quote_repository import (
         UnderlyingQuote,
     )
+    from services.metrics_repository import (
+    StageMetric,
+    )
 
 
 class InstrumentRepositoryContract(
@@ -158,6 +161,21 @@ class FailureRepositoryContract(
     def insert(
         self,
         failure: PipelineFailure,
+    ) -> int:
+        ...
+
+    def count_for_run(
+        self,
+        run_id: str,
+    ) -> int:
+        ...
+    
+class MetricsRepositoryContract(
+    Protocol
+):
+    def insert(
+        self,
+        metric: StageMetric,
     ) -> int:
         ...
 

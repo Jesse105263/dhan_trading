@@ -79,10 +79,19 @@ class CollectorStage(Stage):
         context["quotes_received"] = len(
             all_quotes
         )
-        context["quotes_inserted"] = (
-            inserted_count
-        )
+        context["quotes_inserted"] = inserted_count
         context["collection_time"] = datetime.now()
+
+        context["stage_metric_data"] = {
+            "records_requested": len(instruments),
+            "records_received": len(all_quotes),
+            "records_written": inserted_count,
+            "source_timestamp": (
+                all_quotes[0]["timestamp"]
+                if all_quotes
+                else None
+            ),
+        }
 
         print(
             f"Instruments requested: {len(instruments)}"

@@ -209,3 +209,23 @@ Official transition from script-based development to platform architecture.
 - Added error sanitizer unit tests.
 - Added pipeline failure smoke tests.
 - Verified successful runs create zero failure records.
+
+## 2026-07-11
+
+### Operational Metrics
+
+- Added `stage_metrics` database migration.
+- Added PostgreSQL stage metrics repository.
+- Added per-stage success and failure metrics.
+- Added stage start and completion timestamps.
+- Added stage duration measurement.
+- Added records-requested metrics.
+- Added records-received metrics.
+- Added records-written metrics.
+- Added source-data freshness measurement.
+- Added metrics for Database, Collector, Snapshot Engine and Feature Engine.
+- Added metrics support for future Ranking, Risk and Signal stages.
+- Added production health-report command.
+- Added stage-metrics smoke-test coverage.
+- Verified seven stage metrics for a successful pipeline run.
+- Verified 209 requested, received and written records across production data stages.

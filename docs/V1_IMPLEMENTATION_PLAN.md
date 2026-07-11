@@ -54,10 +54,13 @@ In progress.
 
 #### Milestone 1.3 — Operational Metrics
 
-- Persist stage duration.
-- Persist requested and received counts.
-- Persist data freshness.
-- Add health-report command.
+Status: Complete.
+
+- Stage duration persisted.
+- Requested, received and written counts persisted.
+- Data freshness persisted.
+- Health-report command added.
+- Stage metrics verified across the production pipeline.
 
 #### Milestone 1.4 — Scheduling Foundation
 

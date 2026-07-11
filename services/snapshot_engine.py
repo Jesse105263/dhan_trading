@@ -158,6 +158,12 @@ class SnapshotStage(Stage):
         context["source_quote_timestamp"] = (
             quote_timestamp
         )
+        context["stage_metric_data"] = {
+            "records_requested": len(quotes),
+            "records_received": len(quotes),
+            "records_written": persisted_count,
+            "source_timestamp": quote_timestamp,
+        }
 
         print(f"Run ID: {run_id}")
         print(

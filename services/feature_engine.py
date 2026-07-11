@@ -131,6 +131,14 @@ class FeatureStage(Stage):
         context["feature_calculated_at"] = (
             calculated_at
         )
+        context["stage_metric_data"] = {
+            "records_requested": snapshot_count,
+            "records_received": len(inputs),
+            "records_written": persisted_count,
+            "source_timestamp": context.get(
+                "source_quote_timestamp"
+            ),
+        }
 
         print(f"Feature inputs: {len(inputs)}")
         print(

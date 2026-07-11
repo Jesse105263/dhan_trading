@@ -21,9 +21,8 @@ class Stage(ABC):
         started_at = datetime.now()
 
         context["current_stage"] = self.name
-        context["current_stage_started_at"] = (
-            started_at
-        )
+        context["current_stage_started_at"] = started_at
+        context["stage_metric_data"] = {}
 
         logger.info(
             "Stage started | stage=%s",
@@ -34,6 +33,8 @@ class Stage(ABC):
             self.run(context)
         except Exception:
             context["failed_stage"] = self.name
+            context["failed_stage_started_at"] = started_at
+            context["failed_stage_completed_at"] = datetime.now()
 
             logger.exception(
                 "Stage failed | stage=%s",
@@ -45,17 +46,17 @@ class Stage(ABC):
         finished_at = datetime.now()
         duration = finished_at - started_at
 
-        context["last_completed_stage"] = (
-            self.name
-        )
+        context["last_completed_stage"] = self.name
         context["current_stage"] = None
-        context["current_stage_finished_at"] = (
-            finished_at
+        context["current_stage_finished_at"] = finished_at
+        context["last_stage_started_at"] = started_at
+        context["last_stage_completed_at"] = finished_at
+        context["last_stage_duration_ms"] = int(
+            duration.total_seconds() * 1000
         )
 
         logger.info(
-            "Stage completed | stage=%s | "
-            "duration=%s",
+            "Stage completed | stage=%s | duration=%s",
             self.name,
             duration,
         )

@@ -6,29 +6,31 @@ Stable Market Core
 
 ## Milestone
 
-Operational Metrics
+Scheduling Foundation
 
 ## Objective
 
-Persist pipeline and stage-level operational metrics for monitoring, diagnosis and future dashboards.
+Create a safe scheduling foundation for recurring market-day pipeline execution.
 
 ## Tasks
 
-1. Create stage metrics migration.
-2. Persist stage start and completion times.
-3. Persist stage duration.
-4. Persist records requested.
-5. Persist records received.
-6. Persist records written.
-7. Persist data freshness.
-8. Add metrics repository tests.
-9. Add health-report command.
-10. Preserve current pipeline behavior.
+1. Add Indian market-session configuration.
+2. Add weekday and market-hours validation.
+3. Add exchange-holiday support.
+4. Add PostgreSQL run locking.
+5. Prevent overlapping pipeline runs.
+6. Add stale-lock recovery.
+7. Add manual execution override.
+8. Add scheduler status reporting.
+9. Add scheduler unit tests.
+10. Preserve direct pipeline execution.
 
 ## Definition of Done
 
-- Every production stage records operational metrics.
-- Pipeline runs expose record counts and duration.
-- Data freshness is queryable.
-- Metrics are covered by tests.
-- Production behavior remains unchanged.
+- The pipeline can run on a controlled recurring schedule.
+- Runs outside configured market hours are skipped by default.
+- Exchange holidays can be configured.
+- Concurrent production runs are prevented.
+- Stale locks can be recovered safely.
+- Manual runs remain available.
+- Scheduler behavior has automated test coverage.
