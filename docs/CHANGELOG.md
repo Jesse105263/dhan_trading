@@ -73,3 +73,16 @@ Official transition from script-based development to platform architecture.
 
 - PostgreSQL connectivity established
 - Initial schema created
+
+## 2026-07-11
+
+### Market Data Collection
+
+- Added PostgreSQL-backed instrument configuration.
+- Added production Dhan quote collector.
+- Added live market quote ingestion from Dhan.
+- Added batch persistence into `underlying_quotes`.
+- Added collector execution metrics.
+- Verified MCX equity collection using security ID `31181`.
+- Verified DhanHQ Python client version `2.2.0`.
+- Removed CSV dependency from the production collector path.

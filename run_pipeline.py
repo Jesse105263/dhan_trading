@@ -1,16 +1,9 @@
 from typing import Any
 
+from services.collector import CollectorStage
 from services.database_stage import DatabaseStage
 from services.pipeline import Pipeline
 from services.stage import Stage
-
-
-class CollectorStage(Stage):
-    def __init__(self) -> None:
-        super().__init__("Collector")
-
-    def run(self, context: dict[str, Any]) -> None:
-        context["collector_complete"] = True
 
 
 class SnapshotStage(Stage):
@@ -56,13 +49,13 @@ class SignalStage(Stage):
 def main() -> None:
     pipeline = Pipeline(
         stages=[
+            DatabaseStage(),
             CollectorStage(),
             SnapshotStage(),
             FeatureStage(),
             RankingStage(),
             RiskStage(),
             SignalStage(),
-            DatabaseStage(),
         ]
     )
 

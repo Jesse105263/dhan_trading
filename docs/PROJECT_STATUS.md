@@ -1,125 +1,56 @@
-# Dhan Trading Platform - Project Status
+# Project Status
 
 ## Current Phase
 
-Foundation
+Milestone 2 — Production Refactor
 
----
+## Completed
 
-## Completed Milestones
+- Docker configured.
+- PostgreSQL configured.
+- Redis configured.
+- Git repository initialized.
+- Project documentation centralized.
+- Initial PostgreSQL schema created.
+- Production pipeline orchestration created.
+- Pipeline stage interface created.
+- PostgreSQL health-check stage created.
+- Environment configuration hardened.
+- Dhan credentials moved to `.env`.
+- Production Dhan quote collector created.
+- Instruments loaded from PostgreSQL.
+- Live underlying quotes stored in PostgreSQL.
+- MCX live quote collection verified.
 
-### Environment
+## Current Production Pipeline
 
-- Python Virtual Environment configured
-- Dhan API connected
-- Security master downloaded
-- F&O universe builder completed
+1. Database health check
+2. Instrument lookup
+3. Dhan market quote collection
+4. PostgreSQL quote persistence
+5. Snapshot stage placeholder
+6. Feature stage placeholder
+7. Ranking stage placeholder
+8. Risk stage placeholder
+9. Signal stage placeholder
 
-### Option Scanner
+## Database State
 
-- Option Chain Scanner completed
-- 205 F&O symbols scanning successfully
-- Option Chain Details generation completed
-- Failure handling implemented
+Tables currently available:
 
-### Daily Scanner
+- instruments
+- underlying_quotes
+- option_quotes
+- trade_signals
+- scanner_snapshots
 
-- Scanner V1 → V8 completed
-- Ranking engine
-- Confidence grades
-- Candidate quality
-- Capital filter
-- Strike recommendation
-- Premium estimation
-- Stop Loss
-- Target 1
-- Target 2
-- Risk Reward
-- Lot size
-- Maximum Loss estimation
+## Verified Instrument
 
-### Infrastructure
-
-- Docker Desktop installed
-- Docker verified
-- Docker Compose verified
-- PostgreSQL running inside Docker
-- Redis running inside Docker
-
-### Database
-
-- .env configuration completed
-- psycopg installed
-- python-dotenv installed
-- Python successfully connected to PostgreSQL
-- First table created
-- Read / Write verified
-
----
-
-## Current Architecture
-
-Python Scripts
-
-↓
-
-Docker
-
-↓
-
-PostgreSQL
-
-↓
-
-Redis
-
----
-
-## Current Data Storage
-
-CSV (temporary)
-
-Transitioning to PostgreSQL
-
----
-
-## Current Priority
-
-Database Foundation
-
-Replace CSV architecture with PostgreSQL tables.
-
----
+- Symbol: MCX
+- Exchange: NSE_EQ
+- Security ID: 31181
+- Instrument type: EQUITY
 
 ## Next Milestone
 
-Design production database schema.
-
-## Current Status (2026-07-11)
-
-### Completed
-
-- Docker Desktop installed and verified
-- PostgreSQL (TimescaleDB) running in Docker
-- Redis running in Docker
-- Git initialized
-- First Git commit created
-- Project folder restructured
-- Documentation moved to docs/
-- Database connection service implemented
-- Database initialization implemented
-- Service layer created
-    - config.py
-    - database.py
-    - collector.py
-    - feature_engine.py
-    - ranking_engine.py
-    - risk_engine.py
-    - signal_engine.py
-    - snapshot_engine.py
-
-### Current Architecture
-
-Current scanner is still a monolithic implementation (daily_scanner_v8.py).
-
-Refactoring into modular services has started but is not yet complete.
+Build the production instrument repository and migrate the full F&O universe into PostgreSQL.
