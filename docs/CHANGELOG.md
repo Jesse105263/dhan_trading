@@ -157,3 +157,22 @@ Official transition from script-based development to platform architecture.
 - Added automated pipeline smoke tests.
 - Verified successful pipeline completion persistence.
 - Verified failed pipeline persistence.
+
+## 2026-07-11
+
+### Database Migration Framework
+
+- Added ordered SQL migration files.
+- Added `schema_migrations` table.
+- Added migration version tracking.
+- Added SHA-256 checksum validation.
+- Added protection against modifying applied migrations.
+- Added duplicate migration version validation.
+- Added transactional migration execution.
+- Moved schema management out of `services/database.py`.
+- Reduced `services/database.py` to connection management.
+- Added automated migration discovery tests.
+- Added migration checksum tests.
+- Added duplicate-version tests.
+- Verified migration idempotency.
+- Verified existing production data remained intact.

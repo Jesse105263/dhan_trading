@@ -5,6 +5,7 @@ from services.stage import Stage
 
 
 REQUIRED_TABLES = {
+    "schema_migrations",
     "instruments",
     "underlying_quotes",
     "option_quotes",
@@ -19,10 +20,15 @@ class DatabaseStage(Stage):
     def __init__(self) -> None:
         super().__init__("Database")
 
-    def run(self, context: dict[str, Any]) -> None:
+    def run(
+        self,
+        context: dict[str, Any],
+    ) -> None:
         with get_connection() as connection:
             with connection.cursor() as cursor:
-                cursor.execute("SELECT version();")
+                cursor.execute(
+                    "SELECT version();"
+                )
                 postgres_version = cursor.fetchone()
 
                 cursor.execute(
@@ -51,8 +57,17 @@ class DatabaseStage(Stage):
 
                     raise RuntimeError(
                         "Missing required database tables: "
-                        f"{missing}"
+                        f"{missing}. Run "
+                        "'python -m services.migration_runner'."
                     )
+
+                cursor.execute(
+                    """
+                    SELECT COUNT(*)
+                    FROM schema_migrations;
+                    """
+                )
+                migration_result = cursor.fetchone()
 
                 cursor.execute("SELECT 1;")
                 health_result = cursor.fetchone()
@@ -60,6 +75,11 @@ class DatabaseStage(Stage):
         if postgres_version is None:
             raise RuntimeError(
                 "Unable to read PostgreSQL version."
+            )
+
+        if migration_result is None:
+            raise RuntimeError(
+                "Unable to read migration count."
             )
 
         if health_result is None:
@@ -76,9 +96,16 @@ class DatabaseStage(Stage):
         context["database_tables"] = sorted(
             existing_tables
         )
+        context["migration_count"] = int(
+            migration_result[0]
+        )
 
         print("PostgreSQL connection: OK")
         print(
             f"Required tables: {len(REQUIRED_TABLES)}"
+        )
+        print(
+            "Applied migrations: "
+            f"{context['migration_count']}"
         )
         print("Schema verification: OK")

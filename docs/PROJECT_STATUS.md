@@ -17,7 +17,12 @@ Architecture Stabilization
 - Pipeline run repository added.
 - Pipeline success persistence added.
 - Pipeline failure persistence added.
-- Automated smoke tests added.
+- Ordered SQL migration framework added.
+- Migration version history persisted.
+- Migration checksum validation added.
+- Transactional migration execution added.
+- Automated migration tests added.
+- Automated pipeline smoke tests added.
 - Production pipeline orchestration created.
 - UUID-based pipeline run IDs implemented.
 - Production instrument repository created.
@@ -35,35 +40,38 @@ Architecture Stabilization
 ## Current Production Pipeline
 
 1. Pipeline run creation
-2. Database health check
-3. Instrument repository lookup
-4. Dhan market quote collection
-5. Underlying quote persistence
-6. Scanner snapshot persistence
-7. Snapshot validation
-8. Snapshot history retrieval
-9. Market feature calculation
-10. Feature persistence
-11. Feature validation
-12. Ranking stage placeholder
-13. Risk stage placeholder
-14. Signal stage placeholder
-15. Pipeline completion or failure persistence
+2. Database migration verification
+3. Database health check
+4. Instrument repository lookup
+5. Dhan market quote collection
+6. Underlying quote persistence
+7. Scanner snapshot persistence
+8. Snapshot validation
+9. Snapshot history retrieval
+10. Market feature calculation
+11. Feature persistence
+12. Feature validation
+13. Ranking stage placeholder
+14. Risk stage placeholder
+15. Signal stage placeholder
+16. Pipeline completion or failure persistence
 
-## Configuration
+## Database Management
 
-Environment-driven values:
-
-- LOG_LEVEL
-- DHAN_REQUEST_TIMEOUT_SECONDS
-- DHAN_MAX_INSTRUMENTS_PER_REQUEST
-- FEATURE_LOOKBACK_RUNS
+- Migration directory: `migrations/`
+- Applied migration history: `schema_migrations`
+- Current applied migrations: 1
+- Applied migration checksums: enforced
+- Migration execution: transactional
 
 ## Automated Tests
 
 - Successful pipeline smoke test
 - Failed pipeline smoke test
+- Migration ordering test
+- Migration checksum test
+- Duplicate migration version test
 
 ## Next Milestone
 
-Create a proper migration framework and move schema changes out of `services/database.py`.
+Add repository abstractions and integration tests before beginning option-chain ingestion.

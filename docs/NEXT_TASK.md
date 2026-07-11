@@ -2,27 +2,25 @@
 
 ## Milestone
 
-Architecture Stabilization — Database Migrations
+Architecture Stabilization — Repository Contracts
 
 ## Objective
 
-Move database schema creation and evolution out of `services/database.py` into ordered migration files.
+Introduce explicit repository contracts and integration tests without changing production behavior.
 
 ## Tasks
 
-1. Create a migration runner.
-2. Create a schema migrations table.
-3. Split existing schema into ordered migration files.
-4. Make migrations idempotent.
-5. Record applied migration versions.
-6. Keep `services/database.py` limited to connections.
-7. Add migration tests.
-8. Verify the production pipeline after migration.
+1. Define repository protocols.
+2. Apply dependency inversion to pipeline stages.
+3. Add integration-test helpers.
+4. Add PostgreSQL repository tests.
+5. Verify transaction behavior.
+6. Verify repository count consistency.
+7. Keep the production pipeline unchanged.
 
 ## Definition of Done
 
-- Schema changes are versioned.
-- Applied migrations are recorded.
-- Database initialization no longer contains the full schema.
-- Existing data remains intact.
-- Production pipeline behavior is unchanged.
+- Stage dependencies are expressed through repository contracts.
+- Core repositories have integration coverage.
+- Database behavior is validated independently of stages.
+- Production pipeline output remains unchanged.
