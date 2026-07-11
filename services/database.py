@@ -165,14 +165,22 @@ def initialize_database() -> None:
                 CREATE TABLE IF NOT EXISTS pipeline_runs
                 (
                     run_id VARCHAR(36) PRIMARY KEY,
-                    status VARCHAR(20) NOT NULL,
+                    status VARCHAR(30) NOT NULL,
                     started_at TIMESTAMP NOT NULL,
                     completed_at TIMESTAMP,
                     quote_timestamp TIMESTAMP,
                     instrument_count INTEGER,
                     snapshot_count INTEGER,
+                    feature_count INTEGER,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 );
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE pipeline_runs
+                ADD COLUMN IF NOT EXISTS feature_count INTEGER;
                 """
             )
 
@@ -259,6 +267,56 @@ def initialize_database() -> None:
                 CREATE INDEX IF NOT EXISTS
                 idx_scanner_snapshots_symbol_time
                 ON scanner_snapshots(symbol, snapshot_time DESC);
+                """
+            )
+
+            cursor.execute(
+                """
+                CREATE TABLE IF NOT EXISTS market_features
+                (
+                    id BIGSERIAL PRIMARY KEY,
+                    run_id VARCHAR(36) NOT NULL,
+                    symbol VARCHAR(30) NOT NULL,
+                    spot_price DOUBLE PRECISION NOT NULL,
+                    previous_spot_price DOUBLE PRECISION,
+                    price_change DOUBLE PRECISION,
+                    price_change_pct DOUBLE PRECISION,
+                    volume BIGINT,
+                    previous_volume BIGINT,
+                    volume_change BIGINT,
+                    volume_change_pct DOUBLE PRECISION,
+                    average_prior_volume DOUBLE PRECISION,
+                    relative_volume DOUBLE PRECISION,
+                    history_count INTEGER NOT NULL DEFAULT 0,
+                    calculated_at TIMESTAMP NOT NULL,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    CONSTRAINT uq_market_features_run_symbol
+                        UNIQUE (run_id, symbol)
+                );
+                """
+            )
+
+            cursor.execute(
+                """
+                CREATE INDEX IF NOT EXISTS
+                idx_market_features_run
+                ON market_features(run_id);
+                """
+            )
+
+            cursor.execute(
+                """
+                CREATE INDEX IF NOT EXISTS
+                idx_market_features_symbol_time
+                ON market_features(symbol, calculated_at DESC);
+                """
+            )
+
+            cursor.execute(
+                """
+                CREATE INDEX IF NOT EXISTS
+                idx_market_features_relative_volume
+                ON market_features(relative_volume DESC);
                 """
             )
 

@@ -120,3 +120,23 @@ Official transition from script-based development to platform architecture.
 - Added per-run snapshot count validation.
 - Persisted 209 snapshots for the verified production universe.
 - Added snapshot auditability by run ID.
+
+## 2026-07-11
+
+### Feature Engine
+
+- Added PostgreSQL `market_features` table.
+- Added production feature repository.
+- Replaced the placeholder feature stage.
+- Added previous-run price lookup.
+- Added previous-run volume lookup.
+- Added price change calculation.
+- Added price change percentage calculation.
+- Added volume change calculation.
+- Added volume change percentage calculation.
+- Added rolling average prior volume.
+- Added relative-volume calculation.
+- Added configurable 20-run history window.
+- Added per-run feature persistence and validation.
+- Verified 209 feature rows for 209 production instruments.
+- Verified full snapshot-to-feature count consistency.

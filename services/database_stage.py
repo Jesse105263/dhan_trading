@@ -9,7 +9,9 @@ REQUIRED_TABLES = {
     "underlying_quotes",
     "option_quotes",
     "trade_signals",
+    "pipeline_runs",
     "scanner_snapshots",
+    "market_features",
 }
 
 
@@ -21,7 +23,7 @@ class DatabaseStage(Stage):
         with get_connection() as connection:
             with connection.cursor() as cursor:
                 cursor.execute("SELECT version();")
-                postgres_version = cursor.fetchone()[0]
+                postgres_version = cursor.fetchone()
 
                 cursor.execute(
                     """
@@ -37,22 +39,46 @@ class DatabaseStage(Stage):
                     for row in cursor.fetchall()
                 }
 
-                missing_tables = REQUIRED_TABLES - existing_tables
+                missing_tables = (
+                    REQUIRED_TABLES
+                    - existing_tables
+                )
 
                 if missing_tables:
-                    missing = ", ".join(sorted(missing_tables))
+                    missing = ", ".join(
+                        sorted(missing_tables)
+                    )
 
                     raise RuntimeError(
-                        f"Missing required database tables: {missing}"
+                        "Missing required database tables: "
+                        f"{missing}"
                     )
 
                 cursor.execute("SELECT 1;")
-                health_check = cursor.fetchone()[0]
+                health_result = cursor.fetchone()
 
-        context["database_connected"] = health_check == 1
-        context["postgres_version"] = postgres_version
-        context["database_tables"] = sorted(existing_tables)
+        if postgres_version is None:
+            raise RuntimeError(
+                "Unable to read PostgreSQL version."
+            )
+
+        if health_result is None:
+            raise RuntimeError(
+                "PostgreSQL health check returned no result."
+            )
+
+        context["database_connected"] = (
+            health_result[0] == 1
+        )
+        context["postgres_version"] = (
+            postgres_version[0]
+        )
+        context["database_tables"] = sorted(
+            existing_tables
+        )
 
         print("PostgreSQL connection: OK")
-        print(f"Required tables: {len(REQUIRED_TABLES)}")
+        print(
+            f"Required tables: {len(REQUIRED_TABLES)}"
+        )
         print("Schema verification: OK")

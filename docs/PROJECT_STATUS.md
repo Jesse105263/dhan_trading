@@ -11,22 +11,24 @@ Milestone 2 — Production Refactor
 - Redis configured.
 - Git and GitHub configured.
 - Documentation centralized.
+- Environment configuration hardened.
 - Production pipeline orchestration created.
 - Pipeline stage interface created.
-- UUID-based pipeline run IDs added.
-- PostgreSQL health-check stage created.
-- Environment configuration hardened.
-- Dhan credentials moved to `.env`.
+- UUID-based pipeline run IDs implemented.
+- PostgreSQL health-check stage implemented.
 - Production instrument repository created.
 - 209 production F&O equities loaded.
 - Production Dhan quote collector created.
-- 209 of 209 live quotes collected.
+- 209 of 209 quotes collected and persisted.
 - Underlying quote repository created.
-- Pipeline run repository created.
 - Scanner snapshot repository created.
 - Real snapshot stage created.
-- 209 snapshots persisted and validated.
-- Snapshot audit trail by run ID implemented.
+- 209 snapshots persisted per pipeline run.
+- Production feature repository created.
+- Real feature stage created.
+- Price and volume changes calculated.
+- Relative volume calculated from snapshot history.
+- 209 of 209 feature rows persisted and validated.
 - CSV runtime dependency removed from the production path.
 
 ## Current Production Pipeline
@@ -39,14 +41,15 @@ Milestone 2 — Production Refactor
 6. Pipeline run creation
 7. Scanner snapshot persistence
 8. Snapshot validation
-9. Feature stage placeholder
-10. Ranking stage placeholder
-11. Risk stage placeholder
-12. Signal stage placeholder
+9. Snapshot history retrieval
+10. Market feature calculation
+11. Feature persistence
+12. Feature validation
+13. Ranking stage placeholder
+14. Risk stage placeholder
+15. Signal stage placeholder
 
-## Database State
-
-Tables currently available:
+## Database Tables
 
 - instruments
 - underlying_quotes
@@ -54,6 +57,7 @@ Tables currently available:
 - trade_signals
 - pipeline_runs
 - scanner_snapshots
+- market_features
 
 ## Instrument Universe
 
@@ -62,13 +66,14 @@ Tables currently available:
 - Test instruments: 0
 - Missing quote instruments: 0
 
-## Snapshot State
+## Feature State
 
-- Latest verified snapshot count: 209
-- Distinct symbols: 209
-- Source timestamps per run: 1
-- Pipeline run audit: enabled
+- Latest feature count: 209
+- Distinct feature symbols: 209
+- Price-change coverage: 209
+- Relative-volume coverage: 209
+- Lookback window: 20 runs
 
 ## Next Milestone
 
-Build the PostgreSQL-backed feature engine and calculate the first production market features from snapshot history.
+Build the production ranking engine using persisted market features.

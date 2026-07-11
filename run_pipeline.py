@@ -2,17 +2,10 @@ from typing import Any
 
 from services.collector import CollectorStage
 from services.database_stage import DatabaseStage
+from services.feature_engine import FeatureStage
 from services.pipeline import Pipeline
 from services.snapshot_engine import SnapshotStage
 from services.stage import Stage
-
-
-class FeatureStage(Stage):
-    def __init__(self) -> None:
-        super().__init__("Feature Engine")
-
-    def run(self, context: dict[str, Any]) -> None:
-        context["feature_complete"] = True
 
 
 class RankingStage(Stage):
