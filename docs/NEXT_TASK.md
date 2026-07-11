@@ -2,26 +2,25 @@
 
 ## Milestone
 
-Production Instrument Repository
+Production Snapshot Repository
 
 ## Objective
 
-Replace manual instrument inserts with a production repository and load the complete supported trading universe into PostgreSQL.
+Replace the placeholder snapshot stage with PostgreSQL-backed quote retrieval and scanner snapshot persistence.
 
 ## Tasks
 
-1. Create an instrument repository.
-2. Add bulk upsert support.
-3. Validate exchange and security ID mappings.
-4. Load the supported F&O universe.
-5. Store lot size and instrument metadata.
-6. Verify PostgreSQL instrument counts.
-7. Remove manual seed dependencies.
+1. Create an underlying quote repository.
+2. Load the latest quote batch from PostgreSQL.
+3. Create a scanner snapshot repository.
+4. Persist snapshot records in PostgreSQL.
+5. Add batch-level validation.
+6. Add snapshot execution metrics.
+7. Remove the placeholder snapshot stage.
 
 ## Definition of Done
 
-- Instruments are managed through a repository.
-- Bulk instrument upserts work.
-- PostgreSQL contains the configured trading universe.
-- Collector can request multiple instruments from PostgreSQL.
+- Latest underlying quotes are loaded through a repository.
+- Snapshot records are persisted in PostgreSQL.
+- The production pipeline contains a real snapshot stage.
 - No CSV file is required at runtime.

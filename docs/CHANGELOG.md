@@ -86,3 +86,20 @@ Official transition from script-based development to platform architecture.
 - Verified MCX equity collection using security ID `31181`.
 - Verified DhanHQ Python client version `2.2.0`.
 - Removed CSV dependency from the production collector path.
+
+## 2026-07-11
+
+### Instrument Repository
+
+- Added production PostgreSQL instrument repository.
+- Added bulk instrument upsert support.
+- Added schema migration support for instrument metadata.
+- Added `tick_size` support to the `instruments` table.
+- Added F&O equity universe importer.
+- Excluded NSE test and mock instruments.
+- Imported 209 production F&O equities.
+- Stored security IDs, lot sizes, tick sizes and exchange segments.
+- Updated the collector to load instruments through the repository.
+- Added multi-instrument Dhan quote collection.
+- Verified 209 of 209 live quotes were collected and persisted.
+- Confirmed zero missing instruments in the latest collection batch.

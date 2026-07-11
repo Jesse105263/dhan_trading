@@ -10,22 +10,28 @@ Milestone 2 — Production Refactor
 - PostgreSQL configured.
 - Redis configured.
 - Git repository initialized.
-- Project documentation centralized.
-- Initial PostgreSQL schema created.
+- Documentation centralized.
 - Production pipeline orchestration created.
 - Pipeline stage interface created.
 - PostgreSQL health-check stage created.
 - Environment configuration hardened.
 - Dhan credentials moved to `.env`.
 - Production Dhan quote collector created.
-- Instruments loaded from PostgreSQL.
-- Live underlying quotes stored in PostgreSQL.
-- MCX live quote collection verified.
+- Production instrument repository created.
+- Bulk instrument upsert implemented.
+- Instrument schema migration implemented.
+- F&O equity universe importer created.
+- Test instruments excluded.
+- 209 production F&O equities loaded into PostgreSQL.
+- Lot sizes, tick sizes and security IDs persisted.
+- Multi-instrument quote collection implemented.
+- 209 of 209 live equity quotes collected successfully.
+- Zero missing instruments verified.
 
 ## Current Production Pipeline
 
 1. Database health check
-2. Instrument lookup
+2. Instrument repository lookup
 3. Dhan market quote collection
 4. PostgreSQL quote persistence
 5. Snapshot stage placeholder
@@ -44,13 +50,13 @@ Tables currently available:
 - trade_signals
 - scanner_snapshots
 
-## Verified Instrument
+## Instrument Universe
 
-- Symbol: MCX
-- Exchange: NSE_EQ
-- Security ID: 31181
-- Instrument type: EQUITY
+- Production F&O equities: 209
+- Exchange segment: NSE_EQ
+- Test instruments: 0
+- Missing quote instruments: 0
 
 ## Next Milestone
 
-Build the production instrument repository and migrate the full F&O universe into PostgreSQL.
+Build PostgreSQL repositories for underlying quotes and scanner snapshots, then replace the placeholder snapshot stage.

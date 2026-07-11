@@ -6,6 +6,10 @@ import requests
 
 from services.config import DHAN_SETTINGS
 from services.database import get_connection
+from services.instrument_repository import (
+    Instrument,
+    InstrumentRepository,
+)
 from services.stage import Stage
 
 
@@ -15,90 +19,119 @@ MAX_INSTRUMENTS_PER_REQUEST = 1000
 
 
 class CollectorStage(Stage):
-    def __init__(self) -> None:
+    def __init__(
+        self,
+        repository: InstrumentRepository | None = None,
+    ) -> None:
         super().__init__("Collector")
+        self.repository = (
+            repository or InstrumentRepository()
+        )
 
     def run(self, context: dict[str, Any]) -> None:
-        instruments = self._load_instruments()
+        instruments = (
+            self.repository
+            .list_active_quote_instruments()
+        )
 
         if not instruments:
             raise RuntimeError(
-                "No instruments found in PostgreSQL table: instruments"
+                "No instruments found in PostgreSQL."
             )
 
-        if len(instruments) > MAX_INSTRUMENTS_PER_REQUEST:
+        batches = self._create_batches(
+            instruments
+        )
+
+        all_quotes: list[dict[str, Any]] = []
+
+        for batch in batches:
+            payload = self._build_payload(batch)
+            response_data = self._fetch_quotes(payload)
+
+            batch_quotes = self._parse_quotes(
+                batch,
+                response_data,
+            )
+
+            all_quotes.extend(batch_quotes)
+
+        if not all_quotes:
             raise RuntimeError(
-                "Collector currently supports a maximum of "
-                f"{MAX_INSTRUMENTS_PER_REQUEST} instruments per run."
+                "Dhan returned no usable quotes "
+                "for configured instruments."
             )
 
-        payload = self._build_payload(instruments)
-        response_data = self._fetch_quotes(payload)
-        quotes = self._parse_quotes(instruments, response_data)
-
-        if not quotes:
-            raise RuntimeError(
-                "Dhan returned no usable quotes for configured instruments."
-            )
-
-        inserted_count = self._save_quotes(quotes)
+        inserted_count = self._save_quotes(
+            all_quotes
+        )
 
         context["collector_complete"] = True
-        context["instruments_requested"] = len(instruments)
-        context["quotes_received"] = len(quotes)
-        context["quotes_inserted"] = inserted_count
+        context["instruments_requested"] = len(
+            instruments
+        )
+        context["collector_batches"] = len(batches)
+        context["quotes_received"] = len(
+            all_quotes
+        )
+        context["quotes_inserted"] = (
+            inserted_count
+        )
         context["collection_time"] = datetime.now()
 
-        print(f"Instruments requested: {len(instruments)}")
-        print(f"Quotes received: {len(quotes)}")
-        print(f"Quotes inserted: {inserted_count}")
+        print(
+            f"Instruments requested: {len(instruments)}"
+        )
+        print(
+            f"Request batches: {len(batches)}"
+        )
+        print(
+            f"Quotes received: {len(all_quotes)}"
+        )
+        print(
+            f"Quotes inserted: {inserted_count}"
+        )
 
     @staticmethod
-    def _load_instruments() -> list[dict[str, str]]:
-        with get_connection() as connection:
-            with connection.cursor() as cursor:
-                cursor.execute(
-                    """
-                    SELECT
-                        symbol,
-                        exchange,
-                        security_id
-                    FROM instruments
-                    WHERE symbol IS NOT NULL
-                      AND exchange IS NOT NULL
-                      AND security_id IS NOT NULL
-                    ORDER BY symbol;
-                    """
-                )
-
-                rows = cursor.fetchall()
-
+    def _create_batches(
+        instruments: list[Instrument],
+    ) -> list[list[Instrument]]:
         return [
-            {
-                "symbol": str(row[0]).strip().upper(),
-                "exchange": str(row[1]).strip().upper(),
-                "security_id": str(row[2]).strip(),
-            }
-            for row in rows
+            instruments[
+                index:
+                index + MAX_INSTRUMENTS_PER_REQUEST
+            ]
+            for index in range(
+                0,
+                len(instruments),
+                MAX_INSTRUMENTS_PER_REQUEST,
+            )
         ]
 
     @staticmethod
     def _build_payload(
-        instruments: list[dict[str, str]],
+        instruments: list[Instrument],
     ) -> dict[str, list[int]]:
-        grouped: defaultdict[str, list[int]] = defaultdict(list)
+        grouped: defaultdict[
+            str,
+            list[int],
+        ] = defaultdict(list)
 
         for instrument in instruments:
-            exchange = instrument["exchange"]
-            security_id = instrument["security_id"]
-
             try:
-                grouped[exchange].append(int(security_id))
+                security_id = int(
+                    instrument.security_id
+                )
             except ValueError as error:
                 raise RuntimeError(
-                    f"Invalid security ID for "
-                    f"{instrument['symbol']}: {security_id}"
+                    "Invalid security ID for "
+                    f"{instrument.symbol}: "
+                    f"{instrument.security_id}"
                 ) from error
+
+            grouped[
+                instrument.exchange
+            ].append(security_id)
 
         return dict(grouped)
 
@@ -109,8 +142,12 @@ class CollectorStage(Stage):
         headers = {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "access-token": DHAN_SETTINGS.access_token,
-            "client-id": DHAN_SETTINGS.client_id,
+            "access-token": (
+                DHAN_SETTINGS.access_token
+            ),
+            "client-id": (
+                DHAN_SETTINGS.client_id
+            ),
         }
 
         try:
@@ -122,25 +159,29 @@ class CollectorStage(Stage):
             )
         except requests.RequestException as error:
             raise RuntimeError(
-                f"Unable to connect to Dhan Market Quote API: {error}"
+                "Unable to connect to Dhan "
+                f"Market Quote API: {error}"
             ) from error
 
         if not response.ok:
             raise RuntimeError(
                 "Dhan Market Quote API request failed. "
-                f"HTTP {response.status_code}: {response.text}"
+                f"HTTP {response.status_code}: "
+                f"{response.text}"
             )
 
         try:
             response_data = response.json()
         except ValueError as error:
             raise RuntimeError(
-                "Dhan Market Quote API returned invalid JSON."
+                "Dhan Market Quote API "
+                "returned invalid JSON."
             ) from error
 
         if response_data.get("status") != "success":
             raise RuntimeError(
-                "Dhan Market Quote API returned an unsuccessful response: "
+                "Dhan Market Quote API returned "
+                "an unsuccessful response: "
                 f"{response_data}"
             )
 
@@ -148,65 +189,99 @@ class CollectorStage(Stage):
 
         if not isinstance(data, dict):
             raise RuntimeError(
-                "Dhan Market Quote API response is missing quote data."
+                "Dhan Market Quote API response "
+                "is missing quote data."
             )
 
         return data
 
     @staticmethod
     def _parse_quotes(
-        instruments: list[dict[str, str]],
+        instruments: list[Instrument],
         response_data: dict[str, Any],
     ) -> list[dict[str, Any]]:
         instrument_lookup = {
             (
-                instrument["exchange"],
-                instrument["security_id"],
+                instrument.exchange,
+                instrument.security_id,
             ): instrument
             for instrument in instruments
         }
 
         collected_at = datetime.now()
+
         quotes: list[dict[str, Any]] = []
 
-        for exchange, exchange_quotes in response_data.items():
-            if not isinstance(exchange_quotes, dict):
+        for (
+            exchange,
+            exchange_quotes,
+        ) in response_data.items():
+            if not isinstance(
+                exchange_quotes,
+                dict,
+            ):
                 continue
 
-            for security_id, quote in exchange_quotes.items():
+            for (
+                security_id,
+                quote,
+            ) in exchange_quotes.items():
                 if not isinstance(quote, dict):
                     continue
 
-                instrument = instrument_lookup.get(
-                    (str(exchange).upper(), str(security_id))
+                instrument = (
+                    instrument_lookup.get(
+                        (
+                            str(exchange).upper(),
+                            str(security_id),
+                        )
+                    )
                 )
 
                 if instrument is None:
                     continue
 
-                last_price = quote.get("last_price")
+                last_price = quote.get(
+                    "last_price"
+                )
 
                 if last_price is None:
                     continue
 
                 quotes.append(
                     {
-                        "symbol": instrument["symbol"],
-                        "spot_price": float(last_price),
-                        "volume": CollectorStage._safe_integer(
-                            quote.get("volume")
+                        "symbol": (
+                            instrument.symbol
                         ),
-                        "oi": CollectorStage._safe_integer(
-                            quote.get("open_interest")
+                        "spot_price": float(
+                            last_price
                         ),
-                        "timestamp": collected_at,
+                        "volume": (
+                            CollectorStage
+                            ._safe_integer(
+                                quote.get("volume")
+                            )
+                        ),
+                        "oi": (
+                            CollectorStage
+                            ._safe_integer(
+                                quote.get(
+                                    "open_interest"
+                                )
+                            )
+                        ),
+                        "timestamp": (
+                            collected_at
+                        ),
                     }
                 )
 
         return quotes
 
     @staticmethod
-    def _safe_integer(value: Any) -> int | None:
+    def _safe_integer(
+        value: Any,
+    ) -> int | None:
         if value is None:
             return None
 
