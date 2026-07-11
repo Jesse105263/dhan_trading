@@ -1,4 +1,3 @@
-```markdown
 # Dhan Trading Platform — Version 1.0 Implementation Plan
 
 ## Current Version
@@ -89,12 +88,21 @@ Status: Complete.
 
 #### Milestone 2.1 — Derivative Contract Schema
 
-- Create derivative contracts table.
-- Store futures and option metadata.
-- Add expiry and strike indexes.
-- Add active-contract lifecycle.
+Status: Complete.
+
+- Created normalized derivative contracts table.
+- Added Dhan contract identity constraints.
+- Added active-contract lifecycle.
+- Added expiry, strike, underlying and activity indexes.
+- Added derivative contract repository contract.
+- Added PostgreSQL repository implementation.
+- Added model normalization and validation.
+- Added unit and PostgreSQL integration tests.
+- Verified the existing equity pipeline remained unchanged.
 
 #### Milestone 2.2 — Security Master Import
+
+Status: Next.
 
 - Import derivative contracts.
 - Resolve aliases.

@@ -14,7 +14,7 @@ Phase 2 — Option Data Platform
 
 ## Current Milestone
 
-Derivative Contract Schema
+Security Master Import
 
 ## Version Targets
 

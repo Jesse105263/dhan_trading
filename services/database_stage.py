@@ -14,6 +14,7 @@ REQUIRED_TABLES = {
     "scanner_snapshots",
     "market_features",
     "scheduler_locks",
+    "derivative_contracts",
 }
 
 

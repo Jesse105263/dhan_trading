@@ -6,29 +6,34 @@ Phase 2 — Option Data Platform
 
 ## Milestone
 
-Milestone 2.1 — Derivative Contract Schema
+Milestone 2.2 — Security Master Import
 
 ## Objective
 
-Create the PostgreSQL schema and repository foundation for normalized futures and options contract metadata.
+Import and normalize Dhan derivative contracts into PostgreSQL without adding a CSV dependency to the production runtime.
 
 ## Tasks
 
-1. Define the derivative-contract data model.
-2. Create the derivative contracts migration.
-3. Store exchange, segment, security ID and trading symbol.
-4. Store underlying symbol, instrument type, expiry, strike and option type.
-5. Store lot size and tick size.
-6. Add uniqueness constraints for Dhan contract identity.
-7. Add indexes for active contracts, expiries, strikes and underlyings.
-8. Add repository contracts and PostgreSQL implementation.
-9. Add migration and repository tests.
-10. Preserve the existing equity collection pipeline.
+1. Define the derivative security-master import flow.
+2. Read the current Dhan security master source.
+3. Filter supported NSE futures and options contracts.
+4. Normalize exchange, segment, security ID and trading symbol.
+5. Normalize underlying symbol, instrument type, expiry, strike and option type.
+6. Normalize lot size and tick size.
+7. Upsert contracts through the derivative contract repository.
+8. Deactivate contracts no longer present in the latest import.
+9. Persist import failures without exposing credentials or raw secrets.
+10. Add validation for malformed or unsupported contracts.
+11. Add import summary metrics.
+12. Add unit and PostgreSQL integration tests.
+13. Preserve the existing production equity pipeline and scheduler.
 
 ## Definition of Done
 
-- Futures and options contracts can be stored without CSV runtime dependency.
-- Contract identity is protected by database constraints.
-- Active contracts can be queried efficiently by underlying and expiry.
-- Repository behavior has automated test coverage.
-- Existing production pipeline and scheduler tests remain green.
+- Supported Dhan futures and options contracts are stored in PostgreSQL.
+- Import can be rerun safely and idempotently.
+- Missing contracts are deactivated without deleting historical rows.
+- Malformed rows are isolated and reported.
+- Contract counts and failures are visible after each import.
+- No CSV file is required by the production runtime after import.
+- Existing production pipeline, scheduler and derivative repository tests remain green.

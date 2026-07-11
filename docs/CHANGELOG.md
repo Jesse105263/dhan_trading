@@ -229,6 +229,7 @@ Official transition from script-based development to platform architecture.
 - Added stage-metrics smoke-test coverage.
 - Verified seven stage metrics for a successful pipeline run.
 - Verified 209 requested, received and written records across production data stages.
+
 ## 2026-07-12
 
 ### Scheduling Foundation
@@ -248,3 +249,27 @@ Official transition from script-based development to platform architecture.
 - Verified the seven-stage production pipeline completes successfully.
 - Verified scheduler locks are released after execution and failure.
 - Verified scheduler lock acquisition and automatic release using PostgreSQL.
+
+## 2026-07-12
+
+### Derivative Contract Schema
+
+- Added `005_derivative_contracts.sql`.
+- Added normalized PostgreSQL storage for futures and options contract metadata.
+- Added immutable Dhan contract identity using exchange segment and security ID.
+- Added trading symbol, underlying symbol, instrument type, expiry, strike and option type fields.
+- Added lot size and tick size validation.
+- Added active-contract lifecycle fields.
+- Added database constraints for supported instrument and option types.
+- Added database constraints for valid option and futures field combinations.
+- Added indexes for active contracts, underlyings, expiries and strikes.
+- Added derivative contract repository protocol.
+- Added PostgreSQL derivative contract repository.
+- Added normalization and validation for derivative contract models.
+- Added active-contract, expiry and option-chain query support.
+- Added contract deactivation support.
+- Added repository unit tests.
+- Added PostgreSQL integration tests covering upserts, queries and deactivation.
+- Verified 31 automated tests pass, with 5 opt-in integration tests skipped by default.
+- Verified all 5 PostgreSQL integration tests pass when enabled.
+- Verified the existing seven-stage production pipeline remains green.

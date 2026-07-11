@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import date, datetime
 from typing import (
     Iterable,
     Protocol,
@@ -9,6 +9,9 @@ from typing import (
 
 
 if TYPE_CHECKING:
+    from services.derivative_contract_repository import (
+        DerivativeContract,
+    )
     from services.failure_repository import (
         PipelineFailure,
     )
@@ -182,5 +185,51 @@ class MetricsRepositoryContract(
     def count_for_run(
         self,
         run_id: str,
+    ) -> int:
+        ...
+
+class DerivativeContractRepositoryContract(
+    Protocol
+):
+    def bulk_upsert(
+        self,
+        contracts: Iterable[DerivativeContract],
+    ) -> int:
+        ...
+
+    def get_by_identity(
+        self,
+        exchange: str,
+        segment: str,
+        security_id: str,
+    ) -> DerivativeContract | None:
+        ...
+
+    def list_active_by_underlying(
+        self,
+        underlying_symbol: str,
+        expiry: date | None = None,
+        instrument_type: str | None = None,
+    ) -> list[DerivativeContract]:
+        ...
+
+    def list_active_expiries(
+        self,
+        underlying_symbol: str,
+        instrument_type: str | None = None,
+    ) -> list[date]:
+        ...
+
+    def deactivate_missing(
+        self,
+        exchange: str,
+        segment: str,
+        active_security_ids: Iterable[str],
+    ) -> int:
+        ...
+
+    def count(
+        self,
+        active_only: bool = False,
     ) -> int:
         ...

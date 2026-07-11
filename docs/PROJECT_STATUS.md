@@ -44,6 +44,15 @@ Phase 2 — Option Data Platform
 - Scheduler status, one-shot and recurring commands added.
 - Direct pipeline execution preserved.
 - Scheduler unit tests added and verified.
+- Derivative-contract schema added.
+- Dhan derivative contract identity protected by database constraints.
+- Active contract lifecycle added.
+- Contract indexes added for underlying, expiry, strike and activity.
+- Derivative contract repository contract added.
+- PostgreSQL derivative contract repository added.
+- Derivative contract normalization and validation added.
+- Unit and PostgreSQL integration coverage added for derivative contracts.
+- Existing production equity pipeline preserved.
 
 ## Database Migrations
 
@@ -51,6 +60,7 @@ Phase 2 — Option Data Platform
 - `002_pipeline_failures.sql`
 - `003_stage_metrics.sql`
 - `004_scheduler_foundation.sql`
+- `005_derivative_contracts.sql`
 
 ## Operational Monitoring
 
@@ -85,8 +95,9 @@ python -m scripts.scheduler status
 
 ## Verification
 
-- Scheduler tests: 9 passed.
-- Full automated suite: 24 passed, 3 opt-in database integration tests skipped.
+- Derivative contract unit tests: 5 passed.
+- Full automated suite: 31 passed, 5 opt-in database integration tests skipped.
+- PostgreSQL integration suite: 5 passed.
 - Production pipeline: 7 stages completed successfully.
-- Scheduler lock table verified.
-- Scheduler lock cleanup verified.
+- Database stage: 10 required tables and 5 applied migrations.
+- Existing scheduler and market-core behavior remained green.
