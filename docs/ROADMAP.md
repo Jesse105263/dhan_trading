@@ -14,7 +14,7 @@ Phase 2 — Option Data Platform
 
 ## Current Milestone
 
-Security Master Import
+Option-Chain Collector
 
 ## Version Targets
 

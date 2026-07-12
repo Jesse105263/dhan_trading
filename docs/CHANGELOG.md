@@ -273,3 +273,19 @@ Official transition from script-based development to platform architecture.
 - Verified 31 automated tests pass, with 5 opt-in integration tests skipped by default.
 - Verified all 5 PostgreSQL integration tests pass when enabled.
 - Verified the existing seven-stage production pipeline remains green.
+
+## 2026-07-12
+
+### Expiry Repository and Service
+
+- Added PostgreSQL-backed expiry availability queries derived from active derivative contracts.
+- Added active contract counts per underlying, instrument type and expiry.
+- Added centralized expiry selection for nearest, next and monthly expiries.
+- Added minimum and maximum days-to-expiry eligibility controls.
+- Added active-expiry validation and explicit not-found errors.
+- Added a repository protocol for expiry data access.
+- Added comprehensive expiry-service unit tests.
+- Added opt-in PostgreSQL expiry repository integration tests.
+- Added a production-data expiry verification command.
+- Preserved the existing derivative-contract expiry query for backward compatibility.
+- Added no database migration because `derivative_contracts` remains the normalized source of truth.

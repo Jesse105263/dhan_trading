@@ -84,3 +84,22 @@ Use Git history instead.
 Reason
 
 Cleaner project.
+---
+
+Decision 009
+
+Available expiries are derived from active `derivative_contracts` rows rather than stored in a separate table.
+
+Reason
+
+Derivative contracts are already the normalized source of truth. Duplicating expiry state would create avoidable consistency and lifecycle risks.
+
+---
+
+Decision 010
+
+All expiry-selection policy belongs to `ExpiryService`; repositories provide data only.
+
+Reason
+
+Collectors, strategies and future contract-selection components must use one deterministic implementation for eligibility, nearest-expiry, next-expiry and monthly-expiry behavior.

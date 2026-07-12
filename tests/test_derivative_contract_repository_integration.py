@@ -23,8 +23,8 @@ RUN_INTEGRATION_TESTS = (
 class DerivativeContractRepositoryIntegrationTest(unittest.TestCase):
     def setUp(self) -> None:
         suffix = uuid4().hex[:8].upper()
-        self.exchange = "NSE"
-        self.segment = "NSE_FNO"
+        self.exchange = "TEST"
+        self.segment = "TEST_FNO"
         self.underlying = f"ZZD{suffix}"
         self.expiry = date(2026, 7, 30)
         self.repository = DerivativeContractRepository()

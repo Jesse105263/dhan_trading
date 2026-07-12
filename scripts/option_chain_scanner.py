@@ -1,8 +1,10 @@
 import time
+from datetime import date
 import requests
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from config import CLIENT_ID, ACCESS_TOKEN
+from services.expiry_service import ExpiryService
 
 SECURITY_MASTER_FILE = "security_id_list.csv"
 UNIVERSE_FILE = "fno_universe.csv"
@@ -320,9 +322,18 @@ def scan_symbol(symbol, underlying_lookup):
             "reason": "no_expiries_returned",
         }
 
+    parsed_expiries = [
+        date.fromisoformat(expiry)
+        for expiry in expiries
+    ]
+    eligible_expiries = ExpiryService.eligible_expiries_from(
+        parsed_expiries,
+        as_of_date=date.today(),
+    )
     last_error = None
 
-    for expiry in expiries[:3]:
+    for expiry_date in eligible_expiries[:3]:
+        expiry = expiry_date.isoformat()
         response, chain_error = get_option_chain(underlying_security_id, expiry)
 
         if chain_error:

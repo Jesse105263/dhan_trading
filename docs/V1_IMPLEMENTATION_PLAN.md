@@ -102,22 +102,31 @@ Status: Complete.
 
 #### Milestone 2.2 — Security Master Import
 
-Status: Next.
+Status: Complete.
 
-- Import derivative contracts.
-- Resolve aliases.
-- Validate lot sizes.
-- Validate supported expiries.
-- Persist import failures.
+- Imported supported derivative contracts.
+- Added configurable symbol aliases.
+- Validated lot sizes, tick sizes and contract fields.
+- Deactivated missing contracts without deleting history.
+- Persisted sanitized import failures and run metrics.
+- Verified idempotent production import behavior.
 
 #### Milestone 2.3 — Expiry Repository
 
-- Fetch Dhan expiries.
-- Store available expiries.
-- Select nearest eligible expiry.
-- Add expiry validation.
+Status: Complete.
+
+- Added PostgreSQL expiry availability repository.
+- Derived expiries from active derivative contracts.
+- Centralized nearest and next expiry selection.
+- Added monthly-expiry classification.
+- Added days-to-expiry eligibility controls.
+- Added active-expiry validation.
+- Added unit and PostgreSQL integration coverage.
+- Added production-data verification command.
 
 #### Milestone 2.4 — Option-Chain Collector
+
+Status: Next.
 
 - Fetch one option chain.
 - Normalize response.

@@ -17,6 +17,9 @@ if TYPE_CHECKING:
     from services.derivative_import_repository import (
         DerivativeImportFailure,
     )
+    from services.expiry_repository import (
+        ExpiryAvailability,
+    )
     from services.failure_repository import (
         PipelineFailure,
     )
@@ -236,6 +239,31 @@ class DerivativeContractRepositoryContract(
     def count(
         self,
         active_only: bool = False,
+    ) -> int:
+        ...
+
+
+class ExpiryRepositoryContract(Protocol):
+    def list_available(
+        self,
+        underlying_symbol: str,
+        instrument_type: str = "OPTSTK",
+        on_or_after: date | None = None,
+    ) -> list[ExpiryAvailability]:
+        ...
+
+    def is_available(
+        self,
+        underlying_symbol: str,
+        expiry: date,
+        instrument_type: str = "OPTSTK",
+    ) -> bool:
+        ...
+
+    def count_underlyings(
+        self,
+        instrument_type: str = "OPTSTK",
+        on_or_after: date | None = None,
     ) -> int:
         ...
 

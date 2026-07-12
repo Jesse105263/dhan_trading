@@ -2,88 +2,71 @@
 
 ## Primary Database
 
-PostgreSQL
+PostgreSQL is the source of truth for persistent platform state.
 
----
-
-## Tables
+## Current Core Tables
 
 ### instruments
 
-Master list of all tradable instruments.
+Master list of supported underlying instruments.
 
----
+### derivative_contracts
 
-### option_contracts
+Normalized Dhan futures and option contracts.
 
-Every option contract.
+Important expiry fields and indexes:
 
----
+- `underlying_symbol`
+- `instrument_type`
+- `expiry`
+- `is_active`
+- Active underlying and expiry indexes
+- Active option-chain strike index
 
-### option_quotes
+The Expiry Repository derives available expiries directly from active rows in this table. A separate expiry table is intentionally not used because it would duplicate normalized contract state and introduce synchronization risk.
 
-Live option prices.
+### derivative_import_runs
 
----
+Security-master import lifecycle and summary counts.
+
+### derivative_import_failures
+
+Sanitized row-level derivative import failures.
 
 ### underlying_quotes
 
-Spot prices.
+Persisted spot and equity quote batches.
 
----
+### scanner_snapshots
 
-### option_chain_snapshots
+Per-run market snapshots.
 
-Complete option chain snapshots.
+### market_features
 
----
+Derived market features.
 
-### trade_signals
+### pipeline_runs
 
-Generated signals.
+Pipeline lifecycle, status and timing.
 
----
+### pipeline_failures
 
-### executed_trades
+Sanitized pipeline and stage failures.
 
-Executed trades.
+### stage_metrics
 
----
+Operational stage metrics and freshness.
 
-### watchlist
+### scheduler_locks
 
-User watchlist.
+PostgreSQL-backed production-run locks.
 
----
+## Planned Tables
 
-### news_events
-
-Company news.
-
----
-
-### earnings_events
-
-Quarterly earnings.
-
----
-
-### strategy_runs
-
-Scanner execution history.
-
----
-
-## Future Tables
-
-backtests
-
-economic_calendar
-
-market_holidays
-
-fii_dii_data
-
-india_vix_history
-
-ai_reports
+- Option-chain runs.
+- Option quotes.
+- Option analytics.
+- Market rankings.
+- Trade signals.
+- Backtests.
+- Orders and positions.

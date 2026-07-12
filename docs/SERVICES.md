@@ -1,79 +1,71 @@
 # Services
 
-## collector_market
+## Production Services
 
-Downloads live prices.
+### collector
 
----
+Downloads live underlying prices from Dhan and persists normalized quote batches.
 
-## collector_option_chain
+### derivative_security_master
 
-Downloads option chains.
+Downloads, validates and imports supported derivative contracts into PostgreSQL.
 
----
+### expiry_repository
 
-## collector_news
+Reads active expiry availability from `derivative_contracts`.
 
-Downloads news.
+Responsibilities:
 
----
+- List active expiries for one underlying and instrument type.
+- Return active contract counts for each expiry.
+- Validate that a specific expiry exists.
+- Count underlyings with active eligible expiries.
 
-## collector_earnings
+It contains database access only and no expiry-selection policy.
 
-Downloads earnings calendar.
+### expiry_service
 
----
+Owns all expiry-selection and expiry-validation policy.
 
-## collector_results
+Responsibilities:
 
-Downloads financial results.
+- Select nearest eligible expiry.
+- Apply minimum and maximum days-to-expiry windows.
+- Select the next expiry after a known expiry.
+- Identify the last available expiry in each calendar month.
+- Select the nearest monthly expiry.
+- Validate requested expiries against active contracts.
 
----
+Downstream collectors and strategy components must not implement independent expiry-selection logic.
 
-## feature_engine
+### feature_engine
 
-Calculates indicators.
+Calculates normalized market features.
 
----
-
-## signal_engine
-
-Creates trade signals.
-
----
-
-## ranking_engine
+### ranking_engine
 
 Ranks opportunities.
 
----
+### risk_engine
 
-## ai_engine
+Applies deterministic risk controls.
 
-Uses Claude / GPT.
+### signal_engine
 
-Never participates in live execution.
+Creates trade signals.
 
----
+### scheduler
 
-## dashboard
+Runs market-calendar-aware periodic jobs and prevents overlapping production runs.
 
-Displays:
+### ai_engine
 
-- Signals
-- Charts
-- Watchlist
-- Portfolio
-- Alerts
+Uses Claude or GPT for research and explanations. It never participates in live execution.
 
----
+## Planned Services
 
-## telegram_bot
-
-Sends notifications.
-
----
-
-## scheduler
-
-Runs periodic jobs.
+- Option-chain collector.
+- Option analytics engine.
+- Dashboard API.
+- Alert service.
+- Backtesting and replay services.

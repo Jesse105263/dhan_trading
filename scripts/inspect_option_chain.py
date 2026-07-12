@@ -1,6 +1,9 @@
+from datetime import date
+
 import pandas as pd
 from dhanhq import DhanContext, dhanhq
 from config import CLIENT_ID, ACCESS_TOKEN
+from services.expiry_service import ExpiryService
 
 SYMBOL = "ZYDUSLIFE"
 
@@ -31,7 +34,14 @@ expiry_response = dhan.expiry_list(
 print("\nExpiry Response")
 print(expiry_response)
 
-expiry = expiry_response["data"]["data"][0]
+expiry_dates = [
+    date.fromisoformat(str(value)[:10])
+    for value in expiry_response["data"]["data"]
+]
+expiry = ExpiryService.select_nearest_from(
+    expiry_dates,
+    as_of_date=date.today(),
+).isoformat()
 
 option_response = dhan.option_chain(
     under_security_id=security_id,

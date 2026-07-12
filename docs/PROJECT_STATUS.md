@@ -61,6 +61,7 @@ Phase 2 — Option Data Platform
 - `003_stage_metrics.sql`
 - `004_scheduler_foundation.sql`
 - `005_derivative_contracts.sql`
+- `006_derivative_security_master_imports.sql`
 
 ## Operational Monitoring
 
@@ -101,3 +102,39 @@ python -m scripts.scheduler status
 - Production pipeline: 7 stages completed successfully.
 - Database stage: 10 required tables and 5 applied migrations.
 - Existing scheduler and market-core behavior remained green.
+
+## Milestone 2.2 — Security Master Import
+
+Status: Complete.
+
+- Dhan derivative security master import implemented.
+- Import is idempotent.
+- Active contract lifecycle preserved.
+- Import run and failure persistence added.
+- Production import verified with 215,940 rows processed, 68,406 derivative contracts imported and zero rejected rows.
+
+## Milestone 2.3 — Expiry Repository
+
+Status: Complete.
+
+- PostgreSQL-backed Expiry Repository added.
+- Expiry availability derived from active derivative contracts.
+- Contract counts exposed per expiry.
+- Central Expiry Service added.
+- Nearest, next and monthly expiry selection implemented.
+- Minimum and maximum days-to-expiry windows implemented.
+- Active expiry validation implemented.
+- Repository protocol added.
+- Unit and PostgreSQL integration coverage added.
+- Production verification command added.
+- Existing derivative-contract expiry query preserved for backward compatibility.
+- No database migration required.
+
+## Current Verification
+
+- Full automated suite: 49 tests passed or skipped as expected.
+- Non-database tests: 42 passed.
+- Opt-in PostgreSQL tests: 7 skipped in environments without PostgreSQL.
+- Expiry Service unit tests: 11 passed.
+- Existing pipeline and scheduler tests remained green.
+- PostgreSQL integration and imported-production-data verification must be run against the project database with `RUN_DB_INTEGRATION_TESTS=1`.
