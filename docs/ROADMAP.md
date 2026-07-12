@@ -14,7 +14,7 @@ Phase 2 — Option Data Platform
 
 ## Current Milestone
 
-Option Analytics
+Option Analytics History and Change Detection
 
 ## Version Targets
 
@@ -59,4 +59,5 @@ Status: implementation complete; PostgreSQL verification required before commit.
 Next: operational multi-underlying collection and analytics orchestration.
 
 - [x] Milestone 2.6 — Option Analytics Pipeline Integration
-- [ ] Milestone 2.7 — Option Analytics History and Change Detection
+- [x] Milestone 2.7 — Option Analytics History and Change Detection
+- [ ] Milestone 3.1 — Ranking Engine

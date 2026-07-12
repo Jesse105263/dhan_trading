@@ -365,3 +365,22 @@ class OptionAnalyticsRepositoryContract(Protocol):
         analytics: OptionChainAnalytics,
     ) -> OptionChainAnalytics:
         ...
+
+
+class OptionAnalyticsHistoryRepositoryContract(Protocol):
+    def list_history(
+        self,
+        underlying_symbol: str,
+        expiry: date,
+        limit: int = 100,
+    ) -> list[OptionChainAnalytics]:
+        ...
+
+    def get_consecutive_pair(
+        self,
+        current_analytics_id: UUID,
+    ):
+        ...
+
+    def upsert_change(self, change):
+        ...

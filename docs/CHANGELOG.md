@@ -322,3 +322,15 @@ Official transition from script-based development to platform architecture.
 - Added a scheduler-safe one-shot option pipeline command with a dedicated lock.
 - Added unit and PostgreSQL integration coverage.
 - Preserved the production equity pipeline unchanged.
+
+## 2026-07-12 — Milestone 2.7
+
+### Option Analytics History and Change Detection
+
+- Added ordered historical analytics retrieval by underlying and expiry.
+- Added consecutive-snapshot resolution with explicit source lineage.
+- Added deterministic OI, PCR, IV, ATM straddle, wall, price and liquidity changes.
+- Added persisted option analytics change records with idempotent current-snapshot identity.
+- Added validation for incomparable, duplicate and unordered snapshots.
+- Added unit and PostgreSQL integration tests.
+- Added production comparison command.

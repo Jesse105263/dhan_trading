@@ -115,3 +115,7 @@ No downstream component may independently sort, choose or validate expiries. Thi
 ## Option Data Operational Pipeline
 
 The option data platform runs in a dedicated pipeline that does not modify the production equity pipeline. `OptionCollectionStage` processes configured underlyings with bounded retry and throttling. `OptionAnalyticsStage` consumes only successful collection results and preserves source-run lineage through `option_chain_analytics.source_run_id`. Per-underlying failures are sanitized and persisted without aborting successful symbols. The existing scheduler lock repository provides one-shot overlap protection under a dedicated option-pipeline lock name.
+
+## Option Analytics History Boundary
+
+`OptionAnalyticsHistoryRepository` owns ordered analytics retrieval, predecessor selection and change persistence. `OptionAnalyticsHistoryService` owns comparability validation and deterministic change calculation. Downstream ranking and signal components must consume persisted change records rather than reimplement time-series comparison logic.

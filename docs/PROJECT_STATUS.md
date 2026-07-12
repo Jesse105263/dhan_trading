@@ -169,3 +169,14 @@ Status: Implementation complete; local and PostgreSQL verification required befo
 ## Milestone 2.6 Complete
 
 The option collection and deterministic analytics services are integrated into a dedicated operational pipeline. Configured underlyings run independently, failures are sanitized and persisted, stage metrics are recorded, and scheduler overlap protection is available without modifying the stable equity pipeline.
+
+## Milestone 2.7 — Option Analytics History and Change Detection
+
+Status: Implementation complete; PostgreSQL and production verification required before commit.
+
+- Historical analytics queries added by underlying and expiry.
+- Consecutive comparable snapshots resolved deterministically.
+- OI, PCR, IV, ATM straddle, wall and liquidity changes calculated.
+- Previous/current analytics and source-run lineage persisted.
+- Unordered and incomparable snapshots rejected.
+- Unit and PostgreSQL integration coverage added.

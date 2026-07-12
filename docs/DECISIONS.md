@@ -115,3 +115,7 @@ Option analytics are calculated only from persisted `option_chain_quotes`. The a
 ## ADR — Dedicated option data pipeline
 
 The option data workflow remains separate from the production equity pipeline. This preserves backward compatibility and allows option-specific retry, throttling, symbol configuration, failure isolation, and scheduler locking without changing stable equity behavior. Partial per-underlying failure is recorded but does not fail the operational run when other configured underlyings succeed.
+
+## ADR — Consecutive Analytics Comparison
+
+Option changes are calculated only between a snapshot and its immediately preceding persisted analytics snapshot for the same normalized underlying and expiry. Comparisons across expiries, underlyings, duplicate snapshots or non-increasing capture times are rejected. This prevents downstream ranking and signals from silently comparing incompatible market states.

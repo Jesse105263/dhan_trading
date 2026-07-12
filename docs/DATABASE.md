@@ -87,3 +87,7 @@ Migration `008_option_chain_analytics.sql` adds `option_chain_analytics`. The ta
 ## Option Pipeline Operational Records
 
 Milestone 2.6 adds no schema migration. Operational runs use `pipeline_runs`, stage aggregates use `stage_metrics`, per-underlying failures use `pipeline_failures`, collections use `option_chain_runs` and `option_chain_quotes`, and analytics lineage remains enforced by `option_chain_analytics.source_run_id`.
+
+## option_analytics_changes
+
+Migration `009_option_analytics_changes.sql` stores deterministic differences between consecutive analytics snapshots for the same underlying and expiry. Each row preserves previous/current analytics IDs, previous/current source-run IDs, capture timestamps, elapsed time and all calculated change features. `current_analytics_id` is unique, making comparison persistence idempotent.

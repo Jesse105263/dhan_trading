@@ -101,3 +101,19 @@ Owns database access for option-chain collection runs and quote snapshots. It co
 - `services.option_data_pipeline.OptionAnalyticsStage`: deterministic analytics for successful source runs only.
 - `services.option_data_pipeline.build_option_data_pipeline`: builds the dedicated operational option pipeline without changing the equity pipeline.
 - `scripts.run_option_data_pipeline`: scheduler-safe one-shot runner; use `--force` outside market hours.
+
+## OptionAnalyticsHistoryRepository
+
+Provides ordered analytics history, resolves the immediately preceding comparable snapshot and persists idempotent change records with full lineage.
+
+## OptionAnalyticsHistoryService
+
+Validates snapshot comparability and calculates deterministic changes for spot, ATM straddle, total and nearby OI/PCR, ATM and nearby IV, call/put OI walls, price coverage and liquidity coverage.
+
+## compare_option_analytics
+
+Command-line verification entry point:
+
+```bash
+python -m scripts.compare_option_analytics <current-analytics-id>
+```
