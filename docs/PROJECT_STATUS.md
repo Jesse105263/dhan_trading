@@ -6,11 +6,11 @@ Phase 4 — Product Surface
 
 ## Current Milestone
 
-Milestone 4.3 — Alerts
+Milestone 4.4 — AI Copilot
 
 ## Repository Checkpoint
 
-Milestone 4.2 is implemented and fully verified locally but intentionally uncommitted pending review. Use `git log -2 --oneline` as the source of truth for committed history.
+Milestone 4.3 is implemented and verified locally but intentionally uncommitted pending review. The latest committed checkpoint is `be40cfd add private read only dashboard`.
 
 ## Completed Milestones
 
@@ -48,6 +48,7 @@ Milestone 4.2 is implemented and fully verified locally but intentionally uncomm
 
 - 4.1 Read-Only API
 - 4.2 Private Read-Only Dashboard
+- 4.3 Alerts
 
 ## Production Data Verification
 
@@ -75,19 +76,21 @@ Milestone 4.2 is implemented and fully verified locally but intentionally uncomm
 - `013_option_signals.sql`
 - `014_market_replay.sql`
 - `015_option_backtesting.sql`
+- `016_alerts.sql`
 
-Milestones 4.1 and 4.2 required no migrations because they are read-only surfaces over existing tables.
+Milestones 4.1 and 4.2 required no migrations because they are read-only surfaces over existing tables. Milestone 4.3 adds auditable alert events and delivery attempts in migration 016.
 
 ## Latest Verification
 
-Milestone 4.2 verification completed successfully:
+Milestone 4.3 verification completed successfully:
 
-- Full PostgreSQL-enabled suite: 128 tests run
+- Full PostgreSQL-enabled suite: 139 tests run
 - Result: OK
 - Expected skips: 2 production-data-dependent tests when no persisted signal run was available
-- Dashboard overview and all six resource screens: HTTP 200
-- Persisted RELIANCE ranking detail: HTTP 200 with summary and records
-- Missing ranking run: dashboard HTTP 404 state
+- Persisted RELIANCE risk approval alert: created and delivered to console
+- Persisted partial pipeline failure alert: created and delivered to console
+- Signal source: valid empty result in current production data
+- Repeated risk run: existing alert reused and successful console delivery skipped
 - `git diff --check`: clean
 
 ## Read-Only API
@@ -129,8 +132,12 @@ See `docs/API.md` for the full contract.
 
 Start the read API with `python -m scripts.run_read_api`, start the dashboard with `python -m scripts.run_dashboard`, and open `http://127.0.0.1:8081`. See `docs/DASHBOARD.md`.
 
+## Alerts
+
+Run `python -m scripts.generate_alerts` for the default private console channel. Source selection and private-webhook configuration are documented in `docs/ALERTS.md`.
+
 ## Next Task
 
-Milestone 4.3 — Alerts.
+Milestone 4.4 — AI Copilot.
 
 See `docs/NEXT_TASK.md` and `docs/NEW_CHAT_HANDOFF.md` before implementation.

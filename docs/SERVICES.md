@@ -67,7 +67,6 @@ Uses Claude or GPT for research and explanations. It never participates in live 
 - Option-chain collector.
 - Option analytics engine.
 - Dashboard API.
-- Alert service.
 - Backtesting and replay services.
 
 ### option_chain_collector
@@ -164,3 +163,13 @@ Routes:
 - `docs/DASHBOARD.md` — operating and safety instructions.
 
 The dashboard reads `/health` and `/api/v1` over HTTP only. It has no direct database, Dhan or execution dependency.
+
+## Alert Service
+
+- `services/alert_models.py` — normalized alert candidates, persisted events and run results.
+- `services/alert_repository.py` — persisted source reads, event deduplication and delivery audit records.
+- `services/alert_service.py` — generation, channel isolation, successful-delivery suppression and failed-delivery retry policy.
+- `services/alert_channels.py` — console and configurable private-webhook adapters.
+- `scripts/generate_alerts.py` — operational entry point.
+
+Alert sources are limited to persisted signals, risk decisions and pipeline health. See `docs/ALERTS.md`.

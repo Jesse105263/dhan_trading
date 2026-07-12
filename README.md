@@ -42,6 +42,16 @@ python -m scripts.run_dashboard
 
 Open `http://127.0.0.1:8081`. The dashboard is read-only, local by default and obtains all platform data through `/api/v1` HTTP GET requests.
 
+## Private Alerts
+
+Generate deduplicated, auditable alerts from persisted signals, risk decisions and pipeline health:
+
+```bash
+python -m scripts.generate_alerts
+```
+
+See `docs/ALERTS.md` for source and channel configuration.
+
 ## Status
 
 Under active development.

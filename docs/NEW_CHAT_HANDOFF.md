@@ -11,7 +11,8 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 - Phase 3 — Decision and Evaluation Platform: complete
 - Milestone 4.1 — Read-Only API: complete and verified
 - Milestone 4.2 — Private Read-Only Dashboard: complete and verified
-- Next milestone: 4.3 — Alerts
+- Milestone 4.3 — Alerts: complete and verified
+- Next milestone: 4.4 — AI Copilot
 
 The last committed checkpoint before the Milestone 4.1 handoff commit was:
 
@@ -96,8 +97,18 @@ Empty signal, replay or backtest collections are valid. PostgreSQL integration t
 
 Start with `python -m scripts.run_read_api` and `python -m scripts.run_dashboard`. See `docs/DASHBOARD.md`.
 
+## Alert Verification
+
+- PostgreSQL-enabled suite: 139 tests, OK, 2 expected production-data-dependent skips.
+- A persisted RELIANCE risk approval produced an audited console alert.
+- A persisted partial pipeline failure produced a warning alert.
+- The current empty signal collection produced a valid zero-candidate result.
+- Reprocessing the risk source reused the event and skipped its successful console delivery.
+
+Run with `python -m scripts.generate_alerts`. See `docs/ALERTS.md`.
+
 ## Next Milestone
 
-Milestone 4.3 — Alerts.
+Milestone 4.4 — AI Copilot.
 
 Read `docs/NEXT_TASK.md` for scope and definition of done.

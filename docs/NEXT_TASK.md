@@ -6,23 +6,23 @@ Phase 4 — Product Surface
 
 ## Milestone
 
-Milestone 4.3 — Alerts
+Milestone 4.4 — AI Copilot
 
 ## Objective
 
-Build private alerts from persisted platform outputs while preserving deterministic, read-only research and the no-execution boundary.
+Build an AI-assisted private research surface grounded exclusively in read-only platform data, with citations to platform lineage and no execution authority.
 
 ## Required Scope
 
-- Define alert events for signals, risk decisions and pipeline health.
-- Keep alert generation downstream of persisted platform state.
-- Add configurable private delivery channels and failure handling.
-- Preserve lineage, deduplication and auditability.
+- Answer research questions from stable read-only platform outputs.
+- Explain rankings, selections, risk decisions, signals and backtest evidence.
+- Preserve source lineage in every answer.
+- Make unavailable or insufficient evidence explicit.
 - Do not place orders or introduce automatic execution.
 
 ## Engineering Constraints
 
-- Inspect the repository before choosing the alert implementation.
+- Inspect the repository before choosing the AI integration boundary.
 - Do not add broker-order functionality.
 - Maintain backward compatibility with the production equity and option pipelines.
 - Add unit tests and integration/smoke coverage appropriate to the selected implementation.
@@ -31,8 +31,8 @@ Build private alerts from persisted platform outputs while preserving determinis
 
 ## Definition of Done
 
-- Alert event and delivery boundaries are documented.
-- Duplicate alerts are prevented.
-- Delivery failures are visible and non-destructive.
+- AI answers are grounded in platform evidence with visible lineage.
+- Missing data and model failures are visible and non-destructive.
+- The AI boundary has no write or execution capability.
 - Existing automated and PostgreSQL integration suites remain green.
 - Documentation reflects the final architecture and operating commands.

@@ -410,3 +410,14 @@ Official transition from script-based development to platform architecture.
 - Added no-cache, anti-framing and restrictive content-security response headers.
 - Added comprehensive `unittest` coverage and real API-to-dashboard runtime verification.
 - Added no database migration, write endpoint, Dhan call or execution capability.
+
+## Milestone 4.3 — Alerts
+
+- Added persisted signal, risk-decision and pipeline-health alert generation.
+- Added deterministic source identity and database-enforced event deduplication.
+- Added per-channel delivery attempts with ordered status and sanitized failure audit.
+- Added successful-delivery suppression and failed-delivery retry behavior.
+- Added local console and configurable private-webhook delivery adapters.
+- Added migration `016_alerts.sql`, an operational CLI and comprehensive unit/integration coverage.
+- Verified real persisted risk and pipeline alerts plus valid empty-signal behavior.
+- Preserved the no-Dhan, no-recalculation and no-order-execution boundaries.

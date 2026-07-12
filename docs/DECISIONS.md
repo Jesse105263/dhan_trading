@@ -150,3 +150,7 @@ The first product API uses WSGI from the Python standard library and adds no web
 ## Decision: Separate HTTP-only dashboard boundary
 
 The private dashboard is a standard-library WSGI application and a separate process from the read API. It uses a small HTTP GET client rather than importing the API repository or database layer. Server-side rendering keeps the dashboard dependency-free and same-origin browser behavior simple, while the explicit API base URL preserves the `/api/v1` boundary. Both processes bind to loopback by default.
+
+## Decision: Persist alerts before isolated delivery
+
+Alert events are derived only from committed signal, risk and pipeline records. The unique `(source_type, source_id)` identity makes generation idempotent. Delivery is a separate adapter step, with every attempt persisted and sanitized. A successfully delivered alert/channel pair is never delivered again; failed channels can retry without duplicating the alert event. Delivery cannot mutate source data or invoke broker execution.

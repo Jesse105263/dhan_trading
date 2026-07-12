@@ -61,6 +61,14 @@ Operational stage metrics and freshness.
 
 PostgreSQL-backed production-run locks.
 
+### alert_events
+
+One immutable, deduplicated alert per persisted source type and source ID. Stores severity, source-run lineage, human-readable content and structured JSON evidence.
+
+### alert_delivery_attempts
+
+Ordered per-channel delivery history with pending, delivered and failed states, timestamps and sanitized failure details. A partial unique index prevents more than one successful delivery for an alert/channel pair.
+
 ## Planned Tables
 
 - Option-chain runs.
@@ -125,3 +133,7 @@ Milestone 4.1 adds no migration. The API reads the existing run and item tables 
 ## Dashboard Access Pattern
 
 Milestone 4.2 adds no migration. Dashboard views do not connect to PostgreSQL; all persisted data crosses the existing `/api/v1` HTTP boundary.
+
+## Alert Persistence
+
+Migration `016_alerts.sql` adds `alert_events` and `alert_delivery_attempts`. Alert source identity is stored as text because sources span UUID-backed product records and string-backed pipeline runs. Source tables remain unchanged and alerts cannot cascade into or mutate them.

@@ -14,7 +14,7 @@ Phase 4 — Product Surface
 
 ## Current Milestone
 
-Milestone 4.3 — Alerts
+Milestone 4.4 — AI Copilot
 
 ## Version Targets
 
@@ -48,10 +48,10 @@ Milestone 4.3 — Alerts
 17. [x] Backtesting engine
 18. [x] Read-only application API
 19. [x] Private read-only dashboard
-20. [ ] Alerts
+20. [x] Alerts
 21. [ ] AI Copilot
 22. [ ] Paper trading
 
 ## Immediate Next Step
 
-Build Milestone 4.3 alerts on persisted platform outputs while preserving the no-execution boundary.
+Build Milestone 4.4 AI Copilot with answers grounded in read-only platform data and no execution authority.

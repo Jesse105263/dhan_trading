@@ -150,3 +150,24 @@ The contract-selection layer is downstream of ranking and upstream of risk. It r
 ## Private Read-Only Dashboard
 
 `app.dashboard.DashboardApplication` is a separate WSGI presentation boundary. `DashboardApiClient` obtains health, list and detail payloads exclusively through HTTP GET requests to the stable read API. The dashboard never imports a repository, queries PostgreSQL, calls Dhan or exposes write behavior. It binds to loopback by default and renders server-side HTML with explicit empty, error and not-found states.
+
+## Alert Boundary
+
+`AlertRepository` reads only persisted signals, risk assessments, pipeline runs and pipeline failures, then owns alert-event and delivery-attempt persistence. `AlertService` owns source validation, deduplication flow, channel isolation and retry behavior. Console and generic private-webhook channels are replaceable delivery adapters. Alert generation never calls Dhan, recalculates analytics, mutates source records or places orders.
+
+```text
+Persisted signals / risk decisions / pipeline health
+                         │
+                         ▼
+                   AlertRepository
+                         │
+                         ▼
+                    AlertService
+                         │
+                 ┌───────┴────────┐
+                 ▼                ▼
+           Console channel   Private webhook
+                         │
+                         ▼
+              Delivery-attempt audit
+```

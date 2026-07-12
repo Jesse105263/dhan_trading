@@ -311,6 +311,8 @@ Status: Complete as Milestone 4.2 in the active roadmap.
 
 #### Milestone 5.5 — Alerts
 
+Status: Complete as Milestone 4.3 in the active roadmap.
+
 - Telegram.
 - Email.
 - Signal alerts.
