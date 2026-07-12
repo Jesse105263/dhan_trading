@@ -6,32 +6,30 @@ Phase 2 — Option Data Platform
 
 ## Milestone
 
-Milestone 2.4 — Option-Chain Collector
+Milestone 2.5 — Option Analytics
 
 ## Objective
 
-Collect and persist one complete option chain using the centralized Expiry Service for all expiry selection and validation.
+Calculate deterministic option-chain features from persisted collection runs without calling Dhan APIs or implementing expiry-selection logic.
 
 ## Tasks
 
-1. Define the option-chain collection request and response models.
-2. Resolve the underlying security identity from PostgreSQL.
-3. Select and validate expiry only through `ExpiryService`.
-4. Fetch one Dhan option chain.
-5. Normalize call and put quote records.
-6. Persist option-chain run metadata.
-7. Persist option quote snapshots.
-8. Validate expected strikes and option sides.
-9. Isolate and sanitize API and symbol-level failures.
-10. Add request, response and persistence metrics.
-11. Add unit and PostgreSQL integration tests.
-12. Preserve the existing equity pipeline and scheduler.
+1. Define normalized option analytics models.
+2. Read one completed option-chain run from PostgreSQL.
+3. Calculate ATM strike and straddle cost.
+4. Calculate call, put and nearby PCR metrics.
+5. Calculate ATM and nearby implied-volatility metrics.
+6. Identify call and put OI walls.
+7. Calculate strike distances and liquidity coverage.
+8. Persist analytics with source-run lineage.
+9. Reject incomplete or stale source chains safely.
+10. Add unit and PostgreSQL integration tests.
+11. Preserve the production equity pipeline, scheduler, derivative import, expiry and collector behavior.
 
 ## Definition of Done
 
-- One supported underlying option chain is collected successfully.
-- No collector or downstream component implements independent expiry-selection logic.
-- The selected expiry is active and validated through `ExpiryService`.
-- Option-chain metadata and quotes are persisted transactionally.
-- Malformed or incomplete chain responses are rejected safely.
-- Existing production pipeline, scheduler, derivative import and expiry tests remain green.
+- One completed option-chain run produces persisted deterministic analytics.
+- Analytics are reproducible from stored quotes without external API calls.
+- Source run and expiry lineage are retained.
+- Incomplete chains are rejected safely.
+- Existing production and option-data tests remain green.

@@ -69,3 +69,21 @@ Uses Claude or GPT for research and explanations. It never participates in live 
 - Dashboard API.
 - Alert service.
 - Backtesting and replay services.
+
+### option_chain_collector
+
+Collects and persists one complete Dhan option chain.
+
+Responsibilities:
+
+- Resolve the underlying security identity from PostgreSQL.
+- Delegate all expiry selection and validation to `ExpiryService`.
+- Fetch one option chain through `DhanOptionChainClient`.
+- Normalize CE and PE quote snapshots.
+- Reject incomplete or malformed strike data.
+- Persist run metadata and quotes transactionally.
+- Persist sanitized failure details for started runs.
+
+### option_chain_repository
+
+Owns database access for option-chain collection runs and quote snapshots. It contains no expiry-selection policy or API parsing logic.

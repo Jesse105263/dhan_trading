@@ -17,6 +17,8 @@ REQUIRED_TABLES = {
     "derivative_contracts",
     "derivative_import_runs",
     "derivative_import_failures",
+    "option_chain_runs",
+    "option_chain_quotes",
 }
 
 

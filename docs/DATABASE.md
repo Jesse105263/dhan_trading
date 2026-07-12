@@ -70,3 +70,12 @@ PostgreSQL-backed production-run locks.
 - Trade signals.
 - Backtests.
 - Orders and positions.
+
+## Option-Chain Collections
+
+Migration `007_option_chain_collections.sql` adds:
+
+- `option_chain_runs` for request lifecycle, status, selected expiry, spot price and collection counts.
+- `option_chain_quotes` for normalized CE and PE snapshots by run, strike and option type.
+
+Quotes and successful run completion are committed in one transaction. Failed runs retain sanitized error context without partial quote persistence.

@@ -103,3 +103,7 @@ ExpiryService
 ```
 
 No downstream component may independently sort, choose or validate expiries. This keeps collection, strategy and risk behavior deterministic and consistent.
+
+## Option-Chain Collection Boundary
+
+`OptionChainCollector` orchestrates one collection. It resolves the underlying through `OptionChainRepository`, delegates expiry policy exclusively to `ExpiryService`, fetches through `DhanOptionChainClient`, validates and normalizes the response, and transactionally persists quotes and run completion. Downstream code must not select expiries independently.

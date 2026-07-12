@@ -14,7 +14,7 @@ Phase 2 — Option Data Platform
 
 ## Current Milestone
 
-Option-Chain Collector
+Option Analytics
 
 ## Version Targets
 

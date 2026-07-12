@@ -138,3 +138,17 @@ Status: Complete.
 - Expiry Service unit tests: 11 passed.
 - Existing pipeline and scheduler tests remained green.
 - PostgreSQL integration and imported-production-data verification must be run against the project database with `RUN_DB_INTEGRATION_TESTS=1`.
+
+
+## Milestone 2.4 — Option-Chain Collector
+
+Status: Implementation complete; local and PostgreSQL verification required before commit.
+
+- Transactional collection-run and quote schema added.
+- Underlying security identity resolved from PostgreSQL.
+- Expiry selection and validation delegated exclusively to `ExpiryService`.
+- Dhan option-chain client and collector orchestration added.
+- CE/PE strike completeness validation added.
+- Sanitized failed-run persistence added.
+- Unit and PostgreSQL integration tests added.
+- Existing equity pipeline and scheduler preserved.

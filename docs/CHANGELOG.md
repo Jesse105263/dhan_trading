@@ -289,3 +289,19 @@ Official transition from script-based development to platform architecture.
 - Added a production-data expiry verification command.
 - Preserved the existing derivative-contract expiry query for backward compatibility.
 - Added no database migration because `derivative_contracts` remains the normalized source of truth.
+
+## 2026-07-12
+
+### Option-Chain Collector
+
+- Added `007_option_chain_collections.sql`.
+- Added transactional option-chain run and quote persistence.
+- Added PostgreSQL underlying identity resolution.
+- Added centralized collector orchestration using `ExpiryService` exclusively.
+- Added Dhan option-chain HTTP client.
+- Added normalized option-chain request, response and quote models.
+- Added complete CE/PE strike validation.
+- Added sanitized failed-run persistence.
+- Added command-line collection entry point.
+- Added collector unit tests and PostgreSQL repository integration coverage.
+- Preserved the production equity pipeline and scheduler.

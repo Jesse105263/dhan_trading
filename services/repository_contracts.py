@@ -37,7 +37,11 @@ if TYPE_CHECKING:
         UnderlyingQuote,
     )
     from services.metrics_repository import (
-    StageMetric,
+        StageMetric,
+    )
+    from services.option_chain_models import (
+        OptionQuoteSnapshot,
+        UnderlyingIdentity,
     )
 
 
@@ -306,6 +310,40 @@ class DerivativeImportRepositoryContract(Protocol):
         contracts_upserted: int,
         contracts_deactivated: int,
         rows_rejected: int,
+        error_message: str,
+    ) -> None:
+        ...
+
+
+class OptionChainRepositoryContract(Protocol):
+    def resolve_underlying(
+        self,
+        underlying_symbol: str,
+    ) -> UnderlyingIdentity:
+        ...
+
+    def start_run(
+        self,
+        run_id: UUID,
+        identity: UnderlyingIdentity,
+        expiry: date,
+        requested_at: datetime,
+    ) -> None:
+        ...
+
+    def complete_run_with_quotes(
+        self,
+        run_id: UUID,
+        completed_at: datetime,
+        spot_price: object | None,
+        quotes: Iterable[OptionQuoteSnapshot],
+    ) -> int:
+        ...
+
+    def fail_run(
+        self,
+        run_id: UUID,
+        completed_at: datetime,
         error_message: str,
     ) -> None:
         ...

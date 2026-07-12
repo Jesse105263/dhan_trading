@@ -103,3 +103,7 @@ All expiry-selection policy belongs to `ExpiryService`; repositories provide dat
 Reason
 
 Collectors, strategies and future contract-selection components must use one deterministic implementation for eligibility, nearest-expiry, next-expiry and monthly-expiry behavior.
+
+## ADR — Persist option-chain runs separately from legacy option quotes
+
+The production collector writes to normalized `option_chain_runs` and `option_chain_quotes` tables rather than the legacy `option_quotes` table. A run ID provides transactional lineage, request metrics, failure state and replayability while preserving the old table for backward compatibility.
