@@ -6,17 +6,11 @@ Phase 4 — Product Surface
 
 ## Current Milestone
 
-Milestone 4.2 — Private Read-Only Dashboard
+Milestone 4.3 — Alerts
 
 ## Repository Checkpoint
 
-Milestone 4.1 is implemented and fully verified locally. Commit the Milestone 4.1 files and this handoff documentation before creating the repository archive for the next chat.
-
-The last committed checkpoint before Milestone 4.1 was:
-
-- `ff5a695` — add option backtesting engine
-
-After the handoff commit, use `git log -2 --oneline` as the source of truth for the new commit hash.
+Milestone 4.2 is implemented and fully verified locally but intentionally uncommitted pending review. Use `git log -2 --oneline` as the source of truth for committed history.
 
 ## Completed Milestones
 
@@ -53,6 +47,7 @@ After the handoff commit, use `git log -2 --oneline` as the source of truth for 
 ### Phase 4 — Product Surface
 
 - 4.1 Read-Only API
+- 4.2 Private Read-Only Dashboard
 
 ## Production Data Verification
 
@@ -81,20 +76,18 @@ After the handoff commit, use `git log -2 --oneline` as the source of truth for 
 - `014_market_replay.sql`
 - `015_option_backtesting.sql`
 
-Milestone 4.1 required no migration because it is a read-only surface over existing tables.
+Milestones 4.1 and 4.2 required no migrations because they are read-only surfaces over existing tables.
 
 ## Latest Verification
 
-Milestone 4.1 verification completed successfully:
+Milestone 4.2 verification completed successfully:
 
-- Full PostgreSQL-enabled suite: 117 tests run
+- Full PostgreSQL-enabled suite: 128 tests run
 - Result: OK
 - Expected skips: 2 production-data-dependent tests when no persisted signal run was available
-- `/health`: healthy with database ready
-- `/api/v1`: resource index returned
-- `/api/v1/rankings`: returned persisted ranking data
-- `/api/v1/signals`: returned a valid empty collection
-- `/api/v1/backtests`: returned a valid empty collection
+- Dashboard overview and all six resource screens: HTTP 200
+- Persisted RELIANCE ranking detail: HTTP 200 with summary and records
+- Missing ranking run: dashboard HTTP 404 state
 - `git diff --check`: clean
 
 ## Read-Only API
@@ -132,8 +125,12 @@ See `docs/API.md` for the full contract.
 - Market replay and backtesting use persisted data only.
 - Existing production equity and option pipelines remain separate and backward compatible.
 
+## Private Dashboard
+
+Start the read API with `python -m scripts.run_read_api`, start the dashboard with `python -m scripts.run_dashboard`, and open `http://127.0.0.1:8081`. See `docs/DASHBOARD.md`.
+
 ## Next Task
 
-Milestone 4.2 — Private Read-Only Dashboard.
+Milestone 4.3 — Alerts.
 
 See `docs/NEXT_TASK.md` and `docs/NEW_CHAT_HANDOFF.md` before implementation.

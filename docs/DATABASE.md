@@ -121,3 +121,7 @@ Migration `015_option_backtesting.sql` adds `option_backtest_runs` and `option_b
 ## Read API Access Pattern
 
 Milestone 4.1 adds no migration. The API reads the existing run and item tables created by migrations 010 through 015. List endpoints return newest runs first; detail endpoints return a run and its ordered child records.
+
+## Dashboard Access Pattern
+
+Milestone 4.2 adds no migration. Dashboard views do not connect to PostgreSQL; all persisted data crosses the existing `/api/v1` HTTP boundary.

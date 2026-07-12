@@ -31,6 +31,17 @@ docker compose up -d
 
 See the `docs/` folder.
 
+## Private Dashboard
+
+Start the read API and dashboard in separate terminals:
+
+```bash
+python -m scripts.run_read_api
+python -m scripts.run_dashboard
+```
+
+Open `http://127.0.0.1:8081`. The dashboard is read-only, local by default and obtains all platform data through `/api/v1` HTTP GET requests.
+
 ## Status
 
 Under active development.

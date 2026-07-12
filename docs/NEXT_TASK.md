@@ -6,32 +6,24 @@ Phase 4 — Product Surface
 
 ## Milestone
 
-Milestone 4.2 — Private Read-Only Dashboard
+Milestone 4.3 — Alerts
 
 ## Objective
 
-Build a private dashboard on top of the stable `/api/v1` read-only API. The dashboard must display persisted platform outputs without recalculating analytics, mutating database state, invoking Dhan, or placing orders.
+Build private alerts from persisted platform outputs while preserving deterministic, read-only research and the no-execution boundary.
 
 ## Required Scope
 
-- Use the read-only API as the dashboard data boundary.
-- Display platform health and database readiness.
-- Display recent ranking runs and ranked underlyings.
-- Display contract selections and their source ranking lineage.
-- Display risk approvals and rejections with sizing and exposure.
-- Display generated signals with confidence, rationale, entry reference and maximum loss.
-- Display replay timelines.
-- Display backtest summaries and trade-level results.
-- Provide stable loading, empty, error and not-found states.
-- Keep the dashboard private and local by default.
-- Preserve the GET-only, no-execution safety boundary.
+- Define alert events for signals, risk decisions and pipeline health.
+- Keep alert generation downstream of persisted platform state.
+- Add configurable private delivery channels and failure handling.
+- Preserve lineage, deduplication and auditability.
+- Do not place orders or introduce automatic execution.
 
 ## Engineering Constraints
 
-- Inspect the repository before choosing the dashboard implementation.
-- Do not query PostgreSQL directly from dashboard views; consume the application API.
+- Inspect the repository before choosing the alert implementation.
 - Do not add broker-order functionality.
-- Do not add write endpoints.
 - Maintain backward compatibility with the production equity and option pipelines.
 - Add unit tests and integration/smoke coverage appropriate to the selected implementation.
 - Update documentation before Git.
@@ -39,9 +31,8 @@ Build a private dashboard on top of the stable `/api/v1` read-only API. The dash
 
 ## Definition of Done
 
-- The dashboard starts through a documented command.
-- Health, rankings, selections, risk, signals, replay and backtest screens are usable.
-- Empty resources render correctly.
-- API and dashboard errors are visible and non-destructive.
+- Alert event and delivery boundaries are documented.
+- Duplicate alerts are prevented.
+- Delivery failures are visible and non-destructive.
 - Existing automated and PostgreSQL integration suites remain green.
 - Documentation reflects the final architecture and operating commands.

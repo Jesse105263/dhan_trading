@@ -399,3 +399,14 @@ Official transition from script-based development to platform architecture.
 - Preserved the no-execution boundary and backward compatibility with the stable equity pipeline.
 - Expanded the PostgreSQL-enabled automated suite to 117 tests, all passing with two expected production-data-dependent skips.
 - Added authoritative new-chat handoff documentation for continuation at Milestone 4.2.
+
+## Milestone 4.2 — Private Read-Only Dashboard
+
+- Added a private, loopback-bound dashboard server with no new dependency.
+- Added an HTTP-only client for the existing `/health` and `/api/v1` GET contract.
+- Added overview, ranking, selection, risk, signal, replay and backtest screens.
+- Added run-detail tables, structured evidence rendering and replay timelines.
+- Added stable empty, unavailable, invalid-response and not-found states.
+- Added no-cache, anti-framing and restrictive content-security response headers.
+- Added comprehensive `unittest` coverage and real API-to-dashboard runtime verification.
+- Added no database migration, write endpoint, Dhan call or execution capability.

@@ -10,7 +10,8 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 - Phase 2 — Option Data Platform: complete
 - Phase 3 — Decision and Evaluation Platform: complete
 - Milestone 4.1 — Read-Only API: complete and verified
-- Next milestone: 4.2 — Private Read-Only Dashboard
+- Milestone 4.2 — Private Read-Only Dashboard: complete and verified
+- Next milestone: 4.3 — Alerts
 
 The last committed checkpoint before the Milestone 4.1 handoff commit was:
 
@@ -86,8 +87,17 @@ Empty signal, replay or backtest collections are valid. PostgreSQL integration t
 7. Verify real production commands in addition to tests; this previously caught missing-price handling in contract selection.
 8. Do not claim completion until PostgreSQL tests and the production command pass.
 
+## Dashboard Verification
+
+- All six resource list screens returned HTTP 200 against the real local read API.
+- A persisted RELIANCE ranking detail rendered summary and child records.
+- A missing run rendered the expected dashboard HTTP 404 state.
+- PostgreSQL-enabled suite: 128 tests, OK, 2 expected production-data-dependent skips.
+
+Start with `python -m scripts.run_read_api` and `python -m scripts.run_dashboard`. See `docs/DASHBOARD.md`.
+
 ## Next Milestone
 
-Milestone 4.2 — Private Read-Only Dashboard.
+Milestone 4.3 — Alerts.
 
 Read `docs/NEXT_TASK.md` for scope and definition of done.

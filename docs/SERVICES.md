@@ -156,3 +156,11 @@ Routes:
 - `GET /api/v1`
 - `GET /api/v1/{resource}?limit=20`
 - `GET /api/v1/{resource}/{run_id}`
+
+## Private Dashboard
+
+- `app/dashboard.py` — HTTP API client, GET-only WSGI routes and server-side HTML rendering.
+- `scripts/run_dashboard.py` — local/private dashboard server entry point.
+- `docs/DASHBOARD.md` — operating and safety instructions.
+
+The dashboard reads `/health` and `/api/v1` over HTTP only. It has no direct database, Dhan or execution dependency.

@@ -38,3 +38,7 @@ Returns the selected run and its ordered child records in `data.items`.
 ## Safety boundary
 
 The API cannot place orders, invoke Dhan, modify persisted records or trigger calculations.
+
+## Dashboard consumer
+
+The private dashboard is an HTTP consumer of this contract. It does not import the read repository or access PostgreSQL. Start the API before the dashboard and keep the API reachable at the dashboard's configured `--api-base-url`.

@@ -286,6 +286,8 @@ Status: Next.
 
 #### Milestone 5.2 — Market Dashboard
 
+Status: Complete as Milestone 4.2 in the active roadmap.
+
 - Market overview.
 - Opportunity scanner.
 - Rankings.

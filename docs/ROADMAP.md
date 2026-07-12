@@ -14,7 +14,7 @@ Phase 4 — Product Surface
 
 ## Current Milestone
 
-Milestone 4.2 — Private Read-Only Dashboard
+Milestone 4.3 — Alerts
 
 ## Version Targets
 
@@ -47,11 +47,11 @@ Milestone 4.2 — Private Read-Only Dashboard
 16. [x] Market replay
 17. [x] Backtesting engine
 18. [x] Read-only application API
-19. [ ] Private read-only dashboard
+19. [x] Private read-only dashboard
 20. [ ] Alerts
 21. [ ] AI Copilot
 22. [ ] Paper trading
 
 ## Immediate Next Step
 
-Build Milestone 4.2 strictly on top of the `/api/v1` read-only contract. Do not introduce direct dashboard-to-database queries, broker access, write endpoints or order execution.
+Build Milestone 4.3 alerts on persisted platform outputs while preserving the no-execution boundary.

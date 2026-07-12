@@ -146,3 +146,7 @@ Backtests use signal entry references and subsequent persisted `option_chain_quo
 ## Decision: Standard-library, read-only API boundary
 
 The first product API uses WSGI from the Python standard library and adds no web-framework dependency. All routes are GET-only, versioned under `/api/v1`, bounded to 100 rows per list request and backed by a dedicated read repository. This keeps the production dependency surface small while establishing a stable HTTP contract.
+
+## Decision: Separate HTTP-only dashboard boundary
+
+The private dashboard is a standard-library WSGI application and a separate process from the read API. It uses a small HTTP GET client rather than importing the API repository or database layer. Server-side rendering keeps the dashboard dependency-free and same-origin browser behavior simple, while the explicit API base URL preserves the `/api/v1` boundary. Both processes bind to loopback by default.

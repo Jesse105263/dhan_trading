@@ -146,3 +146,7 @@ The contract-selection layer is downstream of ranking and upstream of risk. It r
 ## Read-Only Application API
 
 `app.read_api.ReadOnlyApi` is the HTTP boundary for persisted product data. It is GET-only, versioned under `/api/v1`, and delegates all database access to `ReadApiRepository`. The API exposes run summaries and run details for rankings, selections, risk assessments, signals, market replays and backtests. It performs no calculations, writes or broker calls.
+
+## Private Read-Only Dashboard
+
+`app.dashboard.DashboardApplication` is a separate WSGI presentation boundary. `DashboardApiClient` obtains health, list and detail payloads exclusively through HTTP GET requests to the stable read API. The dashboard never imports a repository, queries PostgreSQL, calls Dhan or exposes write behavior. It binds to loopback by default and renders server-side HTML with explicit empty, error and not-found states.
