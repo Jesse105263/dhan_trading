@@ -127,3 +127,7 @@ Ranking v1 uses deterministic min-max normalization across the eligible universe
 ## Contract selection policy
 
 Contract selection consumes persisted ranking runs and the exact option-chain source run linked through analytics. It selects at most one CE and one PE per ranked underlying using deterministic distance, spread, open-interest, volume, strike and security-id ordering. Downstream components must not reimplement contract eligibility.
+
+## Long-option risk model
+
+For Version 1, contract selection produces long-option candidates only. Maximum loss is therefore defined as premium paid. Position size is the largest whole-lot quantity that satisfies the configured available-capital, single-trade loss, total exposure and per-underlying concentration constraints. Both approvals and rejections are persisted for auditability.

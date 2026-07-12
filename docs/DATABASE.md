@@ -99,3 +99,10 @@ Migration 010 adds `option_ranking_runs` and `option_rankings`, including source
 ## Option contract selections
 
 Migration `011_option_contract_selections.sql` adds `option_contract_selection_runs` and `option_contract_selections`. Each selection retains ranking, analytics and source option-chain lineage together with liquidity, distance, spread and premium-per-lot evidence.
+
+## Option Risk Assessments
+
+Migration `012_option_risk_assessments.sql` adds:
+
+- `option_risk_assessment_runs` for portfolio inputs, methodology and aggregate decision counts.
+- `option_risk_assessments` for approved or rejected contracts, approved lots, quantity, exposure, maximum loss, rejection reason and lineage.

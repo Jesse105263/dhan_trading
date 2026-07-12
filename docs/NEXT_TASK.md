@@ -6,8 +6,8 @@ Phase 3 — Ranking and Risk
 
 ## Milestone
 
-Milestone 3.3 — Risk Engine
+Milestone 3.4 — Signal Engine
 
 ## Objective
 
-Apply portfolio-aware capital, loss, concentration and exposure constraints to selected option contracts before signal generation.
+Convert risk-approved option contracts into deterministic, explainable trade signals while preserving ranking, analytics, selection and risk lineage.

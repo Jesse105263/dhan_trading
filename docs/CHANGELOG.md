@@ -347,3 +347,10 @@ Official transition from script-based development to platform architecture.
 - Added liquidity, distance, spread, expiry-age and premium-per-lot constraints.
 - Added source-run, analytics and ranking lineage for every selected contract.
 - Added unit and PostgreSQL integration coverage plus a production CLI.
+
+## Milestone 3.3 — Risk Engine
+
+- Added portfolio-aware long-option risk assessment.
+- Added deterministic lot sizing under available-capital, per-trade loss, total exposure and underlying concentration limits.
+- Added persisted approvals and rejections with complete selection lineage and explanations.
+- Added unit tests, PostgreSQL integration coverage and a production verification command.

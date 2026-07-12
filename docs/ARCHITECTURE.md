@@ -127,3 +127,7 @@ The option data platform runs in a dedicated pipeline that does not modify the p
 ## Contract selection boundary
 
 The contract-selection layer is downstream of ranking and upstream of risk. It reads only persisted ranking and source-chain records, applies deterministic tradeability constraints, and persists explainable selections with full lineage.
+
+## Option Risk Engine
+
+`OptionRiskService` is the only component allowed to approve and size selected option contracts. It treats premium paid for long options as maximum loss and applies portfolio-aware limits before signal generation. `OptionRiskRepository` reads persisted contract selections and stores immutable risk runs and per-contract decisions with full lineage.

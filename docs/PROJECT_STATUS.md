@@ -189,3 +189,7 @@ Status: Implementation complete; PostgreSQL and production verification required
 ## Milestone 3.2 — Contract Selection
 
 Implementation complete. PostgreSQL integration and production selection verification are required before commit.
+
+## Milestone 3.3 — Risk Engine
+
+Implementation complete pending PostgreSQL and production verification. The engine sizes long-option selections against explicit portfolio capital, loss, total exposure and concentration limits and persists explainable decisions.

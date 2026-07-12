@@ -125,3 +125,11 @@ Filters stale or illiquid candidates, calculates explainable normalized componen
 ## OptionContractSelectionService
 
 Selects tradeable CE and PE contracts from ranked underlyings using centralized deterministic eligibility and tie-breaking rules. `OptionContractSelectionRepository` performs all database reads and persistence.
+
+## OptionRiskService
+
+- Reads a completed contract-selection run.
+- Applies portfolio-aware capital, maximum-loss and concentration limits.
+- Sizes approved contracts in whole lots.
+- Persists approvals and rejections with full upstream lineage.
+- Exposes `scripts.assess_option_risk` for production verification.
