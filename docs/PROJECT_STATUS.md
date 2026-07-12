@@ -180,3 +180,8 @@ Status: Implementation complete; PostgreSQL and production verification required
 - Previous/current analytics and source-run lineage persisted.
 - Unordered and incomparable snapshots rejected.
 - Unit and PostgreSQL integration coverage added.
+
+## Phase 3 — Ranking and Risk
+
+- [x] Milestone 3.1 — Ranking Engine
+- [ ] Milestone 3.2 — Contract Selection

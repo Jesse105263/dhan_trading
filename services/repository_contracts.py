@@ -384,3 +384,14 @@ class OptionAnalyticsHistoryRepositoryContract(Protocol):
 
     def upsert_change(self, change):
         ...
+
+if TYPE_CHECKING:
+    from services.option_ranking_models import OptionRankingCandidate, OptionRankingResult
+
+
+class OptionRankingRepositoryContract(Protocol):
+    def list_latest_candidates(self, as_of: datetime) -> list[OptionRankingCandidate]:
+        ...
+
+    def persist(self, result: OptionRankingResult) -> OptionRankingResult:
+        ...

@@ -334,3 +334,9 @@ Official transition from script-based development to platform architecture.
 - Added validation for incomparable, duplicate and unordered snapshots.
 - Added unit and PostgreSQL integration tests.
 - Added production comparison command.
+
+## Milestone 3.1 — Ranking Engine
+
+- Added deterministic, explainable option ranking with persisted lineage.
+- Added liquidity, activity, volatility and directional component scores.
+- Added unit and PostgreSQL integration coverage plus production verification.

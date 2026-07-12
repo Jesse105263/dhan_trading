@@ -119,3 +119,7 @@ The option data platform runs in a dedicated pipeline that does not modify the p
 ## Option Analytics History Boundary
 
 `OptionAnalyticsHistoryRepository` owns ordered analytics retrieval, predecessor selection and change persistence. `OptionAnalyticsHistoryService` owns comparability validation and deterministic change calculation. Downstream ranking and signal components must consume persisted change records rather than reimplement time-series comparison logic.
+
+## Ranking Engine
+
+`OptionRankingService` ranks the latest comparable analytics/change snapshots. `OptionRankingRepository` owns candidate reads and ranking persistence. Every result stores analytics and change lineage plus component explanations.

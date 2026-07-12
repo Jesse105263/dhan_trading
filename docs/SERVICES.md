@@ -117,3 +117,7 @@ Command-line verification entry point:
 ```bash
 python -m scripts.compare_option_analytics <current-analytics-id>
 ```
+
+## OptionRankingService
+
+Filters stale or illiquid candidates, calculates explainable normalized component scores, applies deterministic tie-breaking and persists a ranking batch through `OptionRankingRepository`.

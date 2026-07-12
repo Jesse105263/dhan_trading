@@ -119,3 +119,7 @@ The option data workflow remains separate from the production equity pipeline. T
 ## ADR — Consecutive Analytics Comparison
 
 Option changes are calculated only between a snapshot and its immediately preceding persisted analytics snapshot for the same normalized underlying and expiry. Comparisons across expiries, underlyings, duplicate snapshots or non-increasing capture times are rejected. This prevents downstream ranking and signals from silently comparing incompatible market states.
+
+## Ranking methodology
+
+Ranking v1 uses deterministic min-max normalization across the eligible universe with fixed weights: liquidity 35%, activity 30%, volatility 20%, directional structure 15%.

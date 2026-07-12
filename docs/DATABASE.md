@@ -91,3 +91,7 @@ Milestone 2.6 adds no schema migration. Operational runs use `pipeline_runs`, st
 ## option_analytics_changes
 
 Migration `009_option_analytics_changes.sql` stores deterministic differences between consecutive analytics snapshots for the same underlying and expiry. Each row preserves previous/current analytics IDs, previous/current source-run IDs, capture timestamps, elapsed time and all calculated change features. `current_analytics_id` is unique, making comparison persistence idempotent.
+
+## Option Rankings
+
+Migration 010 adds `option_ranking_runs` and `option_rankings`, including source analytics/change lineage, component scores, deterministic rank positions and JSON explanations.
