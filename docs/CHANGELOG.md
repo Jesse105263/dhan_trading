@@ -382,3 +382,20 @@ Official transition from script-based development to platform architecture.
 - Added bounded pagination input, UUID validation, structured errors and deterministic JSON serialization.
 - Added unit and PostgreSQL integration coverage.
 - Added a private WSGI server command without introducing live-trading capabilities.
+
+## 2026-07-12
+
+### Option Platform Completion Through Milestone 4.1
+
+- Added derivative contract schema and idempotent Dhan security-master import.
+- Imported 68,406 eligible derivative contracts from 215,940 rows with zero rejected rows.
+- Added centralized expiry repository and service.
+- Added transactional option-chain collection and real Dhan production verification.
+- Added deterministic option analytics, historical change detection and lineage.
+- Added ranking engine, contract selection, portfolio-aware long-option risk engine and explainable signal generation.
+- Added persisted market replay and deterministic backtesting with slippage and transaction costs.
+- Added versioned GET-only read API under `/api/v1`.
+- Added health, ranking, selection, risk, signal, replay and backtest resources.
+- Preserved the no-execution boundary and backward compatibility with the stable equity pipeline.
+- Expanded the PostgreSQL-enabled automated suite to 117 tests, all passing with two expected production-data-dependent skips.
+- Added authoritative new-chat handoff documentation for continuation at Milestone 4.2.

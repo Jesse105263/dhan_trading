@@ -10,11 +10,11 @@ The ordered implementation plan is documented in:
 
 ## Current Phase
 
-Phase 2 — Option Data Platform
+Phase 4 — Product Surface
 
 ## Current Milestone
 
-Option Analytics History and Change Detection
+Milestone 4.2 — Private Read-Only Dashboard
 
 ## Version Targets
 
@@ -29,55 +29,29 @@ Option Analytics History and Change Detection
 
 ## Build Sequence
 
-1. Repository contracts.
-2. Failure persistence.
-3. Operational metrics.
-4. Scheduling foundation.
-5. Derivative contract schema.
-6. Derivative security-master import.
-7. Expiry repository.
-8. Option-chain collector.
-9. Option analytics.
-10. Ranking engine.
-11. Contract selection.
-12. Risk engine.
-13. Signal engine.
-14. Market replay.
-15. Backtesting.
-16. Application API.
-17. Dashboard.
-18. Alerts.
-19. AI Copilot.
-20. Paper trading.
+1. [x] Repository contracts
+2. [x] Failure persistence
+3. [x] Operational metrics
+4. [x] Scheduling foundation
+5. [x] Derivative contract schema
+6. [x] Derivative security-master import
+7. [x] Expiry repository
+8. [x] Option-chain collector
+9. [x] Option analytics
+10. [x] Option analytics pipeline integration
+11. [x] Option analytics history and change detection
+12. [x] Ranking engine
+13. [x] Contract selection
+14. [x] Risk engine
+15. [x] Signal engine
+16. [x] Market replay
+17. [x] Backtesting engine
+18. [x] Read-only application API
+19. [ ] Private read-only dashboard
+20. [ ] Alerts
+21. [ ] AI Copilot
+22. [ ] Paper trading
 
-## Milestone 2.5 — Option Analytics
+## Immediate Next Step
 
-Status: implementation complete; PostgreSQL verification required before commit.
-
-## Milestone 2.6 — Option Analytics Pipeline Integration
-
-Next: operational multi-underlying collection and analytics orchestration.
-
-- [x] Milestone 2.6 — Option Analytics Pipeline Integration
-- [x] Milestone 2.7 — Option Analytics History and Change Detection
-- [ ] Milestone 3.1 — Ranking Engine
-
-- [x] Milestone 3.1 — Ranking Engine
-- [ ] Milestone 3.2 — Contract Selection
-
-- [x] Milestone 3.2 — Contract Selection
-- [ ] Milestone 3.3 — Risk Engine
-
-- [x] Milestone 3.3 — Risk Engine
-- [ ] Milestone 3.4 — Signal Engine
-
-- [x] Milestone 3.4 — Signal Engine
-- [ ] Milestone 3.5 — Market Replay
-
-- [x] Milestone 3.5 — Market Replay
-- [ ] Milestone 3.6 — Backtesting
-
-- [x] Milestone 3.6 — Backtesting Engine
-
-- [x] Milestone 4.1 — Read-Only API
-- [ ] Milestone 4.2 — Dashboard
+Build Milestone 4.2 strictly on top of the `/api/v1` read-only contract. Do not introduce direct dashboard-to-database queries, broker access, write endpoints or order execution.

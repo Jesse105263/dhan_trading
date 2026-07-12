@@ -2,57 +2,66 @@
 
 ## Current Phase
 
-Phase 2 — Option Data Platform
+Phase 4 — Product Surface
 
-## Completed
+## Current Milestone
 
-- Docker configured.
-- PostgreSQL configured.
-- Redis configured.
-- Git and GitHub configured.
-- Environment configuration hardened.
-- Centralized pipeline and scheduler settings added.
-- Structured logging added.
-- Ordered database migration framework added.
-- Migration checksums and version history added.
-- Pipeline success and failure status persisted.
-- Sanitized pipeline failure records persisted.
-- Retryable failures classified.
-- Explicit repository contracts added.
-- PostgreSQL repository integration tests added.
-- Operational stage metrics implemented.
-- Stage duration persisted.
-- Requested, received and written record counts persisted.
-- Source-data freshness persisted.
-- Production health-report command added.
-- Automated migration tests added.
-- Automated pipeline smoke tests added.
-- Production instrument repository created.
-- 209 production F&O equities loaded.
-- Production Dhan quote collector created.
-- 209 of 209 quotes collected and persisted.
-- Real scanner snapshot stage created.
-- 209 snapshots persisted per run.
-- Real feature stage created.
-- 209 market features persisted per run.
-- CSV runtime dependency removed from the production path.
-- Indian market-session validation added.
-- Exchange-holiday configuration added.
-- PostgreSQL scheduler locking added.
-- Overlapping production runs prevented.
-- Stale scheduler locks recoverable.
-- Scheduler status, one-shot and recurring commands added.
-- Direct pipeline execution preserved.
-- Scheduler unit tests added and verified.
-- Derivative-contract schema added.
-- Dhan derivative contract identity protected by database constraints.
-- Active contract lifecycle added.
-- Contract indexes added for underlying, expiry, strike and activity.
-- Derivative contract repository contract added.
-- PostgreSQL derivative contract repository added.
-- Derivative contract normalization and validation added.
-- Unit and PostgreSQL integration coverage added for derivative contracts.
-- Existing production equity pipeline preserved.
+Milestone 4.2 — Private Read-Only Dashboard
+
+## Repository Checkpoint
+
+Milestone 4.1 is implemented and fully verified locally. Commit the Milestone 4.1 files and this handoff documentation before creating the repository archive for the next chat.
+
+The last committed checkpoint before Milestone 4.1 was:
+
+- `ff5a695` — add option backtesting engine
+
+After the handoff commit, use `git log -2 --oneline` as the source of truth for the new commit hash.
+
+## Completed Milestones
+
+### Phase 1 — Stable Market Core
+
+- Infrastructure and local containers
+- PostgreSQL and Redis
+- Ordered database migrations with checksums
+- Repository contracts
+- Failure persistence and sanitization
+- Operational metrics and health reporting
+- Production equity collection, snapshots and features
+- Scheduler, market calendar and PostgreSQL locks
+
+### Phase 2 — Option Data Platform
+
+- 2.1 Derivative Contract Schema
+- 2.2 Derivative Security Master Import
+- 2.3 Expiry Repository and Service
+- 2.4 Option-Chain Collector
+- 2.5 Option Analytics
+- 2.6 Option Analytics Pipeline Integration
+- 2.7 Option Analytics History and Change Detection
+
+### Phase 3 — Decision and Evaluation Platform
+
+- 3.1 Ranking Engine
+- 3.2 Contract Selection
+- 3.3 Risk Engine
+- 3.4 Signal Engine
+- 3.5 Market Replay
+- 3.6 Backtesting Engine
+
+### Phase 4 — Product Surface
+
+- 4.1 Read-Only API
+
+## Production Data Verification
+
+- Dhan security-master rows processed: 215,940
+- Eligible derivative contracts imported: 68,406
+- Rejected import rows: 0
+- Import is idempotent
+- Real RELIANCE option chains collected and persisted
+- Real option analytics, history comparison, ranking, contract selection, risk assessment, signals, replay and backtest verified
 
 ## Database Migrations
 
@@ -62,149 +71,69 @@ Phase 2 — Option Data Platform
 - `004_scheduler_foundation.sql`
 - `005_derivative_contracts.sql`
 - `006_derivative_security_master_imports.sql`
+- `007_option_chain_collections.sql`
+- `008_option_chain_analytics.sql`
+- `009_option_analytics_changes.sql`
+- `010_option_rankings.sql`
+- `011_option_contract_selections.sql`
+- `012_option_risk_assessments.sql`
+- `013_option_signals.sql`
+- `014_market_replay.sql`
+- `015_option_backtesting.sql`
 
-## Operational Monitoring
+Milestone 4.1 required no migration because it is a read-only surface over existing tables.
 
-The platform records:
+## Latest Verification
 
-- Pipeline status
-- Pipeline duration
-- Stage status
-- Stage duration
-- Records requested
-- Records received
-- Records written
-- Source timestamp
-- Data freshness
-- Failure count
-- Snapshot count
-- Feature count
-- Market-calendar status
-- Scheduler-lock status
+Milestone 4.1 verification completed successfully:
 
-Health report command:
+- Full PostgreSQL-enabled suite: 117 tests run
+- Result: OK
+- Expected skips: 2 production-data-dependent tests when no persisted signal run was available
+- `/health`: healthy with database ready
+- `/api/v1`: resource index returned
+- `/api/v1/rankings`: returned persisted ranking data
+- `/api/v1/signals`: returned a valid empty collection
+- `/api/v1/backtests`: returned a valid empty collection
+- `git diff --check`: clean
+
+## Read-Only API
+
+Start locally:
 
 ```bash
-python -m scripts.health_report
+python -m scripts.run_read_api
 ```
 
-Scheduler status command:
+Default address:
 
-```bash
-python -m scripts.scheduler status
+```text
+http://127.0.0.1:8080
 ```
 
-## Verification
+Resources:
 
-- Derivative contract unit tests: 5 passed.
-- Full automated suite: 31 passed, 5 opt-in database integration tests skipped.
-- PostgreSQL integration suite: 5 passed.
-- Production pipeline: 7 stages completed successfully.
-- Database stage: 10 required tables and 5 applied migrations.
-- Existing scheduler and market-core behavior remained green.
+- `rankings`
+- `selections`
+- `risk`
+- `signals`
+- `replays`
+- `backtests`
 
-## Milestone 2.2 — Security Master Import
+See `docs/API.md` for the full contract.
 
-Status: Complete.
+## Safety Boundaries
 
-- Dhan derivative security master import implemented.
-- Import is idempotent.
-- Active contract lifecycle preserved.
-- Import run and failure persistence added.
-- Production import verified with 215,940 rows processed, 68,406 derivative contracts imported and zero rejected rows.
+- LLMs do not execute trades.
+- The read API is GET-only.
+- The API does not invoke Dhan.
+- The API does not trigger calculations.
+- The API does not modify persisted records.
+- Market replay and backtesting use persisted data only.
+- Existing production equity and option pipelines remain separate and backward compatible.
 
-## Milestone 2.3 — Expiry Repository
+## Next Task
 
-Status: Complete.
+Milestone 4.2 — Private Read-Only Dashboard.
 
-- PostgreSQL-backed Expiry Repository added.
-- Expiry availability derived from active derivative contracts.
-- Contract counts exposed per expiry.
-- Central Expiry Service added.
-- Nearest, next and monthly expiry selection implemented.
-- Minimum and maximum days-to-expiry windows implemented.
-- Active expiry validation implemented.
-- Repository protocol added.
-- Unit and PostgreSQL integration coverage added.
-- Production verification command added.
-- Existing derivative-contract expiry query preserved for backward compatibility.
-- No database migration required.
-
-## Current Verification
-
-- Full automated suite: 49 tests passed or skipped as expected.
-- Non-database tests: 42 passed.
-- Opt-in PostgreSQL tests: 7 skipped in environments without PostgreSQL.
-- Expiry Service unit tests: 11 passed.
-- Existing pipeline and scheduler tests remained green.
-- PostgreSQL integration and imported-production-data verification must be run against the project database with `RUN_DB_INTEGRATION_TESTS=1`.
-
-
-## Milestone 2.4 — Option-Chain Collector
-
-Status: Implementation complete; local and PostgreSQL verification required before commit.
-
-- Transactional collection-run and quote schema added.
-- Underlying security identity resolved from PostgreSQL.
-- Expiry selection and validation delegated exclusively to `ExpiryService`.
-- Dhan option-chain client and collector orchestration added.
-- CE/PE strike completeness validation added.
-- Sanitized failed-run persistence added.
-- Unit and PostgreSQL integration tests added.
-- Existing equity pipeline and scheduler preserved.
-
-## Milestone 2.5 — Option Analytics
-
-Status: Implementation complete; local and PostgreSQL verification required before commit.
-
-- Deterministic analytics computed only from persisted option-chain runs.
-- ATM strike and straddle cost added.
-- Total and nearby PCR added.
-- ATM and nearby IV summaries added.
-- Call and put OI walls added.
-- Strike distance, price coverage and liquidity coverage added.
-- Source-run lineage and idempotent persistence added.
-- Stale, incomplete and inconsistent source chains rejected.
-
-## Milestone 2.6 Complete
-
-The option collection and deterministic analytics services are integrated into a dedicated operational pipeline. Configured underlyings run independently, failures are sanitized and persisted, stage metrics are recorded, and scheduler overlap protection is available without modifying the stable equity pipeline.
-
-## Milestone 2.7 — Option Analytics History and Change Detection
-
-Status: Implementation complete; PostgreSQL and production verification required before commit.
-
-- Historical analytics queries added by underlying and expiry.
-- Consecutive comparable snapshots resolved deterministically.
-- OI, PCR, IV, ATM straddle, wall and liquidity changes calculated.
-- Previous/current analytics and source-run lineage persisted.
-- Unordered and incomparable snapshots rejected.
-- Unit and PostgreSQL integration coverage added.
-
-## Phase 3 — Ranking and Risk
-
-- [x] Milestone 3.1 — Ranking Engine
-- [ ] Milestone 3.2 — Contract Selection
-
-## Milestone 3.2 — Contract Selection
-
-Implementation complete. PostgreSQL integration and production selection verification are required before commit.
-
-## Milestone 3.3 — Risk Engine
-
-Implementation complete pending PostgreSQL and production verification. The engine sizes long-option selections against explicit portfolio capital, loss, total exposure and concentration limits and persists explainable decisions.
-
-## Milestone 3.4 — Signal Engine
-
-Status: implementation complete; PostgreSQL and production verification required before commit.
-
-## Milestone 3.5 — Market Replay
-
-Status: implementation complete; PostgreSQL and production verification required before commit.
-
-## Milestone 3.6
-Backtesting engine complete: persisted-signal replay, deterministic exits, costs, P&L metrics and lineage.
-
-## Milestone 4.1 — Read-Only API
-
-Status: implementation complete; PostgreSQL and HTTP verification required before commit. The API exposes persisted decision and evaluation artifacts without recalculation, mutation or broker access.
+See `docs/NEXT_TASK.md` and `docs/NEW_CHAT_HANDOFF.md` before implementation.
