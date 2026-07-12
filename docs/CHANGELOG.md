@@ -305,3 +305,11 @@ Official transition from script-based development to platform architecture.
 - Added command-line collection entry point.
 - Added collector unit tests and PostgreSQL repository integration coverage.
 - Preserved the production equity pipeline and scheduler.
+
+## Milestone 2.5 — Option Analytics
+
+- Added deterministic analytics models and service.
+- Added completed option-chain run reader and idempotent analytics persistence.
+- Added ATM, straddle, PCR, IV, OI-wall, strike-distance and liquidity-coverage calculations.
+- Added stale and incomplete source-chain rejection.
+- Added unit and PostgreSQL integration coverage.

@@ -107,3 +107,7 @@ Collectors, strategies and future contract-selection components must use one det
 ## ADR — Persist option-chain runs separately from legacy option quotes
 
 The production collector writes to normalized `option_chain_runs` and `option_chain_quotes` tables rather than the legacy `option_quotes` table. A run ID provides transactional lineage, request metrics, failure state and replayability while preserving the old table for backward compatibility.
+
+## Option analytics are deterministic and source-run scoped
+
+Option analytics are calculated only from persisted `option_chain_quotes`. The analytics layer cannot call market-data APIs or perform expiry selection. ATM ties resolve to the lower strike. Nearby metrics use an explicit count of strikes on each side of ATM. A source run is rejected when stale, incomplete or internally inconsistent. Reprocessing is idempotent by `source_run_id`.

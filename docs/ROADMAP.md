@@ -49,3 +49,11 @@ Option Analytics
 18. Alerts.
 19. AI Copilot.
 20. Paper trading.
+
+## Milestone 2.5 — Option Analytics
+
+Status: implementation complete; PostgreSQL verification required before commit.
+
+## Milestone 2.6 — Option Analytics Pipeline Integration
+
+Next: operational multi-underlying collection and analytics orchestration.

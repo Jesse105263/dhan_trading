@@ -79,3 +79,7 @@ Migration `007_option_chain_collections.sql` adds:
 - `option_chain_quotes` for normalized CE and PE snapshots by run, strike and option type.
 
 Quotes and successful run completion are committed in one transaction. Failed runs retain sanitized error context without partial quote persistence.
+
+## Option-Chain Analytics
+
+Migration `008_option_chain_analytics.sql` adds `option_chain_analytics`. The table stores one deterministic analytics record per completed source run, enforced by a unique `source_run_id`. It includes ATM and straddle values, total and nearby PCR, IV summaries, OI walls, strike coverage and liquidity coverage. Deleting a source collection run cascades to its analytics.

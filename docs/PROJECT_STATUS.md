@@ -152,3 +152,16 @@ Status: Implementation complete; local and PostgreSQL verification required befo
 - Sanitized failed-run persistence added.
 - Unit and PostgreSQL integration tests added.
 - Existing equity pipeline and scheduler preserved.
+
+## Milestone 2.5 — Option Analytics
+
+Status: Implementation complete; local and PostgreSQL verification required before commit.
+
+- Deterministic analytics computed only from persisted option-chain runs.
+- ATM strike and straddle cost added.
+- Total and nearby PCR added.
+- ATM and nearby IV summaries added.
+- Call and put OI walls added.
+- Strike distance, price coverage and liquidity coverage added.
+- Source-run lineage and idempotent persistence added.
+- Stale, incomplete and inconsistent source chains rejected.

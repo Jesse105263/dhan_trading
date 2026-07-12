@@ -43,6 +43,10 @@ if TYPE_CHECKING:
         OptionQuoteSnapshot,
         UnderlyingIdentity,
     )
+    from services.option_analytics_models import (
+        CompletedOptionChainRun,
+        OptionChainAnalytics,
+    )
 
 
 class InstrumentRepositoryContract(
@@ -346,4 +350,18 @@ class OptionChainRepositoryContract(Protocol):
         completed_at: datetime,
         error_message: str,
     ) -> None:
+        ...
+
+
+class OptionAnalyticsRepositoryContract(Protocol):
+    def get_completed_run(
+        self,
+        run_id: UUID,
+    ) -> CompletedOptionChainRun:
+        ...
+
+    def upsert(
+        self,
+        analytics: OptionChainAnalytics,
+    ) -> OptionChainAnalytics:
         ...

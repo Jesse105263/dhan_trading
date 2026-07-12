@@ -87,3 +87,10 @@ Responsibilities:
 ### option_chain_repository
 
 Owns database access for option-chain collection runs and quote snapshots. It contains no expiry-selection policy or API parsing logic.
+
+## Option Analytics Service
+
+- `services/option_analytics_models.py`: analytics requests, completed-chain input and normalized output models.
+- `services/option_analytics_repository.py`: reads completed option-chain runs and upserts source-linked analytics.
+- `services/option_analytics_service.py`: validates source quality and calculates ATM, straddle, PCR, IV, OI-wall and coverage metrics.
+- `scripts/analyze_option_chain.py`: calculates and persists analytics for a completed collection run.
