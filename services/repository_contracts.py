@@ -422,3 +422,11 @@ class OptionSignalRepositoryContract(Protocol):
 
     def persist(self, result):
         ...
+
+
+class MarketReplayRepositoryContract(Protocol):
+    def load_lineage(self, signal_run_id: UUID):
+        ...
+
+    def persist(self, result):
+        ...

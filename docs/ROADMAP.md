@@ -73,3 +73,6 @@ Next: operational multi-underlying collection and analytics orchestration.
 
 - [x] Milestone 3.4 — Signal Engine
 - [ ] Milestone 3.5 — Market Replay
+
+- [x] Milestone 3.5 — Market Replay
+- [ ] Milestone 3.6 — Backtesting

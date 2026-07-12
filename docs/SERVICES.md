@@ -137,3 +137,7 @@ Selects tradeable CE and PE contracts from ranked underlyings using centralized 
 ## OptionSignalService
 
 Generates explainable long-option signals from approved risk assessments, computes fixed-methodology confidence, identifies paired straddle legs, validates expiry and position data, and persists immutable lineage.
+
+## Market Replay Service
+
+Loads a complete signal lineage, validates timestamp and entity consistency, emits six ordered lifecycle events per signal, and persists the replay atomically.

@@ -197,3 +197,7 @@ Implementation complete pending PostgreSQL and production verification. The engi
 ## Milestone 3.4 — Signal Engine
 
 Status: implementation complete; PostgreSQL and production verification required before commit.
+
+## Milestone 3.5 — Market Replay
+
+Status: implementation complete; PostgreSQL and production verification required before commit.

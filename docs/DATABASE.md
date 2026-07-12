@@ -110,3 +110,7 @@ Migration `012_option_risk_assessments.sql` adds:
 ## Option Signals
 
 Migration `013_option_signals.sql` adds `option_signal_runs` and `option_signals`. Signal rows preserve foreign-key lineage to risk assessments, selections, rankings, analytics and source option-chain runs.
+
+## Migration 014 — Market Replay
+
+`market_replay_runs` stores replay metadata and source signal-run lineage. `market_replay_events` stores ordered immutable replay events and compact JSON payloads.

@@ -135,3 +135,7 @@ For Version 1, contract selection produces long-option candidates only. Maximum 
 ## Deterministic long-option signal policy
 
 Version 1 signals are generated only from approved risk assessments. A CE approval maps to a bullish buy-to-open signal and a PE approval maps to a bearish buy-to-open signal. When both sides exist for the same underlying and expiry, each is explicitly marked as a leg of a long-straddle context. Confidence is a fixed weighted combination of ranking, contract, liquidity, activity and volatility scores. Signal generation never sends orders.
+
+## Persisted-lineage replay
+
+Market replay consumes only committed database state. Live APIs and recomputation are excluded so identical source lineage produces the same ordered event types and payload semantics.

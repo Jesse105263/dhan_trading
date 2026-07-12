@@ -6,8 +6,8 @@ Phase 3 — Ranking and Risk
 
 ## Milestone
 
-Milestone 3.5 — Market Replay
+Milestone 3.6 — Backtesting
 
 ## Objective
 
-Replay persisted option-chain, analytics, ranking, selection, risk and signal lineage deterministically without calling live market-data APIs.
+Evaluate persisted option signals against subsequent persisted market snapshots with deterministic entry, exit, P&L and lineage rules.

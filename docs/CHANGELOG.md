@@ -362,3 +362,10 @@ Official transition from script-based development to platform architecture.
 - Added full risk, selection, ranking, analytics and source-run lineage.
 - Added long-call, long-put and paired long-straddle-leg classification.
 - Added unit tests, PostgreSQL integration coverage and a production verification command.
+
+## Milestone 3.5 — Market Replay
+
+- Added immutable persisted-lineage market replay runs and events.
+- Added deterministic event sequencing from option-chain capture through signal generation.
+- Added lineage validation and strict no-live-API replay boundary.
+- Added unit and PostgreSQL integration coverage plus production replay CLI.

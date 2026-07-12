@@ -135,3 +135,7 @@ The contract-selection layer is downstream of ranking and upstream of risk. It r
 ## Signal Engine
 
 `OptionSignalService` consumes only persisted, approved option-risk assessments. It generates auditable buy-to-open signal records with deterministic direction, confidence, strategy context, position size and complete upstream lineage. It has no broker execution capability.
+
+## Market Replay
+
+`MarketReplayService` reconstructs an immutable ordered timeline exclusively from persisted option-chain, analytics, ranking, selection, risk and signal records. It never calls Dhan and never places orders.
