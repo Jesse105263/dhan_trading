@@ -6,11 +6,11 @@ Phase 4 — Product Surface
 
 ## Current Milestone
 
-Milestone 4.5 — Paper Trading
+Milestone 4.6 — Version 1.0 Release Hardening
 
 ## Repository Checkpoint
 
-Milestone 4.4 is implemented and verified locally but intentionally uncommitted pending review. The latest committed checkpoint is `5868424 add persisted alert service`.
+Milestone 4.5 is implemented and verified locally but intentionally uncommitted pending review. The latest committed checkpoint is `7e4abe9 add grounded private ai copilot`.
 
 ## Completed Milestones
 
@@ -50,6 +50,7 @@ Milestone 4.4 is implemented and verified locally but intentionally uncommitted 
 - 4.2 Private Read-Only Dashboard
 - 4.3 Alerts
 - 4.4 AI Copilot
+- 4.5 Paper Trading
 
 ## Production Data Verification
 
@@ -78,19 +79,21 @@ Milestone 4.4 is implemented and verified locally but intentionally uncommitted 
 - `014_market_replay.sql`
 - `015_option_backtesting.sql`
 - `016_alerts.sql`
+- `017_paper_trading.sql`
 
-Milestones 4.1 and 4.2 required no migrations because they are read-only surfaces over existing tables. Milestone 4.3 adds auditable alert events and delivery attempts in migration 016.
+Milestones 4.1 and 4.2 required no migrations because they are read-only surfaces over existing tables. Milestone 4.3 adds auditable alerts in migration 016, and Milestone 4.5 adds isolated paper state in migration 017.
 
 ## Latest Verification
 
-Milestone 4.4 verification completed successfully:
+Milestone 4.5 verification completed successfully:
 
-- Full PostgreSQL-enabled suite: 155 tests run
+- Full PostgreSQL-enabled suite: 163 tests run
 - Result: OK
 - Expected skips: 2 production-data-dependent tests when no persisted signal run was available
-- RELIANCE ranking question: grounded local answer with exact run/item citation
-- Missing symbol: explicit insufficient-evidence answer
-- Order request: refused before retrieval
+- RELIANCE paper entry: filled BUY order, BUY fill and OPEN position with exact signal lineage
+- Missing newer mark: concise error and unchanged OPEN position
+- Persisted runtime audit: OPENED event with entry price, costs and net P&L
+- Verification-only paper and signal records cleaned after the runtime check
 - `git diff --check`: clean
 
 ## Read-Only API
@@ -140,8 +143,12 @@ Run `python -m scripts.generate_alerts` for the default private console channel.
 
 Run `python -m scripts.ask_copilot "Explain the latest ranking" --symbol RELIANCE` while the read API is available. See `docs/COPILOT.md`.
 
+## Paper Trading
+
+Use `python -m scripts.paper_trade` to open, mark, close and inspect isolated simulated positions. See `docs/PAPER_TRADING.md`.
+
 ## Next Task
 
-Milestone 4.5 — Paper Trading.
+Milestone 4.6 — Version 1.0 Release Hardening.
 
 See `docs/NEXT_TASK.md` and `docs/NEW_CHAT_HANDOFF.md` before implementation.

@@ -433,3 +433,14 @@ Official transition from script-based development to platform architecture.
 - Added API-key sanitization to the shared error boundary.
 - Added comprehensive unit and PostgreSQL-backed API-contract integration coverage.
 - Added no migration, database access, Dhan call or order capability.
+
+## Milestone 4.5 — Paper Trading
+
+- Added isolated simulated BUY/SELL orders, fills, positions and ordered audit events.
+- Added full signal, risk, selection, ranking, analytics and source-market lineage.
+- Added deterministic persisted-mark entry, marking and close transitions.
+- Added configurable slippage and transaction costs with unrealized and realized P&L.
+- Added retryable missing-entry-price rejections and non-destructive invalid-transition errors.
+- Added position status and P&L reporting CLI.
+- Added migration `017_paper_trading.sql` plus comprehensive unit and PostgreSQL integration coverage.
+- Added no Dhan call, broker adapter, live-order endpoint or paper-to-live promotion path.

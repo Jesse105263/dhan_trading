@@ -351,6 +351,8 @@ Status: Complete as Milestone 4.4 in the active roadmap.
 
 #### Milestone 6.3 — Paper Trading
 
+Status: Complete as Milestone 4.5 in the active roadmap.
+
 - Simulated order placement.
 - Position tracking.
 - P&L.

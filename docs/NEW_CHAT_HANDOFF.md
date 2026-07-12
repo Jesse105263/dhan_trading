@@ -13,7 +13,8 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 - Milestone 4.2 — Private Read-Only Dashboard: complete and verified
 - Milestone 4.3 — Alerts: complete and verified
 - Milestone 4.4 — AI Copilot: complete and verified
-- Next milestone: 4.5 — Paper Trading
+- Milestone 4.5 — Paper Trading: complete and verified
+- Next milestone: 4.6 — Version 1.0 Release Hardening
 
 The last committed checkpoint before the Milestone 4.1 handoff commit was:
 
@@ -118,8 +119,18 @@ Run with `python -m scripts.generate_alerts`. See `docs/ALERTS.md`.
 
 Run with `python -m scripts.ask_copilot`. See `docs/COPILOT.md`.
 
+## Paper-Trading Verification
+
+- PostgreSQL-enabled suite: 163 tests, OK, 2 expected production-data-dependent skips.
+- The persisted lifecycle test created BUY/SELL orders and fills, opened and closed a position, calculated realized P&L and verified complete lineage plus ordered events.
+- The production CLI opened a RELIANCE paper position from a persisted signal and displayed its entry, quantity and signal ID.
+- A missing newer mark produced a concise error while leaving the OPEN position unchanged.
+- Verification-only paper and regenerated-signal records were removed afterward.
+
+Run with `python -m scripts.paper_trade`. See `docs/PAPER_TRADING.md`.
+
 ## Next Milestone
 
-Milestone 4.5 — Paper Trading.
+Milestone 4.6 — Version 1.0 Release Hardening.
 
 Read `docs/NEXT_TASK.md` for scope and definition of done.

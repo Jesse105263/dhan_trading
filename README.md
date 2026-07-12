@@ -62,6 +62,17 @@ python -m scripts.ask_copilot "Explain the latest ranking" --symbol RELIANCE
 
 See `docs/COPILOT.md` for local and optional model-provider configuration.
 
+## Isolated Paper Trading
+
+Create and track simulated positions from persisted signals:
+
+```bash
+python -m scripts.paper_trade open <signal_id>
+python -m scripts.paper_trade status
+```
+
+See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
+
 ## Status
 
 Under active development.

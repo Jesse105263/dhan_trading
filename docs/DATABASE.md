@@ -69,6 +69,22 @@ One immutable, deduplicated alert per persisted source type and source ID. Store
 
 Ordered per-channel delivery history with pending, delivered and failed states, timestamps and sanitized failure details. A partial unique index prevents more than one successful delivery for an alert/channel pair.
 
+### paper_trade_orders
+
+Simulated BUY and SELL order outcomes. Filled entries and exits are unique per signal; rejected missing-price entries remain retryable.
+
+### paper_positions
+
+OPEN or CLOSED simulated positions with complete signal-to-source lineage, persisted entry/latest/exit marks and gross, cost and net P&L.
+
+### paper_trade_fills
+
+One simulated fill per filled paper order with the exact option-chain reference run, price, fill price and transaction cost.
+
+### paper_position_events
+
+Immutable ordered `OPENED`, `MARKED` and `CLOSED` position transition audit.
+
 ## Planned Tables
 
 - Option-chain runs.
@@ -141,3 +157,7 @@ Migration `016_alerts.sql` adds `alert_events` and `alert_delivery_attempts`. Al
 ## Copilot Access Pattern
 
 Milestone 4.4 adds no migration. The Copilot reads the existing HTTP API and does not connect to PostgreSQL or persist questions, prompts or answers.
+
+## Paper-Trading Persistence
+
+Migration `017_paper_trading.sql` adds isolated orders, fills, positions and audit events. Source foreign keys use `ON DELETE RESTRICT` so paper attribution cannot silently disappear. Paper persistence never updates source signals, risk decisions or option-chain marks.

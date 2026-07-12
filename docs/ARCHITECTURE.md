@@ -196,3 +196,23 @@ Answer + application-attached citations
 ```
 
 The model never retrieves data itself and cannot access PostgreSQL, Dhan, alerts, orders or execution services.
+
+## Paper-Trading Boundary
+
+`PaperTradingRepository` reads persisted signals and completed option-chain marks and owns isolated paper-state persistence. `PaperTradingService` applies deterministic entry, marking, close, slippage, cost, P&L and transition policy. Paper tables preserve complete source lineage but cannot submit or promote an order to a broker.
+
+```text
+Persisted approved signal + persisted option-chain mark
+                         │
+                         ▼
+                PaperTradingService
+                         │
+             ┌───────────┼───────────┐
+             ▼           ▼           ▼
+        Paper order    Paper fill   Paper position
+                                      │
+                                      ▼
+                              Ordered audit events
+```
+
+The boundary has no Dhan client, broker-order adapter or live-order state transition.

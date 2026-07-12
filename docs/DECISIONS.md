@@ -158,3 +158,7 @@ Alert events are derived only from committed signal, risk and pipeline records. 
 ## Decision: Application-grounded Copilot with provider isolation
 
 Copilot evidence retrieval is deterministic and occurs only through `/api/v1` before any model call. The application, not the model, selects resources, filters symbols and appends verified run/item citations. Providers receive evidence text but no tools or credentials for PostgreSQL, Dhan or execution. Local synthesis is always available, and provider failures fall back without losing evidence or exposing secrets.
+
+## Decision: Paper orders are isolated state, never executable intent
+
+Paper positions originate only from persisted approved signals and are priced only with persisted completed option-chain marks. Orders, fills, positions and events use dedicated tables with full upstream lineage. A paper order cannot be converted, promoted or submitted to Dhan. Missing marks create explicit rejection or transition errors without fabricating prices.

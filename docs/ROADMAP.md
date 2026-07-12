@@ -14,7 +14,7 @@ Phase 4 — Product Surface
 
 ## Current Milestone
 
-Milestone 4.5 — Paper Trading
+Milestone 4.6 — Version 1.0 Release Hardening
 
 ## Version Targets
 
@@ -50,8 +50,8 @@ Milestone 4.5 — Paper Trading
 19. [x] Private read-only dashboard
 20. [x] Alerts
 21. [x] AI Copilot
-22. [ ] Paper trading
+22. [x] Paper trading
 
 ## Immediate Next Step
 
-Build Milestone 4.5 paper trading as isolated simulation with full signal attribution and no live-order submission.
+Perform Version 1.0 release hardening: complete-system validation, safety audit, operational runbook and release readiness review.

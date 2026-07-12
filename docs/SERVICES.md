@@ -184,3 +184,12 @@ Alert sources are limited to persisted signals, risk decisions and pipeline heal
 - `scripts/ask_copilot.py` — private command-line research surface.
 
 The default provider is deterministic and local. Model providers have no platform tools or execution authority. See `docs/COPILOT.md`.
+
+## Paper Trading
+
+- `services/paper_trading_models.py` — validated requests and attributed order, fill and position models.
+- `services/paper_trading_repository.py` — persisted signal/mark reads and transactional paper-state persistence.
+- `services/paper_trading_service.py` — deterministic entry, mark, close, slippage, cost, P&L and transition policy.
+- `scripts/paper_trade.py` — open, mark, close and status commands.
+
+Paper trading has no Dhan or broker-order dependency. See `docs/PAPER_TRADING.md`.
