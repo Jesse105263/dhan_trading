@@ -121,6 +121,40 @@ def _read_non_empty_string(
     return value
 
 
+def _read_aliases(name: str) -> tuple[tuple[str, str], ...]:
+    raw_value = os.getenv(name, "").strip()
+    if not raw_value:
+        return tuple()
+
+    aliases: dict[str, str] = {}
+    for item in raw_value.split(","):
+        value = item.strip()
+        if not value:
+            continue
+        if "=" not in value:
+            raise RuntimeError(
+                f"{name} entries must use SOURCE=TARGET format."
+            )
+        source, target = value.split("=", maxsplit=1)
+        source = source.strip().upper()
+        target = target.strip().upper()
+        if not source or not target:
+            raise RuntimeError(
+                f"{name} entries must use SOURCE=TARGET format."
+            )
+        aliases[source] = target
+
+    return tuple(sorted(aliases.items()))
+
+
+@dataclass(frozen=True)
+class DerivativeImportSettings:
+    source_url: str
+    request_timeout_seconds: int
+    max_persisted_failures: int
+    symbol_aliases: tuple[tuple[str, str], ...]
+
+
 @dataclass(frozen=True)
 class PipelineSettings:
     dhan_request_timeout_seconds: int
@@ -190,6 +224,25 @@ SCHEDULER_SETTINGS = SchedulerSettings(
     interval_seconds=_read_positive_integer(
         "SCHEDULER_INTERVAL_SECONDS",
         300,
+    ),
+)
+
+
+DERIVATIVE_IMPORT_SETTINGS = DerivativeImportSettings(
+    source_url=_read_non_empty_string(
+        "DHAN_SECURITY_MASTER_URL",
+        "https://images.dhan.co/api-data/api-scrip-master-detailed.csv",
+    ),
+    request_timeout_seconds=_read_positive_integer(
+        "DHAN_SECURITY_MASTER_TIMEOUT_SECONDS",
+        120,
+    ),
+    max_persisted_failures=_read_positive_integer(
+        "DERIVATIVE_IMPORT_MAX_FAILURES",
+        1000,
+    ),
+    symbol_aliases=_read_aliases(
+        "DERIVATIVE_SYMBOL_ALIASES"
     ),
 )
 

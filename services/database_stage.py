@@ -15,6 +15,8 @@ REQUIRED_TABLES = {
     "market_features",
     "scheduler_locks",
     "derivative_contracts",
+    "derivative_import_runs",
+    "derivative_import_failures",
 }
 
 

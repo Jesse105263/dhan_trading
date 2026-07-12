@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from datetime import date, datetime
+from uuid import UUID
+
 from typing import (
     Iterable,
     Protocol,
@@ -11,6 +13,9 @@ from typing import (
 if TYPE_CHECKING:
     from services.derivative_contract_repository import (
         DerivativeContract,
+    )
+    from services.derivative_import_repository import (
+        DerivativeImportFailure,
     )
     from services.failure_repository import (
         PipelineFailure,
@@ -232,4 +237,47 @@ class DerivativeContractRepositoryContract(
         self,
         active_only: bool = False,
     ) -> int:
+        ...
+
+
+class DerivativeImportRepositoryContract(Protocol):
+    def start_run(
+        self,
+        run_id: UUID,
+        started_at: datetime,
+        source_url: str | None,
+        source_file_name: str | None,
+        source_timestamp: datetime | None,
+    ) -> None:
+        ...
+
+    def insert_failures(
+        self,
+        failures: Iterable[DerivativeImportFailure],
+    ) -> int:
+        ...
+
+    def complete_run(
+        self,
+        run_id: UUID,
+        completed_at: datetime,
+        rows_read: int,
+        rows_eligible: int,
+        contracts_upserted: int,
+        contracts_deactivated: int,
+        rows_rejected: int,
+    ) -> None:
+        ...
+
+    def fail_run(
+        self,
+        run_id: UUID,
+        completed_at: datetime,
+        rows_read: int,
+        rows_eligible: int,
+        contracts_upserted: int,
+        contracts_deactivated: int,
+        rows_rejected: int,
+        error_message: str,
+    ) -> None:
         ...
