@@ -123,3 +123,7 @@ The option data platform runs in a dedicated pipeline that does not modify the p
 ## Ranking Engine
 
 `OptionRankingService` ranks the latest comparable analytics/change snapshots. `OptionRankingRepository` owns candidate reads and ranking persistence. Every result stores analytics and change lineage plus component explanations.
+
+## Contract selection boundary
+
+The contract-selection layer is downstream of ranking and upstream of risk. It reads only persisted ranking and source-chain records, applies deterministic tradeability constraints, and persists explainable selections with full lineage.

@@ -6,8 +6,8 @@ Phase 3 — Ranking and Risk
 
 ## Milestone
 
-Milestone 3.2 — Contract Selection
+Milestone 3.3 — Risk Engine
 
 ## Objective
 
-Select tradeable option contracts from ranked underlyings using deterministic liquidity, distance, expiry and risk constraints.
+Apply portfolio-aware capital, loss, concentration and exposure constraints to selected option contracts before signal generation.

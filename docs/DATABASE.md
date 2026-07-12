@@ -95,3 +95,7 @@ Migration `009_option_analytics_changes.sql` stores deterministic differences be
 ## Option Rankings
 
 Migration 010 adds `option_ranking_runs` and `option_rankings`, including source analytics/change lineage, component scores, deterministic rank positions and JSON explanations.
+
+## Option contract selections
+
+Migration `011_option_contract_selections.sql` adds `option_contract_selection_runs` and `option_contract_selections`. Each selection retains ranking, analytics and source option-chain lineage together with liquidity, distance, spread and premium-per-lot evidence.

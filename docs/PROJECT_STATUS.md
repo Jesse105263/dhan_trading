@@ -185,3 +185,7 @@ Status: Implementation complete; PostgreSQL and production verification required
 
 - [x] Milestone 3.1 — Ranking Engine
 - [ ] Milestone 3.2 — Contract Selection
+
+## Milestone 3.2 — Contract Selection
+
+Implementation complete. PostgreSQL integration and production selection verification are required before commit.

@@ -123,3 +123,7 @@ Option changes are calculated only between a snapshot and its immediately preced
 ## Ranking methodology
 
 Ranking v1 uses deterministic min-max normalization across the eligible universe with fixed weights: liquidity 35%, activity 30%, volatility 20%, directional structure 15%.
+
+## Contract selection policy
+
+Contract selection consumes persisted ranking runs and the exact option-chain source run linked through analytics. It selects at most one CE and one PE per ranked underlying using deterministic distance, spread, open-interest, volume, strike and security-id ordering. Downstream components must not reimplement contract eligibility.

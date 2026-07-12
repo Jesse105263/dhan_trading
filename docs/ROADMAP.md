@@ -64,3 +64,6 @@ Next: operational multi-underlying collection and analytics orchestration.
 
 - [x] Milestone 3.1 — Ranking Engine
 - [ ] Milestone 3.2 — Contract Selection
+
+- [x] Milestone 3.2 — Contract Selection
+- [ ] Milestone 3.3 — Risk Engine

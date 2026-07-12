@@ -340,3 +340,10 @@ Official transition from script-based development to platform architecture.
 - Added deterministic, explainable option ranking with persisted lineage.
 - Added liquidity, activity, volatility and directional component scores.
 - Added unit and PostgreSQL integration coverage plus production verification.
+
+## Milestone 3.2 — Contract Selection
+
+- Added deterministic contract selection from persisted ranking runs.
+- Added liquidity, distance, spread, expiry-age and premium-per-lot constraints.
+- Added source-run, analytics and ranking lineage for every selected contract.
+- Added unit and PostgreSQL integration coverage plus a production CLI.

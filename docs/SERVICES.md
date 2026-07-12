@@ -121,3 +121,7 @@ python -m scripts.compare_option_analytics <current-analytics-id>
 ## OptionRankingService
 
 Filters stale or illiquid candidates, calculates explainable normalized component scores, applies deterministic tie-breaking and persists a ranking batch through `OptionRankingRepository`.
+
+## OptionContractSelectionService
+
+Selects tradeable CE and PE contracts from ranked underlyings using centralized deterministic eligibility and tie-breaking rules. `OptionContractSelectionRepository` performs all database reads and persistence.
