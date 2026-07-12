@@ -141,3 +141,6 @@ Generates explainable long-option signals from approved risk assessments, comput
 ## Market Replay Service
 
 Loads a complete signal lineage, validates timestamp and entity consistency, emits six ordered lifecycle events per signal, and persists the replay atomically.
+
+### `OptionBacktestService`
+Applies deterministic target, stop-loss, last-available exit, slippage and transaction-cost rules to persisted signals and market marks.

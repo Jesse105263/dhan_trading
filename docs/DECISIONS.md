@@ -139,3 +139,6 @@ Version 1 signals are generated only from approved risk assessments. A CE approv
 ## Persisted-lineage replay
 
 Market replay consumes only committed database state. Live APIs and recomputation are excluded so identical source lineage produces the same ordered event types and payload semantics.
+
+### Backtesting uses persisted marks only
+Backtests use signal entry references and subsequent persisted `option_chain_quotes`. Missing future marks are recorded as skipped trades rather than fabricated prices.

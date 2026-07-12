@@ -139,3 +139,6 @@ The contract-selection layer is downstream of ranking and upstream of risk. It r
 ## Market Replay
 
 `MarketReplayService` reconstructs an immutable ordered timeline exclusively from persisted option-chain, analytics, ranking, selection, risk and signal records. It never calls Dhan and never places orders.
+
+### Option Backtesting
+`OptionBacktestService` evaluates persisted signals only against later completed option-chain snapshots. It never calls Dhan and never places orders. `OptionBacktestRepository` owns signal/mark reads and transactional result persistence.

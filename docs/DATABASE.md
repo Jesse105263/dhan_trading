@@ -114,3 +114,6 @@ Migration `013_option_signals.sql` adds `option_signal_runs` and `option_signals
 ## Migration 014 — Market Replay
 
 `market_replay_runs` stores replay metadata and source signal-run lineage. `market_replay_events` stores ordered immutable replay events and compact JSON payloads.
+
+### Option backtesting
+Migration `015_option_backtesting.sql` adds `option_backtest_runs` and `option_backtest_trades`. Every trade retains signal, source-run and exit-run lineage.

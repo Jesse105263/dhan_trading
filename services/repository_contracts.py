@@ -430,3 +430,14 @@ class MarketReplayRepositoryContract(Protocol):
 
     def persist(self, result):
         ...
+
+
+class OptionBacktestRepositoryContract(Protocol):
+    def list_signals(self, signal_run_id: UUID):
+        ...
+
+    def list_future_marks(self, signal, as_of: datetime):
+        ...
+
+    def persist(self, result):
+        ...

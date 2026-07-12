@@ -201,3 +201,6 @@ Status: implementation complete; PostgreSQL and production verification required
 ## Milestone 3.5 — Market Replay
 
 Status: implementation complete; PostgreSQL and production verification required before commit.
+
+## Milestone 3.6
+Backtesting engine complete: persisted-signal replay, deterministic exits, costs, P&L metrics and lineage.

@@ -1,13 +1,10 @@
 # Next Task
 
 ## Phase
-
-Phase 3 — Ranking and Risk
+Phase 4 — Product Surface
 
 ## Milestone
-
-Milestone 3.6 — Backtesting
+Milestone 4.1 — Read-Only API
 
 ## Objective
-
-Evaluate persisted option signals against subsequent persisted market snapshots with deterministic entry, exit, P&L and lineage rules.
+Expose persisted rankings, selections, risk assessments, signals, replay runs and backtest results through a stable read-only application API.

@@ -369,3 +369,8 @@ Official transition from script-based development to platform architecture.
 - Added deterministic event sequencing from option-chain capture through signal generation.
 - Added lineage validation and strict no-live-API replay boundary.
 - Added unit and PostgreSQL integration coverage plus production replay CLI.
+
+## Milestone 3.6 — Backtesting
+- Added deterministic backtesting of persisted option signals against subsequent persisted option-chain marks.
+- Added configurable target, stop-loss, slippage and transaction-cost assumptions.
+- Added persisted trade-level lineage and run-level P&L, return, win-rate, profit-factor and drawdown metrics.
