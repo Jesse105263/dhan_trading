@@ -374,3 +374,11 @@ Official transition from script-based development to platform architecture.
 - Added deterministic backtesting of persisted option signals against subsequent persisted option-chain marks.
 - Added configurable target, stop-loss, slippage and transaction-cost assumptions.
 - Added persisted trade-level lineage and run-level P&L, return, win-rate, profit-factor and drawdown metrics.
+
+## Milestone 4.1 — Read-Only API
+
+- Added a stable versioned GET-only application API.
+- Added list and detail endpoints for rankings, selections, risk assessments, signals, replay runs and backtests.
+- Added bounded pagination input, UUID validation, structured errors and deterministic JSON serialization.
+- Added unit and PostgreSQL integration coverage.
+- Added a private WSGI server command without introducing live-trading capabilities.

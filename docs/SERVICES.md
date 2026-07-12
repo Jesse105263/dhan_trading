@@ -144,3 +144,15 @@ Loads a complete signal lineage, validates timestamp and entity consistency, emi
 
 ### `OptionBacktestService`
 Applies deterministic target, stop-loss, last-available exit, slippage and transaction-cost rules to persisted signals and market marks.
+
+## Read-Only API
+
+- `services/read_api_repository.py` — read-only queries for rankings, selections, risk, signals, replay and backtests.
+- `app/read_api.py` — versioned WSGI routing, validation, error handling and JSON serialization.
+- `scripts/run_read_api.py` — local/private HTTP server entry point.
+
+Routes:
+- `GET /health`
+- `GET /api/v1`
+- `GET /api/v1/{resource}?limit=20`
+- `GET /api/v1/{resource}/{run_id}`

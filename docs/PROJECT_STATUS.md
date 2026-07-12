@@ -204,3 +204,7 @@ Status: implementation complete; PostgreSQL and production verification required
 
 ## Milestone 3.6
 Backtesting engine complete: persisted-signal replay, deterministic exits, costs, P&L metrics and lineage.
+
+## Milestone 4.1 — Read-Only API
+
+Status: implementation complete; PostgreSQL and HTTP verification required before commit. The API exposes persisted decision and evaluation artifacts without recalculation, mutation or broker access.

@@ -142,3 +142,7 @@ The contract-selection layer is downstream of ranking and upstream of risk. It r
 
 ### Option Backtesting
 `OptionBacktestService` evaluates persisted signals only against later completed option-chain snapshots. It never calls Dhan and never places orders. `OptionBacktestRepository` owns signal/mark reads and transactional result persistence.
+
+## Read-Only Application API
+
+`app.read_api.ReadOnlyApi` is the HTTP boundary for persisted product data. It is GET-only, versioned under `/api/v1`, and delegates all database access to `ReadApiRepository`. The API exposes run summaries and run details for rankings, selections, risk assessments, signals, market replays and backtests. It performs no calculations, writes or broker calls.

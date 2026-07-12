@@ -78,3 +78,6 @@ Next: operational multi-underlying collection and analytics orchestration.
 - [ ] Milestone 3.6 — Backtesting
 
 - [x] Milestone 3.6 — Backtesting Engine
+
+- [x] Milestone 4.1 — Read-Only API
+- [ ] Milestone 4.2 — Dashboard

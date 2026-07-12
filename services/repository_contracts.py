@@ -441,3 +441,14 @@ class OptionBacktestRepositoryContract(Protocol):
 
     def persist(self, result):
         ...
+
+
+class ReadApiRepositoryContract(Protocol):
+    def list_latest(self, resource: str, limit: int) -> list[dict]:
+        ...
+
+    def get_run(self, resource: str, run_id: UUID) -> dict | None:
+        ...
+
+    def health(self) -> dict:
+        ...

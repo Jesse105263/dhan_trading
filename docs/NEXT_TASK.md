@@ -4,7 +4,7 @@
 Phase 4 — Product Surface
 
 ## Milestone
-Milestone 4.1 — Read-Only API
+Milestone 4.2 — Dashboard
 
 ## Objective
-Expose persisted rankings, selections, risk assessments, signals, replay runs and backtest results through a stable read-only application API.
+Build a private read-only dashboard on top of the stable application API for rankings, selections, risk, signals, replay and backtest results.
