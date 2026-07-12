@@ -332,12 +332,16 @@ Status: Complete as Milestone 4.3 in the active roadmap.
 
 #### Milestone 6.1 — AI Data Tools
 
+Status: Complete as part of Milestone 4.4 in the active roadmap.
+
 - Market query tools.
 - Symbol query tools.
 - Ranking explanation tools.
 - Backtest explanation tools.
 
 #### Milestone 6.2 — AI Copilot
+
+Status: Complete as Milestone 4.4 in the active roadmap.
 
 - Explain rankings.
 - Compare opportunities.

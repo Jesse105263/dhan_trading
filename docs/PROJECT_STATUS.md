@@ -6,11 +6,11 @@ Phase 4 — Product Surface
 
 ## Current Milestone
 
-Milestone 4.4 — AI Copilot
+Milestone 4.5 — Paper Trading
 
 ## Repository Checkpoint
 
-Milestone 4.3 is implemented and verified locally but intentionally uncommitted pending review. The latest committed checkpoint is `be40cfd add private read only dashboard`.
+Milestone 4.4 is implemented and verified locally but intentionally uncommitted pending review. The latest committed checkpoint is `5868424 add persisted alert service`.
 
 ## Completed Milestones
 
@@ -49,6 +49,7 @@ Milestone 4.3 is implemented and verified locally but intentionally uncommitted 
 - 4.1 Read-Only API
 - 4.2 Private Read-Only Dashboard
 - 4.3 Alerts
+- 4.4 AI Copilot
 
 ## Production Data Verification
 
@@ -82,15 +83,14 @@ Milestones 4.1 and 4.2 required no migrations because they are read-only surface
 
 ## Latest Verification
 
-Milestone 4.3 verification completed successfully:
+Milestone 4.4 verification completed successfully:
 
-- Full PostgreSQL-enabled suite: 139 tests run
+- Full PostgreSQL-enabled suite: 155 tests run
 - Result: OK
 - Expected skips: 2 production-data-dependent tests when no persisted signal run was available
-- Persisted RELIANCE risk approval alert: created and delivered to console
-- Persisted partial pipeline failure alert: created and delivered to console
-- Signal source: valid empty result in current production data
-- Repeated risk run: existing alert reused and successful console delivery skipped
+- RELIANCE ranking question: grounded local answer with exact run/item citation
+- Missing symbol: explicit insufficient-evidence answer
+- Order request: refused before retrieval
 - `git diff --check`: clean
 
 ## Read-Only API
@@ -136,8 +136,12 @@ Start the read API with `python -m scripts.run_read_api`, start the dashboard wi
 
 Run `python -m scripts.generate_alerts` for the default private console channel. Source selection and private-webhook configuration are documented in `docs/ALERTS.md`.
 
+## AI Copilot
+
+Run `python -m scripts.ask_copilot "Explain the latest ranking" --symbol RELIANCE` while the read API is available. See `docs/COPILOT.md`.
+
 ## Next Task
 
-Milestone 4.4 — AI Copilot.
+Milestone 4.5 — Paper Trading.
 
 See `docs/NEXT_TASK.md` and `docs/NEW_CHAT_HANDOFF.md` before implementation.

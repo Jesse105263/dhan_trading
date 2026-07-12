@@ -421,3 +421,15 @@ Official transition from script-based development to platform architecture.
 - Added migration `016_alerts.sql`, an operational CLI and comprehensive unit/integration coverage.
 - Verified real persisted risk and pipeline alerts plus valid empty-signal behavior.
 - Preserved the no-Dhan, no-recalculation and no-order-execution boundaries.
+
+## Milestone 4.4 — AI Copilot
+
+- Added a private research Copilot consuming only the stable `/api/v1` HTTP contract.
+- Added question-aware evidence selection for rankings, selections, risk, signals and backtests.
+- Added symbol filtering and verified run/item lineage citations.
+- Added deterministic local synthesis and an optional provider interface.
+- Added an OpenAI Responses API adapter with no tools or write authority.
+- Added explicit insufficient-evidence, provider-failure fallback and execution-refusal behavior.
+- Added API-key sanitization to the shared error boundary.
+- Added comprehensive unit and PostgreSQL-backed API-contract integration coverage.
+- Added no migration, database access, Dhan call or order capability.

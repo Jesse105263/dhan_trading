@@ -12,7 +12,8 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 - Milestone 4.1 — Read-Only API: complete and verified
 - Milestone 4.2 — Private Read-Only Dashboard: complete and verified
 - Milestone 4.3 — Alerts: complete and verified
-- Next milestone: 4.4 — AI Copilot
+- Milestone 4.4 — AI Copilot: complete and verified
+- Next milestone: 4.5 — Paper Trading
 
 The last committed checkpoint before the Milestone 4.1 handoff commit was:
 
@@ -107,8 +108,18 @@ Start with `python -m scripts.run_read_api` and `python -m scripts.run_dashboard
 
 Run with `python -m scripts.generate_alerts`. See `docs/ALERTS.md`.
 
+## Copilot Verification
+
+- PostgreSQL-enabled suite: 155 tests, OK, 2 expected production-data-dependent skips.
+- A RELIANCE ranking question returned persisted rank facts with exact API run/item lineage.
+- A nonexistent symbol returned an explicit insufficient-evidence answer.
+- An order-execution request was refused before retrieval or provider use.
+- The optional OpenAI adapter is isolated behind a provider protocol; local synthesis remains the default.
+
+Run with `python -m scripts.ask_copilot`. See `docs/COPILOT.md`.
+
 ## Next Milestone
 
-Milestone 4.4 — AI Copilot.
+Milestone 4.5 — Paper Trading.
 
 Read `docs/NEXT_TASK.md` for scope and definition of done.

@@ -6,23 +6,23 @@ Phase 4 — Product Surface
 
 ## Milestone
 
-Milestone 4.4 — AI Copilot
+Milestone 4.5 — Paper Trading
 
 ## Objective
 
-Build an AI-assisted private research surface grounded exclusively in read-only platform data, with citations to platform lineage and no execution authority.
+Build isolated paper-trade simulation from persisted signals with complete attribution and no live broker-order submission.
 
 ## Required Scope
 
-- Answer research questions from stable read-only platform outputs.
-- Explain rankings, selections, risk decisions, signals and backtest evidence.
-- Preserve source lineage in every answer.
-- Make unavailable or insufficient evidence explicit.
-- Do not place orders or introduce automatic execution.
+- Create simulated orders and positions from persisted approved signals.
+- Preserve signal, risk, selection and market-data lineage.
+- Track simulated fills, position state and P&L.
+- Keep paper state isolated from live broker and production source records.
+- Do not submit orders to Dhan or introduce automatic live execution.
 
 ## Engineering Constraints
 
-- Inspect the repository before choosing the AI integration boundary.
+- Inspect the repository before choosing the paper-trading boundary.
 - Do not add broker-order functionality.
 - Maintain backward compatibility with the production equity and option pipelines.
 - Add unit tests and integration/smoke coverage appropriate to the selected implementation.
@@ -31,8 +31,8 @@ Build an AI-assisted private research surface grounded exclusively in read-only 
 
 ## Definition of Done
 
-- AI answers are grounded in platform evidence with visible lineage.
-- Missing data and model failures are visible and non-destructive.
-- The AI boundary has no write or execution capability.
+- Paper orders and positions are reproducible and fully attributed.
+- Missing prices and invalid transitions are visible and non-destructive.
+- No paper-trading component can submit a live broker order.
 - Existing automated and PostgreSQL integration suites remain green.
 - Documentation reflects the final architecture and operating commands.

@@ -173,3 +173,14 @@ The dashboard reads `/health` and `/api/v1` over HTTP only. It has no direct dat
 - `scripts/generate_alerts.py` — operational entry point.
 
 Alert sources are limited to persisted signals, risk decisions and pipeline health. See `docs/ALERTS.md`.
+
+## AI Copilot
+
+- `services/copilot_api_client.py` — GET-only client for the stable read API.
+- `services/copilot_evidence.py` — question routing, symbol filtering and citation construction.
+- `services/copilot_models.py` — validated requests, evidence and answers.
+- `services/copilot_service.py` — safety refusal, grounding, fallback and verified-source attachment.
+- `services/copilot_provider.py` — optional provider interface and OpenAI Responses adapter.
+- `scripts/ask_copilot.py` — private command-line research surface.
+
+The default provider is deterministic and local. Model providers have no platform tools or execution authority. See `docs/COPILOT.md`.

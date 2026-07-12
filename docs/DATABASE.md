@@ -137,3 +137,7 @@ Milestone 4.2 adds no migration. Dashboard views do not connect to PostgreSQL; a
 ## Alert Persistence
 
 Migration `016_alerts.sql` adds `alert_events` and `alert_delivery_attempts`. Alert source identity is stored as text because sources span UUID-backed product records and string-backed pipeline runs. Source tables remain unchanged and alerts cannot cascade into or mutate them.
+
+## Copilot Access Pattern
+
+Milestone 4.4 adds no migration. The Copilot reads the existing HTTP API and does not connect to PostgreSQL or persist questions, prompts or answers.

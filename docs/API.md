@@ -42,3 +42,7 @@ The API cannot place orders, invoke Dhan, modify persisted records or trigger ca
 ## Dashboard consumer
 
 The private dashboard is an HTTP consumer of this contract. It does not import the read repository or access PostgreSQL. Start the API before the dashboard and keep the API reachable at the dashboard's configured `--api-base-url`.
+
+## Copilot consumer
+
+The private AI Copilot retrieves evidence only through the list and detail routes in this contract. It does not import the read repository, query PostgreSQL, invoke Dhan or expose execution tools.

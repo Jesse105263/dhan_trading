@@ -6,6 +6,10 @@ MAX_ERROR_MESSAGE_LENGTH: Final = 2000
 
 SENSITIVE_PATTERNS: Final = (
     re.compile(
+        r"(?i)(api[-_ ]?key)"
+        r"\s*[:=]\s*['\"]?[^,\s'\"]+"
+    ),
+    re.compile(
         r"(?i)(access[-_ ]?token)"
         r"\s*[:=]\s*['\"]?[^,\s'\"]+"
     ),

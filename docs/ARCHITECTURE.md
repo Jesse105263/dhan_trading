@@ -171,3 +171,28 @@ Persisted signals / risk decisions / pipeline health
                          ▼
               Delivery-attempt audit
 ```
+
+## AI Copilot Boundary
+
+`CopilotEvidenceService` selects relevant read-API resources and constructs immutable citation records from run and item lineage. `CopilotService` enforces execution refusal, insufficient-evidence behavior, verified source attachment and model-failure fallback. The default local provider renders deterministic evidence summaries; the optional `OpenAIResponsesProvider` performs natural-language synthesis without tools or write capabilities.
+
+```text
+Question
+   │
+   ▼
+Execution boundary ── refusal
+   │ allowed research
+   ▼
+/api/v1 GET evidence
+   │
+   ▼
+Verified lineage records
+   │
+   ├── Local synthesis
+   └── Optional model synthesis
+   │
+   ▼
+Answer + application-attached citations
+```
+
+The model never retrieves data itself and cannot access PostgreSQL, Dhan, alerts, orders or execution services.

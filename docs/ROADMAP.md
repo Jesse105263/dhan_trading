@@ -14,7 +14,7 @@ Phase 4 — Product Surface
 
 ## Current Milestone
 
-Milestone 4.4 — AI Copilot
+Milestone 4.5 — Paper Trading
 
 ## Version Targets
 
@@ -49,9 +49,9 @@ Milestone 4.4 — AI Copilot
 18. [x] Read-only application API
 19. [x] Private read-only dashboard
 20. [x] Alerts
-21. [ ] AI Copilot
+21. [x] AI Copilot
 22. [ ] Paper trading
 
 ## Immediate Next Step
 
-Build Milestone 4.4 AI Copilot with answers grounded in read-only platform data and no execution authority.
+Build Milestone 4.5 paper trading as isolated simulation with full signal attribution and no live-order submission.

@@ -52,6 +52,16 @@ python -m scripts.generate_alerts
 
 See `docs/ALERTS.md` for source and channel configuration.
 
+## Private AI Copilot
+
+With the read API running, ask a lineage-grounded research question:
+
+```bash
+python -m scripts.ask_copilot "Explain the latest ranking" --symbol RELIANCE
+```
+
+See `docs/COPILOT.md` for local and optional model-provider configuration.
+
 ## Status
 
 Under active development.

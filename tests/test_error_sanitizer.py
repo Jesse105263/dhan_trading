@@ -9,6 +9,22 @@ from services.error_sanitizer import (
 class ErrorSanitizerTest(
     unittest.TestCase
 ):
+    def test_redacts_api_key(
+        self,
+    ) -> None:
+        result = sanitize_error_message(
+            "api_key=secret-key-value request failed"
+        )
+
+        self.assertNotIn(
+            "secret-key-value",
+            result,
+        )
+        self.assertIn(
+            "[REDACTED]",
+            result,
+        )
+
     def test_redacts_access_token(
         self,
     ) -> None:
