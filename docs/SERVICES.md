@@ -94,3 +94,10 @@ Owns database access for option-chain collection runs and quote snapshots. It co
 - `services/option_analytics_repository.py`: reads completed option-chain runs and upserts source-linked analytics.
 - `services/option_analytics_service.py`: validates source quality and calculates ATM, straddle, PCR, IV, OI-wall and coverage metrics.
 - `scripts/analyze_option_chain.py`: calculates and persists analytics for a completed collection run.
+
+## Option Data Pipeline
+
+- `services.option_data_pipeline.OptionCollectionStage`: configured multi-underlying collection, bounded retry, throttling, metrics, and failure isolation.
+- `services.option_data_pipeline.OptionAnalyticsStage`: deterministic analytics for successful source runs only.
+- `services.option_data_pipeline.build_option_data_pipeline`: builds the dedicated operational option pipeline without changing the equity pipeline.
+- `scripts.run_option_data_pipeline`: scheduler-safe one-shot runner; use `--force` outside market hours.

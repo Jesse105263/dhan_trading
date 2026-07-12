@@ -111,3 +111,7 @@ The production collector writes to normalized `option_chain_runs` and `option_ch
 ## Option analytics are deterministic and source-run scoped
 
 Option analytics are calculated only from persisted `option_chain_quotes`. The analytics layer cannot call market-data APIs or perform expiry selection. ATM ties resolve to the lower strike. Nearby metrics use an explicit count of strikes on each side of ATM. A source run is rejected when stale, incomplete or internally inconsistent. Reprocessing is idempotent by `source_run_id`.
+
+## ADR — Dedicated option data pipeline
+
+The option data workflow remains separate from the production equity pipeline. This preserves backward compatibility and allows option-specific retry, throttling, symbol configuration, failure isolation, and scheduler locking without changing stable equity behavior. Partial per-underlying failure is recorded but does not fail the operational run when other configured underlyings succeed.

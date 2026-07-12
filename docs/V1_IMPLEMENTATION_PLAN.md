@@ -423,3 +423,7 @@ Dashboard and alerts.
 ### v1.0.0
 
 AI-assisted private trading intelligence platform.
+
+## Milestone 2.6 operational configuration
+
+The dedicated option pipeline is configured through `OPTION_PIPELINE_SYMBOLS`, retry/backoff/throttle, DTE-window, nearby-strike, source-age, request-timeout, and scheduler-lock environment variables. It is intentionally not inserted into the production equity pipeline.

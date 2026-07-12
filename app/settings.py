@@ -147,6 +147,30 @@ def _read_aliases(name: str) -> tuple[tuple[str, str], ...]:
     return tuple(sorted(aliases.items()))
 
 
+
+
+def _read_csv_symbols(name: str, default: str) -> tuple[str, ...]:
+    values = tuple(dict.fromkeys(value.strip().upper() for value in os.getenv(name, default).split(",") if value.strip()))
+    if not values:
+        raise RuntimeError(f"{name} must contain at least one symbol.")
+    return values
+
+
+@dataclass(frozen=True)
+class OptionPipelineSettings:
+    symbols: tuple[str, ...]
+    max_attempts: int
+    retry_backoff_seconds: int
+    throttle_seconds: int
+    minimum_days_to_expiry: int
+    maximum_days_to_expiry: int
+    nearby_strikes_each_side: int
+    maximum_source_age_seconds: int
+    request_timeout_seconds: int
+    lock_name: str
+    lock_ttl_seconds: int
+
+
 @dataclass(frozen=True)
 class DerivativeImportSettings:
     source_url: str
@@ -255,3 +279,18 @@ if (
         "MARKET_CLOSE_TIME must be later than "
         "MARKET_OPEN_TIME."
     )
+
+
+OPTION_PIPELINE_SETTINGS = OptionPipelineSettings(
+    symbols=_read_csv_symbols("OPTION_PIPELINE_SYMBOLS", "RELIANCE,MCX"),
+    max_attempts=_read_positive_integer("OPTION_PIPELINE_MAX_ATTEMPTS", 3),
+    retry_backoff_seconds=_read_positive_integer("OPTION_PIPELINE_RETRY_BACKOFF_SECONDS", 2),
+    throttle_seconds=int(os.getenv("OPTION_PIPELINE_THROTTLE_SECONDS", "1")),
+    minimum_days_to_expiry=int(os.getenv("OPTION_PIPELINE_MIN_DTE", "0")),
+    maximum_days_to_expiry=_read_positive_integer("OPTION_PIPELINE_MAX_DTE", 45),
+    nearby_strikes_each_side=int(os.getenv("OPTION_PIPELINE_NEARBY_STRIKES", "5")),
+    maximum_source_age_seconds=_read_positive_integer("OPTION_PIPELINE_MAX_SOURCE_AGE_SECONDS", 3600),
+    request_timeout_seconds=_read_positive_integer("OPTION_PIPELINE_REQUEST_TIMEOUT_SECONDS", 30),
+    lock_name=_read_non_empty_string("OPTION_PIPELINE_LOCK_NAME", "option-data-pipeline"),
+    lock_ttl_seconds=_read_positive_integer("OPTION_PIPELINE_LOCK_TTL_SECONDS", 1800),
+)

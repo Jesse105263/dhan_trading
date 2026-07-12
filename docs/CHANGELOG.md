@@ -313,3 +313,12 @@ Official transition from script-based development to platform architecture.
 - Added ATM, straddle, PCR, IV, OI-wall, strike-distance and liquidity-coverage calculations.
 - Added stale and incomplete source-chain rejection.
 - Added unit and PostgreSQL integration coverage.
+
+## Milestone 2.6 — Option Analytics Pipeline Integration
+
+- Added configurable multi-underlying option collection and analytics stages.
+- Added bounded retry, linear backoff, request throttling, and per-underlying failure isolation.
+- Added aggregate stage metrics and source-run lineage preservation.
+- Added a scheduler-safe one-shot option pipeline command with a dedicated lock.
+- Added unit and PostgreSQL integration coverage.
+- Preserved the production equity pipeline unchanged.

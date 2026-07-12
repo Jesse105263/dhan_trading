@@ -165,3 +165,7 @@ Status: Implementation complete; local and PostgreSQL verification required befo
 - Strike distance, price coverage and liquidity coverage added.
 - Source-run lineage and idempotent persistence added.
 - Stale, incomplete and inconsistent source chains rejected.
+
+## Milestone 2.6 Complete
+
+The option collection and deterministic analytics services are integrated into a dedicated operational pipeline. Configured underlyings run independently, failures are sanitized and persisted, stage metrics are recorded, and scheduler overlap protection is available without modifying the stable equity pipeline.

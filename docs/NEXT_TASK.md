@@ -6,25 +6,24 @@ Phase 2 — Option Data Platform
 
 ## Milestone
 
-Milestone 2.6 — Option Analytics Pipeline Integration
+Milestone 2.7 — Option Analytics History and Change Detection
 
 ## Objective
 
-Integrate collection and deterministic option analytics into an operational multi-underlying pipeline without changing the production equity pipeline.
+Build reliable time-series retrieval and deterministic change features across completed option analytics snapshots.
 
 ## Tasks
 
-1. Define configured option underlyings and collection policy.
-2. Add option collection and analytics stages.
-3. Preserve centralized expiry selection.
-4. Add bounded retries, throttling and per-underlying failure isolation.
-5. Persist stage metrics and source lineage.
-6. Add scheduler-safe one-shot execution.
-7. Add unit and PostgreSQL integration tests.
-8. Preserve all existing production behavior.
+1. Add historical analytics repository queries by underlying and expiry.
+2. Calculate OI, PCR, IV, ATM straddle, wall and liquidity changes.
+3. Preserve source-run and calculation lineage.
+4. Reject incomparable or unordered snapshots.
+5. Add unit and PostgreSQL integration tests.
+6. Add a production verification command.
+7. Preserve all existing production behavior.
 
 ## Definition of Done
 
-- Configured underlyings can be collected and analyzed in one operational run.
-- One underlying failure does not corrupt successful results.
-- Existing equity pipeline remains unchanged and green.
+- Consecutive completed analytics snapshots can be compared deterministically.
+- Change features are queryable with explicit lineage.
+- Existing equity and option operational pipelines remain green.

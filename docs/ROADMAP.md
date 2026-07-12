@@ -57,3 +57,6 @@ Status: implementation complete; PostgreSQL verification required before commit.
 ## Milestone 2.6 — Option Analytics Pipeline Integration
 
 Next: operational multi-underlying collection and analytics orchestration.
+
+- [x] Milestone 2.6 — Option Analytics Pipeline Integration
+- [ ] Milestone 2.7 — Option Analytics History and Change Detection

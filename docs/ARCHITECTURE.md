@@ -111,3 +111,7 @@ No downstream component may independently sort, choose or validate expiries. Thi
 ## Option Analytics Boundary
 
 `OptionAnalyticsService` is the only component that derives analytics from a persisted option-chain run. It does not call Dhan and does not select expiries. `OptionAnalyticsRepository` owns completed-run reads and idempotent analytics persistence. Every analytics row retains immutable lineage to exactly one `option_chain_runs.run_id`.
+
+## Option Data Operational Pipeline
+
+The option data platform runs in a dedicated pipeline that does not modify the production equity pipeline. `OptionCollectionStage` processes configured underlyings with bounded retry and throttling. `OptionAnalyticsStage` consumes only successful collection results and preserves source-run lineage through `option_chain_analytics.source_run_id`. Per-underlying failures are sanitized and persisted without aborting successful symbols. The existing scheduler lock repository provides one-shot overlap protection under a dedicated option-pipeline lock name.

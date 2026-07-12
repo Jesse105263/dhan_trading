@@ -83,3 +83,7 @@ Quotes and successful run completion are committed in one transaction. Failed ru
 ## Option-Chain Analytics
 
 Migration `008_option_chain_analytics.sql` adds `option_chain_analytics`. The table stores one deterministic analytics record per completed source run, enforced by a unique `source_run_id`. It includes ATM and straddle values, total and nearby PCR, IV summaries, OI walls, strike coverage and liquidity coverage. Deleting a source collection run cascades to its analytics.
+
+## Option Pipeline Operational Records
+
+Milestone 2.6 adds no schema migration. Operational runs use `pipeline_runs`, stage aggregates use `stage_metrics`, per-underlying failures use `pipeline_failures`, collections use `option_chain_runs` and `option_chain_quotes`, and analytics lineage remains enforced by `option_chain_analytics.source_run_id`.
