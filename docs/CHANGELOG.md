@@ -354,3 +354,11 @@ Official transition from script-based development to platform architecture.
 - Added deterministic lot sizing under available-capital, per-trade loss, total exposure and underlying concentration limits.
 - Added persisted approvals and rejections with complete selection lineage and explanations.
 - Added unit tests, PostgreSQL integration coverage and a production verification command.
+
+## Milestone 3.4 — Signal Engine
+
+- Added deterministic signals generated only from risk-approved option contracts.
+- Added explicit action, direction, strategy context, entry reference, confidence, approved size and maximum-loss fields.
+- Added full risk, selection, ranking, analytics and source-run lineage.
+- Added long-call, long-put and paired long-straddle-leg classification.
+- Added unit tests, PostgreSQL integration coverage and a production verification command.

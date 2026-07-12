@@ -133,3 +133,7 @@ Selects tradeable CE and PE contracts from ranked underlyings using centralized 
 - Sizes approved contracts in whole lots.
 - Persists approvals and rejections with full upstream lineage.
 - Exposes `scripts.assess_option_risk` for production verification.
+
+## OptionSignalService
+
+Generates explainable long-option signals from approved risk assessments, computes fixed-methodology confidence, identifies paired straddle legs, validates expiry and position data, and persists immutable lineage.

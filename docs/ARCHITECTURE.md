@@ -131,3 +131,7 @@ The contract-selection layer is downstream of ranking and upstream of risk. It r
 ## Option Risk Engine
 
 `OptionRiskService` is the only component allowed to approve and size selected option contracts. It treats premium paid for long options as maximum loss and applies portfolio-aware limits before signal generation. `OptionRiskRepository` reads persisted contract selections and stores immutable risk runs and per-contract decisions with full lineage.
+
+## Signal Engine
+
+`OptionSignalService` consumes only persisted, approved option-risk assessments. It generates auditable buy-to-open signal records with deterministic direction, confidence, strategy context, position size and complete upstream lineage. It has no broker execution capability.

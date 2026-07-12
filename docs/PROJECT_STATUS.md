@@ -193,3 +193,7 @@ Implementation complete. PostgreSQL integration and production selection verific
 ## Milestone 3.3 — Risk Engine
 
 Implementation complete pending PostgreSQL and production verification. The engine sizes long-option selections against explicit portfolio capital, loss, total exposure and concentration limits and persists explainable decisions.
+
+## Milestone 3.4 — Signal Engine
+
+Status: implementation complete; PostgreSQL and production verification required before commit.

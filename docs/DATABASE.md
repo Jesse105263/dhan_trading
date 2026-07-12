@@ -106,3 +106,7 @@ Migration `012_option_risk_assessments.sql` adds:
 
 - `option_risk_assessment_runs` for portfolio inputs, methodology and aggregate decision counts.
 - `option_risk_assessments` for approved or rejected contracts, approved lots, quantity, exposure, maximum loss, rejection reason and lineage.
+
+## Option Signals
+
+Migration `013_option_signals.sql` adds `option_signal_runs` and `option_signals`. Signal rows preserve foreign-key lineage to risk assessments, selections, rankings, analytics and source option-chain runs.

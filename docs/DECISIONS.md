@@ -131,3 +131,7 @@ Contract selection consumes persisted ranking runs and the exact option-chain so
 ## Long-option risk model
 
 For Version 1, contract selection produces long-option candidates only. Maximum loss is therefore defined as premium paid. Position size is the largest whole-lot quantity that satisfies the configured available-capital, single-trade loss, total exposure and per-underlying concentration constraints. Both approvals and rejections are persisted for auditability.
+
+## Deterministic long-option signal policy
+
+Version 1 signals are generated only from approved risk assessments. A CE approval maps to a bullish buy-to-open signal and a PE approval maps to a bearish buy-to-open signal. When both sides exist for the same underlying and expiry, each is explicitly marked as a leg of a long-straddle context. Confidence is a fixed weighted combination of ranking, contract, liquidity, activity and volatility scores. Signal generation never sends orders.

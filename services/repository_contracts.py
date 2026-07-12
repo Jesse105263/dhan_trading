@@ -414,3 +414,11 @@ class OptionRiskRepositoryContract(Protocol):
 
     def persist(self, result: OptionRiskResult) -> OptionRiskResult:
         ...
+
+
+class OptionSignalRepositoryContract(Protocol):
+    def list_approved_candidates(self, risk_run_id: UUID):
+        ...
+
+    def persist(self, result):
+        ...

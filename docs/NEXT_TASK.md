@@ -6,8 +6,8 @@ Phase 3 — Ranking and Risk
 
 ## Milestone
 
-Milestone 3.4 — Signal Engine
+Milestone 3.5 — Market Replay
 
 ## Objective
 
-Convert risk-approved option contracts into deterministic, explainable trade signals while preserving ranking, analytics, selection and risk lineage.
+Replay persisted option-chain, analytics, ranking, selection, risk and signal lineage deterministically without calling live market-data APIs.

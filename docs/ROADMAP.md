@@ -70,3 +70,6 @@ Next: operational multi-underlying collection and analytics orchestration.
 
 - [x] Milestone 3.3 — Risk Engine
 - [ ] Milestone 3.4 — Signal Engine
+
+- [x] Milestone 3.4 — Signal Engine
+- [ ] Milestone 3.5 — Market Replay
