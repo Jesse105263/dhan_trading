@@ -162,3 +162,14 @@ Copilot evidence retrieval is deterministic and occurs only through `/api/v1` be
 ## Decision: Paper orders are isolated state, never executable intent
 
 Paper positions originate only from persisted approved signals and are priced only with persisted completed option-chain marks. Orders, fills, positions and events use dedicated tables with full upstream lineage. A paper order cannot be converted, promoted or submitted to Dhan. Missing marks create explicit rejection or transition errors without fabricating prices.
+
+## Decision: Release verification is read-only and fail-closed
+
+Version 1.0 readiness checks use a dedicated repository containing SELECT statements
+only. The service compares migrations `001`–`017`, audits populated lineage and
+operational datasets, and treats violations or incomplete required checks as FAIL.
+An optional dataset with no records is SKIP rather than fabricated evidence.
+
+Backup, restore, fresh migration and failure injection are operator-controlled
+drills against explicitly isolated databases. The verifier cannot create, restore,
+delete or migrate a database and cannot modify production records.

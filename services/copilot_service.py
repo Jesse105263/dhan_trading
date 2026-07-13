@@ -8,7 +8,8 @@ from services.error_sanitizer import sanitize_error_message
 
 EXECUTION_PHRASES = (
     "place an order", "place order", "execute order", "execute trade",
-    "buy for me", "sell for me", "submit order", "send order",
+    "place a live order", "live order", "broker order", "buy for me",
+    "sell for me", "submit order", "send order",
 )
 
 

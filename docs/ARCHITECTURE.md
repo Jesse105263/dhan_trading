@@ -216,3 +216,30 @@ Persisted approved signal + persisted option-chain mark
 ```
 
 The boundary has no Dhan client, broker-order adapter or live-order state transition.
+
+## Release Readiness Boundary
+
+`ReleaseReadinessRepository` performs SELECT-only inspection of migration metadata,
+persisted lineage, operational run state and database object names.
+`ReleaseReadinessService` compares that evidence with the immutable filesystem
+migration manifest and emits deterministic PASS, FAIL and SKIP results.
+`scripts.verify_release` is an operator-facing report and never runs migrations,
+calls Dhan, delivers alerts, invokes a model or changes paper state.
+
+```text
+Migration files + committed PostgreSQL state
+                    │
+                    ▼
+        ReleaseReadinessRepository
+             (SELECT statements only)
+                    │
+                    ▼
+          ReleaseReadinessService
+                    │
+                    ▼
+          PASS / FAIL / SKIP report
+```
+
+Backup and restore remain explicit operator procedures. Recovery verification must
+target a newly created isolated database and must never replace the normal
+PostgreSQL database.

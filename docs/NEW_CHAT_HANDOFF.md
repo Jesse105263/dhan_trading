@@ -27,10 +27,16 @@ The new chat must read the current `git log` output supplied in the prompt for t
 ## Latest Verification
 
 ```text
-117 tests run
+176 tests run
 OK
 2 expected production-data-dependent skips
 ```
+
+Milestone 4.6 additionally verified compileall, a 176-test standard suite, exact
+migration/checksum agreement, a backup restore into `dhan_release_test_46`, fresh
+application of 17 migrations with a zero-change re-run, and safe HTTP runtime
+surfaces. The readiness report returned 8 PASS, 0 FAIL and 2 empty-data SKIPs on
+both normal and restored state.
 
 HTTP verification:
 
@@ -134,3 +140,16 @@ Run with `python -m scripts.paper_trade`. See `docs/PAPER_TRADING.md`.
 Milestone 4.6 — Version 1.0 Release Hardening.
 
 Read `docs/NEXT_TASK.md` for scope and definition of done.
+
+## Release-Hardening Implementation
+
+Milestone 4.6 adds a SELECT-only readiness repository and deterministic service,
+exposed by `python -m scripts.verify_release`. It audits the exact migration
+inventory and checksums, persisted lineage, operational state and absence of an
+execution schema. Empty optional datasets are explicit `SKIP` results; invariant
+violations are `FAIL` results.
+
+Use `docs/OPERATIONS_RUNBOOK.md` for startup, shutdown, monitoring, backup and
+isolated recovery. Record evidence in `docs/RELEASE_READINESS_CHECKLIST.md`.
+Never run fresh-database, restore or failure-injection work against the normal
+PostgreSQL database.

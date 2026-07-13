@@ -51,7 +51,9 @@ Milestone 4.6 — Version 1.0 Release Hardening
 20. [x] Alerts
 21. [x] AI Copilot
 22. [x] Paper trading
+23. [ ] Version 1.0 release hardening verification and owner approval
 
 ## Immediate Next Step
 
-Perform Version 1.0 release hardening: complete-system validation, safety audit, operational runbook and release readiness review.
+Finish the Version 1.0 verification matrix and isolated recovery drill, record the
+evidence in `docs/RELEASE_READINESS_CHECKLIST.md`, and obtain owner approval.

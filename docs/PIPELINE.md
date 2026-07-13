@@ -145,3 +145,20 @@ Logging
 ↓
 
 Auto Recovery
+
+---
+
+## Version 1.0 Operational Verification
+
+The release verifier is downstream of committed platform state and outside both
+market-data pipelines:
+
+```text
+Stable equity pipeline ─┐
+                       ├── PostgreSQL ── SELECT-only release verifier
+Option data pipeline ──┘
+```
+
+It does not schedule or invoke collection, analytics, alerts, Copilot or paper
+trading. Operational startup, monitoring, backup and isolated recovery are defined
+in `docs/OPERATIONS_RUNBOOK.md`.

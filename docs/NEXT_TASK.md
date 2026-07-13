@@ -12,6 +12,13 @@ Milestone 4.6 — Version 1.0 Release Hardening
 
 Validate the complete Version 1.0 platform, audit all safety boundaries and produce an operational release runbook.
 
+## Implementation State
+
+The SELECT-only readiness verifier, focused tests, operational runbook and release
+checklist are implemented locally. The automated, PostgreSQL, runtime, fresh
+migration and isolated recovery verification matrix is green. Remaining work is
+owner review and release approval. No migration `018` was required.
+
 ## Required Scope
 
 - Run complete end-to-end production and recovery verification.

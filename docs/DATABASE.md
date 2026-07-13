@@ -161,3 +161,13 @@ Milestone 4.4 adds no migration. The Copilot reads the existing HTTP API and doe
 ## Paper-Trading Persistence
 
 Migration `017_paper_trading.sql` adds isolated orders, fills, positions and audit events. Source foreign keys use `ON DELETE RESTRICT` so paper attribution cannot silently disappear. Paper persistence never updates source signals, risk decisions or option-chain marks.
+
+## Version 1.0 Release Audit
+
+Milestone 4.6 adds no migration. `ReleaseReadinessRepository` reads
+`schema_migrations` and lineage tables without mutation. The readiness service
+requires the exact ordered `001`–`017` inventory, matching filenames and SHA-256
+checksums. It also checks cross-table lineage that foreign keys alone cannot prove.
+
+Fresh migration, checksum-drift, orphan and restore tests must use a database whose
+name differs from normal `POSTGRES_DB`. See `docs/OPERATIONS_RUNBOOK.md`.

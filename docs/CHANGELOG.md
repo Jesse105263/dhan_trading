@@ -444,3 +444,17 @@ Official transition from script-based development to platform architecture.
 - Added position status and P&L reporting CLI.
 - Added migration `017_paper_trading.sql` plus comprehensive unit and PostgreSQL integration coverage.
 - Added no Dhan call, broker adapter, live-order endpoint or paper-to-live promotion path.
+
+## Milestone 4.6 — Version 1.0 Release Hardening
+
+- Added a SELECT-only release-readiness repository.
+- Added deterministic PASS, FAIL and SKIP release checks.
+- Added exact migration `001`–`017` inventory, filename and checksum auditing.
+- Added option, decision, evaluation, alert and paper lineage audits.
+- Added operational-state and execution-schema boundary checks.
+- Added a release-verification CLI with release-blocking exit status.
+- Added focused unit and explicitly isolated PostgreSQL integration coverage.
+- Added the Version 1.0 operations runbook and release-readiness checklist.
+- Closed a verified Copilot execution-intent gap for live-order and broker-order
+  wording while preserving refusal before evidence retrieval.
+- Added no migration, Dhan call, broker adapter or production cleanup behavior.

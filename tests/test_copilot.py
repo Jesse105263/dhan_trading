@@ -187,10 +187,17 @@ class CopilotServiceTest(unittest.TestCase):
 
     def test_execution_request_is_refused_before_retrieval(self) -> None:
         evidence_service = StaticEvidenceService((evidence_record(),))
-        result = CopilotService(evidence_service).ask(CopilotRequest("Place an order for RELIANCE"))
-        self.assertEqual(result.provider, "safety-boundary")
-        self.assertIn("cannot place", result.answer)
-        self.assertEqual(evidence_service.calls, 0)
+        requests = (
+            "Place an order for RELIANCE",
+            "Place a live order for RELIANCE",
+            "Send this to my broker order system",
+        )
+        for question in requests:
+            with self.subTest(question=question):
+                result = CopilotService(evidence_service).ask(CopilotRequest(question))
+                self.assertEqual(result.provider, "safety-boundary")
+                self.assertIn("cannot place", result.answer)
+                self.assertEqual(evidence_service.calls, 0)
 
 
 class OpenAIResponsesProviderTest(unittest.TestCase):

@@ -193,3 +193,16 @@ The default provider is deterministic and local. Model providers have no platfor
 - `scripts/paper_trade.py` — open, mark, close and status commands.
 
 Paper trading has no Dhan or broker-order dependency. See `docs/PAPER_TRADING.md`.
+
+## Release Readiness
+
+- `services/release_readiness_models.py` — migration evidence, audit metrics,
+  deterministic statuses and the aggregate report.
+- `services/release_readiness_repository.py` — SELECT-only PostgreSQL evidence.
+- `services/release_readiness_service.py` — migration comparison and release
+  invariant policy.
+- `scripts/verify_release.py` — console report with success/failure exit status.
+
+PASS means evidence satisfies the invariant. FAIL blocks release. SKIP is limited
+to optional persisted datasets with no records. The service does not run migrations,
+perform cleanup, call Dhan or invoke any product workflow.

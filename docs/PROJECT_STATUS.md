@@ -10,7 +10,9 @@ Milestone 4.6 — Version 1.0 Release Hardening
 
 ## Repository Checkpoint
 
-Milestone 4.5 is implemented and verified locally but intentionally uncommitted pending review. The latest committed checkpoint is `7e4abe9 add grounded private ai copilot`.
+Milestone 4.5 is committed at `fe7c45d add isolated paper trading`.
+Milestone 4.6 release-hardening changes are implemented locally pending complete
+verification and review.
 
 ## Completed Milestones
 
@@ -52,6 +54,16 @@ Milestone 4.5 is implemented and verified locally but intentionally uncommitted 
 - 4.4 AI Copilot
 - 4.5 Paper Trading
 
+### Release Hardening
+
+- Read-only release-readiness models, repository, service and CLI
+- Deterministic PASS, FAIL and SKIP results
+- Migration `001`–`017` inventory and checksum audit
+- Persisted lineage, operational-state and execution-schema audits
+- Operational runbook and release-readiness checklist
+- Focused unit and isolated PostgreSQL integration coverage
+- Minimal Copilot execution-refusal fix for verified live-order wording
+
 ## Production Data Verification
 
 - Dhan security-master rows processed: 215,940
@@ -85,15 +97,19 @@ Milestones 4.1 and 4.2 required no migrations because they are read-only surface
 
 ## Latest Verification
 
-Milestone 4.5 verification completed successfully:
+Milestone 4.6 implementation verification completed successfully:
 
-- Full PostgreSQL-enabled suite: 163 tests run
+- Compileall: passed
+- Standard suite: 176 tests run, 26 expected opt-in database skips
+- Full PostgreSQL-enabled suite on `dhan_release_test_46`: 176 tests run
 - Result: OK
 - Expected skips: 2 production-data-dependent tests when no persisted signal run was available
-- RELIANCE paper entry: filled BUY order, BUY fill and OPEN position with exact signal lineage
-- Missing newer mark: concise error and unchanged OPEN position
-- Persisted runtime audit: OPENED event with entry price, costs and net P&L
-- Verification-only paper and signal records cleaned after the runtime check
+- Production/restored readiness: 8 PASS, 0 FAIL, 2 valid empty-data SKIPs
+- Fresh database: 17 migrations applied; idempotent re-run applied 0
+- Backup restore completed only into `dhan_release_test_46`
+- Read API/dashboard runtime smoke: healthy; write request rejected with HTTP 405
+- Copilot live-order wording defect found, minimally fixed and regression-tested
+- Production records were not modified or deleted
 - `git diff --check`: clean
 
 ## Read-Only API
@@ -149,6 +165,8 @@ Use `python -m scripts.paper_trade` to open, mark, close and inspect isolated si
 
 ## Next Task
 
-Milestone 4.6 — Version 1.0 Release Hardening.
+Complete the Milestone 4.6 verification matrix and owner review without modifying
+production records.
 
-See `docs/NEXT_TASK.md` and `docs/NEW_CHAT_HANDOFF.md` before implementation.
+See `docs/NEXT_TASK.md`, `docs/OPERATIONS_RUNBOOK.md` and
+`docs/RELEASE_READINESS_CHECKLIST.md`.

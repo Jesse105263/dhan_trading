@@ -75,4 +75,11 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 
 ## Status
 
-Under active development.
+Version 1.0 release hardening is in verification. Run the SELECT-only readiness
+report with:
+
+```bash
+python -m scripts.verify_release
+```
+
+See `docs/OPERATIONS_RUNBOOK.md` and `docs/RELEASE_READINESS_CHECKLIST.md`.
