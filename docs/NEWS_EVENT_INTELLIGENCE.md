@@ -1,5 +1,9 @@
 # News & Event Intelligence
 
+The V2.1.3 analyst receives only already-linked, source-attributed context. It
+cannot invent news, infer sentiment or use later-published events as predictive
+evidence.
+
 V2.1.2 persists source-attributed market context and deterministically links it to
 Feature Store observations, Historical Outcomes, Similarity runs and Trade
 Opportunities. Events never generate opportunities, alter eligibility or scores,

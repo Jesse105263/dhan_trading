@@ -31,6 +31,11 @@ V2.1.2 adds persisted event list/detail, symbol/vector context and opportunity
 context under `/api/v2/events` and `/api/v2/trade-opportunities/{id}/events`.
 See `docs/NEWS_EVENT_INTELLIGENCE.md`. Reads never call external providers.
 
+V2.1.3 adds bounded POST research commands under `/api/v2/analyst`. They assemble
+verified evidence before optional provider use, refuse execution requests before
+retrieval, and never mutate opportunity calculations or platform state. See
+`docs/AI_TRADING_ANALYST.md`. `/api/v1` remains GET-only and unchanged.
+
 Base URL: `http://127.0.0.1:8080`
 
 ## Contract

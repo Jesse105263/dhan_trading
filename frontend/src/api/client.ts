@@ -23,13 +23,30 @@ export class ApiClient {
   }
 
   async get<T>(path: string, signal?: AbortSignal): Promise<T> {
+    return this.request<T>('GET', path, undefined, signal)
+  }
+
+  async post<T>(path: string, body: unknown, signal?: AbortSignal): Promise<T> {
+    return this.request<T>('POST', path, body, signal)
+  }
+
+  private async request<T>(
+    method: 'GET' | 'POST',
+    path: string,
+    body?: unknown,
+    signal?: AbortSignal,
+  ): Promise<T> {
     if (!path.startsWith('/')) {
       throw new TypeError('API paths must start with a slash.')
     }
 
     const response = await this.fetchImplementation(`${this.baseUrl}${path}`, {
-      method: 'GET',
-      headers: { Accept: 'application/json' },
+      method,
+      headers: {
+        Accept: 'application/json',
+        ...(body === undefined ? {} : { 'Content-Type': 'application/json' }),
+      },
+      body: body === undefined ? undefined : JSON.stringify(body),
       signal,
       credentials: 'same-origin',
     })

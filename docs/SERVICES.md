@@ -1,5 +1,12 @@
 # Services
 
+## AI Trading Analyst
+
+`TradingAnalystEvidenceService` assembles complete, versioned evidence through
+existing application services. `TradingAnalystService` owns request validation,
+pre-retrieval refusal, local synthesis, optional provider fallback and
+application-attached citations. It performs no persistence or financial policy.
+
 ## Production Services
 
 ### collector

@@ -1,5 +1,8 @@
 # Trade Opportunity Engine
 
+V2.1.3 may explain but never modify a persisted opportunity. Ranking score remains
+distinct from confidence and all levels remain underlying reference levels.
+
 ## Objective and Boundary
 
 V2.1.1 turns persisted historical analogues into deterministic, auditable

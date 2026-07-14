@@ -178,3 +178,11 @@ bounded local JSON. `NewsEventService` owns validation, sanitization, identity,
 explicit relevance and point-in-time leakage policy. `NewsEventRepository` owns
 migration `022` persistence and reads. Context attaches after opportunity
 calculation and cannot change trade fields. GET reads perform no external fetch.
+
+## AI Trading Analyst Boundary
+
+V2.1.3 assembles `trading-analyst-evidence-v1` from existing Feature, Memory,
+Outcome, Similarity, Opportunity and Event services before synthesis. Local
+deterministic synthesis is default; the existing optional model provider remains
+isolated and tool-free. Refusals occur before retrieval. Citations and lineage are
+application-owned, and no analyst output changes persisted calculations.

@@ -30,6 +30,26 @@ describe('ApiClient', () => {
     expect(fetchImplementation).not.toHaveBeenCalled()
   })
 
+  it('sends bounded research command bodies as same-origin JSON', async () => {
+    const fetchImplementation = vi
+      .fn<typeof fetch>()
+      .mockResolvedValue(
+        new Response(JSON.stringify({ data: { status: 'ANSWERED' } }), { status: 200 }),
+      )
+    const client = new ApiClient({ fetchImplementation })
+    await client.post('/api/v2/analyst/questions', {
+      question: 'Explain',
+      opportunity_ids: ['one'],
+    })
+    expect(fetchImplementation).toHaveBeenCalledWith('/api/v2/analyst/questions', {
+      method: 'POST',
+      headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question: 'Explain', opportunity_ids: ['one'] }),
+      signal: undefined,
+      credentials: 'same-origin',
+    })
+  })
+
   it('provides a typed HTTP error without assuming a response body', async () => {
     const client = new ApiClient({
       fetchImplementation: vi

@@ -81,8 +81,9 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 ## Status
 
 Version 1.0 is complete, verified and approved. Version 2 milestones V2.0.1 through
-V2.1.1 are complete. V2.1.2 — News & Event Intelligence is implemented pending
-repository-owner review.
+V2.1.2 are complete. V2.1.3 — AI Trading Analyst is implemented and verified
+pending repository-owner review. The core Version 2 intelligence roadmap is
+complete subject to that review.
 
 The Version 2 frontend is isolated under `frontend/`. See `docs/FRONTEND.md` for
 its dependency policy and local commands, and `docs/DESIGN_SYSTEM.md` for tokens,
@@ -93,6 +94,7 @@ The first persisted Version 2 workflow is documented in `docs/MARKET_WORKSPACE.m
 Deterministic historical matching is documented in `docs/SIMILARITY_ENGINE.md`.
 Evidence-backed opportunity policy is documented in `docs/TRADE_OPPORTUNITY_ENGINE.md`.
 Source-attributed event context is documented in `docs/NEWS_EVENT_INTELLIGENCE.md`.
+The grounded analyst contract is documented in `docs/AI_TRADING_ANALYST.md`.
 Historical evidence queries and the `/memory` workspace are documented in
 `docs/MARKET_MEMORY.md`.
 Versioned reusable features are documented in `docs/FEATURE_STORE.md`.

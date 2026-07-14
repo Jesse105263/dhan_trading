@@ -93,8 +93,8 @@ export const navigationItems: ReadonlyArray<NavigationItem> = [
   },
   {
     path: '/copilot',
-    label: 'Copilot',
-    description: 'A future evidence-grounded research workspace.',
+    label: 'AI Analyst',
+    description: 'Grounded explanation and comparison of deterministic opportunities.',
     icon: Bot,
   },
   {

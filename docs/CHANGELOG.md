@@ -600,3 +600,14 @@ Official transition from script-based development to platform architecture.
 - Added GET-only event/context APIs, event timeline and opportunity risk panels.
 - Added backend, PostgreSQL and frontend tests without AI, sentiment, Dhan,
   execution, paper writes, alerts, dependencies or `/api/v1` changes.
+
+## V2.1.3 — AI Trading Analyst
+
+- Added versioned application-assembled evidence over the complete deterministic
+  intelligence chain with exact citations and missing-data markers.
+- Added local explanation and comparison, pre-retrieval refusal and sanitized
+  optional-provider fallback without response persistence.
+- Added bounded POST research commands, operator CLI and accessible analyst
+  workspace with refusal and insufficient-evidence states.
+- Added no migration, dependency, execution tool, opportunity calculation,
+  external verification call or `/api/v1` contract change.

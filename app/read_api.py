@@ -18,6 +18,7 @@ from services.historical_outcome_service import HistoricalOutcomeService
 from services.similarity_service import SimilarityService
 from services.trade_opportunity_service import TradeOpportunityService
 from services.news_event_service import NewsEventService
+from services.trading_analyst import AnalystRequest, TradingAnalystEvidenceService, TradingAnalystService
 
 
 @dataclass(frozen=True)
@@ -31,7 +32,7 @@ class ReadOnlyApi:
     DEFAULT_LIMIT = 20
     MAX_LIMIT = 100
 
-    def __init__(self, repository: ReadApiRepository | None = None, workspace: MarketWorkspaceService | None = None, symbols: SymbolWorkspaceService | None = None, memory: MarketMemoryService | None = None, features: FeatureStoreService | None = None, outcomes: HistoricalOutcomeService | None = None, similarity: SimilarityService | None = None, trade_opportunities: TradeOpportunityService | None = None, events: NewsEventService | None = None) -> None:
+    def __init__(self, repository: ReadApiRepository | None = None, workspace: MarketWorkspaceService | None = None, symbols: SymbolWorkspaceService | None = None, memory: MarketMemoryService | None = None, features: FeatureStoreService | None = None, outcomes: HistoricalOutcomeService | None = None, similarity: SimilarityService | None = None, trade_opportunities: TradeOpportunityService | None = None, events: NewsEventService | None = None, analyst: TradingAnalystService | None = None) -> None:
         self.repository = repository or ReadApiRepository()
         self.workspace = workspace or MarketWorkspaceService()
         self.symbols = symbols or SymbolWorkspaceService()
@@ -41,15 +42,20 @@ class ReadOnlyApi:
         self.similarity = similarity or SimilarityService()
         self.trade_opportunities = trade_opportunities or TradeOpportunityService()
         self.events = events or NewsEventService()
+        self.analyst = analyst or TradingAnalystService(TradingAnalystEvidenceService(
+            self.trade_opportunities, self.features, self.memory, self.similarity, self.events
+        ))
 
-    def handle(self, method: str, path: str, query_string: str = "") -> ApiResponse:
-        if method.upper() != "GET":
-            return self._error(HTTPStatus.METHOD_NOT_ALLOWED, "method_not_allowed", "Only GET is supported.")
+    def handle(self, method: str, path: str, query_string: str = "", body: dict[str, Any] | None = None) -> ApiResponse:
         normalized = path.rstrip("/") or "/"
+        if method.upper() == "POST" and normalized.startswith("/api/v2/analyst/"):
+            return self._handle_analyst(normalized, body)
+        if method.upper() != "GET":
+            return self._error(HTTPStatus.METHOD_NOT_ALLOWED, "method_not_allowed", "Only GET is supported except bounded analyst research commands.")
         if normalized == "/health":
             return ApiResponse(HTTPStatus.OK, self.repository.health())
         if normalized == "/api/v2":
-            return ApiResponse(HTTPStatus.OK, {"name": "Dhan Trading Platform Read API", "version": "v2", "resources": ["overview", "opportunities", "symbols", "memory", "features", "outcomes", "similarity", "trade-opportunities", "events"]})
+            return ApiResponse(HTTPStatus.OK, {"name": "Dhan Trading Platform Read API", "version": "v2", "resources": ["overview", "opportunities", "symbols", "memory", "features", "outcomes", "similarity", "trade-opportunities", "events", "analyst"]})
         if normalized in ("/api/v2/events","/api/v2/events/context"):
             query={key:values[0] for key,values in parse_qs(query_string,keep_blank_values=True).items()}
             try:
@@ -291,11 +297,25 @@ class ReadOnlyApi:
         return self._error(HTTPStatus.NOT_FOUND, "not_found", "Route not found.")
 
     def __call__(self, environ: dict[str, Any], start_response: Callable[..., Any]) -> Iterable[bytes]:
-        response = self.handle(
-            str(environ.get("REQUEST_METHOD", "GET")),
-            str(environ.get("PATH_INFO", "/")),
-            str(environ.get("QUERY_STRING", "")),
-        )
+        body = None
+        if str(environ.get("REQUEST_METHOD", "GET")).upper() == "POST":
+            try:
+                length = int(environ.get("CONTENT_LENGTH") or 0)
+                if length > 32768:
+                    response = self._error(HTTPStatus.REQUEST_ENTITY_TOO_LARGE, "request_too_large", "Request body must not exceed 32768 bytes.")
+                else:
+                    raw = environ["wsgi.input"].read(length) if length else b"{}"
+                    body = json.loads(raw.decode("utf-8"))
+                    if not isinstance(body, dict): raise ValueError
+                    response = self.handle(str(environ.get("REQUEST_METHOD")), str(environ.get("PATH_INFO", "/")), str(environ.get("QUERY_STRING", "")), body)
+            except (ValueError, UnicodeDecodeError, json.JSONDecodeError):
+                response = self._error(HTTPStatus.BAD_REQUEST, "invalid_json", "Request body must be a JSON object.")
+        else:
+            response = self.handle(
+                str(environ.get("REQUEST_METHOD", "GET")),
+                str(environ.get("PATH_INFO", "/")),
+                str(environ.get("QUERY_STRING", "")),
+            )
         payload = json.dumps(response.body, default=self._json_default, separators=(",", ":")).encode("utf-8")
         start_response(
             f"{response.status.value} {response.status.phrase}",
@@ -307,6 +327,32 @@ class ReadOnlyApi:
             ],
         )
         return [payload]
+
+    def _handle_analyst(self, path: str, body: dict[str, Any] | None) -> ApiResponse:
+        payload = body or {}
+        try:
+            question = str(payload.get("question", ""))
+            if path == "/api/v2/analyst/questions":
+                identifiers = payload.get("opportunity_ids", [])
+            elif path == "/api/v2/analyst/compare":
+                identifiers = payload.get("opportunity_ids", [])
+                if not isinstance(identifiers, list) or len(identifiers) < 2:
+                    raise ValueError("compare requires at least two opportunity_ids.")
+            elif path.startswith("/api/v2/analyst/opportunities/") and path.endswith("/explain"):
+                value = path[len("/api/v2/analyst/opportunities/"):-len("/explain")]
+                if "/" in value: return self._error(HTTPStatus.NOT_FOUND, "not_found", "Route not found.")
+                identifiers = [value]
+            else:
+                return self._error(HTTPStatus.NOT_FOUND, "not_found", "Route not found.")
+            if not isinstance(identifiers, list): raise ValueError("opportunity_ids must be an array.")
+            request = AnalystRequest(question, tuple(UUID(str(value)) for value in identifiers)).normalized()
+            return ApiResponse(HTTPStatus.OK, {"data": self.analyst.ask(request)})
+        except LookupError as exc:
+            return self._error(HTTPStatus.NOT_FOUND, "not_found", f"Trade opportunity {exc} was not found.")
+        except (ValueError, TypeError) as exc:
+            return self._error(HTTPStatus.BAD_REQUEST, "invalid_request", str(exc))
+        except WorkspaceUnavailable:
+            return self._error(HTTPStatus.SERVICE_UNAVAILABLE, "evidence_unavailable", "Verified analyst evidence is unavailable.")
 
     @classmethod
     def _parse_limit(cls, query_string: str) -> int:

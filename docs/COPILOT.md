@@ -56,3 +56,11 @@ The model is configurable with `--model` or `OPENAI_COPILOT_MODEL`. The adapter 
 ## Safety boundary
 
 The Copilot is explanatory only. It cannot submit, preview or execute an order and does not guarantee returns. The optional model provider has no tools and receives no database or broker capability.
+
+## Version 2 analyst specialization
+
+V2.1.3 reuses provider isolation and pre-retrieval refusal for a specialized AI
+Trading Analyst over deterministic opportunity evidence. Unlike the general
+Version 1 Copilot, its packet includes Feature Store, Market Memory, Historical
+Outcomes, Similarity, Trade Opportunity and Event lineage. See
+`docs/AI_TRADING_ANALYST.md`.

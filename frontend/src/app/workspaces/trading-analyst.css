@@ -1,0 +1,33 @@
+.analyst-form {
+  display: grid;
+  gap: var(--space-4);
+}
+.analyst-form textarea {
+  min-height: 7rem;
+  resize: vertical;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font: inherit;
+}
+.analyst-form textarea:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+.analyst-status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+.analyst-answer {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font: inherit;
+  line-height: 1.6;
+}
+.analyst-warning {
+  padding: var(--space-3);
+  border-left: 0.25rem solid var(--color-status-warning);
+  background: var(--color-surface-subtle);
+}

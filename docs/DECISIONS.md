@@ -312,3 +312,15 @@ known at observation; later events remain outcome context.
 Reason: deterministic identifiers and timestamps are auditable. Embeddings,
 sentiment and inferred relationships would introduce unsupported associations and
 future leakage. Event context remains separate from opportunity calculations.
+
+## V2.1.3 Uses Ephemeral Application-Assembled Analyst Evidence
+
+Decision: assemble a versioned packet from verified application services before
+any provider call, attach citations in the application and keep deterministic
+local synthesis as default. Do not persist generated responses or add migration
+`023`.
+
+Reason: immutable evidence IDs already provide reproducibility and auditability.
+Persisting prose would duplicate derived output and retain unnecessary conversation
+history. Optional provider isolation and pre-retrieval refusal preserve existing
+Copilot safety boundaries.

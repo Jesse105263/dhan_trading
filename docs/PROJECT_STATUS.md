@@ -7,9 +7,9 @@ V2.0.2 — Frontend Project Foundation, V2.0.3 — Design System and V2.0.4 —
 Application Shell, V2.0.5 — Market Overview & Opportunity Scanner and V2.0.6 —
 Symbol Intelligence Workspace, V2.0.7 — Market Memory Foundation and V2.0.8 —
 Feature Store, V2.0.9 — Historical Outcome Engine, V2.1.0 — Similarity Engine and
-V2.1.1 — Trade Opportunity Engine are complete. Current milestone: V2.1.2 — News
-& Event Intelligence,
-implemented pending repository-owner review.
+V2.1.1 — Trade Opportunity Engine and V2.1.2 — News & Event Intelligence are
+complete. Current milestone: V2.1.3 — AI Trading Analyst, implemented and verified
+pending repository-owner review. The Version 2 core intelligence roadmap is complete.
 
 See `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 `docs/V2_ROADMAP.md`.
@@ -192,8 +192,8 @@ Use `python -m scripts.paper_trade` to open, mark, close and inspect isolated si
 
 ## Next Activity
 
-Complete repository-owner review of V2.1.2. Do not begin V2.1.3 until instructed.
-The approved next milestone is V2.1.3 — AI Trading Analyst.
+Complete repository-owner review of V2.1.3. Do not begin V2.1.4 until instructed.
+The approved next activity is V2.1.4 — Intelligence Release Hardening & Handoff.
 
 Existing Version 1.0 safety boundaries remain unchanged. See `docs/NEXT_TASK.md`,
 `docs/OPERATIONS_RUNBOOK.md` and `docs/RELEASE_READINESS_CHECKLIST.md`.

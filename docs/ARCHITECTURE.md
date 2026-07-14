@@ -5,6 +5,11 @@ local adapters feed validated events to PostgreSQL, deterministic services
 materialize point-in-time links, and GET-only APIs expose context. Read requests
 never fetch news externally and no event path reaches execution.
 
+The AI Trading Analyst is an application-layer evidence consumer. It assembles a
+versioned packet from existing V2 services before local or optional isolated model
+synthesis. The application attaches citations; providers receive no tools or
+database, broker, alert, Dhan or execution access.
+
 ## Vision
 
 Build a professional-grade market intelligence and options trading platform capable of:

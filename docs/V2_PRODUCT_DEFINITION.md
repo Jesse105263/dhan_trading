@@ -14,6 +14,10 @@ V2.1.2 adds point-in-time event context with explicit provider lineage. It does
 not infer sentiment or company relationships, and events cannot create or change
 a deterministic opportunity.
 
+V2.1.3 completes the core intelligence roadmap with grounded explanation and
+comparison of deterministic opportunities. The analyst cannot invent missing
+evidence, calculate new recommendations or execute a trade.
+
 ## Product Vision
 
 Version 2 turns the verified Version 1 backend into a private, single-owner AI

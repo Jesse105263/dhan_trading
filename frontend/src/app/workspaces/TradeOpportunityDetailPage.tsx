@@ -45,6 +45,13 @@ export function TradeOpportunityDetailPage() {
         description="Underlying reference levels derived from classified historical matches; not an execution instruction."
       />
       <Panel>
+        <SectionHeader
+          title="AI Trading Analyst"
+          description="Explain this persisted opportunity without changing its calculations."
+        />
+        <Link to={`/copilot?opportunity=${item.opportunity_id}`}>Open grounded analyst</Link>
+      </Panel>
+      <Panel>
         <div className="trade-summary">
           <StatusPill tone={item.state === 'ELIGIBLE' ? 'success' : 'warning'}>
             {item.state}

@@ -15,6 +15,7 @@ import { SimilarityPage } from './workspaces/SimilarityPage'
 import { TradeOpportunityPage } from './workspaces/TradeOpportunityPage'
 import { TradeOpportunityDetailPage } from './workspaces/TradeOpportunityDetailPage'
 import { NewsEventPage } from './workspaces/NewsEventPage'
+import { TradingAnalystPage } from './workspaces/TradingAnalystPage'
 
 const [home, ...workspaces] = navigationItems
 
@@ -42,6 +43,7 @@ export const router = createBrowserRouter([
       { path: 'trade-opportunities', element: <TradeOpportunityPage /> },
       { path: 'trade-opportunities/:opportunityId', element: <TradeOpportunityDetailPage /> },
       { path: 'events', element: <NewsEventPage /> },
+      { path: 'copilot', element: <TradingAnalystPage /> },
       ...workspaces
         .filter(
           (route) =>
@@ -52,6 +54,7 @@ export const router = createBrowserRouter([
               '/memory',
               '/trade-opportunities',
               '/events',
+              '/copilot',
             ].includes(route.path),
         )
         .map((route) => ({
