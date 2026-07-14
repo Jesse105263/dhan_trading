@@ -119,3 +119,7 @@ global business state is required. See `docs/MARKET_WORKSPACE.md`.
 
 V2.0.6 replaces Symbol Research with search and `/research/:symbol`, including
 score bars, timeline, lineage and two-symbol comparison without new dependencies.
+V2.0.7 adds `/memory`, a read-only historical evidence surface. It reuses the
+native-fetch client, design system and application shell; feature evolution is a
+small accessible SVG and adds no chart or state-management dependency. See
+`docs/MARKET_MEMORY.md`.

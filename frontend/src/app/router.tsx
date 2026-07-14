@@ -10,6 +10,7 @@ import { OpportunityDetailPage } from './workspaces/OpportunityDetailPage'
 import { OpportunityScannerPage } from './workspaces/OpportunityScannerPage'
 import { SymbolIntelligencePage } from './workspaces/SymbolIntelligencePage'
 import { SymbolSearchPage } from './workspaces/SymbolSearchPage'
+import { MarketMemoryPage } from './workspaces/MarketMemoryPage'
 
 const [home, ...workspaces] = navigationItems
 
@@ -32,8 +33,9 @@ export const router = createBrowserRouter([
       { path: 'opportunities/:rankingId', element: <OpportunityDetailPage /> },
       { path: 'research', element: <SymbolSearchPage /> },
       { path: 'research/:symbol', element: <SymbolIntelligencePage /> },
+      { path: 'memory', element: <MarketMemoryPage /> },
       ...workspaces
-        .filter((route) => !['/market', '/scanner', '/research'].includes(route.path))
+        .filter((route) => !['/market', '/scanner', '/research', '/memory'].includes(route.path))
         .map((route) => ({
           path: route.path.slice(1),
           element: (

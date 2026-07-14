@@ -210,7 +210,7 @@ authentication package is justified in V2.0.2.
 The stable GET-only `/api/v1` contract and standard-library WSGI implementation
 remain unchanged. Version 2 adds only the read projections required by each
 workspace, under a compatible `/api/v2` boundary. A framework change is deferred
-to V2.0.12 and requires evidence of material routing, validation, schema,
+to V2.0.13 and requires evidence of material routing, validation, schema,
 middleware or command complexity. FastAPI is not approved merely because it is a
 modern framework.
 
@@ -245,3 +245,15 @@ Market freshness is presentation policy: current through 15 minutes, aging throu
 60 minutes, stale after 60 minutes and unavailable without a source timestamp. The
 API returns the persisted timestamp; the browser never implies data is live or
 recalculates financial analytics.
+## V2.0.7 Reuses Canonical Persisted Observations as the Feature Store
+
+Decision: expose existing immutable analytics, changes, rankings, selections,
+risk, signals and equity features through a unified SELECT-only Market Memory
+projection. Do not duplicate them in a new schema merely to rename them a feature
+store. The canonical option snapshot ID is `analytics_id`; comparisons use exact
+snapshots and allow-listed persisted fields.
+
+Reason: the current tables already preserve observation timestamps, reusable
+features and foreign-key lineage. Duplication would add synchronization ambiguity
+without supplying new evidence. Metrics absent from persisted data remain
+unsupported until a separately approved pipeline can calculate and persist them.

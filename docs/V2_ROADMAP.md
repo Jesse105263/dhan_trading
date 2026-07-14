@@ -59,97 +59,72 @@ pipeline or recalculate an opportunity.
 
 ### V2.0.6 — Symbol Research Workspace
 
-Status: Implemented and verified; pending repository-owner review.
+Status: Complete.
 
 Add symbol search, persisted underlying context, expiry-aware option-chain
 exploration and option-analytics history/visualization. Do not call Dhan or
 reimplement expiry or analytics policy.
 
-### V2.0.7 — Signals & Decision Lineage Workspace
+### V2.0.7 — Market Memory Foundation
 
-Present ranking explanations, contract selections, risk approvals/rejections,
-signals, sizing, maximum loss and exact upstream lineage. Remain read-only.
+Status: Implemented and verified; pending repository-owner review.
 
-### V2.0.8 — Replay & Backtesting Workspace
+Unify existing immutable analytics, ranking, selection, risk, signal and equity
+feature records behind bounded historical snapshot, feature-history and comparison
+queries. Add the read-only Market Memory workspace. Do not invent absent features,
+duplicate canonical records, trigger pipelines or generate recommendations.
 
-Visualize replay timelines, backtest summaries, trade logs, equity curves,
-drawdowns, costs, exits and skipped marks from persisted results only.
+### V2.0.8 — Feature Store
 
-### V2.0.9 — Paper Portfolio Workspace
+Establish versioned, reusable feature vectors derived only from supported persisted
+market observations. Preserve source timestamps, feature definitions, data-quality
+state and exact Market Memory lineage. Do not generate recommendations.
 
-Present paper orders, fills, open/closed positions, P&L, mark freshness, events and
-signal lineage. This milestone is read-only and exposes no open/mark/close controls.
+### V2.0.9 — Historical Outcome Engine
 
-### V2.0.10 — Operations Workspace
+Measure subsequent historical outcomes for eligible observations using explicit,
+auditable outcome definitions. Preserve point-in-time correctness and prevent
+future information from leaking into historical evidence.
 
-Combine platform health, pipeline freshness, scheduler status, persisted failures,
-alert history and operational audit into one read-only workspace. Reading alert
-history must not generate, retry or deliver an alert.
+### V2.1.0 — Similarity Engine
 
-### V2.0.11 — Grounded Copilot Workspace
+Find historically similar feature-store observations and return their exact source
+snapshots and measured outcomes. Similarity is evidence retrieval, not a trade
+recommendation.
 
-Add the question, context, evidence and citation experience using the existing
-Copilot architecture. Local deterministic synthesis remains the default; execution
-requests remain refusals and providers receive no tools.
+### V2.1.1 — Trade Opportunity Engine
 
-### V2.0.12 — API Framework Decision Checkpoint
+Generate evidence-backed opportunity assessments from current features, historical
+outcomes and similar observations. Keep recommendations separate from execution
+and expose assumptions, confidence, expected value and lineage explicitly.
 
-Review actual V2 route count, validation duplication, schema drift, frontend type
-maintenance, middleware and upcoming command needs. Continue WSGI unless evidence
-justifies a narrowly scoped framework migration. This milestone does not assume
-FastAPI as its outcome.
+### V2.1.2 — News & Event Intelligence
 
-### V2.0.13 — Private Authentication & Session Security
+Add time-aware news and market-event evidence with source attribution and explicit
+relevance to symbols and expiries. External evidence must not bypass application
+services or become an execution instruction.
 
-Add one-owner authentication, password hashing, opaque sessions, secure cookies,
-expiry/revocation, CSRF, origin validation, throttling and audit. This milestone is
-security-sensitive, dependency-installing and migration-requiring. It must finish
-before commands or non-loopback deployment.
+### V2.1.3 — AI Trading Analyst
 
-### V2.0.14 — Authenticated Paper-Trading Commands
-
-Expose explicitly confirmed, authenticated and auditable paper open, mark and close
-commands through `PaperTradingService`. Require CSRF and idempotency. This is
-state-changing but must retain zero Dhan, broker or paper-to-live capability.
-
-### V2.0.15 — Alert Preferences
-
-Add authenticated source/severity preferences, channel enablement and audited
-changes without returning destination secrets to the browser. Saving preferences
-must not implicitly send alerts.
-
-### V2.0.16 — Preferences & Saved Views
-
-Add demonstrated owner preferences such as scanner filters, table density, theme
-and saved research views. Prefer browser-local storage unless cross-device or
-backup requirements justify persistence.
-
-### V2.0.17 — Private Deployment & Release Hardening
-
-Verify the production frontend build, same-origin topology, HTTPS guidance,
-security headers, cookies, proxy behavior, backups, V1 compatibility and the full
-no-live-execution boundary. Local deployment remains the default.
+Provide a grounded analyst experience over Market Memory, feature vectors,
+historical outcomes, similar observations, opportunity evidence and attributed
+events. The analyst has no execution tools and cannot place trades.
 
 ## Milestone Classification
 
-- Documentation-only: V2.0.1 and the decision output of V2.0.12.
+- Documentation-only: V2.0.1.
 - Frontend foundation/design: V2.0.2–V2.0.4.
-- Read-only product workspaces: V2.0.5–V2.0.11.
-- Authentication/security: V2.0.13.
-- State-changing: V2.0.14–V2.0.16 when server persistence is selected.
-- Migration-requiring: V2.0.13; V2.0.14–V2.0.16 only when their approved designs
-  require new audit, idempotency or preference state.
-- External dependency installation: V2.0.2, V2.0.3 for the approved icon package,
-  and V2.0.13; chart dependencies remain deferred, and any framework dependency
-  depends on V2.0.12.
-- Highest accidental live-execution risk: V2.0.14. Its verification must prove no
-  broker client, live-order table, execution route or paper promotion exists.
+- Read-only product workspaces and Market Memory: V2.0.5–V2.0.7.
+- Historical evidence foundations: V2.0.8–V2.1.0.
+- Evidence-backed intelligence: V2.1.1–V2.1.3.
+- No approved milestone in this sequence adds broker execution, a live-order
+  endpoint, LLM execution tools or a paper-to-live path.
 
 ## Current Milestone
 
-V2.0.6 — Symbol Intelligence Workspace.
+V2.0.7 — Market Memory Foundation.
 
 ## Next Milestone After Review
 
-V2.0.7 — Signals & Decision Lineage Workspace. It must not begin until V2.0.6 is
+V2.0.8 — Feature Store. It must not begin until V2.0.7 is
 reviewed and explicitly approved by the repository owner.

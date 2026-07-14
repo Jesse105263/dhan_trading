@@ -6,6 +6,7 @@ import {
   Home,
   ListFilter,
   ScrollText,
+  History,
   Search,
   Settings,
   WalletCards,
@@ -51,6 +52,12 @@ export const navigationItems: ReadonlyArray<NavigationItem> = [
     label: 'Signals',
     description: 'A future workspace for signals and decision lineage.',
     icon: Activity,
+  },
+  {
+    path: '/memory',
+    label: 'Market Memory',
+    description: 'Historical persisted features, snapshots, and comparisons.',
+    icon: History,
   },
   {
     path: '/evaluation',

@@ -532,3 +532,15 @@ Official transition from script-based development to platform architecture.
 - Added two-symbol comparison and related-expiry navigation without chart libraries.
 - Explicitly marks unsupported IV percentile, Greeks and risk score as unpersisted.
 - Added no dependency, migration, pipeline change or execution capability.
+
+## V2.0.7 — Feature Store & Market Memory Foundation
+
+- Added SELECT-only canonical snapshot and feature-history projections over
+  existing persisted option analytics and ranking lineage.
+- Added latest, previous, range, detail, allow-listed feature-history and exact
+  two-snapshot comparison routes under `/api/v2/memory`.
+- Added the accessible `/memory` workspace with filters, bounded history, stale and
+  empty/error states, CSS/SVG evolution, and two-snapshot comparison.
+- Added unit, API, PostgreSQL repository and frontend coverage.
+- Added `docs/MARKET_MEMORY.md`; no migration, dependency, collector, pipeline,
+  recommendation or execution capability was added.

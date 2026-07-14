@@ -151,5 +151,5 @@ replace accessible names.
 
 All component CSS references semantic tokens. A complete dark token set is defined
 under `[data-theme='dark']`, but no switch, persistence or automatic theme selection
-is implemented. V2.0.16 owns theme preferences. Until then, the application uses
+is implemented. V2.0.17 owns theme preferences. Until then, the application uses
 the light theme and the dark values serve as an architectural compatibility check.

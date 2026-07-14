@@ -81,8 +81,8 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 ## Status
 
 Version 1.0 is complete, verified and approved. Version 2 milestones V2.0.1 through
-V2.0.5 are complete. V2.0.6 — Symbol Intelligence Workspace is implemented pending
-repository-owner review.
+V2.0.6 are complete. V2.0.7 — Feature Store & Market Memory Foundation is
+implemented pending repository-owner review.
 
 The Version 2 frontend is isolated under `frontend/`. See `docs/FRONTEND.md` for
 its dependency policy and local commands, and `docs/DESIGN_SYSTEM.md` for tokens,
@@ -90,6 +90,8 @@ components and accessibility conventions.
 Application-shell routing, providers and responsive layout are documented in
 `docs/APPLICATION_SHELL.md`.
 The first persisted Version 2 workflow is documented in `docs/MARKET_WORKSPACE.md`.
+Historical evidence queries and the `/memory` workspace are documented in
+`docs/MARKET_MEMORY.md`.
 
 The Version 1 SELECT-only readiness report remains available with:
 

@@ -12,7 +12,8 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 - V2.0.3 — Design System: complete
 - V2.0.4 — Application Shell: complete
 - V2.0.5 — Market Overview & Opportunity Scanner: complete
-- Current milestone: V2.0.6 — Symbol Intelligence Workspace
+- V2.0.6 — Symbol Intelligence Workspace: complete
+- Current milestone: V2.0.7 — Market Memory Foundation
 - Current milestone state: implemented and verified pending owner review
 
 - Phase 1 — Stable Market Core: complete
@@ -153,11 +154,13 @@ Run with `python -m scripts.paper_trade`. See `docs/PAPER_TRADING.md`.
 
 ## Next Activity
 
-Review and close V2.0.6. Its contract is documented in `docs/SYMBOL_WORKSPACE.md`.
+Review and close V2.0.7. Its contract is documented in `docs/MARKET_MEMORY.md`.
 
-Do not begin V2.0.7 without an explicit repository-owner
-instruction. Version 2 does not use
-Milestone 4.7.
+Do not begin V2.0.8 without an explicit repository-owner
+instruction. The approved sequence is V2.0.8 — Feature Store, V2.0.9 — Historical
+Outcome Engine, V2.1.0 — Similarity Engine, V2.1.1 — Trade Opportunity Engine,
+V2.1.2 — News & Event Intelligence and V2.1.3 — AI Trading Analyst. Version 2 does
+not use Milestone 4.7.
 
 ## Release-Hardening Implementation
 

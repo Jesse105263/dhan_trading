@@ -53,7 +53,7 @@ need them. Additions must:
 - avoid changing `/api/v1` response semantics.
 
 The standard-library WSGI API remains the approved starting point. FastAPI or any
-other framework is deferred until the V2.0.12 framework decision checkpoint.
+other framework is deferred until the V2.0.13 framework decision checkpoint.
 Framework adoption requires demonstrated route, validation, schema, middleware or
 command complexity; modernity alone is not justification.
 
@@ -115,7 +115,7 @@ promote a paper record into live state.
 
 - Local/private operation is the default.
 - Unauthenticated development binds to loopback only.
-- Non-loopback or VPS deployment waits for V2.0.13 authentication.
+- Non-loopback or VPS deployment waits for V2.0.14 authentication.
 - VPS deployment requires HTTPS and an explicitly reviewed same-origin topology.
 - The production server or reverse-proxy choice is deferred until the framework
   and deployment milestones.
@@ -126,3 +126,12 @@ promote a paper record into live state.
 V2.0.5 implements the read-projection pattern with a thin V2 WSGI branch, a query
 service for validation and freshness, and explicit SELECT projections in a dedicated
 repository. `/api/v1` remains unchanged.
+## Market Memory Projection
+
+V2.0.7 treats existing immutable analytics, change, ranking, selection, risk,
+signal and equity-feature tables as canonical historical storage. A dedicated
+SELECT-only repository and query service expose bounded option snapshot history,
+allow-listed feature evolution and exact comparisons. No parallel feature table,
+migration or write-on-read behavior is introduced. Future evidence models must
+reference canonical snapshot and lineage identifiers rather than untraceable
+browser calculations.
