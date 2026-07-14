@@ -78,13 +78,15 @@ duplicate canonical records, trigger pipelines or generate recommendations.
 
 ### V2.0.8 — Feature Store
 
-Status: Implemented and verified; pending repository-owner review.
+Status: Complete.
 
 Establish versioned, reusable feature vectors derived only from supported persisted
 market observations. Preserve source timestamps, feature definitions, data-quality
 state and exact Market Memory lineage. Do not generate recommendations.
 
 ### V2.0.9 — Historical Outcome Engine
+
+Status: Implemented and verified; pending repository-owner review.
 
 Measure subsequent historical outcomes for eligible observations using explicit,
 auditable outcome definitions. Preserve point-in-time correctness and prevent
@@ -126,9 +128,9 @@ events. The analyst has no execution tools and cannot place trades.
 
 ## Current Milestone
 
-V2.0.8 — Feature Store.
+V2.0.9 — Historical Outcome Engine.
 
 ## Next Milestone After Review
 
-V2.0.9 — Historical Outcome Engine. It must not begin until V2.0.8 is
+V2.1.0 — Similarity Engine. It must not begin until V2.0.9 is
 reviewed and explicitly approved by the repository owner.

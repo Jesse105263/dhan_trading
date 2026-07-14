@@ -268,3 +268,14 @@ Reason: Historical Outcome and Similarity engines need stable point-in-time inpu
 that can be queried and compared without rebuilding features differently in every
 consumer. A schema version permits later feature definitions without rewriting
 historical meaning.
+## V2.0.9 Uses Expiry-Capped Observed Outcomes
+
+Decision: calculate `underlying-through-expiry-v1` outcomes only from later
+Feature Store observations sharing symbol and expiry. Persist partial excursions
+when measurable, but classify expiry return and win/loss only with an expiry-date
+observation.
+
+Reason: sparse snapshots can objectively establish an observed path but cannot
+establish unobserved prices or an expiry result. Explicit partial state prevents
+look-ahead, interpolation and false labels from contaminating future similarity
+and opportunity statistics.

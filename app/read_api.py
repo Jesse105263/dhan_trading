@@ -14,6 +14,7 @@ from services.market_workspace_service import MarketWorkspaceService, WorkspaceQ
 from services.symbol_workspace_service import SymbolWorkspaceService
 from services.market_memory_service import MarketMemoryService
 from services.feature_store_service import FeatureStoreService
+from services.historical_outcome_service import HistoricalOutcomeService
 
 
 @dataclass(frozen=True)
@@ -27,12 +28,13 @@ class ReadOnlyApi:
     DEFAULT_LIMIT = 20
     MAX_LIMIT = 100
 
-    def __init__(self, repository: ReadApiRepository | None = None, workspace: MarketWorkspaceService | None = None, symbols: SymbolWorkspaceService | None = None, memory: MarketMemoryService | None = None, features: FeatureStoreService | None = None) -> None:
+    def __init__(self, repository: ReadApiRepository | None = None, workspace: MarketWorkspaceService | None = None, symbols: SymbolWorkspaceService | None = None, memory: MarketMemoryService | None = None, features: FeatureStoreService | None = None, outcomes: HistoricalOutcomeService | None = None) -> None:
         self.repository = repository or ReadApiRepository()
         self.workspace = workspace or MarketWorkspaceService()
         self.symbols = symbols or SymbolWorkspaceService()
         self.memory = memory or MarketMemoryService()
         self.features = features or FeatureStoreService()
+        self.outcomes = outcomes or HistoricalOutcomeService()
 
     def handle(self, method: str, path: str, query_string: str = "") -> ApiResponse:
         if method.upper() != "GET":
@@ -41,7 +43,30 @@ class ReadOnlyApi:
         if normalized == "/health":
             return ApiResponse(HTTPStatus.OK, self.repository.health())
         if normalized == "/api/v2":
-            return ApiResponse(HTTPStatus.OK, {"name": "Dhan Trading Platform Read API", "version": "v2", "resources": ["overview", "opportunities", "symbols", "memory", "features"]})
+            return ApiResponse(HTTPStatus.OK, {"name": "Dhan Trading Platform Read API", "version": "v2", "resources": ["overview", "opportunities", "symbols", "memory", "features", "outcomes"]})
+        if normalized in ("/api/v2/outcomes", "/api/v2/outcomes/history", "/api/v2/outcomes/statistics"):
+            try:
+                query = {key: values[0] for key, values in parse_qs(query_string, keep_blank_values=True).items()}
+                if normalized.endswith("/statistics"):
+                    return ApiResponse(HTTPStatus.OK, self.outcomes.statistics(query))
+                return ApiResponse(HTTPStatus.OK, self.outcomes.list(query, ascending=normalized.endswith("/history")))
+            except WorkspaceQueryError as exc:
+                return self._error(HTTPStatus.BAD_REQUEST, "invalid_query", str(exc))
+            except WorkspaceUnavailable:
+                return self._error(HTTPStatus.SERVICE_UNAVAILABLE, "database_unavailable", "Historical outcomes are unavailable.")
+        outcome_prefix = "/api/v2/outcomes/"
+        if normalized.startswith(outcome_prefix) and "/" not in normalized[len(outcome_prefix):]:
+            try:
+                outcome_id = UUID(normalized[len(outcome_prefix):])
+            except ValueError:
+                return self._error(HTTPStatus.BAD_REQUEST, "invalid_outcome_id", "Outcome ID must be a valid UUID.")
+            try:
+                data = self.outcomes.detail(outcome_id)
+            except WorkspaceUnavailable:
+                return self._error(HTTPStatus.SERVICE_UNAVAILABLE, "database_unavailable", "Historical outcomes are unavailable.")
+            if data is None:
+                return self._error(HTTPStatus.NOT_FOUND, "not_found", "Historical outcome was not found.")
+            return ApiResponse(HTTPStatus.OK, {"data": data})
         if normalized == "/api/v2/features/definitions":
             return ApiResponse(HTTPStatus.OK, {"data": self.features.definitions(), "schema_version": self.features.SCHEMA_VERSION})
         if normalized == "/api/v2/features":

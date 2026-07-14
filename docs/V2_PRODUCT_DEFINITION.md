@@ -36,6 +36,9 @@ expectancy, and which niche opportunities are developing. Deterministic engines
 produce opportunities; the future AI analyst explains and ranks them without
 inventing them.
 
+Historical truth is a first-class product asset. Incomplete future histories stay
+explicitly partial or unavailable and cannot be promoted into win-rate evidence.
+
 1. Open the workspace and understand platform health, scheduler state, pipeline
    freshness, failures and alert history.
 2. Scan ranked opportunities and filter persisted results.

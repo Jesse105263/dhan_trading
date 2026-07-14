@@ -35,7 +35,8 @@ destinations or broker services directly.
 - Paper state remains stored separately and cannot become executable intent.
 - Copilot evidence remains application-selected and provider-isolated.
 - Existing production equity and option pipelines remain separate and compatible.
-- Migrations `001`–`017` remain immutable.
+- Applied migrations remain immutable; Version 2 adds only ordered, reviewed
+  migrations for approved evidence stores.
 
 ## API Compatibility Policy
 
@@ -144,3 +145,11 @@ feature persistence and reads; `FeatureStoreService` owns the allow-listed schem
 deterministic identity, temporal derivation and quality policy. Materialization is
 an explicit offline command. HTTP exposes GET-only projections and cannot trigger
 materialization.
+
+## Historical Outcome Boundary
+
+V2.0.9 materializes versioned outcomes from later Feature Store vectors into
+migration `019`. `HistoricalOutcomeRepository` owns persistence and aggregate SQL;
+`HistoricalOutcomeService` owns point-in-time filtering, objective calculations,
+completion policy and deterministic identity. HTTP is GET-only and cannot invoke
+materialization. Similarity and opportunity engines must consume stored outcomes.

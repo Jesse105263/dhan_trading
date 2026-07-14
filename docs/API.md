@@ -14,6 +14,9 @@ detail, allow-listed feature history and exact comparison. See
 V2.0.8 adds GET-only feature definitions, bounded vector lists and vector detail
 under `/api/v2/features`. See `docs/FEATURE_STORE.md`.
 
+V2.0.9 adds bounded outcome lists/detail, chronological history and persisted-only
+statistics under `/api/v2/outcomes`. See `docs/HISTORICAL_OUTCOME_ENGINE.md`.
+
 Base URL: `http://127.0.0.1:8080`
 
 ## Contract

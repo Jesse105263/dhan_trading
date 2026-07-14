@@ -553,3 +553,14 @@ Official transition from script-based development to platform architecture.
 - Added GET-only feature definition, list and detail routes under `/api/v2/features`.
 - Added unit, API and PostgreSQL integration coverage without AI, recommendation,
   collector, frontend or execution behavior.
+## V2.0.9 — Historical Outcome Engine
+
+- Added migration `019` for versioned objective outcomes with exact feature,
+  analytics, ranking and terminal-vector lineage.
+- Added deterministic, restartable materialization with explicit unavailable,
+  partial and expiry-complete states.
+- Added observed return, MFE, MAE, peak gain/loss, holding duration, expiry outcome
+  and win/loss fields without interpolation or prediction.
+- Added GET-only outcome list, detail, history and persisted-only statistics APIs.
+- Added unit, API and PostgreSQL integration coverage; no frontend, AI,
+  recommendation or execution behavior was added.

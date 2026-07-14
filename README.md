@@ -81,7 +81,7 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 ## Status
 
 Version 1.0 is complete, verified and approved. Version 2 milestones V2.0.1 through
-V2.0.7 are complete. V2.0.8 — Feature Store is implemented pending
+V2.0.8 are complete. V2.0.9 — Historical Outcome Engine is implemented pending
 repository-owner review.
 
 The Version 2 frontend is isolated under `frontend/`. See `docs/FRONTEND.md` for
@@ -93,6 +93,8 @@ The first persisted Version 2 workflow is documented in `docs/MARKET_WORKSPACE.m
 Historical evidence queries and the `/memory` workspace are documented in
 `docs/MARKET_MEMORY.md`.
 Versioned reusable features are documented in `docs/FEATURE_STORE.md`.
+Objective post-observation ground truth is documented in
+`docs/HISTORICAL_OUTCOME_ENGINE.md`.
 
 The Version 1 SELECT-only readiness report remains available with:
 

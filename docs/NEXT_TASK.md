@@ -2,11 +2,11 @@
 
 ## Active Milestone
 
-V2.0.8 — Feature Store.
+V2.0.9 — Historical Outcome Engine.
 
-Versioned feature definitions, deterministic vectors, quality metadata, exact
-Market Memory lineage, offline materialization and GET-only feature reads are
-implemented and verified pending repository-owner review.
+Versioned deterministic outcomes, explicit incomplete-history states, objective
+statistics, offline materialization and GET-only outcome reads are implemented and
+verified pending repository-owner review.
 
 ## Version 1.0 Status
 
@@ -34,9 +34,8 @@ Version 2 is approved and uses `V2.0.x` numbering. See
 `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 `docs/V2_ROADMAP.md`.
 
-After V2.0.8 is reviewed, the next milestone is V2.0.9 — Historical Outcome Engine.
-The approved later sequence is V2.1.0 —
-Similarity Engine, V2.1.1 — Trade Opportunity Engine, V2.1.2 — News & Event
+After V2.0.9 is reviewed, the next milestone is V2.1.0 — Similarity Engine.
+The approved later sequence is V2.1.1 — Trade Opportunity Engine, V2.1.2 — News & Event
 Intelligence and V2.1.3 — AI Trading Analyst.
 
 ## Continuing Constraints
@@ -48,4 +47,4 @@ Intelligence and V2.1.3 — AI Trading Analyst.
 - Preserve Copilot execution refusal and the absence of model tools.
 - Preserve isolated paper trading with no broker adapter or promotion path.
 - Preserve the existing database schema and `/api/v1`.
-- Do not begin V2.0.9, authentication or execution work during review.
+- Do not begin V2.1.0, authentication or execution work during review.
