@@ -1,5 +1,8 @@
 # Version 2 Symbol Intelligence Workspace
 
+V2.1.4 runtime verification confirms persisted symbol intelligence and lineage
+remain available without Dhan calls or browser-side analytics.
+
 V2.0.6 provides expiry-aware persisted research before a trading decision. Search
 uses `GET /api/v2/symbols?query=...`; the workspace uses
 `GET /api/v2/symbols/{symbol}?expiry=YYYY-MM-DD`. Compare mode requests the same

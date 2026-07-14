@@ -7,9 +7,10 @@ V2.0.2 — Frontend Project Foundation, V2.0.3 — Design System and V2.0.4 —
 Application Shell, V2.0.5 — Market Overview & Opportunity Scanner and V2.0.6 —
 Symbol Intelligence Workspace, V2.0.7 — Market Memory Foundation and V2.0.8 —
 Feature Store, V2.0.9 — Historical Outcome Engine, V2.1.0 — Similarity Engine and
-V2.1.1 — Trade Opportunity Engine and V2.1.2 — News & Event Intelligence are
-complete. Current milestone: V2.1.3 — AI Trading Analyst, implemented and verified
-pending repository-owner review. The Version 2 core intelligence roadmap is complete.
+V2.1.1 — Trade Opportunity Engine, V2.1.2 — News & Event Intelligence and V2.1.3
+— AI Trading Analyst are complete. Current milestone: V2.1.4 — Intelligence
+Release Hardening & Handoff, implemented and verified pending repository-owner
+review. The Version 2 core intelligence roadmap is complete.
 
 See `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 `docs/V2_ROADMAP.md`.
@@ -116,13 +117,18 @@ The release-hardening implementation checkpoint is
 - `021_trade_opportunity_engine.sql`
 - `022_news_event_intelligence.sql`
 
-Migration `020` adds only reproducible Similarity Engine audit runs and matches.
-The migration runner applied it once, applied zero changes on rerun, and release
-readiness verified all 20 migrations and checksums.
+Migrations `018`–`022` add the Feature, Outcome, Similarity, Opportunity and Event
+stores. V2.1.4 verified all 22 filenames and checksums and two migration reruns
+applied zero changes. No migration `023` exists.
 
 Milestones 4.1 and 4.2 required no migrations because they are read-only surfaces over existing tables. Milestone 4.3 adds auditable alerts in migration 016, and Milestone 4.5 adds isolated paper state in migration 017.
 
 ## Latest Verification
+
+V2.1.4 verification: compileall passed; standard and PostgreSQL suites each ran
+240 tests; frontend lint, 39 tests, build and formatting passed. Expanded
+readiness returned 14 PASS, 0 FAIL and 2 acceptable empty-data SKIPs. See
+`docs/V2_RELEASE_READINESS_CHECKLIST.md`.
 
 Milestone 4.6 implementation verification completed successfully:
 
@@ -192,8 +198,8 @@ Use `python -m scripts.paper_trade` to open, mark, close and inspect isolated si
 
 ## Next Activity
 
-Complete repository-owner review of V2.1.3. Do not begin V2.1.4 until instructed.
-The approved next activity is V2.1.4 — Intelligence Release Hardening & Handoff.
+Complete repository-owner review of V2.1.4. After approval, hold a separate
+roadmap and data-acquisition planning session. No Version 3 roadmap is approved.
 
 Existing Version 1.0 safety boundaries remain unchanged. See `docs/NEXT_TASK.md`,
 `docs/OPERATIONS_RUNBOOK.md` and `docs/RELEASE_READINESS_CHECKLIST.md`.

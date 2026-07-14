@@ -81,9 +81,9 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 ## Status
 
 Version 1.0 is complete, verified and approved. Version 2 milestones V2.0.1 through
-V2.1.2 are complete. V2.1.3 — AI Trading Analyst is implemented and verified
-pending repository-owner review. The core Version 2 intelligence roadmap is
-complete subject to that review.
+V2.1.3 are complete. V2.1.4 — Intelligence Release Hardening & Handoff is
+implemented and verified pending repository-owner review. The Version 2 core
+intelligence roadmap is complete; no Version 3 roadmap is approved.
 
 The Version 2 frontend is isolated under `frontend/`. See `docs/FRONTEND.md` for
 its dependency policy and local commands, and `docs/DESIGN_SYSTEM.md` for tokens,
@@ -108,3 +108,4 @@ python -m scripts.verify_release
 ```
 
 See `docs/OPERATIONS_RUNBOOK.md` and `docs/RELEASE_READINESS_CHECKLIST.md`.
+Version 2 evidence is recorded in `docs/V2_RELEASE_READINESS_CHECKLIST.md`.

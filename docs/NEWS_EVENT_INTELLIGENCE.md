@@ -1,5 +1,8 @@
 # News & Event Intelligence
 
+V2.1.4 audited source and publication-time lineage with zero violations. Only the
+approved local fixture adapter was used.
+
 The V2.1.3 analyst receives only already-linked, source-attributed context. It
 cannot invent news, infer sentiment or use later-published events as predictive
 evidence.

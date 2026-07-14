@@ -1,5 +1,8 @@
 # Historical Outcome Engine
 
+V2.1.4 audited 9 persisted outcomes with zero lineage violations. None is an
+expiry-classified outcome, so statistically reliable recommendations are unsupported.
+
 ## Purpose
 
 V2.0.9 persists objective ground truth describing what happened after each Feature

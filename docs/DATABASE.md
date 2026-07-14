@@ -190,3 +190,8 @@ checksums. It also checks cross-table lineage that foreign keys alone cannot pro
 
 Fresh migration, checksum-drift, orphan and restore tests must use a database whose
 name differs from normal `POSTGRES_DB`. See `docs/OPERATIONS_RUNBOOK.md`.
+## Version 2 authoritative inventory
+
+Migrations `001`–`022` are authoritative and immutable. V2.1.4 verified exact
+filesystem/applied order, filenames and SHA-256 checksums; two migration reruns
+applied zero changes. No migration `023` exists.

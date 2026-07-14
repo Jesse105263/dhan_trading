@@ -122,6 +122,14 @@ Provide a grounded analyst experience over Market Memory, feature vectors,
 historical outcomes, similar observations, opportunity evidence and attributed
 events. The analyst has no execution tools and cannot place trades.
 
+Status: Complete.
+
+### V2.1.4 — Intelligence Release Hardening & Handoff
+
+Verify the complete intelligence chain, migrations, runtime surfaces, operator
+idempotency, release invariants, operational documentation and safe continuation.
+Add no new product feature or Version 3 roadmap.
+
 Status: Implemented and verified; pending repository-owner review.
 
 ## Milestone Classification
@@ -136,10 +144,9 @@ Status: Implemented and verified; pending repository-owner review.
 
 ## Current Milestone
 
-V2.1.3 — AI Trading Analyst.
+V2.1.4 — Intelligence Release Hardening & Handoff.
 
 ## Next Milestone After Review
 
-V2.1.4 — Intelligence Release Hardening & Handoff. It must not begin until
-V2.1.3 is reviewed and explicitly approved by the repository owner. No Version 3
-implementation roadmap is approved.
+A separate roadmap and data-acquisition planning session after V2.1.4 owner
+approval. No Version 3 implementation roadmap is approved.

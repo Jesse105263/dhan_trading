@@ -56,7 +56,7 @@ class ReleaseReadinessRepositoryIntegrationTest(unittest.TestCase):
         self.assertEqual(database_name, RELEASE_TEST_DATABASE)
         self.assertTrue(database_user)
         self.assertEqual([item.version for item in migrations], [
-            f"{number:03d}" for number in range(1, 18)
+            f"{number:03d}" for number in range(1, 23)
         ])
 
     def test_all_audit_queries_are_readable_on_isolated_schema(self) -> None:
@@ -69,6 +69,12 @@ class ReleaseReadinessRepositoryIntegrationTest(unittest.TestCase):
             "alert_lineage",
             "paper_lineage",
             "operational_state",
+            "feature_store_lineage",
+            "historical_outcome_lineage",
+            "similarity_lineage_and_leakage",
+            "trade_opportunity_lineage",
+            "news_event_lineage_and_leakage",
+            "analyst_evidence_grounding",
             "execution_schema_boundary",
         })
         self.assertTrue(all(metric.violation_count == 0 for metric in metrics.values()))

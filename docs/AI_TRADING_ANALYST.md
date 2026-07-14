@@ -1,5 +1,8 @@
 # AI Trading Analyst
 
+V2.1.4 release verification confirms grounded local synthesis, exact citations,
+explicit insufficient evidence and refusal before evidence/provider access.
+
 ## Purpose
 
 V2.1.3 explains and compares persisted deterministic Trade Opportunity Engine

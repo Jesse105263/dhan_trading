@@ -40,7 +40,9 @@ Base URL: `http://127.0.0.1:8080`
 
 ## Contract
 
-All endpoints are read-only. Only `GET` is accepted. Responses use JSON and structured errors.
+All data projections are read-only. `/api/v1` and V2 projections accept `GET`.
+The bounded V2 analyst endpoints accept `POST` research questions but persist
+nothing and expose no trading command. Responses use JSON and structured errors.
 
 ### Health
 

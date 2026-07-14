@@ -7,6 +7,12 @@ existing application services. `TradingAnalystService` owns request validation,
 pre-retrieval refusal, local synthesis, optional provider fallback and
 application-attached citations. It performs no persistence or financial policy.
 
+## Version 2 release readiness
+
+The SELECT-only readiness repository audits Feature Store, Outcome, Similarity,
+Opportunity, Event and Analyst grounding lineage in addition to Version 1
+invariants. Similarity and event checks explicitly detect future-data leakage.
+
 ## Production Services
 
 ### collector

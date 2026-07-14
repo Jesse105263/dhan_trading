@@ -1,4 +1,4 @@
-# Version 1.0 Operations Runbook
+# Platform Operations Runbook
 
 ## Purpose
 
@@ -51,6 +51,10 @@ The release verifier performs SELECT-only checks. A `FAIL` is release-blocking.
 A `SKIP` is acceptable only when its message says the optional persisted dataset
 is empty.
 
+For Version 2 it also audits Feature Store, Historical Outcome, Similarity,
+Trade Opportunity, News/Event and Analyst grounding lineage. See
+`docs/V2_RELEASE_READINESS_CHECKLIST.md`.
+
 ## Application Startup
 
 Use separate terminals with the same virtual environment and repository folder.
@@ -94,6 +98,23 @@ production operation and use the command-specific documentation in
 `docs/PIPELINE.md`.
 
 ## Product Operations
+
+Version 2 evidence materialization is explicit and idempotent:
+
+```bash
+python -m scripts.materialize_feature_store
+python -m scripts.materialize_historical_outcomes
+python -m scripts.materialize_similarity_run --vector-id <UUID>
+python -m scripts.materialize_trade_opportunities
+python -m scripts.import_news_events --file fixtures/news_events.json
+python -m scripts.link_historical_events
+python -m scripts.materialize_opportunity_events
+python -m scripts.ask_trading_analyst --opportunity-id <UUID> --question "Explain the evidence."
+```
+
+These commands may write only their documented derived stores. They never call
+Dhan, an external news provider or a model when the analyst uses its default local
+provider. Do not interpret successful materialization as sufficient evidence.
 
 Alerts persist delivery audit records and therefore are not health probes:
 
@@ -213,6 +234,11 @@ docker exec dhan_postgres dropdb -U dhan_user dhan_release_fresh_46
 Never stop, rename, replace or delete the normal PostgreSQL database during this
 drill.
 
+The historical Version 1 drill does not by itself prove restoration of migrations
+`018`–`022`. A Version 2 isolated restore/fresh-migration drill requires new,
+explicit approval before `createdb`, `pg_restore`, migration execution or `dropdb`.
+V2.1.4 did not perform those operations.
+
 ## Recovery Procedure
 
 For a real recovery:
@@ -243,6 +269,7 @@ For a real recovery:
 
 ## Release Acceptance
 
-Complete `docs/RELEASE_READINESS_CHECKLIST.md`. Release acceptance requires no
+Complete `docs/RELEASE_READINESS_CHECKLIST.md` and
+`docs/V2_RELEASE_READINESS_CHECKLIST.md`. Release acceptance requires no
 failed readiness checks, green automated suites, an isolated recovery drill, clean
 documentation and explicit human review.

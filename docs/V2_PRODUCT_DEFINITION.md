@@ -18,6 +18,10 @@ V2.1.3 completes the core intelligence roadmap with grounded explanation and
 comparison of deterministic opportunities. The analyst cannot invent missing
 evidence, calculate new recommendations or execute a trade.
 
+V2.1.4 verifies and closes the core intelligence release. Current evidence volume
+is limited and contains no classified expiry outcomes, so the product must not
+claim statistically reliable recommendations yet.
+
 ## Product Vision
 
 Version 2 turns the verified Version 1 backend into a private, single-owner AI

@@ -186,3 +186,11 @@ Outcome, Similarity, Opportunity and Event services before synthesis. Local
 deterministic synthesis is default; the existing optional model provider remains
 isolated and tool-free. Refusals occur before retrieval. Citations and lineage are
 application-owned, and no analyst output changes persisted calculations.
+
+## Intelligence Release Verification
+
+V2.1.4 extends the SELECT-only readiness repository across Feature, Outcome,
+Similarity, Opportunity and Event lineage, point-in-time leakage gates, analyst
+grounding and the execution-schema boundary. Migrations `001`–`022` are the
+authoritative immutable inventory. Operator materializers remain explicit,
+idempotent commands and are never invoked by HTTP reads.

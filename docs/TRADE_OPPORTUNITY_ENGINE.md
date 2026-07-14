@@ -1,5 +1,8 @@
 # Trade Opportunity Engine
 
+V2.1.4 confirms the current record is `INSUFFICIENT_EVIDENCE`, with zero eligible
+opportunities and no fabricated recommendation fields.
+
 V2.1.3 may explain but never modify a persisted opportunity. Ranking score remains
 distinct from confidence and all levels remain underlying reference levels.
 

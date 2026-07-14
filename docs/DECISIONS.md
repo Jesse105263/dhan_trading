@@ -324,3 +324,13 @@ Reason: immutable evidence IDs already provide reproducibility and auditability.
 Persisting prose would duplicate derived output and retain unnecessary conversation
 history. Optional provider isolation and pre-retrieval refusal preserve existing
 Copilot safety boundaries.
+
+## V2.1.4 Extends the Existing SELECT-Only Verifier
+
+Decision: retain the release-readiness architecture and add deterministic SQL
+audits for migrations `018`–`022`, historical leakage, insufficient-opportunity
+null fields and analyst source grounding. Add no migration or product feature.
+
+Reason: the persisted intelligence chain now carries release-critical lineage not
+covered by the original Version 1 verifier. Auditing it in the existing read-only
+boundary gives one fail-closed operational report without duplicating policy.

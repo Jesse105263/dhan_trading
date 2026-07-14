@@ -1,5 +1,8 @@
 # Version 2 Market Workspace
 
+V2.1.4 runtime verification confirms both read-only workspace projections return
+persisted or explicit empty data without triggering pipelines.
+
 V2.0.5 delivers a persisted Market Overview, dense Opportunity Scanner and minimal
 opportunity detail for one private owner. It never labels data live, predicts profit,
 triggers a pipeline or exposes a trading command.

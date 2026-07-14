@@ -1,5 +1,9 @@
 # Version 1.0 Release-Readiness Checklist
 
+This checklist is the preserved Version 1 historical record. Version 2 closure is
+recorded separately in `docs/V2_RELEASE_READINESS_CHECKLIST.md`; statements below
+about migrations `001`–`017` and no migration `018` apply only to Version 1.
+
 ## Release Checkpoint
 
 - [x] Final Version 1.0 commit recorded: `030ade7 add release readiness verification`.

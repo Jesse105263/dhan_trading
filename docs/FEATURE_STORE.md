@@ -1,5 +1,7 @@
 # Version 2 Feature Store
 
+V2.1.4 audited 9 persisted vectors with zero lineage/count violations.
+
 ## Purpose
 
 V2.0.8 persists versioned numeric feature vectors for every canonical option

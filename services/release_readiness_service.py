@@ -29,6 +29,12 @@ class ReleaseReadinessService:
         "alert_lineage",
         "paper_lineage",
         "operational_state",
+        "feature_store_lineage",
+        "historical_outcome_lineage",
+        "similarity_lineage_and_leakage",
+        "trade_opportunity_lineage",
+        "news_event_lineage_and_leakage",
+        "analyst_evidence_grounding",
         "execution_schema_boundary",
     )
 

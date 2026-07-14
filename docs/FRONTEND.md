@@ -123,3 +123,8 @@ V2.0.7 adds `/memory`, a read-only historical evidence surface. It reuses the
 native-fetch client, design system and application shell; feature evolution is a
 small accessible SVG and adds no chart or state-management dependency. See
 `docs/MARKET_MEMORY.md`.
+## Version 2 release verification
+
+V2.1.4 verifies every implemented workspace route on loopback plus lint, 39
+component tests, the production build and formatting. The browser remains an HTTP
+consumer and has no PostgreSQL, Redis, Dhan, provider or execution access.

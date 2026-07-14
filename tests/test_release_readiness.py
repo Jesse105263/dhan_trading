@@ -53,7 +53,7 @@ class ReleaseReadinessServiceTest(unittest.TestCase):
         ).verify()
 
         self.assertTrue(report.ready)
-        self.assertEqual(len(report.checks), 10)
+        self.assertEqual(len(report.checks), 16)
         self.assertTrue(
             all(check.status is ReleaseCheckStatus.PASS for check in report.checks)
         )
@@ -199,6 +199,7 @@ class SafetyBoundarySourceTest(unittest.TestCase):
             "services/copilot_provider.py": ("dhan", "paper_trading", "psycopg"),
             "services/paper_trading_service.py": ("dhan", "broker"),
             "services/paper_trading_repository.py": ("dhan", "broker"),
+            "services/trading_analyst.py": ("dhan", "paper_trading", "psycopg", "services.database"),
         }
         for filename, forbidden in boundaries.items():
             source = Path(filename).read_text(encoding="utf-8").lower()
@@ -208,6 +209,24 @@ class SafetyBoundarySourceTest(unittest.TestCase):
                     source,
                     f"{filename} imports forbidden dependency {dependency}",
                 )
+
+    def test_analyst_refuses_before_evidence_or_provider(self) -> None:
+        from uuid import UUID
+
+        from services.trading_analyst import AnalystRequest, TradingAnalystService
+
+        class Sentinel:
+            name = "sentinel"
+            def __getattr__(self, name):
+                raise AssertionError(f"Safety refusal crossed boundary: {name}")
+
+        result = TradingAnalystService(Sentinel(), Sentinel()).ask(
+            AnalystRequest("Submit to Dhan and execute a trade", (
+                UUID("11111111-1111-4111-8111-111111111111"),
+            ))
+        )
+        self.assertEqual(result["status"], "REFUSED")
+        self.assertEqual(result["evidence"], [])
 
 
 if __name__ == "__main__":

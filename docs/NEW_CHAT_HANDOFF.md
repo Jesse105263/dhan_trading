@@ -19,12 +19,15 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 - V2.1.0 — Similarity Engine: complete
 - V2.1.1 — Trade Opportunity Engine: complete
 - V2.1.2 — News & Event Intelligence: complete
-- Current milestone: V2.1.3 — AI Trading Analyst
+- V2.1.3 — AI Trading Analyst: complete
+- Current milestone: V2.1.4 — Intelligence Release Hardening & Handoff
 - Current milestone state: implemented and verified pending owner review
 
 The implementation started from clean `main` at
-`f0abefb add Version 2 news and event intelligence`; previous commit is
-`ea6de37 add Version 2 trade opportunity engine`. V2.1.3 remains uncommitted for owner review.
+`1a7d189 add Version 2 AI trading analyst`; previous commit is
+`f0abefb add Version 2 news and event intelligence`. V2.1.4 remains staged and
+uncommitted for owner review; replace this paragraph with the final checkpoint
+after the repository owner commits it.
 
 - Phase 1 — Stable Market Core: complete
 - Phase 2 — Option Data Platform: complete
@@ -54,12 +57,13 @@ Verify the current Git state before starting any later task.
 ## Latest Verification
 
 ```text
-176 tests run
-OK
-2 expected production-data-dependent skips
+V2.1.4 standard: 240 passed, 36 database-gated skips
+V2.1.4 PostgreSQL: 240 passed, 5 expected data-dependent skips
+Frontend: lint passed, 39 tests passed, build passed, format passed
+Readiness: 14 PASS, 0 FAIL, 2 acceptable empty-data SKIPs
 ```
 
-Milestone 4.6 additionally verified compileall, a 176-test standard suite, exact
+Historical Milestone 4.6 verification additionally covered a 176-test suite, exact
 migration/checksum agreement, a backup restore into `dhan_release_test_46`, fresh
 application of 17 migrations with a zero-change re-run, and safe HTTP runtime
 surfaces. The readiness report returned 8 PASS, 0 FAIL and 2 empty-data SKIPs on
@@ -162,18 +166,43 @@ Run with `python -m scripts.ask_copilot`. See `docs/COPILOT.md`.
 
 Run with `python -m scripts.paper_trade`. See `docs/PAPER_TRADING.md`.
 
+## Version 2 operator workflow
+
+```bash
+python -m services.migration_runner
+python -m scripts.materialize_feature_store
+python -m scripts.materialize_historical_outcomes
+python -m scripts.materialize_similarity_run --vector-id <UUID>
+python -m scripts.materialize_trade_opportunities
+python -m scripts.import_news_events --file fixtures/news_events.json
+python -m scripts.link_historical_events
+python -m scripts.materialize_opportunity_events
+python -m scripts.ask_trading_analyst --opportunity-id <UUID> --question "Explain the evidence."
+python -m scripts.verify_release
+```
+
+Materializers are explicit derived-data writes and must be reviewed as such. API
+reads never run them. Keep `/api/v1` compatible, repositories as the database
+boundary, paper state isolated, providers tool-free and every execution path
+absent. Never call Dhan, an external provider, alerts or paper commands during
+readiness work.
+
 ## Next Activity
 
-Review and close V2.1.3. Its contract is documented in `docs/AI_TRADING_ANALYST.md`.
+Review and close V2.1.4. Verification evidence is documented in
+`docs/V2_RELEASE_READINESS_CHECKLIST.md`.
 
-Do not begin V2.1.4 without an explicit repository-owner instruction. The approved
-next activity is V2.1.4 — Intelligence Release Hardening & Handoff. Version 2 does
-not yet have a Version 3 implementation roadmap. V2.1.3 adds versioned evidence
-packets, deterministic local explanation and comparison, application citations,
-pre-retrieval refusal, bounded research POST routes, an operator CLI and the
-accessible analyst workspace. It adds no migration, dependency, execution path,
-opportunity-calculation change or `/api/v1` contract change.
-Do not use Milestone 4.7.
+After owner approval, hold a separate roadmap and data-acquisition planning
+session. No Version 3 implementation roadmap is approved. The long-term goal
+remains a private AI Trading Intelligence Platform producing deterministic,
+evidence-backed opportunity candidates and grounded explanations—not a generic
+dashboard or execution system. Do not use Milestone 4.7.
+
+Current local evidence: 9 Feature Store vectors, 9 outcomes, zero classified
+expiry outcomes, one eight-match insufficient similarity run, one non-eligible
+opportunity, two fixture events and one opportunity-event context link. Never
+claim statistically reliable recommendations until sufficient classified history
+exists.
 
 ## Release-Hardening Implementation
 

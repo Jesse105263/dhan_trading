@@ -611,3 +611,14 @@ Official transition from script-based development to platform architecture.
   workspace with refusal and insufficient-evidence states.
 - Added no migration, dependency, execution tool, opportunity calculation,
   external verification call or `/api/v1` contract change.
+
+## V2.1.4 — Intelligence Release Hardening & Handoff
+
+- Expanded the SELECT-only readiness audit across the full Version 2 intelligence
+  lineage, future-data gates, insufficient fields and analyst grounding.
+- Verified all Python/PostgreSQL/frontend suites, migrations `001`–`022`, loopback
+  API/workspace routes and deterministic operator idempotency.
+- Recorded limited local evidence and prohibited statistical-reliability claims
+  until classified expiry outcomes exist.
+- Added the Version 2 readiness checklist and safe continuation handoff without a
+  migration, dependency, product feature, external call or Version 3 roadmap.

@@ -1,5 +1,8 @@
 # Similarity Engine
 
+V2.1.4 audited persisted match lineage and point-in-time ordering with zero
+violations. The current eight-match run remains `INSUFFICIENT`.
+
 ## Objective
 
 V2.1.0 finds persisted Feature Store observations that most closely resemble a

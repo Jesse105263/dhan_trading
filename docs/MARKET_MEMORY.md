@@ -1,5 +1,8 @@
 # Market Memory and Feature Store
 
+V2.1.4 runtime verification confirms bounded persisted history remains available
+as the canonical observation source for downstream evidence.
+
 ## Purpose
 
 V2.0.7 establishes a queryable historical-evidence layer for future statistically

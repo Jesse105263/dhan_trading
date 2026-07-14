@@ -24,7 +24,7 @@ def build_service() -> ReleaseReadinessService:
 
 def main() -> int:
     report = build_service().verify()
-    print("DHAN PLATFORM VERSION 1.0 RELEASE READINESS")
+    print("DHAN PLATFORM VERSION 2 INTELLIGENCE RELEASE READINESS")
     print("=" * 60)
     if report.database_name is not None:
         print(f"Database: {report.database_name}")
