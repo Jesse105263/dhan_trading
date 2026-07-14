@@ -2,11 +2,11 @@
 
 ## Active Milestone
 
-V2.0.3 — Design System.
+V2.0.4 — Application Shell.
 
-The semantic token system, global styles and reusable accessible React primitives
-are implemented and verified pending repository-owner review. The application
-continues to render only the Version 2 placeholder.
+The responsive shell, nested data-free placeholder routes and shell-only providers
+are implemented and verified pending repository-owner review. No placeholder route
+loads data or implements its named workspace.
 
 ## Version 1.0 Status
 
@@ -34,9 +34,9 @@ Version 2 is approved and uses `V2.0.x` numbering. See
 `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 `docs/V2_ROADMAP.md`.
 
-After V2.0.3 is reviewed, the next proposed implementation milestone is V2.0.4 —
-Application Shell. It requires a separate instruction and explicit approval before
-any additional dependency installation.
+After V2.0.4 is reviewed, the next proposed implementation milestone is V2.0.5 —
+Market Overview & Opportunity Scanner. It requires a separate instruction and
+explicit approval before any API integration or product behavior begins.
 
 ## Continuing Constraints
 
@@ -47,4 +47,5 @@ any additional dependency installation.
 - Preserve Copilot execution refusal and the absence of model tools.
 - Preserve isolated paper trading with no broker adapter or promotion path.
 - Preserve the existing database schema and `/api/v1`.
-- Do not begin product workspaces, authentication, charts or V2.0.4 during review.
+- Do not begin product workspaces, API calls, authentication, charts or V2.0.5
+  during review.

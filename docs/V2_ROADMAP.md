@@ -141,9 +141,9 @@ no-live-execution boundary. Local deployment remains the default.
 
 ## Current Milestone
 
-V2.0.3 — Design System.
+V2.0.4 — Application Shell.
 
 ## Next Milestone After Review
 
-V2.0.4 — Application Shell. It must not begin until V2.0.3 is reviewed and
-explicitly approved by the repository owner.
+V2.0.5 — Market Overview & Opportunity Scanner. It must not begin until V2.0.4 is
+reviewed and explicitly approved by the repository owner.

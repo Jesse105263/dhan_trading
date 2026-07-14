@@ -9,7 +9,8 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 - Version 2 roadmap: approved
 - V2.0.1 — Architecture & Product Decisions: complete
 - V2.0.2 — Frontend Project Foundation: complete
-- Current milestone: V2.0.3 — Design System
+- V2.0.3 — Design System: complete
+- Current milestone: V2.0.4 — Application Shell
 - Current milestone state: implemented and verified pending owner review
 
 - Phase 1 — Stable Market Core: complete
@@ -150,11 +151,12 @@ Run with `python -m scripts.paper_trade`. See `docs/PAPER_TRADING.md`.
 
 ## Next Activity
 
-Review and close V2.0.3. The design tokens, component inventory, accessibility
-rules and responsive strategy are documented in `docs/DESIGN_SYSTEM.md`.
+Review and close V2.0.4. The responsive shell, nested placeholder routes, provider
+hierarchy and accessibility contract are documented in `docs/APPLICATION_SHELL.md`.
 
-Do not begin V2.0.4 — Application Shell or install additional dependencies without
-an explicit repository-owner instruction. Version 2 does not use Milestone 4.7.
+Do not begin V2.0.5 — Market Overview & Opportunity Scanner or connect the frontend
+to an API without an explicit repository-owner instruction. Version 2 does not use
+Milestone 4.7.
 
 ## Release-Hardening Implementation
 

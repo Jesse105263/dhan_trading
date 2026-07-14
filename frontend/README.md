@@ -11,8 +11,11 @@ environment handling and build/test/lint/format tooling. It contains no product
 workspace, authentication, chart, market-data request or business behavior.
 
 V2.0.3 adds reusable design-system tokens and components under
-`src/design-system/`. The application remains the same placeholder and does not
-render a component gallery or product workspace. See `docs/DESIGN_SYSTEM.md`.
+`src/design-system/`. See `docs/DESIGN_SYSTEM.md`.
+
+V2.0.4 adds the responsive application shell, nested placeholder routes and
+shell-only providers. It makes no API request and implements no named workspace.
+See `docs/APPLICATION_SHELL.md`.
 
 ## Requirements
 
@@ -47,7 +50,7 @@ frontend/
 ├── public/                 Static public assets when needed
 ├── src/
 │   ├── api/                HTTP transport abstractions
-│   ├── app/                Application entry route and composition
+│   ├── app/                Shell, providers, routes and placeholder pages
 │   ├── config/             Validated browser environment
 │   ├── design-system/      Reusable tokens, styles and components
 │   └── test/               Shared test setup

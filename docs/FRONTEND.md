@@ -11,7 +11,7 @@ frontend/
 ├── public/                 Static public assets
 ├── src/
 │   ├── api/                HTTP transport and tests
-│   ├── app/                Application placeholder and route foundation
+│   ├── app/                Shell, providers, routes and placeholder pages
 │   ├── config/             Browser-environment validation
 │   ├── design-system/      Tokens, global styles and reusable UI primitives
 │   └── test/               Shared test setup
@@ -84,6 +84,8 @@ The production output is `frontend/dist/` and is not committed.
 - Environment access is centralized under `src/config`.
 - HTTP transport is centralized under `src/api`.
 - Route composition is centralized under `src/app`.
+- Shell-only context is centralized under `src/app/providers`; it must not acquire
+  market, trading or other business state.
 - Components do not access PostgreSQL, Dhan or backend implementation modules.
 - Business calculations remain in backend services.
 - ESLint handles correctness; Prettier handles formatting.
@@ -99,3 +101,14 @@ no consumer and calls no endpoint.
 `/api/v1` is unchanged and remains the stable Version 1 GET-only contract. V2.0.2
 introduces no `/api/v2`. Later product milestones may add only the read projections
 they require while keeping transport, query and business-policy boundaries distinct.
+
+## Application Shell
+
+V2.0.4 replaces the single foundation placeholder with a nested layout route. The
+layout owns the application header, responsive primary navigation, main outlet and
+status footer. Child routes remain data-free placeholders. Theme, shell state,
+render-error and loading boundaries wrap the router without creating global business
+state. Modal, drawer and toast hosts are UI infrastructure only.
+
+See `docs/APPLICATION_SHELL.md` for the route map, provider order, responsive rules
+and accessibility contract.

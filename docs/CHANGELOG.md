@@ -497,3 +497,20 @@ Official transition from script-based development to platform architecture.
 - Added `lucide-react` as the single tree-shakeable SVG icon source.
 - Added component behavior and accessibility tests.
 - Added no product workspace, API, authentication, chart or business logic.
+
+## V2.0.4 — Application Shell
+
+- Added a responsive header, navigation rail, nested main-content outlet and status
+  footer using the Version 2 design system.
+- Added data-free placeholder routes for Home, Market Overview, Scanner, Symbol
+  Research, Signals, Replay & Backtesting, Paper Portfolio, Operations, Copilot and
+  Settings, plus an in-shell not-found route.
+- Added fixed-theme, shell-state, render-error and loading providers with UI-only
+  modal, drawer and toast hosts.
+- Added keyboard-visible navigation, semantic landmarks, a skip link and accessible
+  mobile navigation controls.
+- Added desktop, compact-tablet and mobile navigation behavior without animation or
+  business state.
+- Added tests for nested routing, shell landmarks, responsive navigation controls,
+  provider hosts, placeholder statuses and error/loading boundaries.
+- Added no API request, authentication, chart, product data or business behavior.
