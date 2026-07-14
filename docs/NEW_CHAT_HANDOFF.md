@@ -6,6 +6,10 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 
 ## Latest Approved State
 
+- Version 2 roadmap: approved
+- Current milestone: V2.0.1 — Architecture & Product Decisions
+- Current milestone type: documentation-only
+
 - Phase 1 — Stable Market Core: complete
 - Phase 2 — Option Data Platform: complete
 - Phase 3 — Decision and Evaluation Platform: complete
@@ -17,16 +21,16 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 - Milestone 4.6 — Version 1.0 Release Hardening: complete and approved
 - Version 1.0: complete and approved
 
-The final Version 1.0 commit checkpoint is:
+The Version 1 documentation-closure checkpoint is:
+
+```text
+555a373 close Version 1.0 documentation
+```
+
+The release-hardening implementation checkpoint is:
 
 ```text
 030ade7 add release readiness verification
-```
-
-The previous commit is:
-
-```text
-fe7c45d add isolated paper trading
 ```
 
 Verify the current Git state before starting any later task.
@@ -144,11 +148,12 @@ Run with `python -m scripts.paper_trade`. See `docs/PAPER_TRADING.md`.
 
 ## Next Activity
 
-No post-Version-1.0 roadmap has been approved. The next activity is a separate
-roadmap-planning exercise, not Milestone 4.7. Do not infer or begin a new milestone
-without repository-owner approval.
+Review and close V2.0.1 documentation. The approved roadmap is defined by
+`docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
+`docs/V2_ROADMAP.md`.
 
-Read `docs/NEXT_TASK.md` for the roadmap boundary and continuing constraints.
+Do not begin V2.0.2 — Frontend Project Foundation or install dependencies without
+an explicit repository-owner instruction. Version 2 does not use Milestone 4.7.
 
 ## Release-Hardening Implementation
 

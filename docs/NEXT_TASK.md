@@ -1,4 +1,11 @@
-# Next Activity
+# Next Task
+
+## Active Milestone
+
+V2.0.1 — Architecture & Product Decisions.
+
+This is a documentation-only milestone. Its output establishes the approved
+Version 2 product definition, architecture and ordered roadmap.
 
 ## Version 1.0 Status
 
@@ -22,9 +29,13 @@ verification passed. No migration `018` was required.
 
 ## Roadmap Status
 
-No post-Version-1.0 roadmap has been approved. The next activity is a separate
-roadmap-planning exercise, not Milestone 4.7. This document does not define that
-roadmap or authorize implementation work.
+Version 2 is approved and uses `V2.0.x` numbering. See
+`docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
+`docs/V2_ROADMAP.md`.
+
+After V2.0.1 documentation is reviewed, the next proposed implementation milestone
+is V2.0.2 — Frontend Project Foundation. It requires a separate instruction and
+explicit approval before dependency installation.
 
 ## Continuing Constraints
 
@@ -34,4 +45,5 @@ roadmap or authorize implementation work.
 - Preserve the GET-only API and HTTP-only dashboard boundaries.
 - Preserve Copilot execution refusal and the absence of model tools.
 - Preserve isolated paper trading with no broker adapter or promotion path.
-- Require explicit approval before any future roadmap or implementation begins.
+- Preserve the existing database schema during V2.0.1.
+- Do not implement code, install dependencies or begin V2.0.2 during this milestone.

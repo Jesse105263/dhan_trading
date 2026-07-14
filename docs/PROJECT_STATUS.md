@@ -1,6 +1,14 @@
 # Project Status
 
-## Release Status
+## Current Status
+
+Version 2 is the active approved roadmap. Current milestone: V2.0.1 — Architecture
+& Product Decisions. This milestone is documentation-only.
+
+See `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
+`docs/V2_ROADMAP.md`.
+
+## Version 1 Release Status
 
 Version 1.0 is complete and approved.
 
@@ -8,14 +16,15 @@ Milestone 4.6 — Version 1.0 Release Hardening is complete. All automated,
 PostgreSQL, migration, backup/restore, runtime and release-readiness verification
 passed. No migration `018` was required.
 
-No post-Version-1.0 roadmap has been approved. The next activity is a separate
-roadmap-planning exercise, not Milestone 4.7.
+Version 1 remains the stable historical baseline. Version 2 uses separate
+`V2.0.x` numbering and preserves all Version 1 safety boundaries.
 
 ## Repository Checkpoint
 
-The final Version 1.0 commit checkpoint is
+The Version 1 documentation-closure checkpoint is
+`555a373 close Version 1.0 documentation`.
+The release-hardening implementation checkpoint is
 `030ade7 add release readiness verification`.
-The previous commit is `fe7c45d add isolated paper trading`.
 
 ## Completed Milestones
 
@@ -168,8 +177,8 @@ Use `python -m scripts.paper_trade` to open, mark, close and inspect isolated si
 
 ## Next Activity
 
-Conduct a separate roadmap-planning exercise. No post-Version-1.0 roadmap or new
-milestone number has been approved.
+Complete repository-owner review of V2.0.1 documentation. Do not begin V2.0.2 or
+install frontend dependencies until explicitly instructed.
 
 Existing Version 1.0 safety boundaries remain unchanged. See `docs/NEXT_TASK.md`,
 `docs/OPERATIONS_RUNBOOK.md` and `docs/RELEASE_READINESS_CHECKLIST.md`.

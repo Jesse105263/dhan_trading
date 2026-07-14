@@ -1,4 +1,19 @@
-# Roadmap
+# Roadmap Index
+
+## Active Roadmap
+
+Version 2 is approved and active:
+
+- `docs/V2_PRODUCT_DEFINITION.md`
+- `docs/V2_ARCHITECTURE.md`
+- `docs/V2_ROADMAP.md`
+
+Current milestone: V2.0.1 — Architecture & Product Decisions.
+
+The next implementation milestone, after documentation review and explicit owner
+instruction, is V2.0.2 — Frontend Project Foundation.
+
+## Historical Version 1 Roadmap
 
 The complete Version 1.0 architecture is documented in:
 
@@ -12,9 +27,9 @@ The ordered implementation plan is documented in:
 
 Complete and approved.
 
-Milestone 4.6 — Version 1.0 Release Hardening is complete. The final Version 1.0
-commit checkpoint is `030ade7 add release readiness verification`; the previous
-commit is `fe7c45d add isolated paper trading`.
+Milestone 4.6 — Version 1.0 Release Hardening is complete. Its implementation
+checkpoint is `030ade7 add release readiness verification`; the Version 1
+documentation-closure checkpoint is `555a373 close Version 1.0 documentation`.
 
 All release verification passed, and no migration `018` was required. Existing
 Version 1.0 safety boundaries remain unchanged.
@@ -56,8 +71,7 @@ Version 1.0 safety boundaries remain unchanged.
 22. [x] Paper trading
 23. [x] Version 1.0 release hardening verification and owner approval
 
-## Roadmap Boundary
+## Version 1 Roadmap Boundary
 
-This roadmap ends with the approved Version 1.0 release. No post-Version-1.0
-roadmap has been approved. The next activity is a separate roadmap-planning
-exercise, not Milestone 4.7. No subsequent milestone is defined here.
+The Version 1 roadmap ends with the approved Version 1.0 release. Version 2 uses
+independent `V2.0.x` numbering and does not continue with Milestone 4.7.

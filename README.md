@@ -31,6 +31,11 @@ docker compose up -d
 
 See the `docs/` folder.
 
+Version 2 is the active approved roadmap. It evolves the verified Version 1
+backend into a polished private workspace while preserving `/api/v1`, existing
+services and all no-live-execution boundaries. See `docs/V2_ROADMAP.md`,
+`docs/V2_PRODUCT_DEFINITION.md` and `docs/V2_ARCHITECTURE.md`.
+
 ## Private Dashboard
 
 Start the read API and dashboard in separate terminals:
@@ -75,8 +80,11 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 
 ## Status
 
-Version 1.0 release hardening is in verification. Run the SELECT-only readiness
-report with:
+Version 1.0 is complete, verified and approved. Version 2 milestone V2.0.1 —
+Architecture & Product Decisions is active and documentation-only. The next code
+milestone requires separate repository-owner approval.
+
+The Version 1 SELECT-only readiness report remains available with:
 
 ```bash
 python -m scripts.verify_release

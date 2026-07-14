@@ -173,3 +173,47 @@ An optional dataset with no records is SKIP rather than fabricated evidence.
 Backup, restore, fresh migration and failure injection are operator-controlled
 drills against explicitly isolated databases. The verifier cannot create, restore,
 delete or migrate a database and cannot modify production records.
+
+## Decision: Version 2 is a product-surface evolution
+
+Version 2 builds a polished private trading-intelligence and paper-trading
+workspace on the verified Version 1 backend. Existing repositories, services,
+database schema, production pipelines and safety guarantees remain the default.
+Components are changed only when a focused milestone demonstrates a product or
+operational need.
+
+## Decision: React, TypeScript and Vite frontend
+
+The Version 2 interactive workspace uses React, TypeScript and Vite. This supports
+reusable accessible components, dense data tables, charts and client-side workspace
+navigation while preserving a strict HTTP API boundary. The Version 1 dashboard
+remains available during migration. Dependencies are installed only when V2.0.2
+is explicitly authorized.
+
+## Decision: Preserve WSGI and `/api/v1` initially
+
+The stable GET-only `/api/v1` contract and standard-library WSGI implementation
+remain unchanged. Version 2 adds only the read projections required by each
+workspace, under a compatible `/api/v2` boundary. A framework change is deferred
+to V2.0.12 and requires evidence of material routing, validation, schema,
+middleware or command complexity. FastAPI is not approved merely because it is a
+modern framework.
+
+## Decision: Product-first milestone order with a design system
+
+After architecture documentation, Version 2 establishes the frontend foundation,
+design system and application shell before feature workspaces. Market, research,
+signals, replay/backtesting, paper portfolio, operations and Copilot workspaces are
+built read-only before authentication and commands.
+
+The Operations Workspace combines health, pipeline freshness, scheduler status,
+failures, alert history and operational audit. Reading alert records cannot
+generate, retry or deliver alerts.
+
+## Decision: Authentication follows read-only workflow discovery
+
+One-owner, loopback-only read development may precede authentication. Private
+authentication is mandatory before state-changing V2 commands or non-loopback
+deployment. The planned boundary uses secure opaque sessions, password hashing,
+CSRF protection, origin validation, expiry/revocation and authentication audit;
+it does not introduce public registration or multi-tenancy.
