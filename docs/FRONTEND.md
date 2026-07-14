@@ -13,6 +13,7 @@ frontend/
 │   ├── api/                HTTP transport and tests
 │   ├── app/                Application placeholder and route foundation
 │   ├── config/             Browser-environment validation
+│   ├── design-system/      Tokens, global styles and reusable UI primitives
 │   └── test/               Shared test setup
 ├── .env.example
 ├── package.json
@@ -42,9 +43,11 @@ Development:
   without conflicting lint rules.
 - React and Node type packages: compile-time definitions only.
 
-No Axios/fetch wrapper, global state manager, UI kit, CSS framework, chart package,
-authentication library or API-schema generator is included. V2.0.2 has no product
-requirement for them. Native `fetch` is sufficient for the transport foundation.
+`lucide-react` is the single icon dependency introduced by V2.0.3. Its SVG React
+components are tree-shakeable and avoid icon-font assets. No Axios/fetch wrapper,
+global state manager, UI kit, CSS framework, chart package, authentication library
+or API-schema generator is included. Native `fetch` remains sufficient for the
+transport foundation.
 
 ## Local Development
 
@@ -84,6 +87,8 @@ The production output is `frontend/dist/` and is not committed.
 - Components do not access PostgreSQL, Dhan or backend implementation modules.
 - Business calculations remain in backend services.
 - ESLint handles correctness; Prettier handles formatting.
+- Design-system consumers import from `src/design-system`; token and accessibility
+  conventions are documented in `docs/DESIGN_SYSTEM.md`.
 
 ## API Boundary
 

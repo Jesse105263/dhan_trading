@@ -28,13 +28,15 @@ or database changes.
 
 ### V2.0.2 — Frontend Project Foundation
 
-Status: Implemented and verified; pending repository-owner review.
+Status: Complete.
 
 Create the React, TypeScript and Vite project, package lock, test/lint tooling,
 route skeleton, API-client conventions, development proxy and production build
 structure. This is frontend-only and requires explicit dependency-install approval.
 
 ### V2.0.3 — Design System
+
+Status: Implemented and verified; pending repository-owner review.
 
 Create semantic tokens and reusable accessible layouts, cards, tables, controls,
 chart framing, icons and loading/empty/stale/error states. Establish dark-mode-ready
@@ -131,16 +133,17 @@ no-live-execution boundary. Local deployment remains the default.
 - State-changing: V2.0.14–V2.0.16 when server persistence is selected.
 - Migration-requiring: V2.0.13; V2.0.14–V2.0.16 only when their approved designs
   require new audit, idempotency or preference state.
-- External dependency installation: V2.0.2, V2.0.3 if a chart package is selected,
-  and V2.0.13; any framework dependency depends on V2.0.12.
+- External dependency installation: V2.0.2, V2.0.3 for the approved icon package,
+  and V2.0.13; chart dependencies remain deferred, and any framework dependency
+  depends on V2.0.12.
 - Highest accidental live-execution risk: V2.0.14. Its verification must prove no
   broker client, live-order table, execution route or paper promotion exists.
 
 ## Current Milestone
 
-V2.0.2 — Frontend Project Foundation.
+V2.0.3 — Design System.
 
 ## Next Milestone After Review
 
-V2.0.3 — Design System. It must not begin until V2.0.2 is reviewed and explicitly
-approved by the repository owner.
+V2.0.4 — Application Shell. It must not begin until V2.0.3 is reviewed and
+explicitly approved by the repository owner.

@@ -221,6 +221,12 @@ design system and application shell before feature workspaces. Market, research,
 signals, replay/backtesting, paper portfolio, operations and Copilot workspaces are
 built read-only before authentication and commands.
 
+The design system uses semantic CSS custom properties and accessible React
+primitives without adopting a third-party component or CSS framework. Components
+remain product-agnostic and contain no data or trading policy. `lucide-react` is
+the single icon source because its SVG components are consistent, tree-shakeable
+and do not require an icon font.
+
 The Operations Workspace combines health, pipeline freshness, scheduler status,
 failures, alert history and operational audit. Reading alert records cannot
 generate, retry or deliver alerts.

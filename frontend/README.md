@@ -10,6 +10,10 @@ V2.0.2 provides foundation only: one placeholder route, a typed API-client patte
 environment handling and build/test/lint/format tooling. It contains no product
 workspace, authentication, chart, market-data request or business behavior.
 
+V2.0.3 adds reusable design-system tokens and components under
+`src/design-system/`. The application remains the same placeholder and does not
+render a component gallery or product workspace. See `docs/DESIGN_SYSTEM.md`.
+
 ## Requirements
 
 - Node.js 26
@@ -45,6 +49,7 @@ frontend/
 │   ├── api/                HTTP transport abstractions
 │   ├── app/                Application entry route and composition
 │   ├── config/             Validated browser environment
+│   ├── design-system/      Reusable tokens, styles and components
 │   └── test/               Shared test setup
 ├── package.json            npm scripts and dependency declarations
 ├── tsconfig*.json          Browser and tooling TypeScript projects
@@ -64,6 +69,8 @@ frontend/
   not compete.
 - Dependencies are added only in the milestone that needs them and must be pinned
   through `package-lock.json`.
+- Lucide is the single icon system; decorative icons are hidden from assistive
+  technology and icon-only controls require accessible labels.
 
 ## API Boundary
 

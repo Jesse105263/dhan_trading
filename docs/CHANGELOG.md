@@ -483,3 +483,17 @@ Official transition from script-based development to platform architecture.
 - Added browser-safe environment handling and optional development proxy settings.
 - Added no API calls, product workspaces, charts, authentication or business logic.
 - Preserved `/api/v1`, Python services, repositories, migrations and database state.
+
+## V2.0.3 — Design System
+
+- Added semantic light and future-dark theme tokens for color, typography,
+  spacing, shape, elevation, breakpoints, z-index and motion.
+- Added global focus, disabled, reduced-motion, layout and responsive styles.
+- Added reusable controls, content surfaces, status labels, loading/error/empty
+  states, headers, toolbar, modal, drawer and typed table shell.
+- Added native form semantics with associated hints and validation errors.
+- Added sticky responsive tables with sortable-header request UI but no sorting
+  policy or data behavior.
+- Added `lucide-react` as the single tree-shakeable SVG icon source.
+- Added component behavior and accessibility tests.
+- Added no product workspace, API, authentication, chart or business logic.
