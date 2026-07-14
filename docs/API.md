@@ -11,6 +11,9 @@ V2.0.7 adds bounded `GET /api/v2/memory`, `/latest`, `/previous`, snapshot
 detail, allow-listed feature history and exact comparison. See
 `docs/MARKET_MEMORY.md`.
 
+V2.0.8 adds GET-only feature definitions, bounded vector lists and vector detail
+under `/api/v2/features`. See `docs/FEATURE_STORE.md`.
+
 Base URL: `http://127.0.0.1:8080`
 
 ## Contract

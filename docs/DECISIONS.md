@@ -257,3 +257,14 @@ Reason: the current tables already preserve observation timestamps, reusable
 features and foreign-key lineage. Duplication would add synchronization ambiguity
 without supplying new evidence. Metrics absent from persisted data remain
 unsupported until a separately approved pipeline can calculate and persist them.
+## V2.0.8 Uses Normalized, Versioned Feature Vectors
+
+Decision: persist one deterministic `option-observation-v1` vector per canonical
+analytics snapshot, with normalized numeric values and exact analytics, change and
+ranking lineage. Keep nulls explicit and report `COMPLETE` or `PARTIAL` quality;
+do not impute unavailable metrics.
+
+Reason: Historical Outcome and Similarity engines need stable point-in-time inputs
+that can be queried and compared without rebuilding features differently in every
+consumer. A schema version permits later feature definitions without rewriting
+historical meaning.

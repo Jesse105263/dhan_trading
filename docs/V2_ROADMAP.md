@@ -15,6 +15,8 @@ preserved as the stable backend baseline.
   approved milestone provides evidence for change.
 - Read-only workflows precede authenticated commands.
 - No milestone introduces live broker execution.
+- Every milestone must increase the system's ability to discover statistically
+  better trading opportunities; otherwise defer it.
 
 ## Ordered Milestones
 
@@ -67,7 +69,7 @@ reimplement expiry or analytics policy.
 
 ### V2.0.7 — Market Memory Foundation
 
-Status: Implemented and verified; pending repository-owner review.
+Status: Complete.
 
 Unify existing immutable analytics, ranking, selection, risk, signal and equity
 feature records behind bounded historical snapshot, feature-history and comparison
@@ -75,6 +77,8 @@ queries. Add the read-only Market Memory workspace. Do not invent absent feature
 duplicate canonical records, trigger pipelines or generate recommendations.
 
 ### V2.0.8 — Feature Store
+
+Status: Implemented and verified; pending repository-owner review.
 
 Establish versioned, reusable feature vectors derived only from supported persisted
 market observations. Preserve source timestamps, feature definitions, data-quality
@@ -122,9 +126,9 @@ events. The analyst has no execution tools and cannot place trades.
 
 ## Current Milestone
 
-V2.0.7 — Market Memory Foundation.
+V2.0.8 — Feature Store.
 
 ## Next Milestone After Review
 
-V2.0.8 — Feature Store. It must not begin until V2.0.7 is
+V2.0.9 — Historical Outcome Engine. It must not begin until V2.0.8 is
 reviewed and explicitly approved by the repository owner.

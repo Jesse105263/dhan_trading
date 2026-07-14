@@ -5,8 +5,9 @@
 Version 2 is the active approved roadmap. V2.0.1 — Architecture & Product Decisions,
 V2.0.2 — Frontend Project Foundation, V2.0.3 — Design System and V2.0.4 —
 Application Shell, V2.0.5 — Market Overview & Opportunity Scanner and V2.0.6 —
-Symbol Intelligence Workspace are complete. Current milestone: V2.0.7 — Market
-Memory Foundation, implemented pending repository-owner review.
+Symbol Intelligence Workspace and V2.0.7 — Market Memory Foundation are complete.
+Current milestone: V2.0.8 — Feature Store, implemented pending repository-owner
+review.
 
 See `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 `docs/V2_ROADMAP.md`.
@@ -180,9 +181,9 @@ Use `python -m scripts.paper_trade` to open, mark, close and inspect isolated si
 
 ## Next Activity
 
-Complete repository-owner review of V2.0.7. Do not begin V2.0.8 until instructed.
-The approved next milestone is V2.0.8 — Feature Store.
-The approved sequence then continues with V2.0.9 — Historical Outcome Engine,
+Complete repository-owner review of V2.0.8. Do not begin V2.0.9 until instructed.
+The approved next milestone is V2.0.9 — Historical Outcome Engine.
+The approved sequence then continues with
 V2.1.0 — Similarity Engine, V2.1.1 — Trade Opportunity Engine, V2.1.2 — News &
 Event Intelligence and V2.1.3 — AI Trading Analyst.
 

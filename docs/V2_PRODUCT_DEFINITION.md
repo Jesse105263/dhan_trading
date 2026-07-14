@@ -2,10 +2,15 @@
 
 ## Product Vision
 
-Version 2 turns the verified Version 1 backend and private read-only dashboard
-into a polished private trading-intelligence and paper-trading workspace. It is a
-product-surface evolution, not a rewrite of stable collection, analytics,
-decision, evaluation or persistence components.
+Version 2 turns the verified Version 1 backend into a private, single-owner AI
+Trading Intelligence Platform. Its primary objective is to discover statistically
+exceptional opportunities from historical market behavior and eventually provide
+evidence-backed entry, stop, target, confidence, historical win-rate, expected-value,
+reasons-for and reasons-against evidence. It is not a generic dashboard product.
+
+Every milestone must materially improve the system's ability to discover
+statistically better opportunities. Visual or operational work that does not serve
+that objective is deferred.
 
 The primary user is one trusted repository owner operating locally first, with a
 possible authenticated private VPS deployment later.
@@ -24,6 +29,12 @@ possible authenticated private VPS deployment later.
 - Preserve backward compatibility with Version 1 pipelines and API consumers.
 
 ## Target Workflows
+
+The final evidence chain should answer whether a current setup occurred before,
+what followed, what caused failures, which entry/stop/target historically improved
+expectancy, and which niche opportunities are developing. Deterministic engines
+produce opportunities; the future AI analyst explains and ranks them without
+inventing them.
 
 1. Open the workspace and understand platform health, scheduler state, pipeline
    freshness, failures and alert history.

@@ -544,3 +544,12 @@ Official transition from script-based development to platform architecture.
 - Added unit, API, PostgreSQL repository and frontend coverage.
 - Added `docs/MARKET_MEMORY.md`; no migration, dependency, collector, pipeline,
   recommendation or execution capability was added.
+## V2.0.8 — Feature Store
+
+- Added migration `018` for versioned feature vectors and normalized numeric values.
+- Added 56 explicit analytics, change, ranking and temporal feature definitions.
+- Added idempotent, bounded offline materialization with exact Market Memory lineage
+  and explicit completeness metadata.
+- Added GET-only feature definition, list and detail routes under `/api/v2/features`.
+- Added unit, API and PostgreSQL integration coverage without AI, recommendation,
+  collector, frontend or execution behavior.

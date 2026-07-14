@@ -135,3 +135,12 @@ allow-listed feature evolution and exact comparisons. No parallel feature table,
 migration or write-on-read behavior is introduced. Future evidence models must
 reference canonical snapshot and lineage identifiers rather than untraceable
 browser calculations.
+
+## Feature Store Boundary
+
+V2.0.8 materializes versioned numeric vectors from canonical Market Memory
+observations into migration `018`. `FeatureStoreRepository` exclusively owns
+feature persistence and reads; `FeatureStoreService` owns the allow-listed schema,
+deterministic identity, temporal derivation and quality policy. Materialization is
+an explicit offline command. HTTP exposes GET-only projections and cannot trigger
+materialization.

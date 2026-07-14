@@ -13,6 +13,7 @@ from services.read_api_repository import ReadApiRepository
 from services.market_workspace_service import MarketWorkspaceService, WorkspaceQueryError, WorkspaceUnavailable
 from services.symbol_workspace_service import SymbolWorkspaceService
 from services.market_memory_service import MarketMemoryService
+from services.feature_store_service import FeatureStoreService
 
 
 @dataclass(frozen=True)
@@ -26,11 +27,12 @@ class ReadOnlyApi:
     DEFAULT_LIMIT = 20
     MAX_LIMIT = 100
 
-    def __init__(self, repository: ReadApiRepository | None = None, workspace: MarketWorkspaceService | None = None, symbols: SymbolWorkspaceService | None = None, memory: MarketMemoryService | None = None) -> None:
+    def __init__(self, repository: ReadApiRepository | None = None, workspace: MarketWorkspaceService | None = None, symbols: SymbolWorkspaceService | None = None, memory: MarketMemoryService | None = None, features: FeatureStoreService | None = None) -> None:
         self.repository = repository or ReadApiRepository()
         self.workspace = workspace or MarketWorkspaceService()
         self.symbols = symbols or SymbolWorkspaceService()
         self.memory = memory or MarketMemoryService()
+        self.features = features or FeatureStoreService()
 
     def handle(self, method: str, path: str, query_string: str = "") -> ApiResponse:
         if method.upper() != "GET":
@@ -39,7 +41,30 @@ class ReadOnlyApi:
         if normalized == "/health":
             return ApiResponse(HTTPStatus.OK, self.repository.health())
         if normalized == "/api/v2":
-            return ApiResponse(HTTPStatus.OK, {"name": "Dhan Trading Platform Read API", "version": "v2", "resources": ["overview", "opportunities", "symbols", "memory"]})
+            return ApiResponse(HTTPStatus.OK, {"name": "Dhan Trading Platform Read API", "version": "v2", "resources": ["overview", "opportunities", "symbols", "memory", "features"]})
+        if normalized == "/api/v2/features/definitions":
+            return ApiResponse(HTTPStatus.OK, {"data": self.features.definitions(), "schema_version": self.features.SCHEMA_VERSION})
+        if normalized == "/api/v2/features":
+            try:
+                query = {key: values[0] for key, values in parse_qs(query_string, keep_blank_values=True).items()}
+                return ApiResponse(HTTPStatus.OK, self.features.list(query))
+            except WorkspaceQueryError as exc:
+                return self._error(HTTPStatus.BAD_REQUEST, "invalid_query", str(exc))
+            except WorkspaceUnavailable:
+                return self._error(HTTPStatus.SERVICE_UNAVAILABLE, "database_unavailable", "Persisted features are unavailable.")
+        feature_prefix = "/api/v2/features/"
+        if normalized.startswith(feature_prefix) and "/" not in normalized[len(feature_prefix):]:
+            try:
+                vector_id = UUID(normalized[len(feature_prefix):])
+            except ValueError:
+                return self._error(HTTPStatus.BAD_REQUEST, "invalid_vector_id", "Feature vector ID must be a valid UUID.")
+            try:
+                data = self.features.detail(vector_id)
+            except WorkspaceUnavailable:
+                return self._error(HTTPStatus.SERVICE_UNAVAILABLE, "database_unavailable", "Persisted features are unavailable.")
+            if data is None:
+                return self._error(HTTPStatus.NOT_FOUND, "not_found", "Feature vector was not found.")
+            return ApiResponse(HTTPStatus.OK, {"data": data})
         if normalized in ("/api/v2/memory", "/api/v2/memory/latest", "/api/v2/memory/previous"):
             try:
                 query = {key: values[0] for key, values in parse_qs(query_string, keep_blank_values=True).items()}
