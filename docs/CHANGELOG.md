@@ -564,3 +564,15 @@ Official transition from script-based development to platform architecture.
 - Added GET-only outcome list, detail, history and persisted-only statistics APIs.
 - Added unit, API and PostgreSQL integration coverage; no frontend, AI,
   recommendation or execution behavior was added.
+
+## V2.1.0 — Similarity Engine
+
+- Added migration `020` for deterministic, versioned similarity runs and matches.
+- Added historical-only normalized weighted distance with explicit allow-list,
+  weights, null policy, overlap threshold, diagnostics and leakage prevention.
+- Added GET-only model, analysis and persisted-run APIs plus an idempotent operator
+  materializer and exact Feature/Outcome lineage.
+- Added a focused accessible Market Memory similarity view with explicit
+  insufficient-evidence behavior and no recommendation language.
+- Added service, API, PostgreSQL integration and frontend coverage without new
+  dependencies, collectors, AI, execution or `/api/v1` changes.

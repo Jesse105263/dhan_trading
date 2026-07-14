@@ -81,7 +81,7 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 ## Status
 
 Version 1.0 is complete, verified and approved. Version 2 milestones V2.0.1 through
-V2.0.8 are complete. V2.0.9 — Historical Outcome Engine is implemented pending
+V2.0.9 are complete. V2.1.0 — Similarity Engine is implemented pending
 repository-owner review.
 
 The Version 2 frontend is isolated under `frontend/`. See `docs/FRONTEND.md` for
@@ -90,6 +90,7 @@ components and accessibility conventions.
 Application-shell routing, providers and responsive layout are documented in
 `docs/APPLICATION_SHELL.md`.
 The first persisted Version 2 workflow is documented in `docs/MARKET_WORKSPACE.md`.
+Deterministic historical matching is documented in `docs/SIMILARITY_ENGINE.md`.
 Historical evidence queries and the `/memory` workspace are documented in
 `docs/MARKET_MEMORY.md`.
 Versioned reusable features are documented in `docs/FEATURE_STORE.md`.

@@ -1,5 +1,10 @@
 # Dhan Trading Platform — Version 2 Product Definition
 
+V2.1.0 adds deterministic historical analogue retrieval as evidence
+infrastructure. Similarity is not a recommendation: it exposes reproducible
+Feature Store matches, persisted outcomes, limitations and exact lineage for the
+later Trade Opportunity Engine.
+
 ## Product Vision
 
 Version 2 turns the verified Version 1 backend into a private, single-owner AI

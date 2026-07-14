@@ -279,3 +279,14 @@ Reason: sparse snapshots can objectively establish an observed path but cannot
 establish unobserved prices or an expiry result. Explicit partial state prevents
 look-ahead, interpolation and false labels from contaminating future similarity
 and opportunity statistics.
+
+## V2.1.0 Uses Transparent Persisted Similarity Runs
+
+Decision: use min-max normalized weighted Manhattan distance over a versioned
+feature allow-list. Operator-materialized runs and matches have deterministic
+identifiers; GET analysis is non-mutating. Outcomes attach only after ranking.
+
+Reason: the method is null-safe, inspectable and reproducible on the current
+small local dataset, needs no ML/vector dependency, and preserves evidence
+lineage for V2.1.1. Vector databases, ML frameworks, opaque embeddings and
+outcome-informed distance are rejected.

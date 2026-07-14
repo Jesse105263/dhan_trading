@@ -17,6 +17,12 @@ under `/api/v2/features`. See `docs/FEATURE_STORE.md`.
 V2.0.9 adds bounded outcome lists/detail, chronological history and persisted-only
 statistics under `/api/v2/outcomes`. See `docs/HISTORICAL_OUTCOME_ENGINE.md`.
 
+V2.1.0 adds similarity model metadata, non-mutating analysis and persisted-run
+reads under `/api/v2/similarity`. Analysis requires `vector_id`; supports bounded
+limit, symbol/expiry restrictions and an earlier historical cutoff. Responses
+include exact lineage, diagnostics, persisted outcomes and explicit evidence
+state. See `docs/SIMILARITY_ENGINE.md`. `/api/v1` remains unchanged.
+
 Base URL: `http://127.0.0.1:8080`
 
 ## Contract

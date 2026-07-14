@@ -1,0 +1,42 @@
+.similarity-controls {
+  display: grid;
+  grid-template-columns: minmax(12rem, 24rem) auto;
+  gap: var(--space-4);
+  align-items: end;
+}
+.similarity-vector-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+.similarity-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+.similarity-table-wrap {
+  overflow-x: auto;
+}
+.similarity-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.similarity-table th {
+  position: sticky;
+  top: 0;
+  background: var(--color-surface-raised);
+  text-align: left;
+}
+.similarity-table th,
+.similarity-table td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+@media (max-width: 40rem) {
+  .similarity-controls {
+    grid-template-columns: 1fr;
+  }
+}

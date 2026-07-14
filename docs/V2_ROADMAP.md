@@ -98,6 +98,8 @@ Find historically similar feature-store observations and return their exact sour
 snapshots and measured outcomes. Similarity is evidence retrieval, not a trade
 recommendation.
 
+Status: Implemented and verified; pending repository-owner review.
+
 ### V2.1.1 — Trade Opportunity Engine
 
 Generate evidence-backed opportunity assessments from current features, historical
@@ -128,9 +130,9 @@ events. The analyst has no execution tools and cannot place trades.
 
 ## Current Milestone
 
-V2.0.9 — Historical Outcome Engine.
+V2.1.0 — Similarity Engine.
 
 ## Next Milestone After Review
 
-V2.1.0 — Similarity Engine. It must not begin until V2.0.9 is
+V2.1.1 — Trade Opportunity Engine. It must not begin until V2.1.0 is
 reviewed and explicitly approved by the repository owner.

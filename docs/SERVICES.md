@@ -206,3 +206,14 @@ Paper trading has no Dhan or broker-order dependency. See `docs/PAPER_TRADING.md
 PASS means evidence satisfies the invariant. FAIL blocks release. SKIP is limited
 to optional persisted datasets with no records. The service does not run migrations,
 perform cleanup, call Dhan or invoke any product workflow.
+
+## Similarity Engine
+
+- `services/similarity_repository.py` — persisted Feature/Outcome reads and
+  auditable run/match persistence.
+- `services/similarity_service.py` — historical-only scaling, weighted distance,
+  deterministic ranking, evidence statistics and outcome attachment policy.
+- `scripts/materialize_similarity_run.py` — explicit operator materialization.
+
+No similarity service calls Dhan, generates recommendations or changes source
+market records. See `docs/SIMILARITY_ENGINE.md`.

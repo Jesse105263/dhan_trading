@@ -153,3 +153,12 @@ migration `019`. `HistoricalOutcomeRepository` owns persistence and aggregate SQ
 `HistoricalOutcomeService` owns point-in-time filtering, objective calculations,
 completion policy and deterministic identity. HTTP is GET-only and cannot invoke
 materialization. Similarity and opportunity engines must consume stored outcomes.
+
+## Similarity Boundary
+
+V2.1.0 uses `SimilarityService` for allow-listed feature preparation,
+historical-only scaling, weights, overlap policy, deterministic distance/ranking,
+and post-ranking outcome attachment. `SimilarityRepository` owns Store reads and
+migration `020` run/match persistence. HTTP remains thin and GET-only. Outcome
+values never enter distance calculation; the browser performs no similarity or
+financial policy calculation.

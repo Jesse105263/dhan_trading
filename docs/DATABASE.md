@@ -6,6 +6,13 @@ PostgreSQL is the source of truth for persistent platform state.
 
 ## Current Core Tables
 
+### similarity_runs and similarity_matches
+
+Versioned, deterministic V2.1.0 analysis records. Runs preserve query Feature
+Store lineage, configuration and filters; matches preserve rank, distance,
+feature diagnostics and optional Historical Outcome lineage. Migration `020`
+does not modify source vectors or outcomes.
+
 ### instruments
 
 Master list of supported underlying instruments.

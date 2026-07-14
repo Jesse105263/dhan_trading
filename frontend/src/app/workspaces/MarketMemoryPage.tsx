@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { marketMemoryApi, type MemorySnapshot } from '../../api/market-memory'
 import {
   EmptyState,
@@ -123,6 +124,9 @@ export function MarketMemoryPage() {
         title={`Market Memory · ${parameters.get('symbol')}`}
         description="Immutable observations and deterministic comparisons. No recommendation is generated."
       />
+      <p>
+        <Link to="/memory/similarity">Open deterministic historical similarity</Link>
+      </p>
       <Panel>
         <form
           className="memory-filters"
