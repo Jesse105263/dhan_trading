@@ -1,5 +1,10 @@
 # Dhan Trading Platform — Version 1.0 Implementation Plan
 
+> Historical planning document. Version 1.0 and its active-roadmap Milestone 4.6
+> are complete and approved at `030ade7 add release readiness verification`.
+> Status labels below preserve the original plan and do not define current or
+> future work. No post-Version-1.0 roadmap has been approved.
+
 ## Current Version
 
 v0.3.0

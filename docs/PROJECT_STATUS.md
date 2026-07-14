@@ -1,18 +1,21 @@
 # Project Status
 
-## Current Phase
+## Release Status
 
-Phase 4 — Product Surface
+Version 1.0 is complete and approved.
 
-## Current Milestone
+Milestone 4.6 — Version 1.0 Release Hardening is complete. All automated,
+PostgreSQL, migration, backup/restore, runtime and release-readiness verification
+passed. No migration `018` was required.
 
-Milestone 4.6 — Version 1.0 Release Hardening
+No post-Version-1.0 roadmap has been approved. The next activity is a separate
+roadmap-planning exercise, not Milestone 4.7.
 
 ## Repository Checkpoint
 
-Milestone 4.5 is committed at `fe7c45d add isolated paper trading`.
-Milestone 4.6 release-hardening changes are implemented locally pending complete
-verification and review.
+The final Version 1.0 commit checkpoint is
+`030ade7 add release readiness verification`.
+The previous commit is `fe7c45d add isolated paper trading`.
 
 ## Completed Milestones
 
@@ -163,10 +166,10 @@ Run `python -m scripts.ask_copilot "Explain the latest ranking" --symbol RELIANC
 
 Use `python -m scripts.paper_trade` to open, mark, close and inspect isolated simulated positions. See `docs/PAPER_TRADING.md`.
 
-## Next Task
+## Next Activity
 
-Complete the Milestone 4.6 verification matrix and owner review without modifying
-production records.
+Conduct a separate roadmap-planning exercise. No post-Version-1.0 roadmap or new
+milestone number has been approved.
 
-See `docs/NEXT_TASK.md`, `docs/OPERATIONS_RUNBOOK.md` and
-`docs/RELEASE_READINESS_CHECKLIST.md`.
+Existing Version 1.0 safety boundaries remain unchanged. See `docs/NEXT_TASK.md`,
+`docs/OPERATIONS_RUNBOOK.md` and `docs/RELEASE_READINESS_CHECKLIST.md`.

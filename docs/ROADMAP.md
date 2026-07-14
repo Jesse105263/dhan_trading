@@ -8,13 +8,16 @@ The ordered implementation plan is documented in:
 
 - `docs/V1_IMPLEMENTATION_PLAN.md`
 
-## Current Phase
+## Version 1.0 Status
 
-Phase 4 — Product Surface
+Complete and approved.
 
-## Current Milestone
+Milestone 4.6 — Version 1.0 Release Hardening is complete. The final Version 1.0
+commit checkpoint is `030ade7 add release readiness verification`; the previous
+commit is `fe7c45d add isolated paper trading`.
 
-Milestone 4.6 — Version 1.0 Release Hardening
+All release verification passed, and no migration `018` was required. Existing
+Version 1.0 safety boundaries remain unchanged.
 
 ## Version Targets
 
@@ -51,9 +54,10 @@ Milestone 4.6 — Version 1.0 Release Hardening
 20. [x] Alerts
 21. [x] AI Copilot
 22. [x] Paper trading
-23. [ ] Version 1.0 release hardening verification and owner approval
+23. [x] Version 1.0 release hardening verification and owner approval
 
-## Immediate Next Step
+## Roadmap Boundary
 
-Finish the Version 1.0 verification matrix and isolated recovery drill, record the
-evidence in `docs/RELEASE_READINESS_CHECKLIST.md`, and obtain owner approval.
+This roadmap ends with the approved Version 1.0 release. No post-Version-1.0
+roadmap has been approved. The next activity is a separate roadmap-planning
+exercise, not Milestone 4.7. No subsequent milestone is defined here.

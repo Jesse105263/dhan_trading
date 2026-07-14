@@ -1,45 +1,37 @@
-# Next Task
+# Next Activity
 
-## Phase
+## Version 1.0 Status
 
-Phase 4 — Product Surface
+Version 1.0 is complete and approved. Milestone 4.6 — Version 1.0 Release
+Hardening is complete.
 
-## Milestone
+The final Version 1.0 commit checkpoint is:
 
-Milestone 4.6 — Version 1.0 Release Hardening
+```text
+030ade7 add release readiness verification
+```
 
-## Objective
+The previous commit is:
 
-Validate the complete Version 1.0 platform, audit all safety boundaries and produce an operational release runbook.
+```text
+fe7c45d add isolated paper trading
+```
 
-## Implementation State
+All automated, PostgreSQL, migration, backup/restore, runtime and release-readiness
+verification passed. No migration `018` was required.
 
-The SELECT-only readiness verifier, focused tests, operational runbook and release
-checklist are implemented locally. The automated, PostgreSQL, runtime, fresh
-migration and isolated recovery verification matrix is green. Remaining work is
-owner review and release approval. No migration `018` was required.
+## Roadmap Status
 
-## Required Scope
+No post-Version-1.0 roadmap has been approved. The next activity is a separate
+roadmap-planning exercise, not Milestone 4.7. This document does not define that
+roadmap or authorize implementation work.
 
-- Run complete end-to-end production and recovery verification.
-- Audit database migrations, source lineage and cleanup behavior.
-- Audit read-only, alert, AI and paper/live-execution safety boundaries.
-- Document startup, shutdown, monitoring, backup and recovery procedures.
-- Resolve stale documentation and produce a release-readiness checklist.
+## Continuing Constraints
 
-## Engineering Constraints
-
-- Treat the repository and verified production state as the source of truth.
+- Treat the repository as the source of truth.
 - Do not add broker-order functionality.
 - Maintain backward compatibility with the production equity and option pipelines.
-- Add unit tests and integration/smoke coverage appropriate to the selected implementation.
-- Update documentation before Git.
-- Commit only after full verification.
-
-## Definition of Done
-
-- All platform milestones pass the complete verification matrix.
-- Safety and recovery audits have explicit evidence.
-- The operational runbook is usable from a clean environment.
-- Existing automated and PostgreSQL integration suites remain green.
-- Documentation reflects the final architecture and operating commands.
+- Preserve the GET-only API and HTTP-only dashboard boundaries.
+- Preserve Copilot execution refusal and the absence of model tools.
+- Preserve isolated paper trading with no broker adapter or promotion path.
+- Require explicit approval before any future roadmap or implementation begins.

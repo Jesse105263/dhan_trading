@@ -1,9 +1,10 @@
 # Version 1.0 Release-Readiness Checklist
 
-## Release Candidate
+## Release Checkpoint
 
-- [x] Candidate commit recorded: `fe7c45d` plus Milestone 4.6 changes pending review.
-- [ ] Worktree changes reviewed before commit.
+- [x] Final Version 1.0 commit recorded: `030ade7 add release readiness verification`.
+- [x] Previous commit recorded: `fe7c45d add isolated paper trading`.
+- [x] Release-hardening changes reviewed and committed.
 - [x] `git diff --check` is clean.
 - [x] No migration `018` exists; no schema defect was found.
 
@@ -84,7 +85,8 @@ PostgreSQL-test count: 176 passed; 2 expected production-data-dependent skips
 - [x] Restored database identity verified before tests.
 - [x] Release verifier passes against restored data.
 - [x] PostgreSQL repository/API contract tests pass against restored data.
-- [ ] Explicit approval obtained before isolated database deletion.
+- [ ] Explicit approval remains required before isolated database deletion; the
+      Version 1.0 release approval did not authorize that separate operation.
 
 Record evidence:
 
@@ -109,6 +111,10 @@ Readiness result: 8 PASS, 0 FAIL, 2 SKIP
 ## Final Approval
 
 - [x] All verified failures resolved; Copilot live-order wording regression covered.
-- [ ] Verification evidence reviewed by the repository owner.
-- [ ] Files staged for review; no commit created by the implementation session.
-- [ ] Version 1.0 release approved.
+- [x] Verification evidence reviewed by the repository owner.
+- [x] Release commit `030ade7` reviewed as the final Version 1.0 checkpoint.
+- [x] Version 1.0 release approved.
+
+No post-Version-1.0 roadmap has been approved. Roadmap planning is a separate
+activity, not Milestone 4.7. Existing Version 1.0 safety boundaries remain
+unchanged.

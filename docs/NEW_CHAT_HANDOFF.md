@@ -4,7 +4,7 @@
 
 This file is the authoritative handoff for continuing the Dhan Trading Platform in a new chat. The repository ZIP is the single source of truth. The new chat must inspect the repository and all documentation before writing code.
 
-## Latest Verified State
+## Latest Approved State
 
 - Phase 1 — Stable Market Core: complete
 - Phase 2 — Option Data Platform: complete
@@ -14,15 +14,22 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 - Milestone 4.3 — Alerts: complete and verified
 - Milestone 4.4 — AI Copilot: complete and verified
 - Milestone 4.5 — Paper Trading: complete and verified
-- Next milestone: 4.6 — Version 1.0 Release Hardening
+- Milestone 4.6 — Version 1.0 Release Hardening: complete and approved
+- Version 1.0: complete and approved
 
-The last committed checkpoint before the Milestone 4.1 handoff commit was:
+The final Version 1.0 commit checkpoint is:
 
 ```text
-ff5a695 add option backtesting engine
+030ade7 add release readiness verification
 ```
 
-The new chat must read the current `git log` output supplied in the prompt for the actual latest commit hash.
+The previous commit is:
+
+```text
+fe7c45d add isolated paper trading
+```
+
+Verify the current Git state before starting any later task.
 
 ## Latest Verification
 
@@ -135,15 +142,17 @@ Run with `python -m scripts.ask_copilot`. See `docs/COPILOT.md`.
 
 Run with `python -m scripts.paper_trade`. See `docs/PAPER_TRADING.md`.
 
-## Next Milestone
+## Next Activity
 
-Milestone 4.6 — Version 1.0 Release Hardening.
+No post-Version-1.0 roadmap has been approved. The next activity is a separate
+roadmap-planning exercise, not Milestone 4.7. Do not infer or begin a new milestone
+without repository-owner approval.
 
-Read `docs/NEXT_TASK.md` for scope and definition of done.
+Read `docs/NEXT_TASK.md` for the roadmap boundary and continuing constraints.
 
 ## Release-Hardening Implementation
 
-Milestone 4.6 adds a SELECT-only readiness repository and deterministic service,
+Milestone 4.6 added a SELECT-only readiness repository and deterministic service,
 exposed by `python -m scripts.verify_release`. It audits the exact migration
 inventory and checksums, persisted lineage, operational state and absence of an
 execution schema. Empty optional datasets are explicit `SKIP` results; invariant
@@ -153,3 +162,7 @@ Use `docs/OPERATIONS_RUNBOOK.md` for startup, shutdown, monitoring, backup and
 isolated recovery. Record evidence in `docs/RELEASE_READINESS_CHECKLIST.md`.
 Never run fresh-database, restore or failure-injection work against the normal
 PostgreSQL database.
+
+All Version 1.0 release verification passed, no migration `018` was required, and
+the existing read-only, no-live-execution, Copilot and isolated-paper-trading
+safety boundaries remain unchanged.

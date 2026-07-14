@@ -458,3 +458,16 @@ Official transition from script-based development to platform architecture.
 - Closed a verified Copilot execution-intent gap for live-order and broker-order
   wording while preserving refusal before evidence retrieval.
 - Added no migration, Dhan call, broker adapter or production cleanup behavior.
+
+## Version 1.0 Release Closure
+
+- Version 1.0 was reviewed and approved by the repository owner.
+- Recorded `030ade7 add release readiness verification` as the final Version 1.0
+  commit checkpoint and `fe7c45d add isolated paper trading` as its predecessor.
+- Confirmed all automated, PostgreSQL, migration, backup/restore, runtime and
+  release-readiness verification passed.
+- Confirmed no migration `018` was required.
+- Closed Milestone 4.6 — Version 1.0 Release Hardening.
+- Preserved all existing Version 1.0 safety boundaries.
+- Recorded that no post-Version-1.0 roadmap is approved; the next activity is a
+  separate roadmap-planning exercise, not Milestone 4.7.
