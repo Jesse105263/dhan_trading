@@ -81,7 +81,7 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 ## Status
 
 Version 1.0 is complete, verified and approved. Version 2 milestones V2.0.1 through
-V2.0.3 are complete. V2.0.4 — Application Shell is implemented pending
+V2.0.4 are complete. V2.0.5 — Market Overview & Opportunity Scanner is implemented pending
 repository-owner review.
 
 The Version 2 frontend is isolated under `frontend/`. See `docs/FRONTEND.md` for
@@ -89,6 +89,7 @@ its dependency policy and local commands, and `docs/DESIGN_SYSTEM.md` for tokens
 components and accessibility conventions.
 Application-shell routing, providers and responsive layout are documented in
 `docs/APPLICATION_SHELL.md`.
+The first persisted Version 2 workflow is documented in `docs/MARKET_WORKSPACE.md`.
 
 The Version 1 SELECT-only readiness report remains available with:
 

@@ -10,6 +10,7 @@ from urllib.parse import parse_qs
 from uuid import UUID
 
 from services.read_api_repository import ReadApiRepository
+from services.market_workspace_service import MarketWorkspaceService, WorkspaceQueryError, WorkspaceUnavailable
 
 
 @dataclass(frozen=True)
@@ -23,8 +24,9 @@ class ReadOnlyApi:
     DEFAULT_LIMIT = 20
     MAX_LIMIT = 100
 
-    def __init__(self, repository: ReadApiRepository | None = None) -> None:
+    def __init__(self, repository: ReadApiRepository | None = None, workspace: MarketWorkspaceService | None = None) -> None:
         self.repository = repository or ReadApiRepository()
+        self.workspace = workspace or MarketWorkspaceService()
 
     def handle(self, method: str, path: str, query_string: str = "") -> ApiResponse:
         if method.upper() != "GET":
@@ -32,6 +34,34 @@ class ReadOnlyApi:
         normalized = path.rstrip("/") or "/"
         if normalized == "/health":
             return ApiResponse(HTTPStatus.OK, self.repository.health())
+        if normalized == "/api/v2":
+            return ApiResponse(HTTPStatus.OK, {"name": "Dhan Trading Platform Read API", "version": "v2", "resources": ["overview", "opportunities"]})
+        if normalized == "/api/v2/overview":
+            try:
+                return ApiResponse(HTTPStatus.OK, self.workspace.overview())
+            except WorkspaceUnavailable:
+                return self._error(HTTPStatus.SERVICE_UNAVAILABLE, "database_unavailable", "Persisted market data is unavailable.")
+        if normalized == "/api/v2/opportunities":
+            try:
+                query = {key: values[0] for key, values in parse_qs(query_string, keep_blank_values=True).items()}
+                return ApiResponse(HTTPStatus.OK, self.workspace.opportunities(query))
+            except WorkspaceQueryError as exc:
+                return self._error(HTTPStatus.BAD_REQUEST, "invalid_query", str(exc))
+            except WorkspaceUnavailable:
+                return self._error(HTTPStatus.SERVICE_UNAVAILABLE, "database_unavailable", "Persisted market data is unavailable.")
+        opportunity_prefix = "/api/v2/opportunities/"
+        if normalized.startswith(opportunity_prefix) and "/" not in normalized[len(opportunity_prefix):]:
+            try:
+                ranking_id = UUID(normalized[len(opportunity_prefix):])
+            except ValueError:
+                return self._error(HTTPStatus.BAD_REQUEST, "invalid_ranking_id", "Ranking item ID must be a valid UUID.")
+            try:
+                row = self.workspace.opportunity(ranking_id)
+            except WorkspaceUnavailable:
+                return self._error(HTTPStatus.SERVICE_UNAVAILABLE, "database_unavailable", "Persisted market data is unavailable.")
+            if row is None:
+                return self._error(HTTPStatus.NOT_FOUND, "not_found", "Opportunity was not found.")
+            return ApiResponse(HTTPStatus.OK, {"data": row})
         if normalized == self.API_PREFIX:
             return ApiResponse(
                 HTTPStatus.OK,

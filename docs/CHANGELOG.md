@@ -514,3 +514,13 @@ Official transition from script-based development to platform architecture.
 - Added tests for nested routing, shell landmarks, responsive navigation controls,
   provider hosts, placeholder statuses and error/loading boundaries.
 - Added no API request, authentication, chart, product data or business behavior.
+
+## V2.0.5 — Market Overview & Opportunity Scanner
+
+- Added purpose-built GET-only V2 overview, opportunity-list and detail projections
+  while preserving `/api/v1`.
+- Added deterministic freshness bands and structured query, unavailable and
+  not-found errors.
+- Added dense persisted overview and scanner workspaces with filters, sorting,
+  source timestamps, downstream availability and lineage navigation.
+- Added no migration, dependency, write route, pipeline trigger or execution path.

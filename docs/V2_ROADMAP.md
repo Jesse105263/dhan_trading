@@ -36,7 +36,7 @@ structure. This is frontend-only and requires explicit dependency-install approv
 
 ### V2.0.3 — Design System
 
-Status: Implemented and verified; pending repository-owner review.
+Status: Complete.
 
 Create semantic tokens and reusable accessible layouts, cards, tables, controls,
 chart framing, icons and loading/empty/stale/error states. Establish dark-mode-ready
@@ -44,10 +44,14 @@ tokens without requiring a theme toggle.
 
 ### V2.0.4 — Application Shell
 
+Status: Complete.
+
 Build responsive navigation, workspace routing, global status, page composition,
 error boundaries and placeholder routes. Remain read-only and loopback-only.
 
 ### V2.0.5 — Market Overview & Opportunity Scanner
+
+Status: Implemented and verified; pending repository-owner review.
 
 Present current health and freshness summaries plus filterable persisted rankings
 and opportunity context. Add only required read projections; never trigger a
@@ -141,9 +145,9 @@ no-live-execution boundary. Local deployment remains the default.
 
 ## Current Milestone
 
-V2.0.4 — Application Shell.
+V2.0.5 — Market Overview & Opportunity Scanner.
 
 ## Next Milestone After Review
 
-V2.0.5 — Market Overview & Opportunity Scanner. It must not begin until V2.0.4 is
+V2.0.6 — Symbol Research Workspace. It must not begin until V2.0.5 is
 reviewed and explicitly approved by the repository owner.

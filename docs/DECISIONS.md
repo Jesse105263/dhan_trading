@@ -238,3 +238,10 @@ authentication is mandatory before state-changing V2 commands or non-loopback
 deployment. The planned boundary uses secure opaque sessions, password hashing,
 CSRF protection, origin validation, expiry/revocation and authentication audit;
 it does not introduce public registration or multi-tenancy.
+
+## Decision: Persisted-source freshness bands
+
+Market freshness is presentation policy: current through 15 minutes, aging through
+60 minutes, stale after 60 minutes and unavailable without a source timestamp. The
+API returns the persisted timestamp; the browser never implies data is live or
+recalculates financial analytics.

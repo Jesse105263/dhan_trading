@@ -112,3 +112,7 @@ state. Modal, drawer and toast hosts are UI infrastructure only.
 
 See `docs/APPLICATION_SHELL.md` for the route map, provider order, responsive rules
 and accessibility contract.
+
+V2.0.5 replaces the Market Overview and Scanner placeholders with local-state,
+native-fetch workflows and adds `/opportunities/:rankingId`. No query library or
+global business state is required. See `docs/MARKET_WORKSPACE.md`.

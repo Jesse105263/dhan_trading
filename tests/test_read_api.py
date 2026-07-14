@@ -31,7 +31,8 @@ class FakeRepository:
 class ReadOnlyApiTest(unittest.TestCase):
     def setUp(self) -> None:
         self.repository = FakeRepository()
-        self.api = ReadOnlyApi(self.repository)
+        self.workspace = FakeWorkspace()
+        self.api = ReadOnlyApi(self.repository, self.workspace)
 
     def test_health_and_index(self) -> None:
         self.assertEqual(self.api.handle("GET", "/health").status, HTTPStatus.OK)
@@ -59,3 +60,28 @@ class ReadOnlyApiTest(unittest.TestCase):
         self.assertEqual(self.api.handle("GET", "/api/v1/rankings/not-a-uuid").status, HTTPStatus.BAD_REQUEST)
         self.assertEqual(self.api.handle("GET", "/api/v1/unknown").status, HTTPStatus.NOT_FOUND)
         self.assertEqual(self.api.handle("POST", "/api/v1/rankings").status, HTTPStatus.METHOD_NOT_ALLOWED)
+
+    def test_v2_read_routes_errors_and_not_found(self) -> None:
+        self.assertEqual(self.api.handle("GET", "/api/v2").body["version"], "v2")
+        self.assertEqual(self.api.handle("GET", "/api/v2/overview").status, HTTPStatus.OK)
+        self.assertEqual(self.api.handle("GET", "/api/v2/opportunities", "limit=2").body["page"]["limit"], 2)
+        self.assertEqual(self.api.handle("GET", "/api/v2/opportunities", "limit=bad").status, HTTPStatus.BAD_REQUEST)
+        self.assertEqual(self.api.handle("GET", f"/api/v2/opportunities/{self.workspace.item_id}").status, HTTPStatus.OK)
+        self.assertEqual(self.api.handle("GET", f"/api/v2/opportunities/{uuid4()}").status, HTTPStatus.NOT_FOUND)
+
+
+class FakeWorkspace:
+    def __init__(self) -> None:
+        self.item_id = uuid4()
+
+    def overview(self):
+        return {"platform": {"status": "ok", "database_ready": True}}
+
+    def opportunities(self, query):
+        if query.get("limit") == "bad":
+            from services.market_workspace_service import WorkspaceQueryError
+            raise WorkspaceQueryError("limit must be an integer.")
+        return {"data": [], "page": {"limit": int(query.get("limit", 25)), "offset": 0, "count": 0, "total": 0}}
+
+    def opportunity(self, ranking_id):
+        return {"ranking_id": ranking_id} if ranking_id == self.item_id else None

@@ -122,3 +122,7 @@ promote a paper record into live state.
 - Browser assets and APIs should share an authenticated origin in deployment.
 - Existing operational backup, recovery and release-readiness discipline applies
   to every new persisted V2 capability.
+
+V2.0.5 implements the read-projection pattern with a thin V2 WSGI branch, a query
+service for validation and freshness, and explicit SELECT projections in a dedicated
+repository. `/api/v1` remains unchanged.
