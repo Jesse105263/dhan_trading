@@ -576,3 +576,15 @@ Official transition from script-based development to platform architecture.
   insufficient-evidence behavior and no recommendation language.
 - Added service, API, PostgreSQL integration and frontend coverage without new
   dependencies, collectors, AI, execution or `/api/v1` changes.
+
+## V2.1.1 — Trade Opportunity Engine
+
+- Added migration `021` for versioned opportunity runs, assessments and exact
+  Similarity/Feature/Outcome evidence links.
+- Added deterministic evidence eligibility, long underlying reference zones,
+  expected value, historical win rate, evidence quality, risk/reward, scoring and ranking.
+- Added explicit `INSUFFICIENT_EVIDENCE` and `NO_OPPORTUNITY` states with null
+  unsupported recommendation fields.
+- Added GET-only list/detail APIs and accessible opportunity workspace/detail routes.
+- Added backend, PostgreSQL and frontend coverage without AI, Dhan, execution,
+  paper trading, alerts, new dependencies or `/api/v1` changes.

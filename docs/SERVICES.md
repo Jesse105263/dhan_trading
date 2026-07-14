@@ -217,3 +217,14 @@ perform cleanup, call Dhan or invoke any product workflow.
 
 No similarity service calls Dhan, generates recommendations or changes source
 market records. See `docs/SIMILARITY_ENGINE.md`.
+
+## Trade Opportunity Engine
+
+- `services/trade_opportunity_repository.py` — persisted similarity evidence
+  reads and Opportunity Store persistence.
+- `services/trade_opportunity_service.py` — evidence eligibility, deterministic
+  zones, expected value, win rate, evidence quality, risk/reward and ranking.
+- `scripts/materialize_trade_opportunities.py` — explicit offline materializer.
+
+The service has no AI, broker, Dhan, alert or paper-trading dependency. See
+`docs/TRADE_OPPORTUNITY_ENGINE.md`.

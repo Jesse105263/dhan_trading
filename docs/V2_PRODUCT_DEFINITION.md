@@ -5,6 +5,11 @@ infrastructure. Similarity is not a recommendation: it exposes reproducible
 Feature Store matches, persisted outcomes, limitations and exact lineage for the
 later Trade Opportunity Engine.
 
+V2.1.1 adds deterministic opportunity assessments only where expiry-classified
+historical evidence supports them. Unsupported levels remain null, ranking score
+is not confidence, and the initial model exposes underlying reference zones rather
+than fabricating option-premium prices.
+
 ## Product Vision
 
 Version 2 turns the verified Version 1 backend into a private, single-owner AI

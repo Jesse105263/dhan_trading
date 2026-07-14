@@ -6,8 +6,8 @@ Version 2 is the active approved roadmap. V2.0.1 — Architecture & Product Deci
 V2.0.2 — Frontend Project Foundation, V2.0.3 — Design System and V2.0.4 —
 Application Shell, V2.0.5 — Market Overview & Opportunity Scanner and V2.0.6 —
 Symbol Intelligence Workspace, V2.0.7 — Market Memory Foundation and V2.0.8 —
-Feature Store and V2.0.9 — Historical Outcome Engine are complete. Current milestone:
-V2.1.0 — Similarity Engine,
+Feature Store, V2.0.9 — Historical Outcome Engine and V2.1.0 — Similarity Engine
+are complete. Current milestone: V2.1.1 — Trade Opportunity Engine,
 implemented pending repository-owner review.
 
 See `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
@@ -112,6 +112,7 @@ The release-hardening implementation checkpoint is
 - `018_feature_store.sql`
 - `019_historical_outcomes.sql`
 - `020_similarity_engine.sql`
+- `021_trade_opportunity_engine.sql`
 
 Migration `020` adds only reproducible Similarity Engine audit runs and matches.
 The migration runner applied it once, applied zero changes on rerun, and release
@@ -189,10 +190,9 @@ Use `python -m scripts.paper_trade` to open, mark, close and inspect isolated si
 
 ## Next Activity
 
-Complete repository-owner review of V2.1.0. Do not begin V2.1.1 until instructed.
-The approved next milestone is V2.1.1 — Trade Opportunity Engine.
-The approved sequence then continues with V2.1.2 — News &
-Event Intelligence and V2.1.3 — AI Trading Analyst.
+Complete repository-owner review of V2.1.1. Do not begin V2.1.2 until instructed.
+The approved next milestone is V2.1.2 — News & Event Intelligence.
+The approved sequence then continues with V2.1.3 — AI Trading Analyst.
 
 Existing Version 1.0 safety boundaries remain unchanged. See `docs/NEXT_TASK.md`,
 `docs/OPERATIONS_RUNBOOK.md` and `docs/RELEASE_READINESS_CHECKLIST.md`.

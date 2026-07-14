@@ -23,6 +23,10 @@ limit, symbol/expiry restrictions and an earlier historical cutoff. Responses
 include exact lineage, diagnostics, persisted outcomes and explicit evidence
 state. See `docs/SIMILARITY_ENGINE.md`. `/api/v1` remains unchanged.
 
+V2.1.1 adds bounded persisted opportunity lists and exact evidence detail under
+`/api/v2/trade-opportunities`. These routes are distinct from the existing ranking
+projection at `/api/v2/opportunities`. See `docs/TRADE_OPPORTUNITY_ENGINE.md`.
+
 Base URL: `http://127.0.0.1:8080`
 
 ## Contract

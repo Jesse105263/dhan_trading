@@ -6,6 +6,12 @@ PostgreSQL is the source of truth for persistent platform state.
 
 ## Current Core Tables
 
+### trade_opportunity_runs, trade_opportunities and trade_opportunity_evidence
+
+Migration `021` persists versioned deterministic opportunity batches,
+evidence-qualified assessments and exact Similarity/Feature/Outcome lineage.
+Source evidence records remain immutable.
+
 ### similarity_runs and similarity_matches
 
 Versioned, deterministic V2.1.0 analysis records. Runs preserve query Feature

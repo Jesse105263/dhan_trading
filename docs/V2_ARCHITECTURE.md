@@ -162,3 +162,11 @@ and post-ranking outcome attachment. `SimilarityRepository` owns Store reads and
 migration `020` run/match persistence. HTTP remains thin and GET-only. Outcome
 values never enter distance calculation; the browser performs no similarity or
 financial policy calculation.
+
+## Trade Opportunity Boundary
+
+V2.1.1 consumes persisted Similarity runs and their exact Feature/Outcome lineage.
+`TradeOpportunityService` owns evidence thresholds, deterministic long-reference
+zones, statistics, scoring and ranking. `TradeOpportunityRepository` owns migration
+`021` persistence and reads. HTTP remains GET-only and cannot materialize. The
+browser presents server calculations and cannot execute, alert or paper trade.

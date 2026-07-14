@@ -7,6 +7,7 @@ import {
   ListFilter,
   ScrollText,
   History,
+  Target,
   Search,
   Settings,
   WalletCards,
@@ -46,6 +47,12 @@ export const navigationItems: ReadonlyArray<NavigationItem> = [
     label: 'Symbol Research',
     description: 'A future workspace for persisted symbol and option-chain research.',
     icon: Search,
+  },
+  {
+    path: '/trade-opportunities',
+    label: 'Trade Opportunities',
+    description: 'Deterministic evidence-backed opportunity assessments.',
+    icon: Target,
   },
   {
     path: '/signals',

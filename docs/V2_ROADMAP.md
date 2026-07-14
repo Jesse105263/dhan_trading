@@ -86,7 +86,7 @@ state and exact Market Memory lineage. Do not generate recommendations.
 
 ### V2.0.9 — Historical Outcome Engine
 
-Status: Implemented and verified; pending repository-owner review.
+Status: Complete.
 
 Measure subsequent historical outcomes for eligible observations using explicit,
 auditable outcome definitions. Preserve point-in-time correctness and prevent
@@ -98,13 +98,15 @@ Find historically similar feature-store observations and return their exact sour
 snapshots and measured outcomes. Similarity is evidence retrieval, not a trade
 recommendation.
 
-Status: Implemented and verified; pending repository-owner review.
+Status: Complete.
 
 ### V2.1.1 — Trade Opportunity Engine
 
 Generate evidence-backed opportunity assessments from current features, historical
 outcomes and similar observations. Keep recommendations separate from execution
-and expose assumptions, confidence, expected value and lineage explicitly.
+and expose assumptions, evidence quality, expected value and lineage explicitly.
+
+Status: Implemented and verified; pending repository-owner review.
 
 ### V2.1.2 — News & Event Intelligence
 
@@ -130,9 +132,9 @@ events. The analyst has no execution tools and cannot place trades.
 
 ## Current Milestone
 
-V2.1.0 — Similarity Engine.
+V2.1.1 — Trade Opportunity Engine.
 
 ## Next Milestone After Review
 
-V2.1.1 — Trade Opportunity Engine. It must not begin until V2.1.0 is
+V2.1.2 — News & Event Intelligence. It must not begin until V2.1.1 is
 reviewed and explicitly approved by the repository owner.

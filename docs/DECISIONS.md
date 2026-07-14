@@ -290,3 +290,14 @@ Reason: the method is null-safe, inspectable and reproducible on the current
 small local dataset, needs no ML/vector dependency, and preserves evidence
 lineage for V2.1.1. Vector databases, ML frameworks, opaque embeddings and
 outcome-informed distance are rejected.
+
+## V2.1.1 Requires Classified Evidence and Uses Underlying Reference Zones
+
+Decision: require five expiry-complete matched outcomes before emitting long
+reference levels. Calculate pullback entry, adverse-excursion stop and two
+favourable-excursion targets from deterministic MAE/MFE quantiles. Keep all
+recommendation fields null for insufficient or non-positive evidence.
+
+Reason: Historical Outcomes measure underlying spot paths, not option premiums.
+This policy supports traceable evidence without inventing option prices or
+confidence. The ranking score orders eligible records and is not a probability.
