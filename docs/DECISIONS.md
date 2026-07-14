@@ -190,6 +190,21 @@ navigation while preserving a strict HTTP API boundary. The Version 1 dashboard
 remains available during migration. Dependencies are installed only when V2.0.2
 is explicitly authorized.
 
+## Decision: Isolated top-level frontend package
+
+The Version 2 Node project lives under `frontend/` with its own package manifest,
+lockfile, TypeScript configuration, tests and generated output. This keeps npm
+tooling and dependencies separate from the stable Python root while allowing both
+applications to remain in one repository. Generated dependencies, builds and
+coverage are ignored.
+
+React and React DOM provide rendering; React Router establishes the approved route
+foundation. Native `fetch` provides HTTP transport, so no HTTP-client dependency
+is introduced. Vite and TypeScript own builds and type checking; Vitest and Testing
+Library verify accessible behavior; ESLint and Prettier have separate correctness
+and formatting responsibilities. No state library, UI kit, chart library or
+authentication package is justified in V2.0.2.
+
 ## Decision: Preserve WSGI and `/api/v1` initially
 
 The stable GET-only `/api/v1` contract and standard-library WSGI implementation

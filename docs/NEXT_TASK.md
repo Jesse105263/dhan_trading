@@ -2,10 +2,11 @@
 
 ## Active Milestone
 
-V2.0.1 — Architecture & Product Decisions.
+V2.0.2 — Frontend Project Foundation.
 
-This is a documentation-only milestone. Its output establishes the approved
-Version 2 product definition, architecture and ordered roadmap.
+The isolated React, TypeScript and Vite foundation is implemented and verified,
+pending repository-owner review. It contains only a placeholder route, typed API
+client pattern, environment handling and frontend tooling.
 
 ## Version 1.0 Status
 
@@ -33,9 +34,9 @@ Version 2 is approved and uses `V2.0.x` numbering. See
 `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 `docs/V2_ROADMAP.md`.
 
-After V2.0.1 documentation is reviewed, the next proposed implementation milestone
-is V2.0.2 — Frontend Project Foundation. It requires a separate instruction and
-explicit approval before dependency installation.
+After V2.0.2 is reviewed, the next proposed implementation milestone is V2.0.3 —
+Design System. It requires a separate instruction and explicit approval before any
+additional dependency installation.
 
 ## Continuing Constraints
 
@@ -45,5 +46,5 @@ explicit approval before dependency installation.
 - Preserve the GET-only API and HTTP-only dashboard boundaries.
 - Preserve Copilot execution refusal and the absence of model tools.
 - Preserve isolated paper trading with no broker adapter or promotion path.
-- Preserve the existing database schema during V2.0.1.
-- Do not implement code, install dependencies or begin V2.0.2 during this milestone.
+- Preserve the existing database schema and `/api/v1`.
+- Do not begin product workspaces, authentication, charts or V2.0.3 during review.

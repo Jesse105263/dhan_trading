@@ -7,8 +7,9 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 ## Latest Approved State
 
 - Version 2 roadmap: approved
-- Current milestone: V2.0.1 — Architecture & Product Decisions
-- Current milestone type: documentation-only
+- V2.0.1 — Architecture & Product Decisions: complete
+- Current milestone: V2.0.2 — Frontend Project Foundation
+- Current milestone state: implemented and verified pending owner review
 
 - Phase 1 — Stable Market Core: complete
 - Phase 2 — Option Data Platform: complete
@@ -148,12 +149,12 @@ Run with `python -m scripts.paper_trade`. See `docs/PAPER_TRADING.md`.
 
 ## Next Activity
 
-Review and close V2.0.1 documentation. The approved roadmap is defined by
-`docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
-`docs/V2_ROADMAP.md`.
+Review and close V2.0.2. The frontend is isolated under `frontend/`; its layout,
+commands and dependency policy are documented in `docs/FRONTEND.md` and
+`frontend/README.md`.
 
-Do not begin V2.0.2 — Frontend Project Foundation or install dependencies without
-an explicit repository-owner instruction. Version 2 does not use Milestone 4.7.
+Do not begin V2.0.3 — Design System or install additional dependencies without an
+explicit repository-owner instruction. Version 2 does not use Milestone 4.7.
 
 ## Release-Hardening Implementation
 

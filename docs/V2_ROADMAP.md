@@ -20,13 +20,15 @@ preserved as the stable backend baseline.
 
 ### V2.0.1 — Architecture & Product Decisions
 
-Status: Active; documentation-only.
+Status: Complete.
 
 Establish the product definition, architecture, technology direction, compatibility
 policy, safety boundaries and approved roadmap. No application code, dependencies
 or database changes.
 
 ### V2.0.2 — Frontend Project Foundation
+
+Status: Implemented and verified; pending repository-owner review.
 
 Create the React, TypeScript and Vite project, package lock, test/lint tooling,
 route skeleton, API-client conventions, development proxy and production build
@@ -136,9 +138,9 @@ no-live-execution boundary. Local deployment remains the default.
 
 ## Current Milestone
 
-V2.0.1 — Architecture & Product Decisions.
+V2.0.2 — Frontend Project Foundation.
 
-## Next Milestone After Approval
+## Next Milestone After Review
 
-V2.0.2 — Frontend Project Foundation. Dependency installation and implementation
-require a separate repository-owner instruction.
+V2.0.3 — Design System. It must not begin until V2.0.2 is reviewed and explicitly
+approved by the repository owner.

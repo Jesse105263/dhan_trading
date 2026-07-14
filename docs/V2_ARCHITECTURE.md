@@ -69,9 +69,10 @@ separate API consumer with:
 - server-owned financial calculations;
 - no embedded application secrets.
 
-Frontend dependencies are not approved for installation until V2.0.2 begins.
-Version 1's server-rendered dashboard remains available as a compatible private
-surface during the transition.
+The frontend is isolated under `frontend/`, with its own npm package, lockfile,
+TypeScript projects and build output. Version 1's server-rendered dashboard remains
+available as a compatible private surface during the transition. See
+`docs/FRONTEND.md` for the dependency and API-client policies.
 
 ## Design System
 

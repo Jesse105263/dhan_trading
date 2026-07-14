@@ -81,8 +81,11 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 ## Status
 
 Version 1.0 is complete, verified and approved. Version 2 milestone V2.0.1 —
-Architecture & Product Decisions is active and documentation-only. The next code
-milestone requires separate repository-owner approval.
+Architecture & Product Decisions is complete. V2.0.2 — Frontend Project Foundation
+is implemented pending repository-owner review.
+
+The Version 2 frontend is isolated under `frontend/`. See `docs/FRONTEND.md` for
+its dependency policy and local build, test, lint and formatting commands.
 
 The Version 1 SELECT-only readiness report remains available with:
 

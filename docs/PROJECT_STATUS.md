@@ -2,8 +2,9 @@
 
 ## Current Status
 
-Version 2 is the active approved roadmap. Current milestone: V2.0.1 — Architecture
-& Product Decisions. This milestone is documentation-only.
+Version 2 is the active approved roadmap. V2.0.1 — Architecture & Product Decisions
+is complete. Current milestone: V2.0.2 — Frontend Project Foundation, implemented
+and verified pending repository-owner review.
 
 See `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 `docs/V2_ROADMAP.md`.
@@ -177,8 +178,8 @@ Use `python -m scripts.paper_trade` to open, mark, close and inspect isolated si
 
 ## Next Activity
 
-Complete repository-owner review of V2.0.1 documentation. Do not begin V2.0.2 or
-install frontend dependencies until explicitly instructed.
+Complete repository-owner review of V2.0.2. Do not begin V2.0.3 — Design System or
+install additional frontend dependencies until explicitly instructed.
 
 Existing Version 1.0 safety boundaries remain unchanged. See `docs/NEXT_TASK.md`,
 `docs/OPERATIONS_RUNBOOK.md` and `docs/RELEASE_READINESS_CHECKLIST.md`.

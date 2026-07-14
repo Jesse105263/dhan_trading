@@ -471,3 +471,15 @@ Official transition from script-based development to platform architecture.
 - Preserved all existing Version 1.0 safety boundaries.
 - Recorded that no post-Version-1.0 roadmap is approved; the next activity is a
   separate roadmap-planning exercise, not Milestone 4.7.
+
+## V2.0.2 — Frontend Project Foundation
+
+- Added an isolated React, TypeScript and Vite project under `frontend/`.
+- Added npm lockfile, strict TypeScript projects, ESLint and Prettier configuration.
+- Added Vitest and Testing Library coverage for the placeholder, environment
+  validation and native-fetch API client abstraction.
+- Added a single placeholder route rendering only the platform name and Version 2.
+- Added loopback-only development serving and production build configuration.
+- Added browser-safe environment handling and optional development proxy settings.
+- Added no API calls, product workspaces, charts, authentication or business logic.
+- Preserved `/api/v1`, Python services, repositories, migrations and database state.
