@@ -524,3 +524,11 @@ Official transition from script-based development to platform architecture.
 - Added dense persisted overview and scanner workspaces with filters, sorting,
   source timestamps, downstream availability and lineage navigation.
 - Added no migration, dependency, write route, pipeline trigger or execution path.
+
+## V2.0.6 — Symbol Intelligence Workspace
+
+- Added bounded symbol search and expiry-aware persisted intelligence projections.
+- Added analytics/ranking history, selection, risk, signals, timeline and lineage.
+- Added two-symbol comparison and related-expiry navigation without chart libraries.
+- Explicitly marks unsupported IV percentile, Greeks and risk score as unpersisted.
+- Added no dependency, migration, pipeline change or execution capability.

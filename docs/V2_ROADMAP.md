@@ -51,13 +51,15 @@ error boundaries and placeholder routes. Remain read-only and loopback-only.
 
 ### V2.0.5 — Market Overview & Opportunity Scanner
 
-Status: Implemented and verified; pending repository-owner review.
+Status: Complete.
 
 Present current health and freshness summaries plus filterable persisted rankings
 and opportunity context. Add only required read projections; never trigger a
 pipeline or recalculate an opportunity.
 
 ### V2.0.6 — Symbol Research Workspace
+
+Status: Implemented and verified; pending repository-owner review.
 
 Add symbol search, persisted underlying context, expiry-aware option-chain
 exploration and option-analytics history/visualization. Do not call Dhan or
@@ -145,9 +147,9 @@ no-live-execution boundary. Local deployment remains the default.
 
 ## Current Milestone
 
-V2.0.5 — Market Overview & Opportunity Scanner.
+V2.0.6 — Symbol Intelligence Workspace.
 
 ## Next Milestone After Review
 
-V2.0.6 — Symbol Research Workspace. It must not begin until V2.0.5 is
+V2.0.7 — Signals & Decision Lineage Workspace. It must not begin until V2.0.6 is
 reviewed and explicitly approved by the repository owner.

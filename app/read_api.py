@@ -11,6 +11,7 @@ from uuid import UUID
 
 from services.read_api_repository import ReadApiRepository
 from services.market_workspace_service import MarketWorkspaceService, WorkspaceQueryError, WorkspaceUnavailable
+from services.symbol_workspace_service import SymbolWorkspaceService
 
 
 @dataclass(frozen=True)
@@ -24,9 +25,10 @@ class ReadOnlyApi:
     DEFAULT_LIMIT = 20
     MAX_LIMIT = 100
 
-    def __init__(self, repository: ReadApiRepository | None = None, workspace: MarketWorkspaceService | None = None) -> None:
+    def __init__(self, repository: ReadApiRepository | None = None, workspace: MarketWorkspaceService | None = None, symbols: SymbolWorkspaceService | None = None) -> None:
         self.repository = repository or ReadApiRepository()
         self.workspace = workspace or MarketWorkspaceService()
+        self.symbols = symbols or SymbolWorkspaceService()
 
     def handle(self, method: str, path: str, query_string: str = "") -> ApiResponse:
         if method.upper() != "GET":
@@ -35,7 +37,30 @@ class ReadOnlyApi:
         if normalized == "/health":
             return ApiResponse(HTTPStatus.OK, self.repository.health())
         if normalized == "/api/v2":
-            return ApiResponse(HTTPStatus.OK, {"name": "Dhan Trading Platform Read API", "version": "v2", "resources": ["overview", "opportunities"]})
+            return ApiResponse(HTTPStatus.OK, {"name": "Dhan Trading Platform Read API", "version": "v2", "resources": ["overview", "opportunities", "symbols"]})
+        if normalized == "/api/v2/symbols":
+            try:
+                query = {key: values[0] for key, values in parse_qs(query_string, keep_blank_values=True).items()}
+                limit = int(query.get("limit", "10"))
+                return ApiResponse(HTTPStatus.OK, self.symbols.search(query.get("query", ""), limit))
+            except ValueError:
+                return self._error(HTTPStatus.BAD_REQUEST, "invalid_query", "limit must be an integer.")
+            except WorkspaceQueryError as exc:
+                return self._error(HTTPStatus.BAD_REQUEST, "invalid_query", str(exc))
+            except WorkspaceUnavailable:
+                return self._error(HTTPStatus.SERVICE_UNAVAILABLE, "database_unavailable", "Persisted symbol data is unavailable.")
+        symbol_prefix = "/api/v2/symbols/"
+        if normalized.startswith(symbol_prefix) and "/" not in normalized[len(symbol_prefix):]:
+            try:
+                query = parse_qs(query_string, keep_blank_values=True)
+                data = self.symbols.intelligence(normalized[len(symbol_prefix):], query.get("expiry", [None])[0])
+            except WorkspaceQueryError as exc:
+                return self._error(HTTPStatus.BAD_REQUEST, "invalid_query", str(exc))
+            except WorkspaceUnavailable:
+                return self._error(HTTPStatus.SERVICE_UNAVAILABLE, "database_unavailable", "Persisted symbol data is unavailable.")
+            if data is None:
+                return self._error(HTTPStatus.NOT_FOUND, "not_found", "Symbol intelligence was not found.")
+            return ApiResponse(HTTPStatus.OK, {"data": data})
         if normalized == "/api/v2/overview":
             try:
                 return ApiResponse(HTTPStatus.OK, self.workspace.overview())

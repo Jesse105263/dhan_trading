@@ -8,6 +8,8 @@ import { AppShell } from './shell/AppShell'
 import { MarketOverviewPage } from './workspaces/MarketOverviewPage'
 import { OpportunityDetailPage } from './workspaces/OpportunityDetailPage'
 import { OpportunityScannerPage } from './workspaces/OpportunityScannerPage'
+import { SymbolIntelligencePage } from './workspaces/SymbolIntelligencePage'
+import { SymbolSearchPage } from './workspaces/SymbolSearchPage'
 
 const [home, ...workspaces] = navigationItems
 
@@ -28,8 +30,10 @@ export const router = createBrowserRouter([
       { path: 'market', element: <MarketOverviewPage /> },
       { path: 'scanner', element: <OpportunityScannerPage /> },
       { path: 'opportunities/:rankingId', element: <OpportunityDetailPage /> },
+      { path: 'research', element: <SymbolSearchPage /> },
+      { path: 'research/:symbol', element: <SymbolIntelligencePage /> },
       ...workspaces
-        .filter((route) => !['/market', '/scanner'].includes(route.path))
+        .filter((route) => !['/market', '/scanner', '/research'].includes(route.path))
         .map((route) => ({
           path: route.path.slice(1),
           element: (

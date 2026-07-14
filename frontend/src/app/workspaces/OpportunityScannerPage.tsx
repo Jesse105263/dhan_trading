@@ -144,7 +144,10 @@ export function OpportunityScannerPage() {
         key: 'detail',
         header: 'Detail',
         render: (item: Opportunity) => (
-          <Link className="workspace-link" to={`/opportunities/${item.ranking_id}`}>
+          <Link
+            className="workspace-link"
+            to={`/research/${item.underlying_symbol}?expiry=${item.expiry}`}
+          >
             Inspect
           </Link>
         ),

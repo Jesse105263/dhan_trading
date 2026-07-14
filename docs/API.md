@@ -4,6 +4,9 @@ V2.0.5 adds GET-only `/api/v2`, `/api/v2/overview`, `/api/v2/opportunities`
 and `/api/v2/opportunities/{ranking_id}` without changing the Version 1 contract.
 See `docs/MARKET_WORKSPACE.md` for filters, sorting, bounds, freshness and errors.
 
+V2.0.6 adds bounded `GET /api/v2/symbols` search and expiry-aware
+`GET /api/v2/symbols/{symbol}` intelligence. See `docs/SYMBOL_WORKSPACE.md`.
+
 Base URL: `http://127.0.0.1:8080`
 
 ## Contract

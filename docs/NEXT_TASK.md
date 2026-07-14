@@ -2,7 +2,7 @@
 
 ## Active Milestone
 
-V2.0.5 — Market Overview & Opportunity Scanner.
+V2.0.6 — Symbol Intelligence Workspace.
 
 The persisted overview, filterable latest-ranking scanner and lineage detail are
 implemented and verified pending repository-owner review. They are GET-only.
@@ -33,8 +33,7 @@ Version 2 is approved and uses `V2.0.x` numbering. See
 `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 `docs/V2_ROADMAP.md`.
 
-After V2.0.5 is reviewed, the next proposed implementation milestone is V2.0.6 —
-Symbol Research Workspace. It requires separate instruction and explicit approval.
+After V2.0.6 is reviewed, the next milestone is V2.0.7 — Signals & Decision Lineage.
 
 ## Continuing Constraints
 
@@ -45,4 +44,4 @@ Symbol Research Workspace. It requires separate instruction and explicit approva
 - Preserve Copilot execution refusal and the absence of model tools.
 - Preserve isolated paper trading with no broker adapter or promotion path.
 - Preserve the existing database schema and `/api/v1`.
-- Do not begin Symbol Research, authentication, charts or V2.0.6 during review.
+- Do not begin V2.0.7, authentication or execution work during review.

@@ -89,7 +89,7 @@ describe('market workspaces', () => {
     expect(await screen.findByRole('cell', { name: 'RELIANCE' })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: 'Inspect' })).toHaveAttribute(
       'href',
-      `/opportunities/${item.ranking_id}`,
+      '/research/RELIANCE?expiry=2026-07-30',
     )
     expect(screen.getByText('Approved')).toBeInTheDocument()
   })

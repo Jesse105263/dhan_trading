@@ -11,7 +11,8 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 - V2.0.2 — Frontend Project Foundation: complete
 - V2.0.3 — Design System: complete
 - V2.0.4 — Application Shell: complete
-- Current milestone: V2.0.5 — Market Overview & Opportunity Scanner
+- V2.0.5 — Market Overview & Opportunity Scanner: complete
+- Current milestone: V2.0.6 — Symbol Intelligence Workspace
 - Current milestone state: implemented and verified pending owner review
 
 - Phase 1 — Stable Market Core: complete
@@ -152,10 +153,9 @@ Run with `python -m scripts.paper_trade`. See `docs/PAPER_TRADING.md`.
 
 ## Next Activity
 
-Review and close V2.0.5. Its API contract, freshness policy and lineage are
-documented in `docs/MARKET_WORKSPACE.md`.
+Review and close V2.0.6. Its contract is documented in `docs/SYMBOL_WORKSPACE.md`.
 
-Do not begin V2.0.6 — Symbol Research Workspace without an explicit repository-owner
+Do not begin V2.0.7 without an explicit repository-owner
 instruction. Version 2 does not use
 Milestone 4.7.
 

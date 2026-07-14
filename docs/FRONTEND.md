@@ -116,3 +116,6 @@ and accessibility contract.
 V2.0.5 replaces the Market Overview and Scanner placeholders with local-state,
 native-fetch workflows and adds `/opportunities/:rankingId`. No query library or
 global business state is required. See `docs/MARKET_WORKSPACE.md`.
+
+V2.0.6 replaces Symbol Research with search and `/research/:symbol`, including
+score bars, timeline, lineage and two-symbol comparison without new dependencies.

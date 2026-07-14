@@ -81,7 +81,7 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 ## Status
 
 Version 1.0 is complete, verified and approved. Version 2 milestones V2.0.1 through
-V2.0.4 are complete. V2.0.5 — Market Overview & Opportunity Scanner is implemented pending
+V2.0.5 are complete. V2.0.6 — Symbol Intelligence Workspace is implemented pending
 repository-owner review.
 
 The Version 2 frontend is isolated under `frontend/`. See `docs/FRONTEND.md` for
