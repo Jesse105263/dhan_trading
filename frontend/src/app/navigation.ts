@@ -8,6 +8,7 @@ import {
   ScrollText,
   History,
   Target,
+  CalendarClock,
   Search,
   Settings,
   WalletCards,
@@ -53,6 +54,12 @@ export const navigationItems: ReadonlyArray<NavigationItem> = [
     label: 'Trade Opportunities',
     description: 'Deterministic evidence-backed opportunity assessments.',
     icon: Target,
+  },
+  {
+    path: '/events',
+    label: 'News & Events',
+    description: 'Persisted, source-attributed market and company event context.',
+    icon: CalendarClock,
   },
   {
     path: '/signals',

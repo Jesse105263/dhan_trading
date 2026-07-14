@@ -10,6 +10,10 @@ historical evidence supports them. Unsupported levels remain null, ranking score
 is not confidence, and the initial model exposes underlying reference zones rather
 than fabricating option-premium prices.
 
+V2.1.2 adds point-in-time event context with explicit provider lineage. It does
+not infer sentiment or company relationships, and events cannot create or change
+a deterministic opportunity.
+
 ## Product Vision
 
 Version 2 turns the verified Version 1 backend into a private, single-owner AI

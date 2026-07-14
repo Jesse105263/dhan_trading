@@ -17,6 +17,7 @@ from services.feature_store_service import FeatureStoreService
 from services.historical_outcome_service import HistoricalOutcomeService
 from services.similarity_service import SimilarityService
 from services.trade_opportunity_service import TradeOpportunityService
+from services.news_event_service import NewsEventService
 
 
 @dataclass(frozen=True)
@@ -30,7 +31,7 @@ class ReadOnlyApi:
     DEFAULT_LIMIT = 20
     MAX_LIMIT = 100
 
-    def __init__(self, repository: ReadApiRepository | None = None, workspace: MarketWorkspaceService | None = None, symbols: SymbolWorkspaceService | None = None, memory: MarketMemoryService | None = None, features: FeatureStoreService | None = None, outcomes: HistoricalOutcomeService | None = None, similarity: SimilarityService | None = None, trade_opportunities: TradeOpportunityService | None = None) -> None:
+    def __init__(self, repository: ReadApiRepository | None = None, workspace: MarketWorkspaceService | None = None, symbols: SymbolWorkspaceService | None = None, memory: MarketMemoryService | None = None, features: FeatureStoreService | None = None, outcomes: HistoricalOutcomeService | None = None, similarity: SimilarityService | None = None, trade_opportunities: TradeOpportunityService | None = None, events: NewsEventService | None = None) -> None:
         self.repository = repository or ReadApiRepository()
         self.workspace = workspace or MarketWorkspaceService()
         self.symbols = symbols or SymbolWorkspaceService()
@@ -39,6 +40,7 @@ class ReadOnlyApi:
         self.outcomes = outcomes or HistoricalOutcomeService()
         self.similarity = similarity or SimilarityService()
         self.trade_opportunities = trade_opportunities or TradeOpportunityService()
+        self.events = events or NewsEventService()
 
     def handle(self, method: str, path: str, query_string: str = "") -> ApiResponse:
         if method.upper() != "GET":
@@ -47,7 +49,32 @@ class ReadOnlyApi:
         if normalized == "/health":
             return ApiResponse(HTTPStatus.OK, self.repository.health())
         if normalized == "/api/v2":
-            return ApiResponse(HTTPStatus.OK, {"name": "Dhan Trading Platform Read API", "version": "v2", "resources": ["overview", "opportunities", "symbols", "memory", "features", "outcomes", "similarity", "trade-opportunities"]})
+            return ApiResponse(HTTPStatus.OK, {"name": "Dhan Trading Platform Read API", "version": "v2", "resources": ["overview", "opportunities", "symbols", "memory", "features", "outcomes", "similarity", "trade-opportunities", "events"]})
+        if normalized in ("/api/v2/events","/api/v2/events/context"):
+            query={key:values[0] for key,values in parse_qs(query_string,keep_blank_values=True).items()}
+            try:
+                data=self.events.context(query) if normalized.endswith("/context") else self.events.list(query)
+            except WorkspaceQueryError as exc: return self._error(HTTPStatus.BAD_REQUEST,"invalid_query",str(exc))
+            except WorkspaceUnavailable: return self._error(HTTPStatus.SERVICE_UNAVAILABLE,"database_unavailable","Event intelligence is unavailable.")
+            if data is None: return self._error(HTTPStatus.NOT_FOUND,"not_found","Event context source was not found.")
+            return ApiResponse(HTTPStatus.OK,{"data":data} if normalized.endswith("/context") else data)
+        event_prefix="/api/v2/events/"
+        if normalized.startswith(event_prefix) and "/" not in normalized[len(event_prefix):]:
+            try: event_id=UUID(normalized[len(event_prefix):])
+            except ValueError: return self._error(HTTPStatus.BAD_REQUEST,"invalid_event_id","Event ID must be a valid UUID.")
+            try: data=self.events.detail(event_id)
+            except WorkspaceUnavailable: return self._error(HTTPStatus.SERVICE_UNAVAILABLE,"database_unavailable","Event intelligence is unavailable.")
+            if data is None: return self._error(HTTPStatus.NOT_FOUND,"not_found","Event was not found.")
+            return ApiResponse(HTTPStatus.OK,{"data":data})
+        trade_event_suffix="/events"
+        if normalized.startswith("/api/v2/trade-opportunities/") and normalized.endswith(trade_event_suffix):
+            identifier=normalized[len("/api/v2/trade-opportunities/"):-len(trade_event_suffix)]
+            try: opportunity_id=UUID(identifier)
+            except ValueError: return self._error(HTTPStatus.BAD_REQUEST,"invalid_opportunity_id","Opportunity ID must be a valid UUID.")
+            try: data=self.events.opportunity_context(opportunity_id)
+            except WorkspaceUnavailable: return self._error(HTTPStatus.SERVICE_UNAVAILABLE,"database_unavailable","Event intelligence is unavailable.")
+            if data is None: return self._error(HTTPStatus.NOT_FOUND,"not_found","Trade opportunity was not found.")
+            return ApiResponse(HTTPStatus.OK,{"data":data})
         if normalized == "/api/v2/trade-opportunities":
             query={key:values[0] for key,values in parse_qs(query_string,keep_blank_values=True).items()}
             try: return ApiResponse(HTTPStatus.OK,self.trade_opportunities.list(query))

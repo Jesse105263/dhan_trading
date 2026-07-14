@@ -17,12 +17,13 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 - V2.0.8 — Feature Store: complete
 - V2.0.9 — Historical Outcome Engine: complete
 - V2.1.0 — Similarity Engine: complete
-- Current milestone: V2.1.1 — Trade Opportunity Engine
+- V2.1.1 — Trade Opportunity Engine: complete
+- Current milestone: V2.1.2 — News & Event Intelligence
 - Current milestone state: implemented and verified pending owner review
 
 The implementation started from clean `main` at
-`9ef754b add Version 2 similarity engine`; previous commit is
-`bf52b64 add Version 2 historical outcome engine`. V2.1.1 remains uncommitted for owner review.
+`ea6de37 add Version 2 trade opportunity engine`; previous commit is
+`9ef754b add Version 2 similarity engine`. V2.1.2 remains uncommitted for owner review.
 
 - Phase 1 — Stable Market Core: complete
 - Phase 2 — Option Data Platform: complete
@@ -162,11 +163,10 @@ Run with `python -m scripts.paper_trade`. See `docs/PAPER_TRADING.md`.
 
 ## Next Activity
 
-Review and close V2.1.1. Its contract is documented in `docs/TRADE_OPPORTUNITY_ENGINE.md`.
+Review and close V2.1.2. Its contract is documented in `docs/NEWS_EVENT_INTELLIGENCE.md`.
 
-Do not begin V2.1.2 without an explicit repository-owner
-instruction. The approved sequence is V2.1.2 — News & Event Intelligence and
-V2.1.3 — AI Trading Analyst. Version 2 does
+Do not begin V2.1.3 without an explicit repository-owner instruction. The approved
+next milestone is V2.1.3 — AI Trading Analyst. Version 2 does
 not use Milestone 4.7.
 
 ## Release-Hardening Implementation

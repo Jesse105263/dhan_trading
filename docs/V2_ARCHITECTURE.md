@@ -170,3 +170,11 @@ V2.1.1 consumes persisted Similarity runs and their exact Feature/Outcome lineag
 zones, statistics, scoring and ranking. `TradeOpportunityRepository` owns migration
 `021` persistence and reads. HTTP remains GET-only and cannot materialize. The
 browser presents server calculations and cannot execute, alert or paper trade.
+
+## News and Event Boundary
+
+V2.1.2 imports only approved provider records; the implemented adapter reads
+bounded local JSON. `NewsEventService` owns validation, sanitization, identity,
+explicit relevance and point-in-time leakage policy. `NewsEventRepository` owns
+migration `022` persistence and reads. Context attaches after opportunity
+calculation and cannot change trade fields. GET reads perform no external fetch.

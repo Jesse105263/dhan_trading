@@ -27,6 +27,10 @@ V2.1.1 adds bounded persisted opportunity lists and exact evidence detail under
 `/api/v2/trade-opportunities`. These routes are distinct from the existing ranking
 projection at `/api/v2/opportunities`. See `docs/TRADE_OPPORTUNITY_ENGINE.md`.
 
+V2.1.2 adds persisted event list/detail, symbol/vector context and opportunity
+context under `/api/v2/events` and `/api/v2/trade-opportunities/{id}/events`.
+See `docs/NEWS_EVENT_INTELLIGENCE.md`. Reads never call external providers.
+
 Base URL: `http://127.0.0.1:8080`
 
 ## Contract

@@ -588,3 +588,15 @@ Official transition from script-based development to platform architecture.
 - Added GET-only list/detail APIs and accessible opportunity workspace/detail routes.
 - Added backend, PostgreSQL and frontend coverage without AI, Dhan, execution,
   paper trading, alerts, new dependencies or `/api/v1` changes.
+
+## V2.1.2 — News & Event Intelligence
+
+- Added migration `022` for canonical events and exact vector, outcome, similarity
+  and opportunity context lineage.
+- Added bounded idempotent local JSON ingestion with deterministic identity,
+  checksum, sanitization, deduplication and no external calls.
+- Added exact-symbol/market-wide relevance, publication-time leakage gates,
+  historical holding/expiry context and context-only opportunity attachments.
+- Added GET-only event/context APIs, event timeline and opportunity risk panels.
+- Added backend, PostgreSQL and frontend tests without AI, sentiment, Dhan,
+  execution, paper writes, alerts, dependencies or `/api/v1` changes.

@@ -2,11 +2,15 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { tradeOpportunityApi, type TradeOpportunity } from '../../api/trade-opportunities'
+import { newsEventApi } from '../../api/news-events'
 import { TradeOpportunityDetailPage } from './TradeOpportunityDetailPage'
 import { TradeOpportunityPage } from './TradeOpportunityPage'
 
 vi.mock('../../api/trade-opportunities', () => ({
   tradeOpportunityApi: { list: vi.fn(), detail: vi.fn() },
+}))
+vi.mock('../../api/news-events', () => ({
+  newsEventApi: { list: vi.fn(), opportunity: vi.fn() },
 }))
 const item: TradeOpportunity = {
   opportunity_id: '11111111-1111-4111-8111-111111111111',
@@ -65,6 +69,17 @@ describe('trade opportunity workspace', () => {
   })
   it('renders detail, warnings, and exact lineage accessibly', async () => {
     vi.mocked(tradeOpportunityApi.detail).mockResolvedValue({ data: item })
+    vi.mocked(newsEventApi.opportunity).mockResolvedValue({
+      data: {
+        opportunity_id: item.opportunity_id,
+        events: [],
+        recent_event_count: 0,
+        upcoming_event_count: 0,
+        reasons_for: [],
+        reasons_against: [],
+        limitations: [],
+      },
+    })
     render(
       <MemoryRouter initialEntries={[`/trade-opportunities/${item.opportunity_id}`]}>
         <Routes>

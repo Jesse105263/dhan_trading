@@ -16,7 +16,7 @@ function renderRoute(initialEntry = '/') {
         element: <AppShell />,
         children: [
           { index: true, element: <PlaceholderPage {...navigationItems[0]!} /> },
-          { path: 'signals', element: <PlaceholderPage {...navigationItems[5]!} /> },
+          { path: 'signals', element: <PlaceholderPage {...navigationItems[6]!} /> },
           { path: '*', element: <NotFoundPage /> },
         ],
       },

@@ -106,13 +106,15 @@ Generate evidence-backed opportunity assessments from current features, historic
 outcomes and similar observations. Keep recommendations separate from execution
 and expose assumptions, evidence quality, expected value and lineage explicitly.
 
-Status: Implemented and verified; pending repository-owner review.
+Status: Complete.
 
 ### V2.1.2 — News & Event Intelligence
 
 Add time-aware news and market-event evidence with source attribution and explicit
 relevance to symbols and expiries. External evidence must not bypass application
 services or become an execution instruction.
+
+Status: Implemented and verified; pending repository-owner review.
 
 ### V2.1.3 — AI Trading Analyst
 
@@ -132,9 +134,9 @@ events. The analyst has no execution tools and cannot place trades.
 
 ## Current Milestone
 
-V2.1.1 — Trade Opportunity Engine.
+V2.1.2 — News & Event Intelligence.
 
 ## Next Milestone After Review
 
-V2.1.2 — News & Event Intelligence. It must not begin until V2.1.1 is
+V2.1.3 — AI Trading Analyst. It must not begin until V2.1.2 is
 reviewed and explicitly approved by the repository owner.

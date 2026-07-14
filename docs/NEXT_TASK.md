@@ -2,10 +2,10 @@
 
 ## Active Milestone
 
-V2.1.1 — Trade Opportunity Engine.
+V2.1.2 — News & Event Intelligence.
 
-Deterministic evidence thresholds, underlying reference zones, scoring, ranking,
-exact lineage, auditable materialization and GET-only opportunity reads are implemented and
+Versioned local event ingestion, explicit relevance, leakage-safe historical and
+opportunity context, source lineage and GET-only event reads are implemented and
 verified pending repository-owner review.
 
 ## Version 1.0 Status
@@ -34,8 +34,7 @@ Version 2 is approved and uses `V2.0.x` numbering. See
 `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 `docs/V2_ROADMAP.md`.
 
-After V2.1.1 is reviewed, the next milestone is V2.1.2 — News & Event Intelligence.
-The approved later milestone is V2.1.3 — AI Trading Analyst.
+After V2.1.2 is reviewed, the next milestone is V2.1.3 — AI Trading Analyst.
 
 ## Continuing Constraints
 
@@ -46,4 +45,4 @@ The approved later milestone is V2.1.3 — AI Trading Analyst.
 - Preserve Copilot execution refusal and the absence of model tools.
 - Preserve isolated paper trading with no broker adapter or promotion path.
 - Preserve the existing database schema and `/api/v1`.
-- Do not begin V2.1.2, authentication or execution work during review.
+- Do not begin V2.1.3, authentication or execution work during review.

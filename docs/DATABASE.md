@@ -6,6 +6,12 @@ PostgreSQL is the source of truth for persistent platform state.
 
 ## Current Core Tables
 
+### market_events and event-context tables
+
+Migration `022` persists canonical source-attributed events, explicit symbol and
+sector labels, and leakage-classified vector, outcome, similarity and opportunity
+links. It does not modify source evidence or opportunity calculations.
+
 ### trade_opportunity_runs, trade_opportunities and trade_opportunity_evidence
 
 Migration `021` persists versioned deterministic opportunity batches,

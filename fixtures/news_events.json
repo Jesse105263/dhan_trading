@@ -1,0 +1,32 @@
+[
+  {
+    "source": "local-verification",
+    "source_event_id": "reliance-earnings-2026-q1",
+    "event_type": "CORPORATE_EARNINGS",
+    "title": "RELIANCE quarterly results scheduled",
+    "summary": "Local verification fixture for a scheduled corporate earnings event.",
+    "published_at": "2026-07-10T09:00:00",
+    "event_at": "2026-07-18T16:00:00",
+    "is_scheduled": true,
+    "market_wide": false,
+    "affected_symbols": ["RELIANCE"],
+    "affected_sectors": ["ENERGY"],
+    "source_reference": "fixture:news_events.json#reliance-earnings-2026-q1",
+    "metadata": {"fixture": true}
+  },
+  {
+    "source": "local-verification",
+    "source_event_id": "rbi-policy-2026-07",
+    "event_type": "RBI",
+    "title": "RBI policy event",
+    "summary": "Local verification fixture for a scheduled market-wide RBI event.",
+    "published_at": "2026-07-08T10:00:00",
+    "event_at": "2026-07-17T10:00:00",
+    "is_scheduled": true,
+    "market_wide": true,
+    "affected_symbols": [],
+    "affected_sectors": [],
+    "source_reference": "fixture:news_events.json#rbi-policy-2026-07",
+    "metadata": {"fixture": true}
+  }
+]

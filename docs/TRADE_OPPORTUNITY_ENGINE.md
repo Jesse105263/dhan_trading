@@ -93,3 +93,6 @@ remain visibly unavailable. No browser-side financial calculation occurs.
 - Sparse classified history produces no recommendation fields.
 - Similar historical behavior does not guarantee future results.
 - News and event context is deferred to V2.1.2.
+
+V2.1.2 attaches event context after calculation without changing any opportunity
+level, statistic, score, rank or eligibility. See `docs/NEWS_EVENT_INTELLIGENCE.md`.

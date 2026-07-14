@@ -301,3 +301,14 @@ recommendation fields null for insufficient or non-positive evidence.
 Reason: Historical Outcomes measure underlying spot paths, not option premiums.
 This policy supports traceable evidence without inventing option prices or
 confidence. The ranking score orders eligible records and is not a probability.
+
+## V2.1.2 Uses Explicit Relevance and Publication-Time Leakage Gates
+
+Decision: link events only by exact provider-supplied symbols or explicit
+market-wide scope. Preserve sectors without expanding them absent an authoritative
+mapping. Permit predictive context only when publication time proves the event was
+known at observation; later events remain outcome context.
+
+Reason: deterministic identifiers and timestamps are auditable. Embeddings,
+sentiment and inferred relationships would introduce unsupported associations and
+future leakage. Event context remains separate from opportunity calculations.

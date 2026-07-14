@@ -228,3 +228,15 @@ market records. See `docs/SIMILARITY_ENGINE.md`.
 
 The service has no AI, broker, Dhan, alert or paper-trading dependency. See
 `docs/TRADE_OPPORTUNITY_ENGINE.md`.
+
+## News and Event Intelligence
+
+- `services/news_event_provider.py` — provider protocol and bounded local JSON adapter.
+- `services/news_event_repository.py` — event and derived-context persistence/reads.
+- `services/news_event_service.py` — validation, sanitization, identity, explicit
+  relevance, leakage prevention and context-only policy.
+- `scripts/import_news_events.py`, `scripts/link_historical_events.py` and
+  `scripts/materialize_opportunity_events.py` — offline operator workflow.
+
+No service calls an external provider, AI, Dhan, alerts or execution. See
+`docs/NEWS_EVENT_INTELLIGENCE.md`.

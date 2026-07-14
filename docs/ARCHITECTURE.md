@@ -1,5 +1,10 @@
 # Dhan Trading Platform Architecture
 
+News and Event Intelligence follows the repository/service boundary: approved
+local adapters feed validated events to PostgreSQL, deterministic services
+materialize point-in-time links, and GET-only APIs expose context. Read requests
+never fetch news externally and no event path reaches execution.
+
 ## Vision
 
 Build a professional-grade market intelligence and options trading platform capable of:
