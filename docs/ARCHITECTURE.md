@@ -260,3 +260,17 @@ Migration files + committed PostgreSQL state
 Backup and restore remain explicit operator procedures. Recovery verification must
 target a newly created isolated database and must never replace the normal
 PostgreSQL database.
+
+## Version 3 Provider-Neutral Data Boundary
+
+V3.0.5 defines, but does not implement, a raw-to-canonical boundary for instrument
+masters, underlying/futures/option bars, option-chain and depth snapshots,
+corporate actions, events and news. Provider payloads must remain immutable and
+checksummed; temporal symbol mappings connect provider IDs to stable canonical
+instrument IDs. Canonical revisions preserve availability time and source lineage.
+
+DhanHQ is selected for historical acquisition and live backup, TrueData for
+continuous collection, NSE/BSE for authoritative venue facts, and RBI/MoSPI for
+macro facts, all subject to their licensing gates. Feature, Outcome, Similarity
+and research layers must not consume provider payloads directly. Unknown retention
+or model-use permission fails closed. See `docs/V3_DATA_PROVIDER_STRATEGY.md`.

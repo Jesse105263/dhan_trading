@@ -346,3 +346,19 @@ Reason: Version 3 needs a reproducible reference before acquiring or optimizing
 data. A canonical manifest checksum makes research assumptions auditable, while a
 SELECT-only baseline preserves completed Version 2 behavior and exposes the
 current evidence limitation without fabricating option outcomes or statistics.
+
+## V3.0.5 Uses Two Active Market-Data Vendors and Authoritative Specialists
+
+Decision: select DhanHQ as the primary historical source and live backup, and
+TrueData as the primary continuous/live source, subject to written confirmation
+of local retention, post-termination use, derived-data, model-training, backup and
+private internal-use rights. Use NSE/BSE for authoritative reference, actions and
+announcements and RBI/MoSPI for macro events. Keep Upstox as the unactivated
+procurement fallback. Downstream systems consume provider-neutral canonical data
+with immutable raw manifests and licensing metadata.
+
+Reason: Dhan has the strongest publicly documented broker backfill and an existing
+bounded integration; TrueData provides broker-independent exchange-authorized
+continuous coverage. Two active vendors give operational independence without an
+unnecessary enterprise-vendor set. Unknown rights fail closed, and no integration
+starts before procurement evidence satisfies `docs/V3_DATA_PROVIDER_STRATEGY.md`.

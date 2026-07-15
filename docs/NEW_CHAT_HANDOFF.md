@@ -6,6 +6,15 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 
 ## Latest Approved State
 
+- Version 3 roadmap: approved implementation contract
+- V3.0 — Research Contract and Benchmark Baseline: committed at `a3ed736`
+- Current milestone: V3.0.5 — Data Provider & Licensing Strategy
+- Current milestone state: documentation complete and staged pending owner review
+- Selected providers: DhanHQ historical/live backup and TrueData continuous/live,
+  all subject to written licensing confirmation
+- No provider integration, credentials, paid activation, migration or dependency
+  were added in V3.0.5
+
 - Version 2 roadmap: approved
 - V2.0.1 — Architecture & Product Decisions: complete
 - V2.0.2 — Frontend Project Foundation: complete
@@ -20,14 +29,10 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 - V2.1.1 — Trade Opportunity Engine: complete
 - V2.1.2 — News & Event Intelligence: complete
 - V2.1.3 — AI Trading Analyst: complete
-- Current milestone: V2.1.4 — Intelligence Release Hardening & Handoff
-- Current milestone state: implemented and verified pending owner review
+- V2.1.4 — Intelligence Release Hardening & Handoff: committed at `ba6c0a2`
 
-The implementation started from clean `main` at
-`1a7d189 add Version 2 AI trading analyst`; previous commit is
-`f0abefb add Version 2 news and event intelligence`. V2.1.4 remains staged and
-uncommitted for owner review; replace this paragraph with the final checkpoint
-after the repository owner commits it.
+Version 2 closed at `ba6c0a2 add Version 2 intelligence release hardening`.
+Version 3 started from that checkpoint; V3.0 is committed at `a3ed736`.
 
 - Phase 1 — Stable Market Core: complete
 - Phase 2 — Option Data Platform: complete
@@ -189,14 +194,9 @@ readiness work.
 
 ## Next Activity
 
-Review and close V2.1.4. Verification evidence is documented in
-`docs/V2_RELEASE_READINESS_CHECKLIST.md`.
-
-After owner approval, hold a separate roadmap and data-acquisition planning
-session. No Version 3 implementation roadmap is approved. The long-term goal
-remains a private AI Trading Intelligence Platform producing deterministic,
-evidence-backed opportunity candidates and grounded explanations—not a generic
-dashboard or execution system. Do not use Milestone 4.7.
+Review and commit V3.0.5. Then satisfy every procurement, licensing, coverage,
+storage and abstraction gate in `docs/V3_DATA_PROVIDER_STRATEGY.md` before
+authorizing V3.1. No historical ingestion or provider configuration exists yet.
 
 Current local evidence: 9 Feature Store vectors, 9 outcomes, zero classified
 expiry outcomes, one eight-match insufficient similarity run, one non-eligible

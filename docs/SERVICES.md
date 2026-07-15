@@ -262,3 +262,12 @@ The service has no AI, broker, Dhan, alert or paper-trading dependency. See
 
 No service calls an external provider, AI, Dhan, alerts or execution. See
 `docs/NEWS_EVENT_INTELLIGENCE.md`.
+
+## Version 3 Provider Strategy
+
+V3.0.5 adds documentation only. It defines future canonical interfaces for
+instrument masters, bars, option chains, depth, actions, events and news, plus
+source priority, failover, deduplication, revisions, conflicts, checksums, raw
+manifests, licensing and retention metadata. No executable adapter or service has
+been added. Existing Dhan collectors and the bounded local news-event provider are
+unchanged. See `docs/V3_DATA_PROVIDER_STRATEGY.md`.

@@ -639,3 +639,17 @@ Official transition from script-based development to platform architecture.
   until classified expiry outcomes exist.
 - Added the Version 2 readiness checklist and safe continuation handoff without a
   migration, dependency, product feature, external call or Version 3 roadmap.
+
+## V3.0.5 — Data Provider & Licensing Strategy
+
+- Compared Dhan, exchange products, India-focused vendors, broker APIs and
+  enterprise/international providers using official public sources.
+- Selected DhanHQ for historical data and live backup and TrueData for continuous
+  collection, subject to written licensing and coverage confirmation.
+- Defined authoritative corporate-action, announcement, news and macro sources;
+  a provider-neutral canonical boundary; source/revision/conflict policy; raw
+  manifests; licensing metadata; storage estimates; cost envelopes; and V3.1
+  entry gates.
+- Added documentation only: no provider was contacted, purchased, configured or
+  called, and no migration, credential, dependency, collector or executable
+  behavior changed.

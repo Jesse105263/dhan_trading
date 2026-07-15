@@ -31,8 +31,11 @@ baselines with statistically supported evidence. Estimated effort: 1–2 weeks.
 Compare viable providers on depth, intraday and chain history, Greeks, IV,
 corporate actions, news, events, quotas, reliability, licensing and price.
 Approve a primary and backup provider, provider-neutral downstream contract,
-storage forecast and acquisition/collection budget. Estimated effort: about one
-week.
+storage forecast and acquisition/collection budget. The strategy selects DhanHQ
+historical, TrueData continuous and DhanHQ backup, all subject to written licence
+confirmation, and defines V3.1 procurement gates in
+`docs/V3_DATA_PROVIDER_STRATEGY.md`. No integration or paid activation is part of
+this milestone. Estimated effort: about one week.
 
 ### V3.1 — Historical Data Foundation
 

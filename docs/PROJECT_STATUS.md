@@ -3,9 +3,12 @@
 ## Current Status
 
 Version 3 is the active approved implementation contract. V3.0 — Research
-Contract and Benchmark Baseline is implemented pending repository-owner review.
-It adds a checksummed point-in-time research contract and SELECT-only deterministic
-baseline report without changing Version 2 behavior.
+Contract and Benchmark Baseline is committed at `a3ed736`. V3.0.5 — Data Provider
+& Licensing Strategy is documented pending repository-owner review. DhanHQ is the
+selected primary historical source and live backup; TrueData is the selected
+continuous/live source, subject to written licensing and coverage confirmation.
+No integration, credential, paid activation, migration or executable service is
+included.
 
 Version 2 is complete. V2.0.1 — Architecture & Product Decisions,
 V2.0.2 — Frontend Project Foundation, V2.0.3 — Design System and V2.0.4 —
@@ -14,13 +17,14 @@ Symbol Intelligence Workspace, V2.0.7 — Market Memory Foundation and V2.0.8 �
 Feature Store, V2.0.9 — Historical Outcome Engine, V2.1.0 — Similarity Engine and
 V2.1.1 — Trade Opportunity Engine, V2.1.2 — News & Event Intelligence and V2.1.3
 — AI Trading Analyst are complete. Current milestone: V2.1.4 — Intelligence
-Release Hardening & Handoff, implemented and verified pending repository-owner
-review. The Version 2 core intelligence roadmap is complete and preserved.
+Release Hardening & Handoff, committed at `ba6c0a2`. The Version 2 core
+intelligence roadmap is complete and preserved.
 
 See `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 `docs/V2_ROADMAP.md`.
 
-See `docs/V3_ROADMAP.md`, `docs/V3_RESEARCH_CONTRACT.md` and
+See `docs/V3_ROADMAP.md`, `docs/V3_RESEARCH_CONTRACT.md`,
+`docs/V3_DATA_PROVIDER_STRATEGY.md` and
 `docs/V3_RELEASE_READINESS_CHECKLIST.md` for the active work.
 
 ## Version 1 Release Status
@@ -206,8 +210,10 @@ Use `python -m scripts.paper_trade` to open, mark, close and inspect isolated si
 
 ## Next Activity
 
-Complete repository-owner review of V2.1.4. After approval, hold a separate
-roadmap and data-acquisition planning session. No Version 3 roadmap is approved.
+Review and commit V3.0.5. V3.1 must not acquire data until the owner records
+written provider rights, quotes, coverage evidence, budget, specialist-source
+terms, storage capacity and the provider-neutral contract required by
+`docs/V3_DATA_PROVIDER_STRATEGY.md`.
 
 Existing Version 1.0 safety boundaries remain unchanged. See `docs/NEXT_TASK.md`,
 `docs/OPERATIONS_RUNBOOK.md` and `docs/RELEASE_READINESS_CHECKLIST.md`.
