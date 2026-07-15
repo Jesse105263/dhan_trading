@@ -334,3 +334,15 @@ null fields and analyst source grounding. Add no migration or product feature.
 Reason: the persisted intelligence chain now carries release-critical lineage not
 covered by the original Version 1 verifier. Auditing it in the existing read-only
 boundary gives one fail-closed operational report without duplicating policy.
+
+## V3.0 Uses a Checksummed Read-Only Research Contract
+
+Decision: fix non-overlapping train, validation, calibration and test periods,
+purge/embargo policy, minimum sample size and six deterministic baselines in
+`v3-research-contract-v1`. Benchmark only persisted Version 2 evidence and keep
+unsupported or empty metrics null. Add no migration, API or recommendation path.
+
+Reason: Version 3 needs a reproducible reference before acquiring or optimizing
+data. A canonical manifest checksum makes research assumptions auditable, while a
+SELECT-only baseline preserves completed Version 2 behavior and exposes the
+current evidence limitation without fabricating option outcomes or statistics.

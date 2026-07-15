@@ -1,5 +1,12 @@
 # Dhan Trading Platform Architecture
 
+V3.0 adds a read-only research boundary above persisted Version 2 evidence. A
+repository selects point-in-time Feature, Outcome, Ranking and Opportunity facts;
+a deterministic service applies a checksummed research contract and emits baseline
+metrics. It does not modify the intelligence chain or expose an API. Later Version
+3 work must version data, features, labels, models and calibration against this
+contract rather than redesign completed Version 2 components.
+
 News and Event Intelligence follows the repository/service boundary: approved
 local adapters feed validated events to PostgreSQL, deterministic services
 materialize point-in-time links, and GET-only APIs expose context. Read requests

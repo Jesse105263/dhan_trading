@@ -55,6 +55,16 @@ For Version 2 it also audits Feature Store, Historical Outcome, Similarity,
 Trade Opportunity, News/Event and Analyst grounding lineage. See
 `docs/V2_RELEASE_READINESS_CHECKLIST.md`.
 
+The Version 3 research baseline is a separate SELECT-only diagnostic:
+
+```bash
+python -m scripts.benchmark_recommendations
+```
+
+An `INSUFFICIENT` evidence state or null metric is expected when the fixed period
+does not contain enough expiry-classified Version 2 outcomes. Do not treat the
+report as a recommendation or run it as a substitute for release verification.
+
 ## Application Startup
 
 Use separate terminals with the same virtual environment and repository folder.

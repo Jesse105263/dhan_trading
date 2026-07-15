@@ -1,5 +1,24 @@
 # Next Task
 
+V3.0 — Research Contract and Benchmark Baseline is implemented and awaiting
+repository-owner review and commit. Do not begin V3.0.5 until that approval.
+
+After approval, the next contract milestone is V3.0.5 — Data Provider & Licensing
+Strategy. It must compare viable providers and secure an approved primary,
+backup, abstraction, licensing posture, storage forecast and cost estimate before
+historical acquisition begins.
+
+The current baseline command is read-only:
+
+```bash
+python -m scripts.benchmark_recommendations
+```
+
+It must not be interpreted as a recommendation or as statistically sufficient
+evidence.
+
+## Preserved Version 2 handoff
+
 ## Active Milestone
 
 V2.1.4 — Intelligence Release Hardening & Handoff.

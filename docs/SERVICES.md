@@ -1,5 +1,14 @@
 # Services
 
+## Version 3 research baseline
+
+`ResearchBaselineRepository` performs one bounded SELECT projection over Version
+2 Feature, Outcome, Ranking and Opportunity evidence. `ResearchBaselineService`
+owns the checksummed `v3-research-contract-v1`, fixed periods, registered baseline
+selection and null-safe metrics. `scripts.benchmark_recommendations` emits the
+deterministic JSON report. None can collect data, persist state, call a model or
+generate a recommendation.
+
 ## AI Trading Analyst
 
 `TradingAnalystEvidenceService` assembles complete, versioned evidence through

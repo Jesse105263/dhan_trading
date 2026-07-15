@@ -2,6 +2,23 @@
 
 ---
 
+## 2026-07-15
+
+### V3.0 — Research Contract and Benchmark Baseline
+
+- Recorded the approved Version 3 roadmap as the implementation contract.
+- Added checksummed `v3-research-contract-v1` with fixed research periods,
+  purge/embargo controls and minimum evidence policy.
+- Added deterministic always-long, random-control, momentum, mean-reversion,
+  Version 2 ranking and Version 2 opportunity baselines.
+- Added SELECT-only population, coverage, abstention, win-rate, return, drawdown
+  and Brier reporting with explicit insufficient evidence and null unsupported
+  metrics.
+- Added CLI, unit and PostgreSQL integration coverage without a migration, API,
+  dependency, provider, model, recommendation, frontend or execution change.
+
+---
+
 ## 2026-07-05
 
 ### Infrastructure

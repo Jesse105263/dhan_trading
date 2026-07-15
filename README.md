@@ -31,10 +31,10 @@ docker compose up -d
 
 See the `docs/` folder.
 
-Version 2 is the active approved roadmap. It evolves the verified Version 1
-backend into a polished private workspace while preserving `/api/v1`, existing
-services and all no-live-execution boundaries. See `docs/V2_ROADMAP.md`,
-`docs/V2_PRODUCT_DEFINITION.md` and `docs/V2_ARCHITECTURE.md`.
+Version 3 is the active approved implementation contract. It builds statistical
+research and evidence depth on the completed Version 2 platform without changing
+Version 2 APIs or safety boundaries. See `docs/V3_ROADMAP.md` and
+`docs/V3_RESEARCH_CONTRACT.md`.
 
 ## Private Dashboard
 
@@ -80,10 +80,9 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 
 ## Status
 
-Version 1.0 is complete, verified and approved. Version 2 milestones V2.0.1 through
-V2.1.3 are complete. V2.1.4 — Intelligence Release Hardening & Handoff is
-implemented and verified pending repository-owner review. The Version 2 core
-intelligence roadmap is complete; no Version 3 roadmap is approved.
+Version 1.0 and Version 2 are complete. Version 3 is approved and V3.0 — Research
+Contract and Benchmark Baseline is implemented pending repository-owner review.
+It adds no recommendation, provider, collection, schema, API or execution path.
 
 The Version 2 frontend is isolated under `frontend/`. See `docs/FRONTEND.md` for
 its dependency policy and local commands, and `docs/DESIGN_SYSTEM.md` for tokens,
@@ -109,3 +108,10 @@ python -m scripts.verify_release
 
 See `docs/OPERATIONS_RUNBOOK.md` and `docs/RELEASE_READINESS_CHECKLIST.md`.
 Version 2 evidence is recorded in `docs/V2_RELEASE_READINESS_CHECKLIST.md`.
+Version 3 readiness starts in `docs/V3_RELEASE_READINESS_CHECKLIST.md`.
+
+Run the read-only Version 3 baseline report with:
+
+```bash
+python -m scripts.benchmark_recommendations
+```
