@@ -237,3 +237,6 @@ Migration `026` adds `feature_schema_versions_v2`, `feature_definitions_v2`,
 `feature_values_v2`. Vector/value evidence is append-only and protected by
 immutability triggers. Natural uniqueness and UUIDv5 identities make the same
 schema, cutoff and anchor idempotent.
+
+Migration `029` adds immutable calibration policies/runs/reliability bins, exact
+candidate/outcome partition lineage and recommendation-policy evaluations.

@@ -125,3 +125,4 @@ provider-free deterministic command. Outputs are `PROVISIONAL` or abstained,
 never trusted, eligible, calibrated or recommendational. V2 behavior is unchanged.
 Use `--fixture` for the bounded deterministic runtime verification path; it writes
 no database evidence and returns the same run/candidate IDs on rerun.
+V3.7 consumes candidates without mutation. Historical win rate stays uncalibrated.

@@ -690,6 +690,13 @@ Official transition from script-based development to platform architecture.
 - Added no migration, dependency, execution tool, opportunity calculation,
   external verification call or `/api/v1` contract change.
 
+## V3.7 — Calibration, Uncertainty, and Recommendation Policy
+
+- Added leakage-safe calibration/test datasets, transparent calibration,
+  deterministic uncertainty and immutable lineage.
+- Added conservative all-gates eligibility, specific abstentions, migration `029`,
+  offline commands and tests without trusted recommendation integration.
+
 ## V2.1.4 — Intelligence Release Hardening & Handoff
 
 - Expanded the SELECT-only readiness audit across the full Version 2 intelligence

@@ -330,3 +330,8 @@ immutable match evidence or promote it into an opportunity during V3.5 review.
 Run `python -m scripts.materialize_opportunity_v2 --similarity-run-id UUID` only
 against reviewed fixture evidence. `trusted=false` and `recommendation=false` are
 fixed; abstentions and null fields must not be overridden.
+
+## V3.7 Calibration Operations
+
+Apply migration `029`; materialize an approved policy, then evaluate a provisional
+candidate. Both commands are idempotent and have fail-closed `--fixture` paths.

@@ -7,10 +7,12 @@ Contract and Benchmark Baseline is committed at `a3ed736`. V3.0.5 — Data Provi
 & Licensing Strategy is committed at `e1c3618`. V3.1 — Historical Data Foundation
 is committed at `fc20734`. V3.2 — Continuous Market Collection is committed at
 `885883c`. V3.3 is committed at `ed0bb63`; V3.4 at `b4c72f0`; V3.5 at `fcb81a5`.
-V3.6 — Opportunity Engine V2 is pending owner review. Migration `028` adds
-immutable policy, run, candidate and evidence lineage. Only
-deterministic local fixtures were used; no live provider, recommendation or
-downstream intelligence change exists.
+V3.6 — Opportunity Engine V2 is committed at `bb5e07b`. V3.7 is pending owner
+review; migration `029` adds immutable calibration and eligibility evidence.
+Only deterministic local fixtures were used; no live provider, trusted
+recommendation or downstream intelligence change exists.
+Compileall and both 306-test suites passed; migration rerun applied zero and
+readiness reported 13 PASS, zero FAIL and ten optional SKIPs.
 
 Version 2 is complete. V2.0.1 — Architecture & Product Decisions,
 V2.0.2 — Frontend Project Foundation, V2.0.3 — Design System and V2.0.4 —
@@ -256,8 +258,8 @@ Use `python -m scripts.paper_trade` to open, mark, close and inspect isolated si
 
 ## Next Activity
 
-Review and commit V3.6. The approved next milestone remains V3.7 — Calibration,
-Uncertainty, and Recommendation Policy.
+Review and commit V3.7. The approved next milestone remains V3.8 — Live
+Recommendation Validation.
 
 Existing Version 1.0 safety boundaries remain unchanged. See `docs/NEXT_TASK.md`,
 `docs/OPERATIONS_RUNBOOK.md` and `docs/RELEASE_READINESS_CHECKLIST.md`.

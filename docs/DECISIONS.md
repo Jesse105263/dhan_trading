@@ -433,3 +433,8 @@ abstain for weak or concentrated evidence. Do not bind V2 or Analyst consumers.
 
 Reason: underlying proxies and similarity scores cannot justify option-premium
 recommendations. Calibration and trusted eligibility belong only to V3.7.
+
+## V3.7 Separates Calibration from Eligibility
+
+Fit transparent bins only on calibration, reserve untouched test for evaluation,
+use deterministic intervals and require every conservative gate. Live trust is V3.8.

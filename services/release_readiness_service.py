@@ -41,6 +41,7 @@ class ReleaseReadinessService:
         "feature_store_v2_lineage_and_leakage",
         "similarity_v2_lineage_and_leakage",
         "opportunity_v2_lineage_and_leakage",
+        "calibration_v2_lineage_and_leakage",
         "execution_schema_boundary",
     )
 

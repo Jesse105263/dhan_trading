@@ -116,3 +116,4 @@ the empty licensed population.
 Opportunity V2 reads immutable matches and never changes their rank. Outcomes are
 used only when already attached under V3.5's terminal cutoff; similarity and
 evidence-quality scores are weights and diagnostics, never confidence.
+V3.7 preserves this rule and retains exact Similarity V2 lineage.

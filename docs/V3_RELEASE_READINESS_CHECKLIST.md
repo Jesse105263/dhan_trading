@@ -125,6 +125,11 @@ V3.2 verification evidence:
 - [ ] Eighty-percent supported-population completeness is unevaluated without licensed history.
 - [ ] Repository-owner review and commit are complete.
 
+V3.7 verification evidence: compileall passed; standard and PostgreSQL suites each
+ran 306 tests with 50 and five expected skips respectively; migration `029`
+applied once and reran with zero changes; 29 checksums match; readiness reports
+13 PASS, zero FAIL and ten optional SKIPs; both fixtures failed closed.
+
 V3.3 verification evidence:
 
 - Compileall passed.
@@ -200,3 +205,12 @@ V3.6 verification evidence:
 - Migration `028` applied once; rerun applied zero; all 28 checksums match.
 - Deterministic fixture-backed service/operator path reran idempotently.
 - Readiness: 13 PASS, 0 FAIL and nine optional empty-data SKIPs.
+
+## V3.7 — Calibration, Uncertainty, and Recommendation Policy
+
+- [x] Fixed partitions, purge, embargo and terminal cutoffs prevent leakage.
+- [x] Transparent calibration, uncertainty, abstentions and lineage are immutable.
+- [x] Fixture evidence remains insufficient, uncalibrated and never trusted.
+- [x] V2 behavior, `/api/v1`, providers and execution remain unchanged.
+- [ ] Licensed population quality and live trust are unevaluated.
+- [ ] Repository-owner review and commit are complete.

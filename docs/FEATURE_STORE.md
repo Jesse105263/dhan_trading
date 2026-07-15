@@ -105,3 +105,4 @@ declared features, and fits normalization solely on eligible pre-cutoff candidat
 
 V3.6 requires an exact `OPTION` vector and uses its canonical close as premium.
 Underlying features are never substituted for option-premium levels.
+V3.7 retains feature lineage and never recalculates or imputes its inputs.

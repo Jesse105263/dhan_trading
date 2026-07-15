@@ -49,6 +49,7 @@ class ReleaseReadinessRepository:
             "feature_store_v2_lineage_and_leakage": self._feature_store_v2_lineage_and_leakage(),
             "similarity_v2_lineage_and_leakage": self._similarity_v2_lineage_and_leakage(),
             "opportunity_v2_lineage_and_leakage": self._opportunity_v2_lineage_and_leakage(),
+            "calibration_v2_lineage_and_leakage": self._calibration_v2_lineage_and_leakage(),
             "execution_schema_boundary": self._execution_schema_boundary(),
         }
 
@@ -331,6 +332,21 @@ class ReleaseReadinessRepository:
           JOIN feature_vectors_v2 v ON v.vector_id=e.matched_vector_id LEFT JOIN historical_outcomes_v2 h ON h.outcome_id=e.matched_outcome_id)
           SELECT COUNT(*),COUNT(*) FILTER(WHERE violation) FROM audited""")
         return self._metric("opportunity_v2_lineage_and_leakage",row)
+
+    def _calibration_v2_lineage_and_leakage(self) -> AuditMetric:
+        row=self._fetch_one("""WITH audited AS (
+          SELECT r.run_id::text entity_id,(r.policy_id<>p.policy_id OR r.calibration_sample_size<>(
+            SELECT COUNT(*) FROM calibration_dataset_lineage_v2 l WHERE l.run_id=r.run_id AND l.included AND l.period_name='CALIBRATION')
+            OR EXISTS(SELECT 1 FROM calibration_dataset_lineage_v2 l WHERE l.run_id=r.run_id AND l.included AND l.period_name NOT IN ('CALIBRATION','TEST'))
+            OR EXISTS(SELECT 1 FROM calibration_dataset_lineage_v2 l WHERE l.run_id=r.run_id AND l.included AND l.terminal_at>r.cutoff_at)) violation
+          FROM calibration_runs_v2 r JOIN calibration_policies_v2 p ON p.policy_id=r.policy_id
+          UNION ALL SELECT e.evaluation_id::text,(e.policy_id<>r.policy_id OR e.dataset_lineage_checksum<>r.dataset_checksum
+            OR e.eligible<>(e.state='ELIGIBLE') OR (e.eligible AND (e.calibrated_win_probability IS NULL OR e.conservative_expected_value IS NULL
+              OR EXISTS(SELECT 1 FROM jsonb_each_text(e.gates) g WHERE g.value<>'true'))))
+          FROM recommendation_evaluations_v2 e JOIN calibration_runs_v2 r ON r.run_id=e.calibration_run_id
+          JOIN opportunity_candidates_v2 c ON c.candidate_id=e.candidate_id)
+          SELECT COUNT(*),COUNT(*) FILTER(WHERE violation) FROM audited""")
+        return self._metric("calibration_v2_lineage_and_leakage",row)
 
     def _option_chain_lineage(self) -> AuditMetric:
         row = self._fetch_one(

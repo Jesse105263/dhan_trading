@@ -322,3 +322,5 @@ explainability, quality and abstention. `materialize_similarity_v2` is offline.
 `opportunity_v2_models`, `opportunity_v2_repository` and
 `opportunity_v2_service` freeze strategy policy, select exact contracts, calculate
 option-path provisional fields, enforce abstention and persist immutable lineage.
+`calibration_v2_*` fits transparent bins, calculates deterministic uncertainty
+and evaluates eligibility without execution side effects.

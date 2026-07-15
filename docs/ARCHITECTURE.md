@@ -314,6 +314,11 @@ then attaches Outcome V2 evidence completed before the query observation. Its
 new tables and command are isolated from V2 Similarity, Opportunity, Analyst and
 recommendation paths.
 
+## Version 3 Calibration Boundary
+
+V3.7 persists separate offline calibration runs and eligibility evaluations. No
+API v1, UI, analyst, paper or broker path consumes eligibility.
+
 ## Version 3 Opportunity Engine V2 Boundary
 
 V3.6 persists isolated provisional research over exact Feature/Similarity/Outcome

@@ -117,6 +117,8 @@ python -m scripts.verify_release
 See `docs/OPERATIONS_RUNBOOK.md` and `docs/RELEASE_READINESS_CHECKLIST.md`.
 Version 2 evidence is recorded in `docs/V2_RELEASE_READINESS_CHECKLIST.md`.
 Version 3 readiness starts in `docs/V3_RELEASE_READINESS_CHECKLIST.md`.
+V3.7's fail-closed research boundary is documented in
+`docs/CALIBRATION_RECOMMENDATION_POLICY.md`.
 
 Run the read-only Version 3 baseline report with:
 

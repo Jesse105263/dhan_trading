@@ -134,7 +134,8 @@ Framework checkpoint: migration `028` implements immutable policies, runs,
 provisional/abstained exact-contract candidates and match/outcome lineage. Actual
 option-premium paths support levels; costs, rejected fills, effective sample size,
 concentration, liquidity, moneyness, expiry and out-of-distribution gates fail
-closed. Population quality remains unevaluated. V3.7 remains next.
+closed. Population quality remains unevaluated. V3.7 implements the next
+research gate without changing that limitation.
 
 ### V3.7 — Calibration, Uncertainty, and Recommendation Policy
 
@@ -145,6 +146,9 @@ calibration and interval coverage, positive conservative after-cost value,
 liquidity, diversity, distribution and data-quality gates. Similarity and ranking
 alone never authorize recommendations; degradation suspends policy. Estimated
 effort: 2–4 weeks.
+
+Implementation status: complete and staged for repository-owner review. The
+fixture fails closed; licensed population quality is unevaluated. V3.8 remains next.
 
 ### V3.8 — Live Recommendation Validation
 
