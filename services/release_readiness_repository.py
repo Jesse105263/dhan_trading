@@ -48,6 +48,7 @@ class ReleaseReadinessRepository:
             "outcome_v2_lineage_and_leakage": self._outcome_v2_lineage_and_leakage(),
             "feature_store_v2_lineage_and_leakage": self._feature_store_v2_lineage_and_leakage(),
             "similarity_v2_lineage_and_leakage": self._similarity_v2_lineage_and_leakage(),
+            "opportunity_v2_lineage_and_leakage": self._opportunity_v2_lineage_and_leakage(),
             "execution_schema_boundary": self._execution_schema_boundary(),
         }
 
@@ -313,6 +314,23 @@ class ReleaseReadinessRepository:
             ) SELECT COUNT(*),COUNT(*) FILTER(WHERE violation) FROM audited
         """)
         return self._metric("similarity_v2_lineage_and_leakage",row)
+
+    def _opportunity_v2_lineage_and_leakage(self) -> AuditMetric:
+        row=self._fetch_one("""WITH audited AS (
+          SELECT o.candidate_id::text entity_id,(o.query_vector_id<>s.query_vector_id OR o.instrument_id<>v.instrument_id
+            OR o.observed_at<>v.observed_at OR r.policy_checksum<>p.policy_checksum OR r.similarity_run_id<>o.similarity_run_id
+            OR (o.state='PROVISIONAL' AND (o.option_type IS NULL OR o.entry_zone_low IS NULL OR o.net_expected_value_pct IS NULL))
+            OR (o.state<>'PROVISIONAL' AND (o.entry_zone_low IS NOT NULL OR o.historical_win_rate IS NOT NULL OR o.net_expected_value_pct IS NOT NULL))) violation
+          FROM opportunity_candidates_v2 o JOIN opportunity_runs_v2 r ON r.run_id=o.run_id JOIN opportunity_policies_v2 p ON p.policy_version=r.policy_version
+          JOIN similarity_runs_v2 s ON s.run_id=o.similarity_run_id JOIN feature_vectors_v2 v ON v.vector_id=o.query_vector_id
+          UNION ALL SELECT e.candidate_id::text||':'||e.match_id::text,(m.run_id<>o.similarity_run_id OR e.matched_vector_id<>m.matched_vector_id
+            OR e.matched_outcome_id IS DISTINCT FROM m.matched_outcome_id OR v.observed_at>=s.cutoff_at
+            OR (h.outcome_id IS NOT NULL AND h.terminal_at>s.query_observed_at))
+          FROM opportunity_evidence_v2 e JOIN opportunity_candidates_v2 o ON o.candidate_id=e.candidate_id
+          JOIN similarity_matches_v2 m ON m.match_id=e.match_id JOIN similarity_runs_v2 s ON s.run_id=m.run_id
+          JOIN feature_vectors_v2 v ON v.vector_id=e.matched_vector_id LEFT JOIN historical_outcomes_v2 h ON h.outcome_id=e.matched_outcome_id)
+          SELECT COUNT(*),COUNT(*) FILTER(WHERE violation) FROM audited""")
+        return self._metric("opportunity_v2_lineage_and_leakage",row)
 
     def _option_chain_lineage(self) -> AuditMetric:
         row = self._fetch_one(

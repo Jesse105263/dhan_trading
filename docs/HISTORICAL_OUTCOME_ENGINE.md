@@ -141,3 +141,6 @@ future-path leakage. Neither store changes the existing V2 Similarity consumer.
 Outcome V2 is attached only after analogue ranking. Only complete outcomes whose
 terminal timestamp is no later than the query observation are eligible; outcomes
 never affect feature selection, normalization, distance or rank.
+
+V3.6 uses complete option outcomes for premium-path MFE, MAE and net returns.
+Unknown or underlying-only paths cannot support option entry, stop or targets.

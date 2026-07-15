@@ -102,3 +102,26 @@ remain visibly unavailable. No browser-side financial calculation occurs.
 
 V2.1.2 attaches event context after calculation without changing any opportunity
 level, statistic, score, rank or eligibility. See `docs/NEWS_EVENT_INTELLIGENCE.md`.
+
+## Version 3.6 Opportunity Engine V2
+
+V3.6 accepts only a Similarity V2 query backed by an exact canonical option
+contract. Option-premium entry, stop and multiple target levels require complete
+historical option-contract outcomes; underlying price is used only for moneyness
+validation and never as a premium proxy. Immutable policies freeze strategy,
+direction, horizon, training-period boundary, quantiles, costs, slippage, fill,
+liquidity, strike, expiry, OI, volume, concentration and distribution gates.
+
+Net expected value uses complete net outcomes plus configured rejected-fill loss,
+fees and slippage. Wins, losses and timeouts remain in the sample. Effective
+sample size is computed from similarity/evidence weights, while symbol/contract,
+expiry, regime and episode concentration can force abstention. Sparse,
+contradictory, illiquid, fill-infeasible, unstable and out-of-distribution states
+retain null entry, stop, targets, win rate and expected value.
+
+Migration `028` adds immutable policy, run, candidate and exact evidence tables.
+`python -m scripts.materialize_opportunity_v2 --similarity-run-id UUID` is the
+provider-free deterministic command. Outputs are `PROVISIONAL` or abstained,
+never trusted, eligible, calibrated or recommendational. V2 behavior is unchanged.
+Use `--fixture` for the bounded deterministic runtime verification path; it writes
+no database evidence and returns the same run/candidate IDs on rerun.

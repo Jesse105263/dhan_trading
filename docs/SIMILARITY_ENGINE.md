@@ -110,3 +110,9 @@ Migration `027` adds immutable `similarity_models_v2`, `similarity_runs_v2` and
 Analyst and recommendation consumers remain unchanged. Performance, outcome
 consistency, precision-at-K, uplift and stability targets remain unevaluated on
 the empty licensed population.
+
+## V3.6 opportunity consumer
+
+Opportunity V2 reads immutable matches and never changes their rank. Outcomes are
+used only when already attached under V3.5's terminal cutoff; similarity and
+evidence-quality scores are weights and diagnostics, never confidence.

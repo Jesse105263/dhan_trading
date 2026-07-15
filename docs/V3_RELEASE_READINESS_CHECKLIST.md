@@ -178,3 +178,25 @@ V3.5 verification evidence:
 - Migration `027` applied once; rerun applied zero; all 27 checksums match.
 - Deterministic fixture materialization reran with the same run and match IDs.
 - Readiness: 13 PASS, 0 FAIL and eight optional empty-data SKIPs.
+
+## V3.6 — Opportunity Engine V2
+
+- [x] Exact option contract and actual premium paths are required for levels.
+- [x] Strategy, horizon, training boundary, costs, fills and quantiles are versioned.
+- [x] Win rate, net expected value and effective sample size use complete evidence.
+- [x] Symbol/contract, expiry, regime and episode concentration can force abstention.
+- [x] Liquidity, fill, moneyness, expiry and distribution gates fail closed.
+- [x] Unsupported fields remain null for every abstention state.
+- [x] Feature, contract, similarity, outcome and match lineage is immutable.
+- [x] V2 Opportunity and Analyst behavior remains unchanged.
+- [ ] Population recommendation quality remains unevaluated without licensed history.
+- [ ] Repository-owner review and commit are complete.
+
+V3.6 verification evidence:
+
+- Compileall passed.
+- Standard suite: 294 tests, 48 expected PostgreSQL-gated skips.
+- PostgreSQL suite: 294 tests, five documented data/isolated-database skips.
+- Migration `028` applied once; rerun applied zero; all 28 checksums match.
+- Deterministic fixture-backed service/operator path reran idempotently.
+- Readiness: 13 PASS, 0 FAIL and nine optional empty-data SKIPs.

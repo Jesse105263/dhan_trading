@@ -4,6 +4,14 @@
 
 ## 2026-07-16
 
+### V3.6 — Opportunity Engine V2
+
+- Added migration `028` for immutable policies, runs, exact-contract candidates
+  and evidence lineage.
+- Added option-path-only levels, net expected value, effective sample size,
+  concentration, liquidity/fill and distribution abstention.
+- Preserved null unsupported outputs and all V2/recommendation safety boundaries.
+
 ### V3.5 — Similarity Engine V2
 
 - Added migration `027` with immutable similarity policies, runs and matches.

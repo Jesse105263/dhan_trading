@@ -130,6 +130,12 @@ liquidity and fill feasibility. Prevent episode concentration and abstain for we
 contradictory, illiquid or out-of-distribution evidence. Candidates remain
 non-recommendational until V3.7. Estimated effort: 4–6 weeks.
 
+Framework checkpoint: migration `028` implements immutable policies, runs,
+provisional/abstained exact-contract candidates and match/outcome lineage. Actual
+option-premium paths support levels; costs, rejected fills, effective sample size,
+concentration, liquidity, moneyness, expiry and out-of-distribution gates fail
+closed. Population quality remains unevaluated. V3.7 remains next.
+
 ### V3.7 — Calibration, Uncertainty, and Recommendation Policy
 
 Calibrate probabilities by justified strategy/regime populations and calculate

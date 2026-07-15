@@ -102,3 +102,6 @@ drift and distribution targets remain unevaluated. V3.5 must explicitly opt in.
 Similarity Engine V2 consumes immutable vectors without rewriting or imputing
 them. It records the exact schema and vector lineage, dynamically selects only
 declared features, and fits normalization solely on eligible pre-cutoff candidates.
+
+V3.6 requires an exact `OPTION` vector and uses its canonical close as premium.
+Underlying features are never substituted for option-premium levels.

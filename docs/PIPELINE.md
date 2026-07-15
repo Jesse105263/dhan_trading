@@ -199,3 +199,6 @@ An explicit Feature Store V2 query vector and fixed cutoff select only earlier,
 available vectors. Candidate-only normalization and transparent ranking complete
 before eligible Outcome V2 labels are attached. This is offline derived work and
 does not enter collection or the V2 opportunity pipeline.
+
+V3.6 is an explicit offline step from one persisted Similarity V2 run to one
+provisional or abstained exact-contract candidate. It never enters live pipelines.

@@ -424,3 +424,12 @@ unchanged.
 Reason: outcomes in distance calculations or late-completing labels would leak
 future truth. An isolated transparent store makes alternative models comparable
 and reproducible without prematurely changing opportunity behavior.
+
+## V3.6 Requires Actual Option Paths and Remains Provisional
+
+Decision: persist isolated immutable V3.6 policies/candidates, require exact
+option contracts and premium paths for levels, include costs/fill failures, and
+abstain for weak or concentrated evidence. Do not bind V2 or Analyst consumers.
+
+Reason: underlying proxies and similarity scores cannot justify option-premium
+recommendations. Calibration and trusted eligibility belong only to V3.7.

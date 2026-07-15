@@ -6,9 +6,9 @@ Version 3 is the active approved implementation contract. V3.0 — Research
 Contract and Benchmark Baseline is committed at `a3ed736`. V3.0.5 — Data Provider
 & Licensing Strategy is committed at `e1c3618`. V3.1 — Historical Data Foundation
 is committed at `fc20734`. V3.2 — Continuous Market Collection is committed at
-`885883c`. V3.3 is committed at `ed0bb63`; V3.4 at `b4c72f0`. V3.5 — Similarity
-Engine V2 is implemented pending repository-owner review. Migration `027` adds
-immutable model, run and match lineage with strict temporal cutoffs. Only
+`885883c`. V3.3 is committed at `ed0bb63`; V3.4 at `b4c72f0`; V3.5 at `fcb81a5`.
+V3.6 — Opportunity Engine V2 is pending owner review. Migration `028` adds
+immutable policy, run, candidate and evidence lineage. Only
 deterministic local fixtures were used; no live provider, recommendation or
 downstream intelligence change exists.
 
@@ -136,14 +136,20 @@ The release-hardening implementation checkpoint is
 - `025_outcome_engine_v2.sql`
 - `026_feature_store_v2.sql`
 - `027_similarity_engine_v2.sql`
+- `028_opportunity_engine_v2.sql`
 
 Migrations `018`–`022` remain the immutable Version 2 Feature, Outcome,
-Similarity, Opportunity and Event stores. Migrations `023`–`027` add isolated
-Version 3 historical, collection, Outcome, Feature and Similarity stores.
+Similarity, Opportunity and Event stores. Migrations `023`–`028` add isolated
+Version 3 historical, collection, Outcome, Feature, Similarity and Opportunity stores.
 
 Milestones 4.1 and 4.2 required no migrations because they are read-only surfaces over existing tables. Milestone 4.3 adds auditable alerts in migration 016, and Milestone 4.5 adds isolated paper state in migration 017.
 
 ## Latest Verification
+
+V3.6 verification: compileall passed; standard and PostgreSQL suites each ran 294
+tests, with 48 database-gated standard skips and five documented PostgreSQL skips.
+Migration `028` applied once and reran with zero changes. Release readiness
+reported 13 PASS, 0 FAIL and nine optional SKIPs.
 
 V3.5 verification: compileall passed; standard and PostgreSQL-enabled suites each
 ran 289 tests, with 46 database-gated skips in the standard suite and five
@@ -250,8 +256,8 @@ Use `python -m scripts.paper_trade` to open, mark, close and inspect isolated si
 
 ## Next Activity
 
-Review and commit V3.5. The approved next milestone remains V3.6 — Opportunity
-Engine V2. Provider acquisition remains blocked by the documented licensing gates.
+Review and commit V3.6. The approved next milestone remains V3.7 — Calibration,
+Uncertainty, and Recommendation Policy.
 
 Existing Version 1.0 safety boundaries remain unchanged. See `docs/NEXT_TASK.md`,
 `docs/OPERATIONS_RUNBOOK.md` and `docs/RELEASE_READINESS_CHECKLIST.md`.

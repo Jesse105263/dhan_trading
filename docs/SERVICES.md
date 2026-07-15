@@ -318,3 +318,7 @@ features, explicit missingness, quality and lineage. The offline command is
 owns point-in-time Feature/Outcome reads and immutable persistence, and
 `similarity_v2_service` owns normalization, filtering, distance, ranking,
 explainability, quality and abstention. `materialize_similarity_v2` is offline.
+
+`opportunity_v2_models`, `opportunity_v2_repository` and
+`opportunity_v2_service` freeze strategy policy, select exact contracts, calculate
+option-path provisional fields, enforce abstention and persist immutable lineage.

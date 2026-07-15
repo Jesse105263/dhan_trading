@@ -326,3 +326,7 @@ Run `python -m scripts.materialize_similarity_v2 --vector-id UUID` only for an
 approved Feature Store V2 vector. The command is provider-free and idempotent.
 Treat cutoff, lineage or readiness violations as stop conditions; never edit
 immutable match evidence or promote it into an opportunity during V3.5 review.
+
+Run `python -m scripts.materialize_opportunity_v2 --similarity-run-id UUID` only
+against reviewed fixture evidence. `trusted=false` and `recommendation=false` are
+fixed; abstentions and null fields must not be overridden.

@@ -313,3 +313,9 @@ V3.5 reads immutable Feature Store V2 vectors, ranks only pre-cutoff candidates,
 then attaches Outcome V2 evidence completed before the query observation. Its
 new tables and command are isolated from V2 Similarity, Opportunity, Analyst and
 recommendation paths.
+
+## Version 3 Opportunity Engine V2 Boundary
+
+V3.6 persists isolated provisional research over exact Feature/Similarity/Outcome
+lineage. It has no connection to V2 Opportunity, Analyst, recommendation,
+collection, broker or execution services.
