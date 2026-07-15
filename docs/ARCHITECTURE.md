@@ -274,3 +274,11 @@ continuous collection, NSE/BSE for authoritative venue facts, and RBI/MoSPI for
 macro facts, all subject to their licensing gates. Feature, Outcome, Similarity
 and research layers must not consume provider payloads directly. Unknown retention
 or model-use permission fails closed. See `docs/V3_DATA_PROVIDER_STRATEGY.md`.
+
+V3.1 implements this boundary in migration `023`. Exact raw bytes flow through a
+provider-neutral adapter into a single transactional repository; manifests retain
+raw and canonical checksums. Stable instrument UUIDs and temporal provider mappings
+separate identity from tickers/security IDs. Bars and corporate actions append
+revisions with availability timestamps; differing cross-source bars quarantine
+without replacing accepted state. The only adapter is bounded local JSON and has
+no network or credential capability. See `docs/HISTORICAL_DATA_FOUNDATION.md`.

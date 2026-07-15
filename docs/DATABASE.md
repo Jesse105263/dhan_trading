@@ -6,6 +6,17 @@ PostgreSQL is the source of truth for persistent platform state.
 
 ## Current Core Tables
 
+### Version 3 historical foundation
+
+Migration `023` adds `historical_data_sources`,
+`historical_retention_policies`, exact-byte `historical_raw_payloads`, immutable
+`historical_raw_manifests`, `canonical_instruments`,
+`canonical_instrument_revisions`, temporal `source_instrument_mappings`,
+`historical_bar_revisions`, `corporate_action_revisions` and
+`historical_quality_incidents`. Canonical revisions retain raw-manifest lineage
+and never overwrite historical content. Existing Version 2 evidence tables are
+unchanged. See `docs/HISTORICAL_DATA_FOUNDATION.md`.
+
 ### market_events and event-context tables
 
 Migration `022` persists canonical source-attributed events, explicit symbol and
@@ -194,4 +205,4 @@ name differs from normal `POSTGRES_DB`. See `docs/OPERATIONS_RUNBOOK.md`.
 
 Migrations `001`–`022` are authoritative and immutable. V2.1.4 verified exact
 filesystem/applied order, filenames and SHA-256 checksums; two migration reruns
-applied zero changes. No migration `023` exists.
+applied zero changes. Version 3 appends migration `023` without modifying them.

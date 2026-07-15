@@ -362,3 +362,18 @@ bounded integration; TrueData provides broker-independent exchange-authorized
 continuous coverage. Two active vendors give operational independence without an
 unnecessary enterprise-vendor set. Unknown rights fail closed, and no integration
 starts before procurement evidence satisfies `docs/V3_DATA_PROVIDER_STRATEGY.md`.
+
+## V3.1 Separates Immutable Raw Evidence From Canonical Revisions
+
+Decision: persist exact provider bytes and manifests separately from stable
+canonical instruments, temporal source mappings, bar revisions and corporate
+action revisions. Use deterministic SHA-256/UUIDv5 identities, fail closed unless
+raw and normalized retention are explicitly allowed, append same-source changes,
+and quarantine differing cross-source bars. Implement only a bounded local JSON
+adapter in V3.1.
+
+Reason: provider symbols and payload schemas are mutable, while research must be
+restartable, survivorship-safe and point-in-time reproducible. Separating raw
+evidence from canonical revisions prevents schema lock-in and last-write-wins
+history. The local-only adapter proves the boundary without authorizing a provider,
+credential, download, backfill or continuous collection.

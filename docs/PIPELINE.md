@@ -162,3 +162,10 @@ Option data pipeline ──┘
 It does not schedule or invoke collection, analytics, alerts, Copilot or paper
 trading. Operational startup, monitoring, backup and isolated recovery are defined
 in `docs/OPERATIONS_RUNBOOK.md`.
+
+## Version 3 Historical Foundation Boundary
+
+V3.1 is not connected to either production pipeline. It exposes no downloader,
+scheduled stage or continuous collection path. A future explicitly approved
+historical acquisition workflow may pass licensed raw bytes to the provider-neutral
+foundation; downstream consumers may read only canonical revisions and lineage.

@@ -35,6 +35,7 @@ class ReleaseReadinessService:
         "trade_opportunity_lineage",
         "news_event_lineage_and_leakage",
         "analyst_evidence_grounding",
+        "historical_data_foundation_lineage",
         "execution_schema_boundary",
     )
 

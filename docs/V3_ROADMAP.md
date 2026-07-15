@@ -47,6 +47,13 @@ idempotent imports, survivorship-safe identities, coverage reporting and revisio
 leakage tests. Targets are 95% expected underlying-session coverage and 90%
 supported derivative coverage. Estimated effort: 4–7 weeks excluding procurement.
 
+Foundation checkpoint: migration `023`, provider-neutral contracts, immutable raw
+payload/manifests, temporal instrument mappings, canonical instrument/bar/action
+revisions, retention metadata, checksums, deduplication and conflict quarantine
+are implemented in `docs/HISTORICAL_DATA_FOUNDATION.md`. Provider acquisition and
+the coverage targets remain blocked and unmet because this checkpoint performs no
+authentication, download or backfill.
+
 ### V3.2 — Continuous Market Collection
 
 Continuously collect the same canonical contracts with session policy, gap repair,

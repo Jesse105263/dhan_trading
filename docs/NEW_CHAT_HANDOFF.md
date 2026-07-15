@@ -8,12 +8,14 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 
 - Version 3 roadmap: approved implementation contract
 - V3.0 — Research Contract and Benchmark Baseline: committed at `a3ed736`
-- Current milestone: V3.0.5 — Data Provider & Licensing Strategy
-- Current milestone state: documentation complete and staged pending owner review
+- V3.0.5 — Data Provider & Licensing Strategy: committed at `e1c3618`
+- Current milestone: V3.1 — Historical Data Foundation
+- Current milestone state: implemented and staged pending owner review
 - Selected providers: DhanHQ historical/live backup and TrueData continuous/live,
   all subject to written licensing confirmation
-- No provider integration, credentials, paid activation, migration or dependency
-  were added in V3.0.5
+- Migration `023` and provider-neutral local-only foundation services are added.
+- No provider integration, credentials, paid activation, download, backfill,
+  scheduler or continuous collection was added.
 
 - Version 2 roadmap: approved
 - V2.0.1 — Architecture & Product Decisions: complete
@@ -60,6 +62,13 @@ The release-hardening implementation checkpoint is:
 Verify the current Git state before starting any later task.
 
 ## Latest Verification
+
+```text
+V3.1 standard: 259 passed, 39 database-gated skips
+V3.1 PostgreSQL: 259 passed, 5 documented data/isolated-database skips
+Migration 023: applied once; idempotent rerun applied 0
+Readiness: 11 PASS, 0 FAIL, 6 optional empty-data SKIPs
+```
 
 ```text
 V2.1.4 standard: 240 passed, 36 database-gated skips
@@ -194,9 +203,9 @@ readiness work.
 
 ## Next Activity
 
-Review and commit V3.0.5. Then satisfy every procurement, licensing, coverage,
-storage and abstraction gate in `docs/V3_DATA_PROVIDER_STRATEGY.md` before
-authorizing V3.1. No historical ingestion or provider configuration exists yet.
+Review and commit V3.1. Then satisfy every procurement, licensing, coverage and
+storage gate in `docs/V3_DATA_PROVIDER_STRATEGY.md` before authorizing historical
+provider ingestion. Do not begin V3.2. No provider configuration exists.
 
 Current local evidence: 9 Feature Store vectors, 9 outcomes, zero classified
 expiry outcomes, one eight-match insufficient similarity run, one non-eligible

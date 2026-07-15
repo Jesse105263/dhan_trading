@@ -271,3 +271,17 @@ source priority, failover, deduplication, revisions, conflicts, checksums, raw
 manifests, licensing and retention metadata. No executable adapter or service has
 been added. Existing Dhan collectors and the bounded local news-event provider are
 unchanged. See `docs/V3_DATA_PROVIDER_STRATEGY.md`.
+
+## Version 3 Historical Data Foundation
+
+- `historical_data_models.py` defines frozen source, retention, raw, instrument,
+  mapping, bar, action, dataset and result contracts.
+- `historical_data_provider.py` defines the adapter protocol and bounded
+  local-JSON implementation with no network or credentials.
+- `historical_data_service.py` owns validation, fail-closed licensing, exact raw
+  and canonical checksums, deterministic IDs and natural-key preparation.
+- `historical_data_repository.py` atomically persists immutable raw payloads,
+  manifests, canonical revisions, deduplication and conflict quarantine.
+
+No command, live provider adapter, scheduler or continuous collector is included.
+See `docs/HISTORICAL_DATA_FOUNDATION.md`.

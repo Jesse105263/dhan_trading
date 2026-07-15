@@ -407,5 +407,7 @@ the following evidence is recorded without secrets:
 - a V3.1 acquisition plan that is idempotent, restartable, rate-limit aware,
   deterministic, survivorship-safe and leakage-tested.
 
-Until those gates pass, V3.1 historical ingestion remains blocked. Version 2 APIs,
-collectors, repositories and behavior remain unchanged.
+The V3.1 provider-neutral storage and normalization foundation may be implemented
+and tested with deterministic local fixtures without satisfying commercial gates.
+Historical provider ingestion remains blocked until every gate above passes.
+Version 2 APIs, collectors, repositories and behavior remain unchanged.

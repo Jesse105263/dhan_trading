@@ -4,6 +4,19 @@
 
 ## 2026-07-15
 
+### V3.1 — Historical Data Foundation
+
+- Added migration `023` with immutable raw payload/manifests, source and retention
+  metadata, stable canonical instruments, temporal provider mappings, revised
+  historical bars, revised corporate actions and quality incidents.
+- Added provider-neutral frozen contracts, a bounded local-only JSON adapter,
+  deterministic exact-byte/canonical checksums, UUIDv5 identities, validation,
+  deduplication, revision and cross-source quarantine policy.
+- Extended SELECT-only readiness with historical-foundation lineage checks and
+  added comprehensive unit and PostgreSQL integration coverage.
+- Added no live provider adapter, credential, download, backfill, scheduler,
+  continuous collector, API, frontend, recommendation or execution path.
+
 ### V3.0 — Research Contract and Benchmark Baseline
 
 - Recorded the approved Version 3 roadmap as the implementation contract.

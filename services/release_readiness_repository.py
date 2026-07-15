@@ -43,6 +43,7 @@ class ReleaseReadinessRepository:
             "trade_opportunity_lineage": self._trade_opportunity_lineage(),
             "news_event_lineage_and_leakage": self._news_event_lineage_and_leakage(),
             "analyst_evidence_grounding": self._analyst_evidence_grounding(),
+            "historical_data_foundation_lineage": self._historical_data_foundation_lineage(),
             "execution_schema_boundary": self._execution_schema_boundary(),
         }
 
@@ -164,6 +165,52 @@ class ReleaseReadinessRepository:
             FROM trade_opportunities o
         """)
         return self._metric("analyst_evidence_grounding", row)
+
+    def _historical_data_foundation_lineage(self) -> AuditMetric:
+        row = self._fetch_one("""
+            WITH audited AS (
+                SELECT m.manifest_id::text entity_id, (
+                    m.source_id <> p.source_id OR m.source_id <> raw.source_id
+                    OR m.policy_id <> raw.policy_id
+                    OR m.payload_checksum <> raw.payload_checksum
+                    OR raw.byte_count <> octet_length(raw.payload_bytes)
+                    OR p.raw_retention <> 'ALLOWED'
+                    OR p.normalized_retention <> 'ALLOWED'
+                ) violation
+                FROM historical_raw_manifests m
+                JOIN historical_raw_payloads raw ON raw.payload_id=m.payload_id
+                JOIN historical_retention_policies p ON p.policy_id=m.policy_id
+                UNION ALL
+                SELECT b.bar_revision_id::text, (
+                    b.available_at < b.event_at
+                    OR (b.supersedes_revision_id IS NOT NULL AND NOT EXISTS (
+                        SELECT 1 FROM historical_bar_revisions previous
+                        WHERE previous.bar_revision_id=b.supersedes_revision_id
+                          AND previous.instrument_id=b.instrument_id
+                          AND previous.interval_code=b.interval_code
+                          AND previous.bar_open_at=b.bar_open_at
+                          AND previous.adjustment_state=b.adjustment_state
+                          AND previous.revision_number < b.revision_number))
+                ) FROM historical_bar_revisions b
+                UNION ALL
+                SELECT r.revision_id::text, (
+                    r.supersedes_revision_id IS NOT NULL AND NOT EXISTS (
+                        SELECT 1 FROM canonical_instrument_revisions previous
+                        WHERE previous.revision_id=r.supersedes_revision_id
+                          AND previous.instrument_id=r.instrument_id
+                          AND previous.revision_number < r.revision_number)
+                ) FROM canonical_instrument_revisions r
+                UNION ALL
+                SELECT a.action_revision_id::text, (
+                    a.supersedes_revision_id IS NOT NULL AND NOT EXISTS (
+                        SELECT 1 FROM corporate_action_revisions previous
+                        WHERE previous.action_revision_id=a.supersedes_revision_id
+                          AND previous.action_identity=a.action_identity
+                          AND previous.revision_number < a.revision_number)
+                ) FROM corporate_action_revisions a
+            ) SELECT COUNT(*), COUNT(*) FILTER (WHERE violation) FROM audited
+        """)
+        return self._metric("historical_data_foundation_lineage", row)
 
     def _option_chain_lineage(self) -> AuditMetric:
         row = self._fetch_one(

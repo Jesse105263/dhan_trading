@@ -65,6 +65,11 @@ An `INSUFFICIENT` evidence state or null metric is expected when the fixed perio
 does not contain enough expiry-classified Version 2 outcomes. Do not treat the
 report as a recommendation or run it as a substitute for release verification.
 
+V3.1 adds no operator acquisition command. Migration `023` may be applied through
+the normal migration runner, but historical tables remain empty until a separately
+approved licensed import workflow exists. Do not use production collectors or
+manually place downloaded files into the foundation during V3.1 review.
+
 ## Application Startup
 
 Use separate terminals with the same virtual environment and repository folder.

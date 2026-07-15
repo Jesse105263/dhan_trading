@@ -1,13 +1,13 @@
 # Next Task
 
-V3.0 is committed at `a3ed736`. V3.0.5 — Data Provider & Licensing Strategy is
-documented and staged for repository-owner review. Do not begin V3.1 until the
-owner approves and commits this milestone.
+V3.0 is committed at `a3ed736`; V3.0.5 is committed at `e1c3618`. V3.1 —
+Historical Data Foundation is implemented and awaiting repository-owner review.
+Do not start provider acquisition or V3.2.
 
-After approval, V3.1 entry remains blocked until written DhanHQ and TrueData
+Historical provider acquisition remains blocked until written DhanHQ and TrueData
 licensing confirmation, dated quotes, coverage samples, NSE/BSE specialist terms,
-approved news scope, budget, storage/backup capacity and canonical provider-neutral
-contracts are recorded. See `docs/V3_DATA_PROVIDER_STRATEGY.md`.
+approved news scope, budget and storage/backup capacity are recorded. See
+`docs/V3_DATA_PROVIDER_STRATEGY.md`.
 
 The current baseline command is read-only:
 
@@ -20,7 +20,7 @@ evidence.
 
 ## Preserved Version 2 handoff
 
-## Active Milestone
+## Final Version 2 Milestone
 
 V2.1.4 — Intelligence Release Hardening & Handoff.
 
@@ -54,7 +54,8 @@ Version 2 is approved and uses `V2.0.x` numbering. See
 `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 `docs/V2_ROADMAP.md`.
 
-Version 3 is approved. V3.0 is complete and V3.0.5 is the active review milestone.
+Version 3 is approved. V3.1 is the active review milestone. Its raw/canonical
+foundation uses local deterministic tests only; historical coverage remains empty.
 
 ## Continuing Constraints
 

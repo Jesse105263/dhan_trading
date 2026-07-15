@@ -4,11 +4,12 @@
 
 Version 3 is the active approved implementation contract. V3.0 — Research
 Contract and Benchmark Baseline is committed at `a3ed736`. V3.0.5 — Data Provider
-& Licensing Strategy is documented pending repository-owner review. DhanHQ is the
-selected primary historical source and live backup; TrueData is the selected
-continuous/live source, subject to written licensing and coverage confirmation.
-No integration, credential, paid activation, migration or executable service is
-included.
+& Licensing Strategy is committed at `e1c3618`. V3.1 — Historical Data Foundation
+is implemented pending repository-owner review. Migration `023` adds the
+provider-neutral raw, manifest, retention, instrument/mapping, historical bar,
+corporate-action, revision and quality boundaries. Only deterministic local test
+records were used; no provider integration, credential, activation, download or
+backfill exists.
 
 Version 2 is complete. V2.0.1 — Architecture & Product Decisions,
 V2.0.2 — Frontend Project Foundation, V2.0.3 — Design System and V2.0.4 —
@@ -16,15 +17,15 @@ Application Shell, V2.0.5 — Market Overview & Opportunity Scanner and V2.0.6 �
 Symbol Intelligence Workspace, V2.0.7 — Market Memory Foundation and V2.0.8 —
 Feature Store, V2.0.9 — Historical Outcome Engine, V2.1.0 — Similarity Engine and
 V2.1.1 — Trade Opportunity Engine, V2.1.2 — News & Event Intelligence and V2.1.3
-— AI Trading Analyst are complete. Current milestone: V2.1.4 — Intelligence
-Release Hardening & Handoff, committed at `ba6c0a2`. The Version 2 core
+— AI Trading Analyst are complete. The final milestone, V2.1.4 — Intelligence
+Release Hardening & Handoff, was committed at `ba6c0a2`. The Version 2 core
 intelligence roadmap is complete and preserved.
 
 See `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 `docs/V2_ROADMAP.md`.
 
 See `docs/V3_ROADMAP.md`, `docs/V3_RESEARCH_CONTRACT.md`,
-`docs/V3_DATA_PROVIDER_STRATEGY.md` and
+`docs/V3_DATA_PROVIDER_STRATEGY.md`, `docs/HISTORICAL_DATA_FOUNDATION.md` and
 `docs/V3_RELEASE_READINESS_CHECKLIST.md` for the active work.
 
 ## Version 1 Release Status
@@ -128,14 +129,22 @@ The release-hardening implementation checkpoint is
 - `020_similarity_engine.sql`
 - `021_trade_opportunity_engine.sql`
 - `022_news_event_intelligence.sql`
+- `023_historical_data_foundation.sql`
 
-Migrations `018`–`022` add the Feature, Outcome, Similarity, Opportunity and Event
-stores. V2.1.4 verified all 22 filenames and checksums and two migration reruns
-applied zero changes. No migration `023` exists.
+Migrations `018`–`022` remain the immutable Version 2 Feature, Outcome,
+Similarity, Opportunity and Event stores. Migration `023` adds the isolated
+Version 3 historical foundation without changing those tables.
 
 Milestones 4.1 and 4.2 required no migrations because they are read-only surfaces over existing tables. Milestone 4.3 adds auditable alerts in migration 016, and Milestone 4.5 adds isolated paper state in migration 017.
 
 ## Latest Verification
+
+V3.1 verification: compileall passed; standard and PostgreSQL-enabled suites each
+ran 259 tests, with 39 expected database-gated skips in the standard suite and
+five documented skips in the PostgreSQL suite. Migration `023` applied once and
+an idempotent rerun applied zero. Release readiness found all 23 migrations and
+returned 11 PASS, 0 FAIL and six optional empty-data SKIPs, including the empty
+historical foundation.
 
 V2.1.4 verification: compileall passed; standard and PostgreSQL suites each ran
 240 tests; frontend lint, 39 tests, build and formatting passed. Expanded
@@ -210,7 +219,8 @@ Use `python -m scripts.paper_trade` to open, mark, close and inspect isolated si
 
 ## Next Activity
 
-Review and commit V3.0.5. V3.1 must not acquire data until the owner records
+Review and commit the V3.1 foundation. Historical acquisition must not begin until
+the owner records
 written provider rights, quotes, coverage evidence, budget, specialist-source
 terms, storage capacity and the provider-neutral contract required by
 `docs/V3_DATA_PROVIDER_STRATEGY.md`.

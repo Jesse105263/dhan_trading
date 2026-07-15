@@ -2,16 +2,9 @@
 
 ## Active Roadmap
 
-Version 2 is approved and active:
-
-- `docs/V2_PRODUCT_DEFINITION.md`
-- `docs/V2_ARCHITECTURE.md`
-- `docs/V2_ROADMAP.md`
-
-Current milestone: V2.0.1 — Architecture & Product Decisions.
-
-The next implementation milestone, after documentation review and explicit owner
-instruction, is V2.0.2 — Frontend Project Foundation.
+Version 3 is approved and active. See `docs/V3_ROADMAP.md`. V3.0 and V3.0.5 are
+committed; V3.1 — Historical Data Foundation is implemented pending owner review.
+Version 2 is complete and preserved in `docs/V2_ROADMAP.md`.
 
 ## Historical Version 1 Roadmap
 
