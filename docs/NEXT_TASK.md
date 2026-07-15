@@ -1,9 +1,9 @@
 # Next Task
 
 V3.0 is committed at `a3ed736`; V3.0.5 at `e1c3618`; V3.1 at `fc20734`; and
-V3.2 at `885883c`. V3.3 — Outcome Engine V2 is implemented and awaiting
-repository-owner review. The approved next milestone remains V3.4 — Feature Store
-V2. Do not start it during V3.3 review.
+V3.2 at `885883c`; and V3.3 at `ed0bb63`. V3.4 — Feature Store V2 is implemented
+and awaiting repository-owner review. The approved next milestone remains V3.5 —
+Similarity Engine V2. Do not start it during V3.4 review.
 
 Historical provider acquisition remains blocked until written DhanHQ and TrueData
 licensing confirmation, dated quotes, coverage samples, NSE/BSE specialist terms,
@@ -55,7 +55,7 @@ Version 2 is approved and uses `V2.0.x` numbering. See
 `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 `docs/V2_ROADMAP.md`.
 
-Version 3 is approved. V3.3 is the active review milestone. Its outcomes use
+Version 3 is approved. V3.4 is the active review milestone. Its features use
 deterministic local fixtures only; population coverage remains unevaluated.
 
 ## Continuing Constraints

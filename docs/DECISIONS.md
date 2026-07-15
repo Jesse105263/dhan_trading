@@ -401,3 +401,15 @@ Reason: new option/underlying horizons and metrics cannot safely overwrite the
 minimal V2 model or silently change Similarity and Opportunity behavior. A
 separate immutable store provides statistically rigorous future inputs while
 preserving compatibility and preventing correction leakage.
+
+## V3.4 Isolates Point-in-Time Features From Existing Consumers
+
+Decision: persist immutable schema/definition/run/vector/value records in
+migration `026`, select canonical evidence by availability at each anchor, retain
+nulls and exact revision lineage, and leave the V2 Feature Store and its consumers
+unchanged.
+
+Reason: rebinding current Similarity or Opportunity behavior would skip the
+roadmap evaluation gate. Isolation makes definitions historically reproducible,
+prevents late-revision leakage and permits V3.5 to adopt them explicitly after
+quality and owner review.

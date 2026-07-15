@@ -144,3 +144,10 @@ Outcome Engine V2 reads accepted canonical bars and corporate-action revisions
 only through stable instrument IDs. Every label retains anchor, terminal, path and
 raw-manifest lineage. Point-in-time queries use revision availability rather than
 today's `is_current`, preventing late corrections from leaking into earlier runs.
+
+## V3.4 feature consumer
+
+Feature Store V2 reads accepted raw-adjustment canonical bars and point-in-time
+instrument revisions. Each value retains exact source revision IDs; each vector
+retains its anchor manifest and availability. Corrections append new vectors and
+cannot destructively mutate prior feature evidence.

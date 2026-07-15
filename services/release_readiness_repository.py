@@ -46,6 +46,7 @@ class ReleaseReadinessRepository:
             "historical_data_foundation_lineage": self._historical_data_foundation_lineage(),
             "continuous_collection_lineage": self._continuous_collection_lineage(),
             "outcome_v2_lineage_and_leakage": self._outcome_v2_lineage_and_leakage(),
+            "feature_store_v2_lineage_and_leakage": self._feature_store_v2_lineage_and_leakage(),
             "execution_schema_boundary": self._execution_schema_boundary(),
         }
 
@@ -265,6 +266,33 @@ class ReleaseReadinessRepository:
             ) SELECT COUNT(*),COUNT(*) FILTER(WHERE violation) FROM audited
         """)
         return self._metric("outcome_v2_lineage_and_leakage",row)
+
+    def _feature_store_v2_lineage_and_leakage(self) -> AuditMetric:
+        row=self._fetch_one("""
+            WITH audited AS (
+                SELECT v.vector_id::text entity_id, (
+                    v.definition_checksum<>s.definition_checksum OR v.definition_checksum<>r.definition_checksum
+                    OR v.schema_version<>r.schema_version OR v.instrument_id<>b.instrument_id
+                    OR v.anchor_manifest_id<>b.manifest_id OR v.observed_at<>b.bar_close_at
+                    OR v.available_at<>b.available_at OR v.available_at>r.as_of
+                    OR v.feature_count<>(SELECT COUNT(*) FROM feature_values_v2 x WHERE x.vector_id=v.vector_id)
+                    OR v.present_feature_count<>(SELECT COUNT(*) FROM feature_values_v2 x WHERE x.vector_id=v.vector_id AND x.numeric_value IS NOT NULL)
+                    OR v.missing_feature_count<>(SELECT COUNT(*) FROM feature_values_v2 x WHERE x.vector_id=v.vector_id AND x.numeric_value IS NULL)
+                ) violation FROM feature_vectors_v2 v JOIN feature_schema_versions_v2 s ON s.schema_version=v.schema_version
+                JOIN feature_materialization_runs_v2 r ON r.run_id=v.run_id
+                JOIN historical_bar_revisions b ON b.bar_revision_id=v.anchor_bar_revision_id
+                UNION ALL
+                SELECT x.vector_id::text||':'||x.feature_name, (
+                    x.feature_name<>d.feature_name OR d.schema_version<>v.schema_version
+                    OR (x.numeric_value IS NULL)<>(x.missing_reason IS NOT NULL)
+                    OR EXISTS(SELECT 1 FROM jsonb_array_elements_text(x.source_revision_ids) source_id
+                        LEFT JOIN historical_bar_revisions b ON b.bar_revision_id=source_id::uuid
+                        WHERE b.bar_revision_id IS NULL OR b.bar_close_at>v.observed_at OR b.available_at>v.available_at)
+                ) FROM feature_values_v2 x JOIN feature_vectors_v2 v ON v.vector_id=x.vector_id
+                JOIN feature_definitions_v2 d ON d.definition_id=x.definition_id
+            ) SELECT COUNT(*),COUNT(*) FILTER(WHERE violation) FROM audited
+        """)
+        return self._metric("feature_store_v2_lineage_and_leakage",row)
 
     def _option_chain_lineage(self) -> AuditMetric:
         row = self._fetch_one(

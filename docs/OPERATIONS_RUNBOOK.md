@@ -305,3 +305,17 @@ Complete `docs/RELEASE_READINESS_CHECKLIST.md` and
 `docs/V2_RELEASE_READINESS_CHECKLIST.md`. Release acceptance requires no
 failed readiness checks, green automated suites, an isolated recovery drill, clean
 documentation and explicit human review.
+
+## V3.4 Feature Store V2 Operations
+
+Apply migration `026`, then run a fixed-cutoff offline materialization:
+
+```bash
+python -m services.migration_runner
+python -m scripts.materialize_feature_store_v2 --as-of 2026-07-16T00:00:00
+```
+
+The command is safe to rerun and calls no provider. Treat a schema-checksum
+mismatch, release lineage violation or unexpected missingness increase as a stop;
+preserve immutable records and investigate source revisions rather than editing
+feature rows. No schedule or live consumer is activated.

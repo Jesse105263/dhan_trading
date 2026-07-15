@@ -4,6 +4,15 @@
 
 ## 2026-07-16
 
+### V3.4 — Feature Store V2
+
+- Added migration `026` with immutable versioned feature definitions,
+  materialization runs, canonical vectors, values, quality metrics and lineage.
+- Added deterministic point-in-time features across eight evidence-backed
+  families with explicit missing and normalization policies.
+- Added offline materialization, release auditing, unit and PostgreSQL coverage
+  while preserving V2 consumers and recommendation logic.
+
 ### V3.3 — Outcome Engine V2
 
 - Added migration `025` with immutable outcome policies, runs, multi-horizon

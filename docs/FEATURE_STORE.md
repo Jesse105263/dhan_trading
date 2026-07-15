@@ -69,3 +69,30 @@ The Feature Store does not generate entries, stops, targets, confidence, expecte
 value, win rates or recommendations. It exists solely to make future historical
 outcome and similarity calculations reproducible and evidence-backed. There is no
 broker, live-order, paper-order, alert, LLM or frontend write path.
+
+## Version 3.4 Feature Store V2
+
+V3.4 adds an isolated provider-neutral store over accepted raw-adjustment
+canonical bars. Schema `canonical-market-features-v2` has immutable definitions
+for price, return, volatility, volume, derivative, liquidity, temporal and regime
+families. Every definition records its formula, minimum history, missing-value
+policy and normalization policy; values are not imputed or normalized in place.
+
+Materialization selects each bar and instrument revision only as known at a fixed
+`as_of`. Trailing inputs must close no later than the anchor and be available no
+later than the anchor's availability timestamp. Vector IDs, definition IDs and
+run IDs are deterministic; exact source bar-revision IDs, manifest ID, definition
+checksum, value checksums, lineage checksum, family coverage and missing reasons
+make reruns reproducible and auditable. Later corrections append a new canonical
+bar revision and therefore a new vector; they never rewrite old evidence.
+
+```bash
+python -m scripts.materialize_feature_store_v2 --as-of 2026-07-16T00:00:00
+```
+
+The schema declares backward compatibility with `option-observation-v1`, but the
+V2 repository, service, APIs and current consumers remain untouched. Outcome V2
+is compatibility metadata only and is never a feature input. No training or live
+normalization statistics are fabricated. Option-chain, event, cross-sectional and
+broader futures families remain pending canonical licensed inputs; coverage,
+drift and distribution targets remain unevaluated. V3.5 must explicitly opt in.

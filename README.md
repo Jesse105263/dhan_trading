@@ -87,10 +87,10 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 
 ## Status
 
-Version 1.0 and Version 2 are complete. V3.0 through V3.2 are committed. V3.3 —
-Outcome Engine V2 is implemented pending repository-owner review. It adds
-versioned canonical underlying/option path outcomes without changing the existing
-V2 Outcome, Similarity, Opportunity or recommendation contracts.
+Version 1.0 and Version 2 are complete. V3.0 through V3.3 are committed. V3.4 —
+Feature Store V2 is implemented pending repository-owner review. It adds
+versioned point-in-time canonical-bar features without changing the existing V2
+Feature Store, Similarity, Opportunity or recommendation contracts.
 
 The Version 2 frontend is isolated under `frontend/`. See `docs/FRONTEND.md` for
 its dependency policy and local commands, and `docs/DESIGN_SYSTEM.md` for tokens,

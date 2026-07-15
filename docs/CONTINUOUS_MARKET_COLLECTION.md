@@ -97,3 +97,9 @@ Engine V2.
 Outcome Engine V2 consumes only canonical revisions already committed through
 V3.1/V3.2. It never schedules collection or repairs and cannot activate a
 provider. A late revision affects only a later explicit outcome `as_of` run.
+
+## V3.4 downstream boundary
+
+Feature Store V2 consumes only accepted canonical revisions already committed by
+V3.1/V3.2. It does not schedule, repair or collect data. A late revision is visible
+only to a later explicit feature cutoff and never rewrites an old vector.

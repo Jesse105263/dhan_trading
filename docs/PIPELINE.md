@@ -184,3 +184,11 @@ Outcome V2 is offline downstream work: accepted canonical bars/actions flow into
 a fixed-policy, fixed-`as_of` path reconstruction and then immutable outcome/path
 records. It is not a continuous-collection stage and never triggers a provider.
 V2 feature, similarity and opportunity pipelines remain unchanged.
+
+## Version 3.4 Feature Materialization
+
+Accepted V3.1 canonical bar revisions flow through a fixed-schema, fixed-`as_of`
+offline query into immutable Feature Store V2 vectors and values. Histories are
+bounded by both event time and availability time. The command neither collects
+data nor schedules work, and the V2 feature/similarity/opportunity pipeline stays
+unchanged.

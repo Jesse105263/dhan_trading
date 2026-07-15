@@ -95,6 +95,15 @@ share definitions; leakage, drift, missingness and distribution checks are
 mandatory, with 90% declared coverage for core features. Estimated effort: 4–6
 weeks.
 
+Framework checkpoint: migration `026` implements immutable feature schemas,
+definitions, materialization runs, vectors and values over point-in-time canonical
+bar revisions. The first schema covers price, returns, volatility, volume,
+derivatives, liquidity, temporal and regime families, preserves missing values,
+records normalization metadata and exact revision lineage, and remains compatible
+with V2 consumers through isolation. Population coverage, drift/distribution
+baselines and additional option-chain, event and cross-sectional families remain
+unevaluated until licensed canonical evidence exists. V3.5 remains next.
+
 ### V3.5 — Similarity Engine V2
 
 Build train-window-normalized, regime-aware, strategy-aware analogues with feature

@@ -6,10 +6,11 @@ Version 3 is the active approved implementation contract. V3.0 — Research
 Contract and Benchmark Baseline is committed at `a3ed736`. V3.0.5 — Data Provider
 & Licensing Strategy is committed at `e1c3618`. V3.1 — Historical Data Foundation
 is committed at `fc20734`. V3.2 — Continuous Market Collection is committed at
-`885883c`. V3.3 — Outcome Engine V2 is implemented pending repository-owner
-review. Migration `025` adds immutable policy, run, canonical multi-horizon
-outcome and exact path lineage. Only deterministic local fixtures were used; no
-live provider, recommendation or downstream intelligence change exists.
+`885883c`. V3.3 — Outcome Engine V2 is committed at `ed0bb63`. V3.4 — Feature
+Store V2 is implemented pending repository-owner review. Migration `026` adds
+immutable definitions, runs, point-in-time vectors, quality metadata and exact
+bar-revision lineage. Only deterministic local fixtures were used; no live
+provider, recommendation or downstream intelligence change exists.
 
 Version 2 is complete. V2.0.1 — Architecture & Product Decisions,
 V2.0.2 — Frontend Project Foundation, V2.0.3 — Design System and V2.0.4 —
@@ -26,7 +27,7 @@ See `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 
 See `docs/V3_ROADMAP.md`, `docs/V3_RESEARCH_CONTRACT.md`,
 `docs/V3_DATA_PROVIDER_STRATEGY.md`, `docs/HISTORICAL_DATA_FOUNDATION.md`,
-`docs/CONTINUOUS_MARKET_COLLECTION.md` and
+`docs/CONTINUOUS_MARKET_COLLECTION.md`, `docs/FEATURE_STORE.md` and
 `docs/V3_RELEASE_READINESS_CHECKLIST.md` for the active work.
 
 ## Version 1 Release Status
@@ -133,14 +134,22 @@ The release-hardening implementation checkpoint is
 - `023_historical_data_foundation.sql`
 - `024_continuous_market_collection.sql`
 - `025_outcome_engine_v2.sql`
+- `026_feature_store_v2.sql`
 
 Migrations `018`–`022` remain the immutable Version 2 Feature, Outcome,
-Similarity, Opportunity and Event stores. Migrations `023`–`025` add the isolated
-Version 3 historical, collection and Outcome V2 stores without changing them.
+Similarity, Opportunity and Event stores. Migrations `023`–`026` add the isolated
+Version 3 historical, collection, Outcome V2 and Feature Store V2 stores without
+changing them.
 
 Milestones 4.1 and 4.2 required no migrations because they are read-only surfaces over existing tables. Milestone 4.3 adds auditable alerts in migration 016, and Milestone 4.5 adds isolated paper state in migration 017.
 
 ## Latest Verification
+
+V3.4 verification: compileall passed; standard and PostgreSQL-enabled suites each
+ran 284 tests, with 45 database-gated skips in the standard suite and five
+documented skips in the PostgreSQL suite. Migration `026` applied once and its
+rerun applied zero changes. The fixed-cutoff command returned the same empty-run
+ID twice. Release readiness reported 13 PASS, 0 FAIL and seven optional SKIPs.
 
 V3.3 verification: compileall passed; standard and PostgreSQL-enabled suites each
 ran 278 tests, with 43 expected database-gated skips in the standard suite and
@@ -235,8 +244,8 @@ Use `python -m scripts.paper_trade` to open, mark, close and inspect isolated si
 
 ## Next Activity
 
-Review and commit V3.3. The approved next milestone remains V3.4 — Feature Store
-V2. Provider acquisition remains blocked by the documented licensing gates.
+Review and commit V3.4. The approved next milestone remains V3.5 — Similarity
+Engine V2. Provider acquisition remains blocked by the documented licensing gates.
 
 Existing Version 1.0 safety boundaries remain unchanged. See `docs/NEXT_TASK.md`,
 `docs/OPERATIONS_RUNBOOK.md` and `docs/RELEASE_READINESS_CHECKLIST.md`.

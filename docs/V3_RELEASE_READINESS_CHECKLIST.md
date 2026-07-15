@@ -133,3 +133,25 @@ V3.3 verification evidence:
 - Migration `025` applied once; rerun applied zero; all 25 checksums match.
 - Fixed-cutoff command rerun returned the same run ID and explicit empty population.
 - Readiness: 13 PASS, 0 FAIL and six optional empty-data SKIPs.
+
+## V3.4 — Feature Store V2
+
+- [x] Definitions are versioned with exact formulas, families and minimum history.
+- [x] Missing-value and normalization policies are metadata, never fabricated values.
+- [x] Canonical bar and instrument revisions are selected point in time.
+- [x] Deterministic runs, vectors and definitions make fixed-cutoff reruns idempotent.
+- [x] Values retain exact source revision IDs and checksums; vectors retain quality metrics.
+- [x] Migration `026` persists immutable schemas, definitions, runs, vectors and values.
+- [x] Release readiness audits counts, schema/run/anchor lineage and future leakage.
+- [x] V2 Feature Store and all current consumers remain backward compatible.
+- [ ] Core-population coverage, drift and distributions remain unevaluated without licensed history.
+- [ ] Repository-owner review and commit are complete.
+
+V3.4 verification evidence:
+
+- Compileall passed.
+- Standard suite: 284 tests, 45 expected PostgreSQL-gated skips.
+- PostgreSQL suite: 284 tests, five documented data/isolated-database skips.
+- Migration `026` applied once; rerun applied zero; all 26 checksums match.
+- Fixed-cutoff command rerun returned the same run ID and explicit empty population.
+- Readiness: 13 PASS, 0 FAIL and seven optional empty-data SKIPs.

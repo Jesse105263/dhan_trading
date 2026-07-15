@@ -11,11 +11,12 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 - V3.0.5 — Data Provider & Licensing Strategy: committed at `e1c3618`
 - V3.1 — Historical Data Foundation: committed at `fc20734`
 - V3.2 — Continuous Market Collection: committed at `885883c`
-- Current milestone: V3.3 — Outcome Engine V2
+- V3.3 — Outcome Engine V2: committed at `ed0bb63`
+- Current milestone: V3.4 — Feature Store V2
 - Current milestone state: implemented and staged pending owner review
 - Selected providers: DhanHQ historical/live backup and TrueData continuous/live,
   all subject to written licensing confirmation
-- Migration `025` and immutable outcome policy/run/path services are added.
+- Migration `026` and immutable feature definition/run/vector/value services are added.
 - No live provider integration, credentials, paid activation, external call,
   production schedule, download or backfill was added.
 
@@ -64,6 +65,14 @@ The release-hardening implementation checkpoint is:
 Verify the current Git state before starting any later task.
 
 ## Latest Verification
+
+```text
+V3.4 standard: 284 passed, 45 database-gated skips
+V3.4 PostgreSQL: 284 passed, 5 documented data/isolated-database skips
+Migration 026: applied once; idempotent rerun applied 0
+Fixed-cutoff command: same run ID, explicit empty canonical population
+Readiness: 13 PASS, 0 FAIL, 7 optional empty-data SKIPs
+```
 
 ```text
 V3.3 standard: 278 passed, 43 database-gated skips
@@ -221,7 +230,7 @@ readiness work.
 
 ## Next Activity
 
-Review and commit V3.3. The approved next milestone is V3.4 — Feature Store V2.
+Review and commit V3.4. The approved next milestone is V3.5 — Similarity Engine V2.
 Provider activation remains blocked by every procurement, licensing, coverage and
 storage gate in `docs/V3_DATA_PROVIDER_STRATEGY.md`; no live configuration exists.
 

@@ -219,4 +219,10 @@ name differs from normal `POSTGRES_DB`. See `docs/OPERATIONS_RUNBOOK.md`.
 
 Migrations `001`–`022` are authoritative and immutable. V2.1.4 verified exact
 filesystem/applied order, filenames and SHA-256 checksums; two migration reruns
-applied zero changes. Version 3 appends migrations `023`–`025` without modifying them.
+applied zero changes. Version 3 appends migrations `023`–`026` without modifying them.
+
+Migration `026` adds `feature_schema_versions_v2`, `feature_definitions_v2`,
+`feature_materialization_runs_v2`, `feature_vectors_v2` and
+`feature_values_v2`. Vector/value evidence is append-only and protected by
+immutability triggers. Natural uniqueness and UUIDv5 identities make the same
+schema, cutoff and anchor idempotent.

@@ -129,3 +129,9 @@ python -m scripts.materialize_historical_outcomes_v2 --as-of 2026-07-16T00:00:00
 The command is offline and provider-free. The current local historical foundation
 contains no licensed market population, so an empty run is valid and makes no
 coverage or statistical-reliability claim.
+
+## V3.4 compatibility boundary
+
+Feature Store V2 declares compatibility with `canonical-path-outcome-v2`, but
+Outcome V2 labels and metrics are never feature inputs. This prevents label or
+future-path leakage. Neither store changes the existing V2 Similarity consumer.

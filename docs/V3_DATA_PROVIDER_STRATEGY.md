@@ -426,3 +426,9 @@ Outcome Engine V2 is implemented only against deterministic local canonical
 fixtures and empty licensed-population state. It does not broaden source rights:
 derived-data retention/model-research permission must still be explicitly
 `ALLOWED` before provider observations may support persisted outcomes.
+
+## V3.4 derived-feature status
+
+Feature Store V2 is verified only with deterministic local fixtures and an empty
+licensed-population run. It adds no entitlement: raw/normalized retention,
+derived-use, training, backup and termination rights remain unresolved gates.

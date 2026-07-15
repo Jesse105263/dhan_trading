@@ -303,3 +303,11 @@ atomic outcome/path persistence. `outcome_v2_service` owns deterministic horizon
 barrier, missingness, cost, MFE/MAE, drawdown and volatility policy.
 `materialize_historical_outcomes_v2` is the offline idempotent command. No current
 Similarity, Opportunity, Analyst or recommendation service imports it.
+
+## Version 3 Feature Store V2
+
+`feature_store_v2_models` defines versioned definitions, schemas, anchors and
+results. `feature_store_v2_repository` performs point-in-time revision reads and
+atomic immutable persistence. `feature_store_v2_service` computes deterministic
+features, explicit missingness, quality and lineage. The offline command is
+`materialize_feature_store_v2`; no provider or current consumer is invoked.

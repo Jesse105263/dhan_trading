@@ -299,3 +299,10 @@ It selects evidence as of an explicit cutoff, reconstructs ordered underlying or
 option paths, and persists versioned labels plus exact manifests. The existing V2
 Outcome Store remains the source for current Similarity and Opportunity logic;
 V3.3 adds no recommendation integration.
+
+## Version 3 Feature Store V2 Boundary
+
+V3.4 reads only point-in-time V3.1 canonical bars and persists isolated immutable
+feature evidence. It does not replace the V2 Feature Store or feed Similarity,
+Opportunity, Analyst or recommendation services. Outcome V2 compatibility is
+declared metadata, never a predictive input.
