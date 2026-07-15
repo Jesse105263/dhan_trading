@@ -205,3 +205,5 @@ provisional or abstained exact-contract candidate. It never enters live pipeline
 V3.7 adds offline calibration then evaluation; neither creates a trusted recommendation.
 V3.8 is a later explicit shadow stage: snapshot, observe, outcome, rolling report,
 then drift evaluation. It has no automatic schedule, feedback or execution edge.
+V3.9 explicitly registers, replays, compares, reports, proposes, approves and
+decides offline. No automatic feedback, retraining, deployment or execution exists.

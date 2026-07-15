@@ -57,7 +57,7 @@ class ReleaseReadinessRepositoryIntegrationTest(unittest.TestCase):
         self.assertEqual(database_name, RELEASE_TEST_DATABASE)
         self.assertTrue(database_user)
         self.assertEqual([item.version for item in migrations], [
-            f"{number:03d}" for number in range(1, 31)
+            f"{number:03d}" for number in range(1, 32)
         ])
 
     def test_all_audit_queries_are_readable_on_isolated_schema(self) -> None:

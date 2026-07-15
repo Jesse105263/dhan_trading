@@ -330,3 +330,8 @@ No read API or frontend is added because the local validation population is empt
 V3.6 persists isolated provisional research over exact Feature/Similarity/Outcome
 lineage. It has no connection to V2 Opportunity, Analyst, recommendation,
 collection, broker or execution services.
+
+## Version 3 Research Governance Boundary
+
+V3.9 is an append-only offline plane for datasets, experiments, comparisons,
+approvals and model roles. It imports no execution or deployment service.

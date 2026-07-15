@@ -3,8 +3,8 @@
 V3.0 is committed at `a3ed736`; V3.0.5 at `e1c3618`; V3.1 at `fc20734`; and
 V3.2 at `885883c`; V3.3 at `ed0bb63`; V3.4 at `b4c72f0`; V3.5 at `fcb81a5`; and
 V3.6 at `bb5e07b`.
-V3.8 — Live Recommendation Validation is awaiting owner review. The approved next
-milestone remains V3.9 — Institutional Research, Validation, and Model Governance.
+V3.9 — Institutional Research, Validation, and Model Governance is awaiting owner
+review. The approved next milestone remains V3.10 — Scale and Operational Hardening.
 
 Historical provider acquisition remains blocked until written DhanHQ and TrueData
 licensing confirmation, dated quotes, coverage samples, NSE/BSE specialist terms,
@@ -56,8 +56,8 @@ Version 2 is approved and uses `V2.0.x` numbering. See
 `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 `docs/V2_ROADMAP.md`.
 
-Version 3 is approved. V3.8 is the active review milestone. Its fixtures are
-shadow-only; 60 live sessions and operational trust remain unevaluated.
+Version 3 is approved. V3.9 is the active review milestone. Its fixtures are
+offline-only; licensed population, mature shadow evidence and deployment are absent.
 
 ## Continuing Constraints
 

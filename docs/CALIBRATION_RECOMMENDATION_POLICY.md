@@ -35,5 +35,7 @@ python -m scripts.evaluate_recommendation_policy --fixture
 The local eight-observation fixture deliberately fails closed and prints
 `trusted=false`. Commands call no provider, Dhan, broker or model. Licensed
 population calibration, drift performance and recommendation trust are unresolved.
+V3.9 retains calibration versions as immutable lineage and cannot refit bins,
+change thresholds or reinterpret historical eligibility.
 V3.8 snapshots evaluations without changing calibration runs or gates. Eligibility
 remains research-only until 60 live shadow sessions and later governance approval.

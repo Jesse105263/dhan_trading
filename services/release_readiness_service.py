@@ -43,6 +43,7 @@ class ReleaseReadinessService:
         "opportunity_v2_lineage_and_leakage",
         "calibration_v2_lineage_and_leakage",
         "live_validation_lineage_and_safety",
+        "research_governance_lineage_and_safety",
         "execution_schema_boundary",
     )
 

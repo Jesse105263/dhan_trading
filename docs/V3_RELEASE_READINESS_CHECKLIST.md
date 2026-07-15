@@ -230,3 +230,19 @@ V3.8 verification evidence: compileall passed; standard and PostgreSQL suites ra
 319 tests with 52 and five expected skips respectively; migration `030` applied
 once and reran with zero changes; all 30 checksums match; readiness reports
 13 PASS, zero FAIL and eleven optional SKIPs; fixture reruns were deterministic.
+
+## V3.9 — Institutional Research, Validation, and Model Governance
+
+- [x] Dataset, model and experiment definitions are immutable and checksummed.
+- [x] Replay lineage preserves included and excluded untouched-test observations.
+- [x] Paired comparison, bootstrap and multiple-testing policy are versioned.
+- [x] Promotion requires statistical, audit, shadow, readiness and approval gates.
+- [x] Roles, decisions, rollback plans and audit history are append-only.
+- [x] Offline promotion has no deployment, execution or silent retraining path.
+- [ ] Licensed population and mature shadow evidence remain unavailable.
+- [ ] Repository-owner review and commit are complete.
+
+V3.9 verification evidence: compileall passed; standard and PostgreSQL suites ran
+329 tests with 53 and five expected skips respectively; migration `031` applied
+once and reran with zero changes; all 31 checksums match; readiness reports
+13 PASS, zero FAIL and twelve optional SKIPs; fixture reruns were deterministic.

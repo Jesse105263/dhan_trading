@@ -690,6 +690,13 @@ Official transition from script-based development to platform architecture.
 - Added no migration, dependency, execution tool, opportunity calculation,
   external verification call or `/api/v1` contract change.
 
+## V3.9 — Institutional Research, Validation, and Model Governance
+
+- Added immutable dataset/model/experiment registries and exact replay lineage.
+- Added paired statistics, reports, approval gates, offline roles, rollback plans
+  and audit history without retraining, deployment or execution.
+- Added migration `031`, deterministic commands, readiness auditing and tests.
+
 ## V3.8 — Live Recommendation Validation
 
 - Added immutable recommendation snapshots, canonical shadow paths, fills,

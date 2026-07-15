@@ -445,3 +445,8 @@ Decision: append recommendation snapshots before observing canonical paths, reta
 all rejected/unfilled/incomplete states, and append versioned drift suspensions.
 Reason: validation must measure decisions as originally made; rewriting or silent
 self-learning would invalidate calibration and untouched evidence.
+
+## V3.9 Makes Promotion Explicit and Offline
+
+Freeze inputs, compare paired untouched evidence with multiple-testing control,
+require three owner roles plus shadow/readiness, and append roles without deployment.

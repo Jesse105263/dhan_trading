@@ -16,11 +16,12 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 - V3.5 — Similarity Engine V2: committed at `fcb81a5`
 - V3.6 — Opportunity Engine V2: committed at `bb5e07b`
 - V3.7 — Calibration, Uncertainty, and Recommendation Policy: committed at `254e6bf`
-- Current milestone: V3.8 — Live Recommendation Validation
+- V3.8 — Live Recommendation Validation: committed at `67ed31c`
+- Current milestone: V3.9 — Institutional Research, Validation, and Model Governance
 - Current milestone state: implemented and staged pending owner review
 - Selected providers: DhanHQ historical/live backup and TrueData continuous/live,
   all subject to written licensing confirmation
-- Migration `030` and immutable shadow validation/drift evidence are added.
+- Migration `031` and immutable offline research/model-governance evidence are added.
 - No live provider integration, credentials, paid activation, external call,
   production schedule, download or backfill was added.
 
@@ -71,6 +72,10 @@ Verify the current Git state before starting any later task.
 ## Latest Verification
 
 ```text
+V3.9 standard: 329 tests, 53 database-gated skips
+V3.9 PostgreSQL: 329 tests, 5 documented skips
+Migration 031: applied once; idempotent rerun applied 0
+Readiness: 13 PASS, 0 FAIL, 12 optional SKIPs
 V3.8 standard: 319 tests, 52 database-gated skips
 V3.8 PostgreSQL: 319 tests, 5 documented skips
 Migration 030: applied once; idempotent rerun applied 0
@@ -257,8 +262,8 @@ readiness work.
 
 ## Next Activity
 
-Review and commit V3.8. The approved next milestone is V3.9 — Institutional
-Research, Validation, and Model Governance.
+Review and commit V3.9. The approved next milestone is V3.10 — Scale and
+Operational Hardening.
 Provider activation remains blocked by every procurement, licensing, coverage and
 storage gate in `docs/V3_DATA_PROVIDER_STRATEGY.md`; no live configuration exists.
 

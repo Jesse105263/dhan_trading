@@ -342,3 +342,9 @@ Apply migration `030`, then use the three validation commands only at explicit
 cutoffs. Reruns are idempotent. Never edit snapshots or outcomes; append a later
 cutoff. Treat drift suspension, missing paths and fewer than 60 shadow sessions as
 non-trusted. Fixture commands call no provider or execution service.
+
+## V3.9 Governance Operations
+
+Apply migration `031`; register and replay reviewed immutable definitions only.
+Missing shadow evidence, audit/readiness failure or any rejection stops promotion.
+An offline champion role is not deployment; rollback is never automatic.

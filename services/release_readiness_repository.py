@@ -51,6 +51,7 @@ class ReleaseReadinessRepository:
             "opportunity_v2_lineage_and_leakage": self._opportunity_v2_lineage_and_leakage(),
             "calibration_v2_lineage_and_leakage": self._calibration_v2_lineage_and_leakage(),
             "live_validation_lineage_and_safety": self._live_validation_lineage_and_safety(),
+            "research_governance_lineage_and_safety": self._research_governance_lineage_and_safety(),
             "execution_schema_boundary": self._execution_schema_boundary(),
         }
 
@@ -368,6 +369,23 @@ class ReleaseReadinessRepository:
           FROM validation_drift_evaluations_v2 d)
           SELECT COUNT(*),COUNT(*) FILTER(WHERE violation) FROM audited""")
         return self._metric("live_validation_lineage_and_safety",row)
+
+    def _research_governance_lineage_and_safety(self) -> AuditMetric:
+        row=self._fetch_one("""WITH audited AS (
+          SELECT e.experiment_id::text entity_id,(e.champion_model_id=e.challenger_model_id OR d.test_start>d.test_end) violation
+          FROM research_experiments_v3 e JOIN research_datasets_v3 d ON d.dataset_id=e.dataset_id
+          UNION ALL SELECT r.run_id::text,(r.test_count<>(SELECT COUNT(*) FROM research_replay_observations_v3 o WHERE o.run_id=r.run_id AND o.included)
+            OR EXISTS(SELECT 1 FROM research_replay_observations_v3 o WHERE o.run_id=r.run_id AND o.included AND (o.period_name<>'TEST' OR o.terminal_at>r.cutoff_at)))
+          FROM research_experiment_runs_v3 r
+          UNION ALL SELECT p.report_id::text,(p.promotion_eligible AND (r.state<>'PASS' OR COALESCE((p.audits->>'leakage_passed')::boolean,FALSE)=FALSE
+            OR COALESCE((p.audits->>'survivorship_passed')::boolean,FALSE)=FALSE OR COALESCE((p.audits->>'selection_passed')::boolean,FALSE)=FALSE))
+          FROM research_evaluation_reports_v3 p JOIN research_experiment_runs_v3 r ON r.run_id=p.run_id
+          UNION ALL SELECT d.decision_id::text,(d.state='APPROVED' AND (p.shadow_session_count<(g.policy->>'minimum_shadow_sessions')::integer OR d.approval_count<3 OR NOT d.readiness_passed
+            OR (SELECT COUNT(DISTINCT a.approval_role) FROM governance_approvals_v3 a WHERE a.proposal_id=d.proposal_id AND a.decision='APPROVE')<3))
+          FROM model_promotion_decisions_v3 d JOIN model_promotion_proposals_v3 p ON p.proposal_id=d.proposal_id JOIN governance_policies_v3 g ON g.policy_version=p.policy_version
+          UNION ALL SELECT b.rollback_id::text,(COALESCE((b.rollback_procedure->>'automatic')::boolean,TRUE)) FROM model_rollback_metadata_v3 b)
+          SELECT COUNT(*),COUNT(*) FILTER(WHERE violation) FROM audited""")
+        return self._metric("research_governance_lineage_and_safety",row)
 
     def _option_chain_lineage(self) -> AuditMetric:
         row = self._fetch_one(

@@ -244,3 +244,7 @@ candidate/outcome partition lineage and recommendation-policy evaluations.
 Migration `030` adds immutable shadow snapshots, bar/manifests, fills, outcomes,
 failure classifications, rolling metric runs, drift evaluations and suspensions.
 The snapshot schema constrains operational trust to false.
+
+Migration `031` adds immutable governance policies, datasets, models, experiments,
+replay observations, comparisons, reports, approvals, decisions, roles, rollback
+plans and audit history. No deployment table is added.

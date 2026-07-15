@@ -53,7 +53,7 @@ class ReleaseReadinessServiceTest(unittest.TestCase):
         ).verify()
 
         self.assertTrue(report.ready)
-        self.assertEqual(len(report.checks), 24)
+        self.assertEqual(len(report.checks), 25)
         self.assertTrue(
             all(check.status is ReleaseCheckStatus.PASS for check in report.checks)
         )

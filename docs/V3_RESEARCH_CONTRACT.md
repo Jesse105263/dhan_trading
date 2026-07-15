@@ -90,3 +90,5 @@ V3.7 fits only on calibration and reserves untouched test for evaluation; its
 eligibility result remains non-trusted pending V3.8.
 V3.8 freezes every evaluation before observing later canonical paths. Mature
 shadow outcomes may support future offline research, but never silent retraining.
+V3.9 freezes dataset/model/experiment definitions and permits offline champion
+registry changes only after untouched-test, shadow and approval gates.

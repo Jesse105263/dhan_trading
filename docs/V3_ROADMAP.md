@@ -160,9 +160,8 @@ abstained and unfilled cases. Mature outcomes may enter later versioned research
 but models never self-modify silently. Require at least 60 shadow market sessions.
 Estimated effort: 3–5 weeks plus evidence time.
 
-Implementation status: framework complete and staged for owner review. Migration
-`030` provides immutable shadow evidence, metrics and drift suspension. The live
-60-session requirement remains unmet. V3.9 remains next.
+Implementation status: committed at `67ed31c`. Migration `030` provides immutable
+shadow evidence, metrics and drift suspension. The 60-session target remains unmet.
 
 ### V3.9 — Institutional Research, Validation, and Model Governance
 
@@ -171,6 +170,10 @@ walk-forward champion/challenger research; audit leakage, survivorship, selectio
 overlap and multiple testing. Promotion requires frozen out-of-sample evidence,
 data, leakage and calibration audits, live shadow results and owner approval;
 rollback never rewrites history. Estimated effort: 3–5 weeks incrementally.
+
+Implementation status: framework complete and staged for owner review. Migration
+`031` provides immutable experiments, replays, comparisons, approvals, offline
+roles, rollback metadata and audit history. V3.10 remains next.
 
 ### V3.10 — Scale and Operational Hardening
 

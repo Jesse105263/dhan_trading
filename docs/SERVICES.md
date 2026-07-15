@@ -326,3 +326,5 @@ option-path provisional fields, enforce abstention and persist immutable lineage
 and evaluates eligibility without execution side effects.
 `live_validation_*` freezes evaluations, reconstructs canonical shadow paths,
 calculates outcomes/reports/drift and appends suspensions without modifying models.
+`research_governance_*` owns offline registration, paired replay, comparison,
+approval gates, role assignments, rollback plans and immutable audit history.

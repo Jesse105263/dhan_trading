@@ -63,3 +63,5 @@ Fixtures are deterministic local shadow evidence and always print `trusted=false
 No live provider is activated. The 60-session live-shadow requirement, licensed
 coverage, population metrics and operational recommendation trust remain unmet.
 V3.9 is the next milestone and owns any future explicit offline promotion process.
+V3.9 uses mature shadow evidence only for offline research. Registry promotion
+never alters snapshots or creates operational trust.
