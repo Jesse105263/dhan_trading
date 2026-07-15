@@ -147,8 +147,8 @@ liquidity, diversity, distribution and data-quality gates. Similarity and rankin
 alone never authorize recommendations; degradation suspends policy. Estimated
 effort: 2–4 weeks.
 
-Implementation status: complete and staged for repository-owner review. The
-fixture fails closed; licensed population quality is unevaluated. V3.8 remains next.
+Implementation status: committed at `254e6bf`. The fixture fails closed and
+licensed population quality remains unevaluated.
 
 ### V3.8 — Live Recommendation Validation
 
@@ -159,6 +159,10 @@ interval coverage, slippage and population/feature drift, including rejected,
 abstained and unfilled cases. Mature outcomes may enter later versioned research,
 but models never self-modify silently. Require at least 60 shadow market sessions.
 Estimated effort: 3–5 weeks plus evidence time.
+
+Implementation status: framework complete and staged for owner review. Migration
+`030` provides immutable shadow evidence, metrics and drift suspension. The live
+60-session requirement remains unmet. V3.9 remains next.
 
 ### V3.9 — Institutional Research, Validation, and Model Governance
 

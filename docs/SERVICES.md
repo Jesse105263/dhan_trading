@@ -324,3 +324,5 @@ explainability, quality and abstention. `materialize_similarity_v2` is offline.
 option-path provisional fields, enforce abstention and persist immutable lineage.
 `calibration_v2_*` fits transparent bins, calculates deterministic uncertainty
 and evaluates eligibility without execution side effects.
+`live_validation_*` freezes evaluations, reconstructs canonical shadow paths,
+calculates outcomes/reports/drift and appends suspensions without modifying models.

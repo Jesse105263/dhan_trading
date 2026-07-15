@@ -108,3 +108,9 @@ only to a later explicit feature cutoff and never rewrites an old vector.
 
 Similarity V2 is offline derived research. It cannot schedule collection, invoke
 a provider or repair a gap; missing historical evidence produces abstention.
+
+## V3.8 downstream boundary
+
+Live validation reads only canonical revisions already collected and accepted.
+It cannot schedule work, activate a provider or repair gaps; incomplete paths stay
+unresolved or insufficient rather than being fabricated.

@@ -8,6 +8,7 @@ import psycopg
 
 from services.config import POSTGRES_SETTINGS
 from services.release_readiness_repository import ReleaseReadinessRepository
+from services.release_readiness_service import ReleaseReadinessService
 
 
 RUN_INTEGRATION_TESTS = os.getenv("RUN_DB_INTEGRATION_TESTS") == "1"
@@ -56,27 +57,13 @@ class ReleaseReadinessRepositoryIntegrationTest(unittest.TestCase):
         self.assertEqual(database_name, RELEASE_TEST_DATABASE)
         self.assertTrue(database_user)
         self.assertEqual([item.version for item in migrations], [
-            f"{number:03d}" for number in range(1, 23)
+            f"{number:03d}" for number in range(1, 31)
         ])
 
     def test_all_audit_queries_are_readable_on_isolated_schema(self) -> None:
         metrics = self.repository.audit_metrics()
 
-        self.assertEqual(set(metrics), {
-            "option_chain_lineage",
-            "decision_lineage",
-            "evaluation_lineage",
-            "alert_lineage",
-            "paper_lineage",
-            "operational_state",
-            "feature_store_lineage",
-            "historical_outcome_lineage",
-            "similarity_lineage_and_leakage",
-            "trade_opportunity_lineage",
-            "news_event_lineage_and_leakage",
-            "analyst_evidence_grounding",
-            "execution_schema_boundary",
-        })
+        self.assertEqual(set(metrics), set(ReleaseReadinessService._AUDIT_CHECKS))
         self.assertTrue(all(metric.violation_count == 0 for metric in metrics.values()))
 
 

@@ -87,10 +87,9 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 
 ## Status
 
-Version 1.0 and Version 2 are complete. V3.0 through V3.5 are committed. V3.6 —
-Opportunity Engine V2 is implemented pending repository-owner review. It adds
-provisional option-path candidates without changing V2 Opportunity, Analyst or
-recommendation contracts and without activating trusted recommendations.
+Version 1.0 and Version 2 are complete. V3.0 through V3.7 are committed. V3.8 —
+Live Recommendation Validation is implemented pending repository-owner review.
+It observes immutable shadow outcomes without execution or operational trust.
 
 The Version 2 frontend is isolated under `frontend/`. See `docs/FRONTEND.md` for
 its dependency policy and local commands, and `docs/DESIGN_SYSTEM.md` for tokens,
@@ -119,6 +118,7 @@ Version 2 evidence is recorded in `docs/V2_RELEASE_READINESS_CHECKLIST.md`.
 Version 3 readiness starts in `docs/V3_RELEASE_READINESS_CHECKLIST.md`.
 V3.7's fail-closed research boundary is documented in
 `docs/CALIBRATION_RECOMMENDATION_POLICY.md`.
+V3.8 shadow validation is documented in `docs/LIVE_RECOMMENDATION_VALIDATION.md`.
 
 Run the read-only Version 3 baseline report with:
 

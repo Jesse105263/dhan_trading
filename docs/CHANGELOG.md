@@ -690,6 +690,13 @@ Official transition from script-based development to platform architecture.
 - Added no migration, dependency, execution tool, opportunity calculation,
   external verification call or `/api/v1` contract change.
 
+## V3.8 — Live Recommendation Validation
+
+- Added immutable recommendation snapshots, canonical shadow paths, fills,
+  outcomes, deterministic failure evidence, rolling metrics and drift suspension.
+- Added migration `030`, three offline commands, readiness auditing and tests.
+- Kept operational trust false with no execution, provider or self-learning path.
+
 ## V3.7 — Calibration, Uncertainty, and Recommendation Policy
 
 - Added leakage-safe calibration/test datasets, transparent calibration,

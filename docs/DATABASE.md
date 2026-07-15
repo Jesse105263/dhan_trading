@@ -240,3 +240,7 @@ schema, cutoff and anchor idempotent.
 
 Migration `029` adds immutable calibration policies/runs/reliability bins, exact
 candidate/outcome partition lineage and recommendation-policy evaluations.
+
+Migration `030` adds immutable shadow snapshots, bar/manifests, fills, outcomes,
+failure classifications, rolling metric runs, drift evaluations and suspensions.
+The snapshot schema constrains operational trust to false.

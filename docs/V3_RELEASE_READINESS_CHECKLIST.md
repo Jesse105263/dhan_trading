@@ -125,11 +125,6 @@ V3.2 verification evidence:
 - [ ] Eighty-percent supported-population completeness is unevaluated without licensed history.
 - [ ] Repository-owner review and commit are complete.
 
-V3.7 verification evidence: compileall passed; standard and PostgreSQL suites each
-ran 306 tests with 50 and five expected skips respectively; migration `029`
-applied once and reran with zero changes; 29 checksums match; readiness reports
-13 PASS, zero FAIL and ten optional SKIPs; both fixtures failed closed.
-
 V3.3 verification evidence:
 
 - Compileall passed.
@@ -214,3 +209,24 @@ V3.6 verification evidence:
 - [x] V2 behavior, `/api/v1`, providers and execution remain unchanged.
 - [ ] Licensed population quality and live trust are unevaluated.
 - [ ] Repository-owner review and commit are complete.
+
+V3.7 verification evidence: compileall passed; standard and PostgreSQL suites each
+ran 306 tests with 50 and five expected skips respectively; migration `029`
+applied once and reran with zero changes; 29 checksums match; readiness reports
+13 PASS, zero FAIL and ten optional SKIPs; both fixtures failed closed.
+
+## V3.8 — Live Recommendation Validation
+
+- [x] Recommendation snapshots preserve exact contracts, predictions, versions and lineage.
+- [x] Eligible, rejected, abstained, unfilled and incomplete states remain visible.
+- [x] Canonical paths support deterministic fills, first touch, MFE/MAE and net return.
+- [x] Rolling metrics enforce minimum samples and unsupported values remain null.
+- [x] Drift and suspension policies are versioned and immutable.
+- [x] Operational trust is constrained false; no execution or self-learning path exists.
+- [ ] Sixty live shadow sessions and population quality remain unevaluated.
+- [ ] Repository-owner review and commit are complete.
+
+V3.8 verification evidence: compileall passed; standard and PostgreSQL suites ran
+319 tests with 52 and five expected skips respectively; migration `030` applied
+once and reran with zero changes; all 30 checksums match; readiness reports
+13 PASS, zero FAIL and eleven optional SKIPs; fixture reruns were deterministic.

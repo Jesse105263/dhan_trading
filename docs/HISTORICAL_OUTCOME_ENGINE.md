@@ -145,3 +145,5 @@ never affect feature selection, normalization, distance or rank.
 V3.6 uses complete option outcomes for premium-path MFE, MAE and net returns.
 Unknown or underlying-only paths cannot support option entry, stop or targets.
 V3.7 uses only complete outcomes terminal inside their assigned period and cutoff.
+V3.8 reconstructs post-recommendation shadow paths directly from canonical bar
+revisions. Outcome V2 records remain unchanged and are retained as model lineage.

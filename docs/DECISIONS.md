@@ -438,3 +438,10 @@ recommendations. Calibration and trusted eligibility belong only to V3.7.
 
 Fit transparent bins only on calibration, reserve untouched test for evaluation,
 use deterministic intervals and require every conservative gate. Live trust is V3.8.
+
+## V3.8 Freezes Shadow Evidence and Forbids Feedback
+
+Decision: append recommendation snapshots before observing canonical paths, retain
+all rejected/unfilled/incomplete states, and append versioned drift suspensions.
+Reason: validation must measure decisions as originally made; rewriting or silent
+self-learning would invalidate calibration and untouched evidence.

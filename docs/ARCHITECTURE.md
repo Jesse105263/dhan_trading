@@ -319,6 +319,12 @@ recommendation paths.
 V3.7 persists separate offline calibration runs and eligibility evaluations. No
 API v1, UI, analyst, paper or broker path consumes eligibility.
 
+## Version 3 Live Validation Boundary
+
+V3.8 appends shadow snapshots, canonical observations, outcomes, reports and drift
+decisions. It is isolated from broker, paper, alert, AI and model-training paths.
+No read API or frontend is added because the local validation population is empty.
+
 ## Version 3 Opportunity Engine V2 Boundary
 
 V3.6 persists isolated provisional research over exact Feature/Similarity/Outcome

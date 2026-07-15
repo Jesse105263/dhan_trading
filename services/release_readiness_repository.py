@@ -50,6 +50,7 @@ class ReleaseReadinessRepository:
             "similarity_v2_lineage_and_leakage": self._similarity_v2_lineage_and_leakage(),
             "opportunity_v2_lineage_and_leakage": self._opportunity_v2_lineage_and_leakage(),
             "calibration_v2_lineage_and_leakage": self._calibration_v2_lineage_and_leakage(),
+            "live_validation_lineage_and_safety": self._live_validation_lineage_and_safety(),
             "execution_schema_boundary": self._execution_schema_boundary(),
         }
 
@@ -347,6 +348,26 @@ class ReleaseReadinessRepository:
           JOIN opportunity_candidates_v2 c ON c.candidate_id=e.candidate_id)
           SELECT COUNT(*),COUNT(*) FILTER(WHERE violation) FROM audited""")
         return self._metric("calibration_v2_lineage_and_leakage",row)
+
+    def _live_validation_lineage_and_safety(self) -> AuditMetric:
+        row=self._fetch_one("""WITH audited AS (
+          SELECT s.recommendation_id::text entity_id,(s.evaluation_id<>e.evaluation_id OR s.candidate_id<>e.candidate_id
+            OR s.operationally_trusted OR s.recommendation_at<>e.evaluated_at OR s.instrument_id<>c.instrument_id
+            OR (s.validation_state='ELIGIBLE')<>(e.state='ELIGIBLE')) violation
+          FROM recommendation_snapshots_v2 s JOIN recommendation_evaluations_v2 e ON e.evaluation_id=s.evaluation_id
+          JOIN opportunity_candidates_v2 c ON c.candidate_id=s.candidate_id
+          UNION ALL SELECT o.outcome_id::text,(o.recommendation_id<>s.recommendation_id
+            OR (o.state IN ('UNRESOLVED','INSUFFICIENT_PATH','UNFILLED','REJECTED','ABSTAINED') AND o.net_return_pct IS NOT NULL)
+            OR (o.fill_id IS NOT NULL AND NOT EXISTS(SELECT 1 FROM recommendation_fills_v2 f WHERE f.fill_id=o.fill_id AND f.recommendation_id=o.recommendation_id)))
+          FROM recommendation_outcomes_v2 o JOIN recommendation_snapshots_v2 s ON s.recommendation_id=o.recommendation_id
+          UNION ALL SELECT x.observation_id::text,(x.observed_at<=s.recommendation_at OR x.available_at<x.observed_at
+            OR b.manifest_id<>x.manifest_id OR b.instrument_id<>s.instrument_id)
+          FROM recommendation_validation_observations_v2 x JOIN recommendation_snapshots_v2 s ON s.recommendation_id=x.recommendation_id
+          JOIN historical_bar_revisions b ON b.bar_revision_id=x.bar_revision_id
+          UNION ALL SELECT d.evaluation_id::text,(d.state='SUSPENDED' AND NOT EXISTS(SELECT 1 FROM validation_policy_suspensions_v2 p WHERE p.drift_evaluation_id=d.evaluation_id))
+          FROM validation_drift_evaluations_v2 d)
+          SELECT COUNT(*),COUNT(*) FILTER(WHERE violation) FROM audited""")
+        return self._metric("live_validation_lineage_and_safety",row)
 
     def _option_chain_lineage(self) -> AuditMetric:
         row = self._fetch_one(

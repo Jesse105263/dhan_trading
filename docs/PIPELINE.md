@@ -203,3 +203,5 @@ does not enter collection or the V2 opportunity pipeline.
 V3.6 is an explicit offline step from one persisted Similarity V2 run to one
 provisional or abstained exact-contract candidate. It never enters live pipelines.
 V3.7 adds offline calibration then evaluation; neither creates a trusted recommendation.
+V3.8 is a later explicit shadow stage: snapshot, observe, outcome, rolling report,
+then drift evaluation. It has no automatic schedule, feedback or execution edge.

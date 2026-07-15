@@ -88,3 +88,5 @@ high. Calibration, uncertainty, effective sample size, costs, liquidity,
 out-of-distribution checks and abstention policy remain mandatory future gates.
 V3.7 fits only on calibration and reserves untouched test for evaluation; its
 eligibility result remains non-trusted pending V3.8.
+V3.8 freezes every evaluation before observing later canonical paths. Mature
+shadow outcomes may support future offline research, but never silent retraining.

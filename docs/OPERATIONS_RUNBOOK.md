@@ -335,3 +335,10 @@ fixed; abstentions and null fields must not be overridden.
 
 Apply migration `029`; materialize an approved policy, then evaluate a provisional
 candidate. Both commands are idempotent and have fail-closed `--fixture` paths.
+
+## V3.8 Shadow Validation Operations
+
+Apply migration `030`, then use the three validation commands only at explicit
+cutoffs. Reruns are idempotent. Never edit snapshots or outcomes; append a later
+cutoff. Treat drift suspension, missing paths and fewer than 60 shadow sessions as
+non-trusted. Fixture commands call no provider or execution service.
