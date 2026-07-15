@@ -169,3 +169,11 @@ V3.1 is not connected to either production pipeline. It exposes no downloader,
 scheduled stage or continuous collection path. A future explicitly approved
 historical acquisition workflow may pass licensed raw bytes to the provider-neutral
 foundation; downstream consumers may read only canonical revisions and lineage.
+
+## Version 3.2 Collection Pipeline
+
+Persisted deterministic work is claimed in bounded batches under the existing
+scheduler-lock pattern. Provider results are committed through V3.1 before an
+immutable attempt outcome. Partial scope is retained, failures retry only to the
+configured limit, and stale claims recover after interruption. No live provider
+or production scheduler entry is enabled.

@@ -36,6 +36,7 @@ class ReleaseReadinessService:
         "news_event_lineage_and_leakage",
         "analyst_evidence_grounding",
         "historical_data_foundation_lineage",
+        "continuous_collection_lineage",
         "execution_schema_boundary",
     )
 

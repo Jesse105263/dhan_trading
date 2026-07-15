@@ -84,3 +84,28 @@ V3.1 verification evidence:
 - Migration `023` applied once; idempotent rerun applied zero migrations.
 - `python -m scripts.verify_release`: 11 PASS, 0 FAIL and six documented
   optional empty-data SKIPs, including the empty historical foundation.
+
+## V3.2 — Continuous Market Collection
+
+- [x] Deterministic pre-open, regular, close, post-close, holiday and expiry policy exists.
+- [x] Every supported dataset has a provider-neutral deterministic work contract.
+- [x] Migration `024` persists schedules, work, immutable attempts, gaps, repairs,
+  quota state, quality incidents and reconciliation results.
+- [x] Claims are bounded, restartable and overlap-safe; retries are bounded.
+- [x] Partial scope, unavailable providers and quota exhaustion are explicit.
+- [x] Successful fixture bytes use V3.1 raw/canonical checksum and revision policy.
+- [x] Gap and repair IDs are deterministic and idempotent.
+- [x] Late revisions and cross-source conflicts retain V3.1 lineage/quarantine.
+- [x] Fixture-only commands and read-only status exist; `/api/v1` is unchanged.
+- [x] No live adapter, credential, external call or production schedule was added.
+- [ ] Twenty live sessions and 99% completion are not evaluated while activation is blocked.
+- [ ] Repository-owner review and commit are complete.
+
+V3.2 verification evidence:
+
+- Compileall passed.
+- Standard suite: 270 tests, 41 expected PostgreSQL-gated skips.
+- PostgreSQL suite: 270 tests, five documented data/isolated-database skips.
+- Migration `024` applied once; rerun applied zero; all 24 checksums match.
+- All fixture commands passed; reconciliation and work scheduling reruns were idempotent.
+- Readiness: 13 PASS, 0 FAIL and five optional empty-data SKIPs.

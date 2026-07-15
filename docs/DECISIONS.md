@@ -377,3 +377,15 @@ restartable, survivorship-safe and point-in-time reproducible. Separating raw
 evidence from canonical revisions prevents schema lock-in and last-write-wins
 history. The local-only adapter proves the boundary without authorizing a provider,
 credential, download, backfill or continuous collection.
+
+## V3.2 Uses a Persisted Work Queue Without Activating Providers
+
+Decision: represent every collection request as deterministic PostgreSQL work,
+claim bounded batches under the existing scheduler lock pattern, preserve every
+attempt immutably and pass successful bytes through V3.1. Keep gaps and repairs as
+separate lineage records. Implement only an empty deterministic local fixture.
+
+Reason: durable work makes interruption, quotas, partial scope and bounded retry
+observable without coupling canonical storage to any vendor. Reusing V3.1 keeps
+raw/canonical deduplication and quarantine authoritative. A fixture-only provider
+proves operations without granting licensing or activation authority.

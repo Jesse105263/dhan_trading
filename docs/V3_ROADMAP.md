@@ -62,6 +62,12 @@ unattended market sessions, 99% completion or bounded repair, deduplication, exa
 source/revision lineage and continuous coverage reporting. Estimated effort: 3–5
 weeks.
 
+Framework checkpoint: migration `024`, deterministic session policy, provider-
+neutral work, immutable attempts, restart recovery, quotas, gaps, bounded repairs,
+reconciliation lineage, health and fixture-only operator commands are implemented.
+The 20-session/99% live targets remain unevaluated because no licensed live
+provider or schedule is activated. V3.3 remains the next milestone.
+
 ### V3.3 — Outcome Engine V2
 
 Create underlying and actual selected-contract labels across intraday, session,

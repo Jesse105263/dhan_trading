@@ -130,3 +130,10 @@ V3.1 has not downloaded or backfilled any dataset. Five-year daily, two-year
 intraday, 95% underlying-session and 90% derivative coverage targets remain unmet
 and cannot be evaluated until procurement and licensing gates in
 `docs/V3_DATA_PROVIDER_STRATEGY.md` are satisfied.
+
+## V3.2 integration
+
+Continuous collection submits provider-neutral local fixture bytes through this
+unchanged import service. Work and attempt lineage live in migration `024`; raw
+immutability, replay deduplication, same-source revisions and cross-source
+quarantine remain owned by V3.1. No live provider adapter was added.

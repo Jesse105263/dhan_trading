@@ -285,3 +285,12 @@ unchanged. See `docs/V3_DATA_PROVIDER_STRATEGY.md`.
 
 No command, live provider adapter, scheduler or continuous collector is included.
 See `docs/HISTORICAL_DATA_FOUNDATION.md`.
+
+## Version 3 Continuous Market Collection
+
+`continuous_collection_models`, `continuous_collection_policy`,
+`continuous_collection_provider`, `continuous_collection_repository` and
+`continuous_collection_service` define session-aware work, bounded claims and
+retries, fixture ingestion, gaps, repairs, quota state and health.
+`continuous_collection_scheduler` reuses the existing scheduler lock pattern.
+Only the bounded local fixture provider is implemented.

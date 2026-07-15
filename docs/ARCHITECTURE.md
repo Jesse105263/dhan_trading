@@ -282,3 +282,12 @@ separate identity from tickers/security IDs. Bars and corporate actions append
 revisions with availability timestamps; differing cross-source bars quarantine
 without replacing accepted state. The only adapter is bounded local JSON and has
 no network or credential capability. See `docs/HISTORICAL_DATA_FOUNDATION.md`.
+
+## Version 3 Continuous Collection Boundary
+
+V3.2 adds deterministic session policy and a restartable PostgreSQL work queue in
+migration `024`. Scheduler locks and atomic claims prevent overlap; immutable
+attempts retain partial success, retries and failures. Successful bytes enter V3.1
+unchanged. Gaps create idempotent repair work and late/conflicting records retain
+V3.1 revision and quarantine semantics. Only a local fixture provider exists;
+Dhan production collection is not connected or changed.

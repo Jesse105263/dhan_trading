@@ -44,6 +44,7 @@ class ReleaseReadinessRepository:
             "news_event_lineage_and_leakage": self._news_event_lineage_and_leakage(),
             "analyst_evidence_grounding": self._analyst_evidence_grounding(),
             "historical_data_foundation_lineage": self._historical_data_foundation_lineage(),
+            "continuous_collection_lineage": self._continuous_collection_lineage(),
             "execution_schema_boundary": self._execution_schema_boundary(),
         }
 
@@ -211,6 +212,31 @@ class ReleaseReadinessRepository:
             ) SELECT COUNT(*), COUNT(*) FILTER (WHERE violation) FROM audited
         """)
         return self._metric("historical_data_foundation_lineage", row)
+
+    def _continuous_collection_lineage(self) -> AuditMetric:
+        row = self._fetch_one("""
+            WITH audited AS (
+                SELECT w.work_id::text entity_id, (
+                    w.attempt_count <> (SELECT COUNT(*) FROM continuous_collection_attempts a WHERE a.work_id=w.work_id)
+                    OR (w.status IN ('COMPLETED','PARTIAL') AND NOT EXISTS (
+                        SELECT 1 FROM continuous_collection_attempts a
+                        WHERE a.work_id=w.work_id AND a.payload_manifest_id IS NOT NULL))
+                    OR (w.status IN ('FAILED','UNAVAILABLE') AND w.terminal_failure_state IS NULL)
+                ) violation FROM continuous_collection_work_items w
+                UNION ALL
+                SELECT a.attempt_id::text, (
+                    a.payload_manifest_id IS NOT NULL AND NOT EXISTS (
+                        SELECT 1 FROM historical_raw_manifests m WHERE m.manifest_id=a.payload_manifest_id)
+                ) FROM continuous_collection_attempts a
+                UNION ALL
+                SELECT r.repair_job_id::text, (
+                    g.gap_id IS NULL OR (r.work_id IS NOT NULL AND NOT EXISTS (
+                        SELECT 1 FROM continuous_collection_work_items w WHERE w.work_id=r.work_id))
+                ) FROM continuous_repair_jobs r
+                LEFT JOIN continuous_coverage_gaps g ON g.gap_id=r.gap_id
+            ) SELECT COUNT(*), COUNT(*) FILTER (WHERE violation) FROM audited
+        """)
+        return self._metric("continuous_collection_lineage", row)
 
     def _option_chain_lineage(self) -> AuditMetric:
         row = self._fetch_one(

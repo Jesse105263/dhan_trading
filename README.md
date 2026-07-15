@@ -38,6 +38,8 @@ Version 2 APIs or safety boundaries. See `docs/V3_ROADMAP.md` and
 documented in `docs/V3_DATA_PROVIDER_STRATEGY.md`.
 The provider-neutral raw and canonical contracts are documented in
 `docs/HISTORICAL_DATA_FOUNDATION.md`.
+The fixture-only continuous collection framework is documented in
+`docs/CONTINUOUS_MARKET_COLLECTION.md`.
 
 ## Private Dashboard
 
@@ -83,11 +85,10 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 
 ## Status
 
-Version 1.0 and Version 2 are complete. V3.0 and V3.0.5 are committed. V3.1 —
-Historical Data Foundation is implemented pending repository-owner review. It adds
-provider-neutral immutable raw/manifests, canonical instruments/mappings, revised
-bars and corporate actions using a local-only adapter. It adds no provider
-connection, credential, download, backfill, scheduler or continuous collection.
+Version 1.0 and Version 2 are complete. V3.0, V3.0.5 and V3.1 are committed.
+V3.2 — Continuous Market Collection is implemented pending repository-owner
+review with provider-neutral policy, restartable work, gaps, repair,
+reconciliation lineage and fixture-only commands. No live provider is activated.
 
 The Version 2 frontend is isolated under `frontend/`. See `docs/FRONTEND.md` for
 its dependency policy and local commands, and `docs/DESIGN_SYSTEM.md` for tokens,

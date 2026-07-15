@@ -70,6 +70,12 @@ the normal migration runner, but historical tables remain empty until a separate
 approved licensed import workflow exists. Do not use production collectors or
 manually place downloaded files into the foundation during V3.1 review.
 
+V3.2 adds `python -m scripts.continuous_collection` fixture-only commands. Apply
+migration `024`, then use `schedule`, `execute`, `detect-gaps`,
+`schedule-repairs`, `reconcile`, `status`, or `verify-idempotency`. The committed
+fixture is empty. Do not configure a live adapter or external scheduler until
+licensing, credentials, quotas, coverage and operations have separate approval.
+
 ## Application Startup
 
 Use separate terminals with the same virtual environment and repository folder.

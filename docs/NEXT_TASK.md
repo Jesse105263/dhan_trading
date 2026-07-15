@@ -1,8 +1,9 @@
 # Next Task
 
-V3.0 is committed at `a3ed736`; V3.0.5 is committed at `e1c3618`. V3.1 —
-Historical Data Foundation is implemented and awaiting repository-owner review.
-Do not start provider acquisition or V3.2.
+V3.0 is committed at `a3ed736`; V3.0.5 is committed at `e1c3618`; V3.1 is
+committed at `fc20734`. V3.2 — Continuous Market Collection is implemented and
+awaiting repository-owner review. The approved next milestone remains V3.3 —
+Outcome Engine V2. Do not start it during V3.2 review.
 
 Historical provider acquisition remains blocked until written DhanHQ and TrueData
 licensing confirmation, dated quotes, coverage samples, NSE/BSE specialist terms,
@@ -54,8 +55,8 @@ Version 2 is approved and uses `V2.0.x` numbering. See
 `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 `docs/V2_ROADMAP.md`.
 
-Version 3 is approved. V3.1 is the active review milestone. Its raw/canonical
-foundation uses local deterministic tests only; historical coverage remains empty.
+Version 3 is approved. V3.2 is the active review milestone. Its collector uses an
+empty deterministic local fixture only; live coverage remains unevaluated.
 
 ## Continuing Constraints
 

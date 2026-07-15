@@ -4,6 +4,16 @@
 
 ## 2026-07-15
 
+### V3.2 — Continuous Market Collection
+
+- Added migration `024` for deterministic schedules/work, immutable attempts,
+  coverage gaps, repair jobs, provider quota state, incidents and reconciliation.
+- Added session/expiry policy, bounded claims and retries, restart recovery,
+  partial success, fixture ingestion through V3.1, gap detection and health.
+- Added fixture-only operator commands plus unit and PostgreSQL coverage.
+- Added no live adapter, credential, external call, production schedule, Dhan
+  behavior change, recommendation or execution path.
+
 ### V3.1 — Historical Data Foundation
 
 - Added migration `023` with immutable raw payload/manifests, source and retention

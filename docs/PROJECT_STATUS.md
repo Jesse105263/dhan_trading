@@ -5,11 +5,11 @@
 Version 3 is the active approved implementation contract. V3.0 — Research
 Contract and Benchmark Baseline is committed at `a3ed736`. V3.0.5 — Data Provider
 & Licensing Strategy is committed at `e1c3618`. V3.1 — Historical Data Foundation
-is implemented pending repository-owner review. Migration `023` adds the
-provider-neutral raw, manifest, retention, instrument/mapping, historical bar,
-corporate-action, revision and quality boundaries. Only deterministic local test
-records were used; no provider integration, credential, activation, download or
-backfill exists.
+is committed at `fc20734`. V3.2 — Continuous Market Collection is implemented
+pending repository-owner review. Migration `024` adds provider-neutral schedules,
+work, immutable attempts, gaps, bounded repairs, quota state and reconciliation
+lineage. Only deterministic local fixtures were used; no live provider,
+credential, external call, production schedule, download or backfill exists.
 
 Version 2 is complete. V2.0.1 — Architecture & Product Decisions,
 V2.0.2 — Frontend Project Foundation, V2.0.3 — Design System and V2.0.4 —
@@ -25,7 +25,8 @@ See `docs/V2_PRODUCT_DEFINITION.md`, `docs/V2_ARCHITECTURE.md` and
 `docs/V2_ROADMAP.md`.
 
 See `docs/V3_ROADMAP.md`, `docs/V3_RESEARCH_CONTRACT.md`,
-`docs/V3_DATA_PROVIDER_STRATEGY.md`, `docs/HISTORICAL_DATA_FOUNDATION.md` and
+`docs/V3_DATA_PROVIDER_STRATEGY.md`, `docs/HISTORICAL_DATA_FOUNDATION.md`,
+`docs/CONTINUOUS_MARKET_COLLECTION.md` and
 `docs/V3_RELEASE_READINESS_CHECKLIST.md` for the active work.
 
 ## Version 1 Release Status
@@ -138,6 +139,12 @@ Version 3 historical foundation without changing those tables.
 Milestones 4.1 and 4.2 required no migrations because they are read-only surfaces over existing tables. Milestone 4.3 adds auditable alerts in migration 016, and Milestone 4.5 adds isolated paper state in migration 017.
 
 ## Latest Verification
+
+V3.2 verification: compileall passed; standard and PostgreSQL-enabled suites each
+ran 270 tests, with 41 expected database-gated skips in the standard suite and
+five documented skips in the PostgreSQL suite. Migration `024` applied once and
+an idempotent rerun applied zero. All fixture commands passed. Release readiness
+returned 13 PASS, 0 FAIL and five optional empty-data SKIPs.
 
 V3.1 verification: compileall passed; standard and PostgreSQL-enabled suites each
 ran 259 tests, with 39 expected database-gated skips in the standard suite and

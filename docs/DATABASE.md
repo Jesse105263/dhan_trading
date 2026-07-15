@@ -6,6 +6,13 @@ PostgreSQL is the source of truth for persistent platform state.
 
 ## Current Core Tables
 
+### Version 3 continuous collection
+
+Migration `024` adds schedules, work items, immutable attempts, coverage gaps,
+bounded repair jobs, provider quota state, quality incidents and reconciliation
+results. Deterministic UUIDs and V3.1 manifest foreign keys make scheduling and
+restarts auditable without changing existing Dhan or Version 2 tables.
+
 ### Version 3 historical foundation
 
 Migration `023` adds `historical_data_sources`,

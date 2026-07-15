@@ -411,3 +411,11 @@ The V3.1 provider-neutral storage and normalization foundation may be implemente
 and tested with deterministic local fixtures without satisfying commercial gates.
 Historical provider ingestion remains blocked until every gate above passes.
 Version 2 APIs, collectors, repositories and behavior remain unchanged.
+
+## V3.2 activation status
+
+The provider-neutral continuous framework is implemented with a bounded local
+fixture provider only. TrueData, DhanHQ, exchanges and regulators remain inactive.
+Written retention, derived-use, training, backup and post-termination rights,
+dated quotes, credentials, quotas, coverage evidence and operational approval are
+still unresolved gates. Framework completion does not authorize acquisition.

@@ -9,13 +9,15 @@ This file is the authoritative handoff for continuing the Dhan Trading Platform 
 - Version 3 roadmap: approved implementation contract
 - V3.0 — Research Contract and Benchmark Baseline: committed at `a3ed736`
 - V3.0.5 — Data Provider & Licensing Strategy: committed at `e1c3618`
-- Current milestone: V3.1 — Historical Data Foundation
+- V3.1 — Historical Data Foundation: committed at `fc20734`
+- Current milestone: V3.2 — Continuous Market Collection
 - Current milestone state: implemented and staged pending owner review
 - Selected providers: DhanHQ historical/live backup and TrueData continuous/live,
   all subject to written licensing confirmation
-- Migration `023` and provider-neutral local-only foundation services are added.
-- No provider integration, credentials, paid activation, download, backfill,
-  scheduler or continuous collection was added.
+- Migration `024` and provider-neutral policy, work, attempts, gaps, repairs,
+  quota/reconciliation state and fixture-only commands are added.
+- No live provider integration, credentials, paid activation, external call,
+  production schedule, download or backfill was added.
 
 - Version 2 roadmap: approved
 - V2.0.1 — Architecture & Product Decisions: complete
@@ -62,6 +64,14 @@ The release-hardening implementation checkpoint is:
 Verify the current Git state before starting any later task.
 
 ## Latest Verification
+
+```text
+V3.2 standard: 270 passed, 41 database-gated skips
+V3.2 PostgreSQL: 270 passed, 5 documented data/isolated-database skips
+Migration 024: applied once; idempotent rerun applied 0
+Fixture commands: all passed; work and reconciliation reruns idempotent
+Readiness: 13 PASS, 0 FAIL, 5 optional empty-data SKIPs
+```
 
 ```text
 V3.1 standard: 259 passed, 39 database-gated skips
@@ -203,9 +213,9 @@ readiness work.
 
 ## Next Activity
 
-Review and commit V3.1. Then satisfy every procurement, licensing, coverage and
-storage gate in `docs/V3_DATA_PROVIDER_STRATEGY.md` before authorizing historical
-provider ingestion. Do not begin V3.2. No provider configuration exists.
+Review and commit V3.2. The approved next milestone is V3.3 — Outcome Engine V2.
+Provider activation remains blocked by every procurement, licensing, coverage and
+storage gate in `docs/V3_DATA_PROVIDER_STRATEGY.md`; no live configuration exists.
 
 Current local evidence: 9 Feature Store vectors, 9 outcomes, zero classified
 expiry outcomes, one eight-match insufficient similarity run, one non-eligible
