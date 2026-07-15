@@ -87,10 +87,10 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 
 ## Status
 
-Version 1.0 and Version 2 are complete. V3.0 through V3.3 are committed. V3.4 —
-Feature Store V2 is implemented pending repository-owner review. It adds
-versioned point-in-time canonical-bar features without changing the existing V2
-Feature Store, Similarity, Opportunity or recommendation contracts.
+Version 1.0 and Version 2 are complete. V3.0 through V3.4 are committed. V3.5 —
+Similarity Engine V2 is implemented pending repository-owner review. It adds
+versioned point-in-time analogue research without changing the existing V2
+Similarity, Opportunity, Analyst or recommendation contracts.
 
 The Version 2 frontend is isolated under `frontend/`. See `docs/FRONTEND.md` for
 its dependency policy and local commands, and `docs/DESIGN_SYSTEM.md` for tokens,

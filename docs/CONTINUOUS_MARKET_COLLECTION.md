@@ -103,3 +103,8 @@ provider. A late revision affects only a later explicit outcome `as_of` run.
 Feature Store V2 consumes only accepted canonical revisions already committed by
 V3.1/V3.2. It does not schedule, repair or collect data. A late revision is visible
 only to a later explicit feature cutoff and never rewrites an old vector.
+
+## V3.5 downstream boundary
+
+Similarity V2 is offline derived research. It cannot schedule collection, invoke
+a provider or repair a gap; missing historical evidence produces abstention.

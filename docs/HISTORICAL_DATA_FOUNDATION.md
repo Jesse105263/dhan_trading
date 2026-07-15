@@ -151,3 +151,9 @@ Feature Store V2 reads accepted raw-adjustment canonical bars and point-in-time
 instrument revisions. Each value retains exact source revision IDs; each vector
 retains its anchor manifest and availability. Corrections append new vectors and
 cannot destructively mutate prior feature evidence.
+
+## V3.5 similarity consumer
+
+Similarity V2 reaches foundation evidence only through Feature Store V2 lineage.
+Candidate availability is bounded by the run cutoff, so late canonical revisions
+cannot enter an earlier historical analogue population.

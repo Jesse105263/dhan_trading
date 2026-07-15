@@ -155,3 +155,26 @@ V3.4 verification evidence:
 - Migration `026` applied once; rerun applied zero; all 26 checksums match.
 - Fixed-cutoff command rerun returned the same run ID and explicit empty population.
 - Readiness: 13 PASS, 0 FAIL and seven optional empty-data SKIPs.
+
+## V3.5 — Similarity Engine V2
+
+- [x] Multiple transparent distance models and ranking strategies are versioned.
+- [x] Feature and family weights plus dynamic selection are immutable policy.
+- [x] Regime, liquidity, volatility, age, subject and interval controls are explicit.
+- [x] Candidate observations and availability are strictly before/by cutoff.
+- [x] Outcomes are attached after ranking and must complete before the query.
+- [x] Diagnostics, quality, exact feature/candidate/outcome lineage and checksums persist.
+- [x] Fixed-policy reruns are deterministic and idempotent.
+- [x] Weak populations are `INSUFFICIENT_EVIDENCE`.
+- [x] V2 Similarity and downstream consumers remain unchanged.
+- [ ] Population quality and million-vector performance remain unevaluated.
+- [ ] Repository-owner review and commit are complete.
+
+V3.5 verification evidence:
+
+- Compileall passed.
+- Standard suite: 289 tests, 46 expected PostgreSQL-gated skips.
+- PostgreSQL suite: 289 tests, five documented data/isolated-database skips.
+- Migration `027` applied once; rerun applied zero; all 27 checksums match.
+- Deterministic fixture materialization reran with the same run and match IDs.
+- Readiness: 13 PASS, 0 FAIL and eight optional empty-data SKIPs.

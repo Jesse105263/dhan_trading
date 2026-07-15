@@ -319,3 +319,10 @@ The command is safe to rerun and calls no provider. Treat a schema-checksum
 mismatch, release lineage violation or unexpected missingness increase as a stop;
 preserve immutable records and investigate source revisions rather than editing
 feature rows. No schedule or live consumer is activated.
+
+## V3.5 Similarity Engine V2 Operations
+
+Run `python -m scripts.materialize_similarity_v2 --vector-id UUID` only for an
+approved Feature Store V2 vector. The command is provider-free and idempotent.
+Treat cutoff, lineage or readiness violations as stop conditions; never edit
+immutable match evidence or promote it into an opportunity during V3.5 review.

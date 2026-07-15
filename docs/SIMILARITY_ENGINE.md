@@ -82,3 +82,31 @@ existing client/design system and performs no financial calculation in-browser.
 
 V2.1.1 may consume persisted similarity runs and Outcome Store evidence. It must
 not recompute outcomes or treat similarity alone as a recommendation.
+
+## Version 3.5 Similarity Engine V2
+
+V3.5 is an isolated consumer of immutable `canonical-market-features-v2` vectors.
+Policies freeze distance model, ranking strategy, selected features, feature and
+family weights, minimum overlap/coverage, age, subject, interval, regime,
+liquidity and temporal-diversity gates. Supported transparent distances are
+weighted Manhattan, weighted Euclidean and cosine. Min/max normalization is fit
+only on the eligible historical candidate window and its exact population is
+recorded; nulls remain excluded rather than zero-filled.
+
+Candidates must be observed strictly before the cutoff and available by it. The
+cutoff cannot exceed the query observation. Outcome V2 records are attached only
+after ranking and only when their terminal timestamp is no later than the query
+observation, so labels never influence distance or leak future paths. Runs and
+matches retain policy, feature, candidate, outcome and checksum lineage plus
+feature-level normalized values, weights, deltas, filter diagnostics and quality.
+Too few eligible matches is `INSUFFICIENT_EVIDENCE`, not a recommendation.
+
+```bash
+python -m scripts.materialize_similarity_v2 --vector-id UUID
+```
+
+Migration `027` adds immutable `similarity_models_v2`, `similarity_runs_v2` and
+`similarity_matches_v2`. Existing V2 Similarity APIs/tables and all Opportunity,
+Analyst and recommendation consumers remain unchanged. Performance, outcome
+consistency, precision-at-K, uplift and stability targets remain unevaluated on
+the empty licensed population.

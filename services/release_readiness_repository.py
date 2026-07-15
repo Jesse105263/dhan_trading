@@ -47,6 +47,7 @@ class ReleaseReadinessRepository:
             "continuous_collection_lineage": self._continuous_collection_lineage(),
             "outcome_v2_lineage_and_leakage": self._outcome_v2_lineage_and_leakage(),
             "feature_store_v2_lineage_and_leakage": self._feature_store_v2_lineage_and_leakage(),
+            "similarity_v2_lineage_and_leakage": self._similarity_v2_lineage_and_leakage(),
             "execution_schema_boundary": self._execution_schema_boundary(),
         }
 
@@ -293,6 +294,25 @@ class ReleaseReadinessRepository:
             ) SELECT COUNT(*),COUNT(*) FILTER(WHERE violation) FROM audited
         """)
         return self._metric("feature_store_v2_lineage_and_leakage",row)
+
+    def _similarity_v2_lineage_and_leakage(self) -> AuditMetric:
+        row=self._fetch_one("""
+            WITH audited AS (
+                SELECT r.run_id::text entity_id, (
+                    r.policy_checksum<>m.policy_checksum OR r.query_observed_at<>q.observed_at
+                    OR r.cutoff_at>q.observed_at OR r.match_count<>(SELECT COUNT(*) FROM similarity_matches_v2 x WHERE x.run_id=r.run_id)
+                ) violation FROM similarity_runs_v2 r JOIN similarity_models_v2 m ON m.model_version=r.model_version
+                JOIN feature_vectors_v2 q ON q.vector_id=r.query_vector_id
+                UNION ALL
+                SELECT x.match_id::text, (
+                    v.observed_at>=r.cutoff_at OR v.available_at>r.cutoff_at OR v.schema_version<>q.schema_version
+                    OR (x.matched_outcome_id IS NOT NULL AND (o.anchor_bar_revision_id<>v.anchor_bar_revision_id OR o.terminal_at>r.query_observed_at))
+                ) FROM similarity_matches_v2 x JOIN similarity_runs_v2 r ON r.run_id=x.run_id
+                JOIN feature_vectors_v2 q ON q.vector_id=r.query_vector_id JOIN feature_vectors_v2 v ON v.vector_id=x.matched_vector_id
+                LEFT JOIN historical_outcomes_v2 o ON o.outcome_id=x.matched_outcome_id
+            ) SELECT COUNT(*),COUNT(*) FILTER(WHERE violation) FROM audited
+        """)
+        return self._metric("similarity_v2_lineage_and_leakage",row)
 
     def _option_chain_lineage(self) -> AuditMetric:
         row = self._fetch_one(

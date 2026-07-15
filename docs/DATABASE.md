@@ -6,6 +6,11 @@ PostgreSQL is the source of truth for persistent platform state.
 
 ## Current Core Tables
 
+### Version 3 Similarity Engine V2
+
+Migration `027` adds immutable model policies, runs and matches referencing
+Feature Store V2 and optional point-in-time-complete Outcome V2 evidence.
+
 ### Version 3 Outcome Engine V2
 
 Migration `025` adds immutable model policies, materialization runs, canonical
@@ -219,7 +224,7 @@ name differs from normal `POSTGRES_DB`. See `docs/OPERATIONS_RUNBOOK.md`.
 
 Migrations `001`–`022` are authoritative and immutable. V2.1.4 verified exact
 filesystem/applied order, filenames and SHA-256 checksums; two migration reruns
-applied zero changes. Version 3 appends migrations `023`–`026` without modifying them.
+applied zero changes. Version 3 appends migrations `023`–`027` without modifying them.
 
 Migration `026` adds `feature_schema_versions_v2`, `feature_definitions_v2`,
 `feature_materialization_runs_v2`, `feature_vectors_v2` and

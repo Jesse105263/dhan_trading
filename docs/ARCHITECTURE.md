@@ -306,3 +306,10 @@ V3.4 reads only point-in-time V3.1 canonical bars and persists isolated immutabl
 feature evidence. It does not replace the V2 Feature Store or feed Similarity,
 Opportunity, Analyst or recommendation services. Outcome V2 compatibility is
 declared metadata, never a predictive input.
+
+## Version 3 Similarity Engine V2 Boundary
+
+V3.5 reads immutable Feature Store V2 vectors, ranks only pre-cutoff candidates,
+then attaches Outcome V2 evidence completed before the query observation. Its
+new tables and command are isolated from V2 Similarity, Opportunity, Analyst and
+recommendation paths.

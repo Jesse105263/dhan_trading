@@ -113,6 +113,14 @@ outcome consistency, precision at K, expected-value uplift, stability, effective
 sample size and coverage. Require exact scaler/model/candidate lineage and p95
 retrieval below one second for one million vectors. Estimated effort: 3–5 weeks.
 
+Framework checkpoint: migration `027` implements immutable model policies, runs
+and matches over Feature Store V2, with weighted Manhattan, Euclidean and cosine
+distance, train-window normalization, dynamic feature/family weights, regime,
+liquidity, volatility and time filters, multiple ranking strategies, diagnostics,
+quality scoring, temporal diversity and strict outcome-completion cutoffs.
+Population evaluation and million-vector performance remain unevaluated without
+licensed history. V3.6 remains next.
+
 ### V3.6 — Opportunity Engine V2
 
 Produce provisional strategy-aware candidates with exact option contract, entry,

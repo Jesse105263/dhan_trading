@@ -96,3 +96,9 @@ is compatibility metadata only and is never a feature input. No training or live
 normalization statistics are fabricated. Option-chain, event, cross-sectional and
 broader futures families remain pending canonical licensed inputs; coverage,
 drift and distribution targets remain unevaluated. V3.5 must explicitly opt in.
+
+## V3.5 similarity consumer
+
+Similarity Engine V2 consumes immutable vectors without rewriting or imputing
+them. It records the exact schema and vector lineage, dynamically selects only
+declared features, and fits normalization solely on eligible pre-cutoff candidates.

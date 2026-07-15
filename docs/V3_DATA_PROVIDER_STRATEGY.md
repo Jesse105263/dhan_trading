@@ -432,3 +432,8 @@ derived-data retention/model-research permission must still be explicitly
 Feature Store V2 is verified only with deterministic local fixtures and an empty
 licensed-population run. It adds no entitlement: raw/normalized retention,
 derived-use, training, backup and termination rights remain unresolved gates.
+
+## V3.5 derived-similarity status
+
+Similarity V2 uses deterministic fixtures only. Its model lineage does not grant
+provider-derived research rights; all licensing and activation gates remain.

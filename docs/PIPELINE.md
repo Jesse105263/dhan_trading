@@ -192,3 +192,10 @@ offline query into immutable Feature Store V2 vectors and values. Histories are
 bounded by both event time and availability time. The command neither collects
 data nor schedules work, and the V2 feature/similarity/opportunity pipeline stays
 unchanged.
+
+## Version 3.5 Similarity Materialization
+
+An explicit Feature Store V2 query vector and fixed cutoff select only earlier,
+available vectors. Candidate-only normalization and transparent ranking complete
+before eligible Outcome V2 labels are attached. This is offline derived work and
+does not enter collection or the V2 opportunity pipeline.

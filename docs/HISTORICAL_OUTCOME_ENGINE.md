@@ -135,3 +135,9 @@ coverage or statistical-reliability claim.
 Feature Store V2 declares compatibility with `canonical-path-outcome-v2`, but
 Outcome V2 labels and metrics are never feature inputs. This prevents label or
 future-path leakage. Neither store changes the existing V2 Similarity consumer.
+
+## V3.5 similarity consumer
+
+Outcome V2 is attached only after analogue ranking. Only complete outcomes whose
+terminal timestamp is no later than the query observation are eligible; outcomes
+never affect feature selection, normalization, distance or rank.

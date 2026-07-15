@@ -39,6 +39,7 @@ class ReleaseReadinessService:
         "continuous_collection_lineage",
         "outcome_v2_lineage_and_leakage",
         "feature_store_v2_lineage_and_leakage",
+        "similarity_v2_lineage_and_leakage",
         "execution_schema_boundary",
     )
 

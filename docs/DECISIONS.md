@@ -413,3 +413,14 @@ Reason: rebinding current Similarity or Opportunity behavior would skip the
 roadmap evaluation gate. Isolation makes definitions historically reproducible,
 prevents late-revision leakage and permits V3.5 to adopt them explicitly after
 quality and owner review.
+
+## V3.5 Keeps Analogue Research Isolated and Label-Blind
+
+Decision: freeze model policies and persist immutable V3.5 runs/matches in
+migration `027`. Normalize only on the historical candidate window, rank without
+outcomes, enforce strict availability/terminal cutoffs, and leave V2 consumers
+unchanged.
+
+Reason: outcomes in distance calculations or late-completing labels would leak
+future truth. An isolated transparent store makes alternative models comparable
+and reproducible without prematurely changing opportunity behavior.

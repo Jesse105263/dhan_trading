@@ -4,6 +4,14 @@
 
 ## 2026-07-16
 
+### V3.5 — Similarity Engine V2
+
+- Added migration `027` with immutable similarity policies, runs and matches.
+- Added three transparent distance models, configurable feature/family weights,
+  point-in-time normalization, filtering, ranking, diagnostics and quality.
+- Added strict candidate and outcome cutoffs, explicit insufficient evidence,
+  release auditing, unit and PostgreSQL coverage without changing V2 consumers.
+
 ### V3.4 — Feature Store V2
 
 - Added migration `026` with immutable versioned feature definitions,

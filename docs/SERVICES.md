@@ -311,3 +311,10 @@ results. `feature_store_v2_repository` performs point-in-time revision reads and
 atomic immutable persistence. `feature_store_v2_service` computes deterministic
 features, explicit missingness, quality and lineage. The offline command is
 `materialize_feature_store_v2`; no provider or current consumer is invoked.
+
+## Version 3 Similarity Engine V2
+
+`similarity_v2_models` freezes transparent policies, `similarity_v2_repository`
+owns point-in-time Feature/Outcome reads and immutable persistence, and
+`similarity_v2_service` owns normalization, filtering, distance, ranking,
+explainability, quality and abstention. `materialize_similarity_v2` is offline.
