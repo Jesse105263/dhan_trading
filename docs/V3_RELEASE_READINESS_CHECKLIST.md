@@ -72,7 +72,7 @@ underlying reference outcomes rather than option-premium returns after costs.
   collector, scheduler, API, frontend or execution path was added.
 - [ ] Five-year daily, two-year intraday and coverage targets are not evaluated;
   licensed acquisition remains blocked by the provider-strategy gates.
-- [ ] Repository-owner review and commit are complete.
+- [x] Repository-owner review and commit are complete (`fc20734`).
 
 V3.1 verification evidence:
 
@@ -99,7 +99,7 @@ V3.1 verification evidence:
 - [x] Fixture-only commands and read-only status exist; `/api/v1` is unchanged.
 - [x] No live adapter, credential, external call or production schedule was added.
 - [ ] Twenty live sessions and 99% completion are not evaluated while activation is blocked.
-- [ ] Repository-owner review and commit are complete.
+- [x] Repository-owner review and commit are complete (`885883c`).
 
 V3.2 verification evidence:
 
@@ -109,3 +109,27 @@ V3.2 verification evidence:
 - Migration `024` applied once; rerun applied zero; all 24 checksums match.
 - All fixture commands passed; reconciliation and work scheduling reruns were idempotent.
 - Readiness: 13 PASS, 0 FAIL and five optional empty-data SKIPs.
+
+## V3.3 — Outcome Engine V2
+
+- [x] Duration, session-count and expiry horizons are immutable policy inputs.
+- [x] Accepted canonical underlying and option bars are supported without proxies.
+- [x] Anchor/path revisions are selected only when available by the run cutoff.
+- [x] Gross/net return, MFE, MAE, drawdown, realized volatility and adjusted return are deterministic.
+- [x] Aggregate expectancy and payoff ratio use complete net-return evidence only.
+- [x] Missing horizons and expiries are `UNKNOWN`; sparse paths and corporate actions fail closed.
+- [x] Same-bar target/stop ambiguity never guesses first-touch order.
+- [x] Migration `025` persists immutable policy, run, outcome and exact path lineage.
+- [x] UUIDv5 and database constraints make fixed-cutoff reruns idempotent.
+- [x] V2 outcomes, Similarity, Opportunity, Analyst, recommendations and `/api/v1` are unchanged.
+- [ ] Eighty-percent supported-population completeness is unevaluated without licensed history.
+- [ ] Repository-owner review and commit are complete.
+
+V3.3 verification evidence:
+
+- Compileall passed.
+- Standard suite: 278 tests, 43 expected PostgreSQL-gated skips.
+- PostgreSQL suite: 278 tests, five documented data/isolated-database skips.
+- Migration `025` applied once; rerun applied zero; all 25 checksums match.
+- Fixed-cutoff command rerun returned the same run ID and explicit empty population.
+- Readiness: 13 PASS, 0 FAIL and six optional empty-data SKIPs.

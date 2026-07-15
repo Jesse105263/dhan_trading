@@ -45,6 +45,7 @@ class ReleaseReadinessRepository:
             "analyst_evidence_grounding": self._analyst_evidence_grounding(),
             "historical_data_foundation_lineage": self._historical_data_foundation_lineage(),
             "continuous_collection_lineage": self._continuous_collection_lineage(),
+            "outcome_v2_lineage_and_leakage": self._outcome_v2_lineage_and_leakage(),
             "execution_schema_boundary": self._execution_schema_boundary(),
         }
 
@@ -237,6 +238,33 @@ class ReleaseReadinessRepository:
             ) SELECT COUNT(*), COUNT(*) FILTER (WHERE violation) FROM audited
         """)
         return self._metric("continuous_collection_lineage", row)
+
+    def _outcome_v2_lineage_and_leakage(self) -> AuditMetric:
+        row=self._fetch_one("""
+            WITH audited AS (
+                SELECT o.outcome_id::text entity_id, (
+                    o.policy_checksum<>m.policy_checksum OR o.policy_checksum<>r.policy_checksum
+                    OR o.instrument_id<>b.instrument_id OR o.entry_manifest_id<>b.manifest_id
+                    OR o.observed_at<>b.bar_close_at OR o.available_at<>b.available_at
+                    OR o.available_at>r.as_of OR (o.terminal_at IS NOT NULL AND o.terminal_at<=o.observed_at)
+                    OR (o.terminal_bar_revision_id IS NOT NULL AND (t.bar_revision_id IS NULL OR t.available_at>r.as_of))
+                    OR o.path_observation_count<>(SELECT COUNT(*) FROM historical_outcome_path_v2 p WHERE p.outcome_id=o.outcome_id)
+                    OR (o.outcome_state='COMPLETE' AND (o.net_return_pct IS NULL OR o.maximum_favourable_excursion_pct IS NULL OR o.maximum_adverse_excursion_pct IS NULL))
+                    OR (o.outcome_state<>'COMPLETE' AND (o.gross_return_pct IS NOT NULL OR o.net_return_pct IS NOT NULL))
+                ) AS violation FROM historical_outcomes_v2 o JOIN outcome_model_versions_v2 m ON m.model_version=o.model_version
+                JOIN outcome_materialization_runs_v2 r ON r.run_id=o.run_id
+                JOIN historical_bar_revisions b ON b.bar_revision_id=o.anchor_bar_revision_id
+                LEFT JOIN historical_bar_revisions t ON t.bar_revision_id=o.terminal_bar_revision_id
+                UNION ALL
+                SELECT p.outcome_id::text||':'||p.sequence_number::text, (
+                    p.bar_revision_id<>b.bar_revision_id OR p.manifest_id<>b.manifest_id
+                    OR p.bar_close_at<=o.observed_at OR p.available_at>r.as_of
+                ) FROM historical_outcome_path_v2 p JOIN historical_outcomes_v2 o ON o.outcome_id=p.outcome_id
+                JOIN outcome_materialization_runs_v2 r ON r.run_id=o.run_id
+                JOIN historical_bar_revisions b ON b.bar_revision_id=p.bar_revision_id
+            ) SELECT COUNT(*),COUNT(*) FILTER(WHERE violation) FROM audited
+        """)
+        return self._metric("outcome_v2_lineage_and_leakage",row)
 
     def _option_chain_lineage(self) -> AuditMetric:
         row = self._fetch_one(

@@ -76,6 +76,17 @@ migration `024`, then use `schedule`, `execute`, `detect-gaps`,
 fixture is empty. Do not configure a live adapter or external scheduler until
 licensing, credentials, quotas, coverage and operations have separate approval.
 
+V3.3 outcome materialization is an explicit offline operation over already
+persisted canonical evidence:
+
+```bash
+python -m scripts.materialize_historical_outcomes_v2 --as-of <ISO_TIMESTAMP>
+```
+
+Use a fixed `--as-of` for reproducibility. An empty result is valid while licensed
+history is absent. The command does not collect, call Dhan, invoke a model, alter
+V2 outcomes or create a recommendation.
+
 ## Application Startup
 
 Use separate terminals with the same virtual environment and repository folder.

@@ -5,11 +5,11 @@
 Version 3 is the active approved implementation contract. V3.0 — Research
 Contract and Benchmark Baseline is committed at `a3ed736`. V3.0.5 — Data Provider
 & Licensing Strategy is committed at `e1c3618`. V3.1 — Historical Data Foundation
-is committed at `fc20734`. V3.2 — Continuous Market Collection is implemented
-pending repository-owner review. Migration `024` adds provider-neutral schedules,
-work, immutable attempts, gaps, bounded repairs, quota state and reconciliation
-lineage. Only deterministic local fixtures were used; no live provider,
-credential, external call, production schedule, download or backfill exists.
+is committed at `fc20734`. V3.2 — Continuous Market Collection is committed at
+`885883c`. V3.3 — Outcome Engine V2 is implemented pending repository-owner
+review. Migration `025` adds immutable policy, run, canonical multi-horizon
+outcome and exact path lineage. Only deterministic local fixtures were used; no
+live provider, recommendation or downstream intelligence change exists.
 
 Version 2 is complete. V2.0.1 — Architecture & Product Decisions,
 V2.0.2 — Frontend Project Foundation, V2.0.3 — Design System and V2.0.4 —
@@ -131,14 +131,23 @@ The release-hardening implementation checkpoint is
 - `021_trade_opportunity_engine.sql`
 - `022_news_event_intelligence.sql`
 - `023_historical_data_foundation.sql`
+- `024_continuous_market_collection.sql`
+- `025_outcome_engine_v2.sql`
 
 Migrations `018`–`022` remain the immutable Version 2 Feature, Outcome,
-Similarity, Opportunity and Event stores. Migration `023` adds the isolated
-Version 3 historical foundation without changing those tables.
+Similarity, Opportunity and Event stores. Migrations `023`–`025` add the isolated
+Version 3 historical, collection and Outcome V2 stores without changing them.
 
 Milestones 4.1 and 4.2 required no migrations because they are read-only surfaces over existing tables. Milestone 4.3 adds auditable alerts in migration 016, and Milestone 4.5 adds isolated paper state in migration 017.
 
 ## Latest Verification
+
+V3.3 verification: compileall passed; standard and PostgreSQL-enabled suites each
+ran 278 tests, with 43 expected database-gated skips in the standard suite and
+five documented skips in the PostgreSQL suite. Migration `025` applied once and
+an idempotent rerun applied zero. The fixed-cutoff operator rerun returned the
+same empty-population run ID. Readiness returned 13 PASS, 0 FAIL and six optional
+empty-data SKIPs.
 
 V3.2 verification: compileall passed; standard and PostgreSQL-enabled suites each
 ran 270 tests, with 41 expected database-gated skips in the standard suite and
@@ -226,11 +235,8 @@ Use `python -m scripts.paper_trade` to open, mark, close and inspect isolated si
 
 ## Next Activity
 
-Review and commit the V3.1 foundation. Historical acquisition must not begin until
-the owner records
-written provider rights, quotes, coverage evidence, budget, specialist-source
-terms, storage capacity and the provider-neutral contract required by
-`docs/V3_DATA_PROVIDER_STRATEGY.md`.
+Review and commit V3.3. The approved next milestone remains V3.4 — Feature Store
+V2. Provider acquisition remains blocked by the documented licensing gates.
 
 Existing Version 1.0 safety boundaries remain unchanged. See `docs/NEXT_TASK.md`,
 `docs/OPERATIONS_RUNBOOK.md` and `docs/RELEASE_READINESS_CHECKLIST.md`.

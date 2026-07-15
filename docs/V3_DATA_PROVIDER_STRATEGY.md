@@ -419,3 +419,10 @@ fixture provider only. TrueData, DhanHQ, exchanges and regulators remain inactiv
 Written retention, derived-use, training, backup and post-termination rights,
 dated quotes, credentials, quotas, coverage evidence and operational approval are
 still unresolved gates. Framework completion does not authorize acquisition.
+
+## V3.3 derived-outcome status
+
+Outcome Engine V2 is implemented only against deterministic local canonical
+fixtures and empty licensed-population state. It does not broaden source rights:
+derived-data retention/model-research permission must still be explicitly
+`ALLOWED` before provider observations may support persisted outcomes.

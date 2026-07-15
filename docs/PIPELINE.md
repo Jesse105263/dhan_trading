@@ -177,3 +177,10 @@ scheduler-lock pattern. Provider results are committed through V3.1 before an
 immutable attempt outcome. Partial scope is retained, failures retry only to the
 configured limit, and stale claims recover after interruption. No live provider
 or production scheduler entry is enabled.
+
+## Version 3.3 Outcome Materialization
+
+Outcome V2 is offline downstream work: accepted canonical bars/actions flow into
+a fixed-policy, fixed-`as_of` path reconstruction and then immutable outcome/path
+records. It is not a continuous-collection stage and never triggers a provider.
+V2 feature, similarity and opportunity pipelines remain unchanged.

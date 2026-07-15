@@ -78,6 +78,14 @@ deterministic path reconstruction, at least 80% supported-population completenes
 or explained exclusions, and structural future-data isolation. Estimated effort:
 3–5 weeks.
 
+Framework checkpoint: migration `025` implements versioned duration, session and
+expiry labels for canonical underlying and option bars, exact path/manifests,
+costs, optional target/stop outcomes, MFE, MAE, drawdown, realized volatility,
+volatility-adjusted return, aggregate expectancy/payoff ratio and explicit
+unknown/insufficient/ambiguous states. Corporate actions fail closed unless the
+path is already adjusted. Population completeness remains unevaluated because no
+licensed historical population exists. V3.4 remains next.
+
 ### V3.4 — Feature Store V2
 
 Build versioned point-in-time price, volatility, volume, liquidity, option-chain,

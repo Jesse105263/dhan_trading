@@ -294,3 +294,12 @@ See `docs/HISTORICAL_DATA_FOUNDATION.md`.
 retries, fixture ingestion, gaps, repairs, quota state and health.
 `continuous_collection_scheduler` reuses the existing scheduler lock pattern.
 Only the bounded local fixture provider is implemented.
+
+## Version 3 Outcome Engine V2
+
+`outcome_v2_models` defines immutable horizons and policies.
+`outcome_v2_repository` performs point-in-time canonical bar/action reads and
+atomic outcome/path persistence. `outcome_v2_service` owns deterministic horizon,
+barrier, missingness, cost, MFE/MAE, drawdown and volatility policy.
+`materialize_historical_outcomes_v2` is the offline idempotent command. No current
+Similarity, Opportunity, Analyst or recommendation service imports it.

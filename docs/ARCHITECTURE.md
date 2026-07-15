@@ -291,3 +291,11 @@ attempts retain partial success, retries and failures. Successful bytes enter V3
 unchanged. Gaps create idempotent repair work and late/conflicting records retain
 V3.1 revision and quarantine semantics. Only a local fixture provider exists;
 Dhan production collection is not connected or changed.
+
+## Version 3 Outcome Engine V2 Boundary
+
+Outcome V2 is a new immutable consumer of V3.1 canonical bar/action revisions.
+It selects evidence as of an explicit cutoff, reconstructs ordered underlying or
+option paths, and persists versioned labels plus exact manifests. The existing V2
+Outcome Store remains the source for current Similarity and Opportunity logic;
+V3.3 adds no recommendation integration.

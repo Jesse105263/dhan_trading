@@ -6,6 +6,13 @@ PostgreSQL is the source of truth for persistent platform state.
 
 ## Current Core Tables
 
+### Version 3 Outcome Engine V2
+
+Migration `025` adds immutable model policies, materialization runs, canonical
+multi-horizon outcomes and ordered path lineage. It references canonical
+instruments, historical bar revisions and raw manifests without modifying the V2
+`historical_outcomes` table.
+
 ### Version 3 continuous collection
 
 Migration `024` adds schedules, work items, immutable attempts, coverage gaps,
@@ -212,4 +219,4 @@ name differs from normal `POSTGRES_DB`. See `docs/OPERATIONS_RUNBOOK.md`.
 
 Migrations `001`–`022` are authoritative and immutable. V2.1.4 verified exact
 filesystem/applied order, filenames and SHA-256 checksums; two migration reruns
-applied zero changes. Version 3 appends migration `023` without modifying them.
+applied zero changes. Version 3 appends migrations `023`–`025` without modifying them.

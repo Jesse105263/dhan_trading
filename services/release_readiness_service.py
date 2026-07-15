@@ -37,6 +37,7 @@ class ReleaseReadinessService:
         "analyst_evidence_grounding",
         "historical_data_foundation_lineage",
         "continuous_collection_lineage",
+        "outcome_v2_lineage_and_leakage",
         "execution_schema_boundary",
     )
 

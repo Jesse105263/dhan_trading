@@ -40,6 +40,8 @@ The provider-neutral raw and canonical contracts are documented in
 `docs/HISTORICAL_DATA_FOUNDATION.md`.
 The fixture-only continuous collection framework is documented in
 `docs/CONTINUOUS_MARKET_COLLECTION.md`.
+The versioned canonical Outcome Engine V2 is documented in
+`docs/HISTORICAL_OUTCOME_ENGINE.md`.
 
 ## Private Dashboard
 
@@ -85,10 +87,10 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 
 ## Status
 
-Version 1.0 and Version 2 are complete. V3.0, V3.0.5 and V3.1 are committed.
-V3.2 — Continuous Market Collection is implemented pending repository-owner
-review with provider-neutral policy, restartable work, gaps, repair,
-reconciliation lineage and fixture-only commands. No live provider is activated.
+Version 1.0 and Version 2 are complete. V3.0 through V3.2 are committed. V3.3 —
+Outcome Engine V2 is implemented pending repository-owner review. It adds
+versioned canonical underlying/option path outcomes without changing the existing
+V2 Outcome, Similarity, Opportunity or recommendation contracts.
 
 The Version 2 frontend is isolated under `frontend/`. See `docs/FRONTEND.md` for
 its dependency policy and local commands, and `docs/DESIGN_SYSTEM.md` for tokens,

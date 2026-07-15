@@ -137,3 +137,10 @@ Continuous collection submits provider-neutral local fixture bytes through this
 unchanged import service. Work and attempt lineage live in migration `024`; raw
 immutability, replay deduplication, same-source revisions and cross-source
 quarantine remain owned by V3.1. No live provider adapter was added.
+
+## V3.3 outcome consumer
+
+Outcome Engine V2 reads accepted canonical bars and corporate-action revisions
+only through stable instrument IDs. Every label retains anchor, terminal, path and
+raw-manifest lineage. Point-in-time queries use revision availability rather than
+today's `is_current`, preventing late corrections from leaking into earlier runs.

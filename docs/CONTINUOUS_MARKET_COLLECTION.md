@@ -91,3 +91,9 @@ There is no live adapter, daemon, cron entry, provider credential, full exchange
 holiday source, entitlement, licensed dataset or production cadence. Persisted
 schedules are infrastructure, not activated production jobs. V3.3 remains Outcome
 Engine V2.
+
+## V3.3 downstream boundary
+
+Outcome Engine V2 consumes only canonical revisions already committed through
+V3.1/V3.2. It never schedules collection or repairs and cannot activate a
+provider. A late revision affects only a later explicit outcome `as_of` run.

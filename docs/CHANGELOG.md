@@ -2,6 +2,19 @@
 
 ---
 
+## 2026-07-16
+
+### V3.3 — Outcome Engine V2
+
+- Added migration `025` with immutable outcome policies, runs, multi-horizon
+  canonical outcomes and exact ordered bar/manifest lineage.
+- Added underlying/option duration, session and expiry paths with explicit
+  missingness, corporate-action abstention, costs, barriers, MFE/MAE, drawdown,
+  volatility adjustment, expectancy and payoff ratio.
+- Added deterministic offline materialization, point-in-time revision selection,
+  readiness auditing, unit and PostgreSQL coverage.
+- Preserved V2 Outcome, Similarity, Opportunity, Analyst and recommendation logic.
+
 ## 2026-07-15
 
 ### V3.2 — Continuous Market Collection

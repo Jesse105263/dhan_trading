@@ -389,3 +389,15 @@ Reason: durable work makes interruption, quotas, partial scope and bounded retry
 observable without coupling canonical storage to any vendor. Reusing V3.1 keeps
 raw/canonical deduplication and quarantine authoritative. A fixture-only provider
 proves operations without granting licensing or activation authority.
+
+## V3.3 Adds an Immutable Outcome Store Without Rebinding V2 Consumers
+
+Decision: persist Outcome Engine V2 policies, runs, labels and ordered canonical
+bar lineage in migration `025`. Select revisions by `available_at <= as_of`,
+abstain on incomplete paths and unadjusted corporate actions, and keep the V2
+`historical_outcomes` API/table unchanged.
+
+Reason: new option/underlying horizons and metrics cannot safely overwrite the
+minimal V2 model or silently change Similarity and Opportunity behavior. A
+separate immutable store provides statistically rigorous future inputs while
+preserving compatibility and preventing correction leakage.

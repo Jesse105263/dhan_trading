@@ -72,3 +72,60 @@ P&L. Sparse histories naturally remain partial or unavailable.
 
 No recommendation, entry, stop, target, expected value, confidence, AI reasoning,
 broker request or execution capability exists in this milestone.
+
+## Version 3.3 — Outcome Engine V2
+
+V3.3 preserves the complete V2 API and `historical_outcomes` contract above.
+Migration `025` adds a separate immutable canonical outcome store so Similarity,
+Trade Opportunity and Analyst behavior cannot change implicitly.
+
+### Inputs and point-in-time policy
+
+Outcome V2 reads only accepted canonical `historical_bar_revisions`, stable
+instrument identities and confirmed/revised corporate actions. Anchor and path
+queries select the latest same-natural-key revision whose `available_at` is at or
+before the explicit materialization `as_of`; a later correction cannot leak into
+an earlier run. Raw manifests remain the evidence source for every anchor,
+terminal and path bar.
+
+Both equities/indices and options are supported when canonical bars exist.
+Futures remain canonical instruments but are not labelled as underlying or option
+subjects in this model. No proxy option price, interpolation or fill is invented.
+
+### Horizons, states and path metrics
+
+Policies are immutable under a model version and configure duration, trading-
+session and expiry horizons. The default model registers 30-minute, one-session,
+five-session and through-expiry horizons. A horizon completes only when its exact
+duration, required session or expiry observation is present.
+
+States are `COMPLETE`, `UNKNOWN`, `INSUFFICIENT` and `AMBIGUOUS`. Missing entry,
+horizon or expiry evidence remains `UNKNOWN`; too few path observations or an
+unadjusted price-altering corporate action is `INSUFFICIENT`; a bar touching both
+target and stop without intrabar ordering is `AMBIGUOUS`. Only `COMPLETE` records
+receive gross/net return, MFE, MAE, maximum drawdown, realized volatility and
+volatility-adjusted return.
+
+Configured round-trip costs reduce gross returns deterministically. Target/stop
+barriers are optional. The service never guesses first-touch ordering. Aggregate
+statistics calculate expectancy as mean complete net return and payoff ratio as
+average positive net return divided by absolute average negative net return;
+unsupported populations return null.
+
+### Persistence and operation
+
+`outcome_model_versions_v2` freezes policy/checksum identity,
+`outcome_materialization_runs_v2` records the point-in-time run population,
+`historical_outcomes_v2` stores one deterministic anchor/version/horizon label,
+and `historical_outcome_path_v2` stores its ordered exact bar/manifests. Outcomes
+and paths reject update/delete. UUIDv5 and unique constraints make reruns
+idempotent.
+
+```bash
+python -m services.migration_runner
+python -m scripts.materialize_historical_outcomes_v2 --as-of 2026-07-16T00:00:00
+```
+
+The command is offline and provider-free. The current local historical foundation
+contains no licensed market population, so an empty run is valid and makes no
+coverage or statistical-reliability claim.
