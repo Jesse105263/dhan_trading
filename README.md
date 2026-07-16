@@ -88,8 +88,8 @@ See `docs/PAPER_TRADING.md` for the complete lifecycle and safety boundary.
 ## Status
 
 Version 1.0 and Version 2 are complete. V3.0 through V3.8 are committed. V3.9 —
-Institutional Research, Validation, and Model Governance is pending owner review.
-It is offline-only and has no deployment or execution path.
+Institutional Research, Validation, and Model Governance is committed at
+`874ef1f`. It is offline-only and has no deployment or execution path.
 
 The Version 2 frontend is isolated under `frontend/`. See `docs/FRONTEND.md` for
 its dependency policy and local commands, and `docs/DESIGN_SYSTEM.md` for tokens,
@@ -133,3 +133,12 @@ fixture-only backfill orchestration, bounded bulk helpers, SELECT-only health,
 retention metadata and local benchmark tooling. See
 `docs/V3_SCALE_OPERATIONAL_HARDENING.md`. This changes no financial methodology,
 activates no provider or execution, and does not establish recommendation trust.
+
+## Version 3 release closure
+
+Version 3 implementation is complete and the full release matrix is verified
+pending repository-owner approval. Migrations `001`–`032` are authoritative.
+No Version 4 roadmap is approved; no licensed historical population, live
+provider, trusted operational recommendation or live execution is active. After
+closure approval, the next activity is a separate owner decision on licensed data
+acquisition and bounded operational validation.

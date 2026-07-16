@@ -356,3 +356,18 @@ database indicators, and `scripts.verify_backup_metadata` for non-restoring
 backup metadata verification. Pause, resume and stale recovery are explicit.
 Never run destructive retention or `createdb`, `dropdb` or `pg_restore` without
 repository-owner approval.
+
+## Version 3 release-closure state
+
+Version 3 is implemented and verified pending owner approval. Treat migrations
+`001`–`032` as immutable and authoritative. There is no approved Version 4
+roadmap. Provider activation, credentials, licensed acquisition, trusted
+recommendations, live execution, retention deletion and recovery drills require
+separate explicit owner authorization.
+
+For closure verification, run the Python/frontend matrix, rerun the migration
+runner expecting zero, then run the documented fixture commands and
+`scripts.verify_release`. Outcome/Feature database materializers may return an
+explicit empty population; Similarity fixture verification is in
+`tests.test_similarity_v2` because its CLI correctly requires a persisted vector.
+Never invent an identity merely to make an operator command non-empty.

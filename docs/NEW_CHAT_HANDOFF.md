@@ -1,298 +1,107 @@
 # New Chat Handoff
 
-## Purpose
+## Checkpoint
 
-This file is the authoritative handoff for continuing the Dhan Trading Platform in a new chat. The repository ZIP is the single source of truth. The new chat must inspect the repository and all documentation before writing code.
+Final release-closure checkpoint: `<OWNER_COMMIT_AFTER_REVIEW>`.
+Current implementation checkpoint: `c5f01c9 add Version 3 scale and operational hardening`.
+Previous checkpoint: `874ef1f add Version 3 institutional research governance`.
 
-## Latest Approved State
+Always verify a clean tree, HEAD and `origin/main` before continuing. Migrations
+`001`–`032` are authoritative and applied; do not edit them. There is no migration
+`033` and no approved Version 4 roadmap.
 
-- Version 3 roadmap: approved implementation contract
-- V3.0 — Research Contract and Benchmark Baseline: committed at `a3ed736`
-- V3.0.5 — Data Provider & Licensing Strategy: committed at `e1c3618`
-- V3.1 — Historical Data Foundation: committed at `fc20734`
-- V3.2 — Continuous Market Collection: committed at `885883c`
-- V3.3 — Outcome Engine V2: committed at `ed0bb63`
-- V3.4 — Feature Store V2: committed at `b4c72f0`
-- V3.5 — Similarity Engine V2: committed at `fcb81a5`
-- V3.6 — Opportunity Engine V2: committed at `bb5e07b`
-- V3.7 — Calibration, Uncertainty, and Recommendation Policy: committed at `254e6bf`
-- V3.8 — Live Recommendation Validation: committed at `67ed31c`
-- Current milestone: V3.9 — Institutional Research, Validation, and Model Governance
-- Current milestone state: implemented and staged pending owner review
-- Selected providers: DhanHQ historical/live backup and TrueData continuous/live,
-  all subject to written licensing confirmation
-- Migration `031` and immutable offline research/model-governance evidence are added.
-- No live provider integration, credentials, paid activation, external call,
-  production schedule, download or backfill was added.
+## Milestone history
 
-- Version 2 roadmap: approved
-- V2.0.1 — Architecture & Product Decisions: complete
-- V2.0.2 — Frontend Project Foundation: complete
-- V2.0.3 — Design System: complete
-- V2.0.4 — Application Shell: complete
-- V2.0.5 — Market Overview & Opportunity Scanner: complete
-- V2.0.6 — Symbol Intelligence Workspace: complete
-- V2.0.7 — Market Memory Foundation: complete
-- V2.0.8 — Feature Store: complete
-- V2.0.9 — Historical Outcome Engine: complete
-- V2.1.0 — Similarity Engine: complete
-- V2.1.1 — Trade Opportunity Engine: complete
-- V2.1.2 — News & Event Intelligence: complete
-- V2.1.3 — AI Trading Analyst: complete
-- V2.1.4 — Intelligence Release Hardening & Handoff: committed at `ba6c0a2`
+Version 1 established local infrastructure, PostgreSQL/Redis, provider collection,
+options data, analytics, risk/signals, replay/backtesting, read-only API/dashboard,
+alerts, bounded Copilot, isolated paper trading and release hardening. Version 1
+closed at `555a373` after readiness implementation `030ade7`.
 
-Version 2 closed at `ba6c0a2 add Version 2 intelligence release hardening`.
-Version 3 started from that checkpoint; V3.0 is committed at `a3ed736`.
+Version 2 added the product architecture/frontend, market and symbol workspaces,
+Market Memory, Feature Store V1, outcomes, similarity, opportunity, event
+intelligence, grounded analyst and intelligence release hardening. It closed at
+`ba6c0a2` and preserves `/api/v1` compatibility.
 
-- Phase 1 — Stable Market Core: complete
-- Phase 2 — Option Data Platform: complete
-- Phase 3 — Decision and Evaluation Platform: complete
-- Milestone 4.1 — Read-Only API: complete and verified
-- Milestone 4.2 — Private Read-Only Dashboard: complete and verified
-- Milestone 4.3 — Alerts: complete and verified
-- Milestone 4.4 — AI Copilot: complete and verified
-- Milestone 4.5 — Paper Trading: complete and verified
-- Milestone 4.6 — Version 1.0 Release Hardening: complete and approved
-- Version 1.0: complete and approved
+Version 3 is implemented through:
 
-The Version 1 documentation-closure checkpoint is:
+- V3.0 Research Contract — `a3ed736`
+- V3.0.5 Provider Strategy — `e1c3618`
+- V3.1 Historical Data Foundation — `fc20734`
+- V3.2 Continuous Collection — `885883c`
+- V3.3 Outcome Engine V2 — `ed0bb63`
+- V3.4 Feature Store V2 — `b4c72f0`
+- V3.5 Similarity Engine V2 — `fcb81a5`
+- V3.6 Opportunity Engine V2 — `bb5e07b`
+- V3.7 Calibration/Recommendation Policy — `254e6bf`
+- V3.8 Live Recommendation Validation — `67ed31c`
+- V3.9 Institutional Research Governance — `874ef1f`
+- V3.10 Scale/Operational Hardening — `c5f01c9`
 
-```text
-555a373 close Version 1.0 documentation
-```
+## Architecture
 
-The release-hardening implementation checkpoint is:
+Provider-neutral immutable raw/canonical data feeds point-in-time Feature Store
+V2 and Outcome V2. Similarity V2 consumes leakage-safe features/outcomes;
+Opportunity V2 creates provisional exact-contract evidence; calibration applies
+uncertainty and eligibility gates; shadow validation freezes and observes every
+decision; offline governance controls experiments and promotion; V3.10 supplies
+incremental checkpoints, durable backfills, bounded batches, health, retention
+metadata and recovery controls. Existing Version 1/2 services and `/api/v1`
+remain backward compatible.
 
-```text
-030ade7 add release readiness verification
-```
+## Safety boundaries
 
-Verify the current Git state before starting any later task.
+- No live provider or credential is activated.
+- No Dhan/broker call, live order endpoint or paper-to-live path exists.
+- Recommendation eligibility is separate from candidate ranking and operational trust.
+- Live validation is shadow-only; historical evidence is immutable.
+- LLMs have no execution tools; closure verification makes no LLM call.
+- Retention is metadata-only; destructive retention/restore needs owner approval.
+- No silent retraining, promotion, threshold change or historical rewriting.
 
-## Latest Verification
-
-```text
-V3.9 standard: 329 tests, 53 database-gated skips
-V3.9 PostgreSQL: 329 tests, 5 documented skips
-Migration 031: applied once; idempotent rerun applied 0
-Readiness: 13 PASS, 0 FAIL, 12 optional SKIPs
-V3.8 standard: 319 tests, 52 database-gated skips
-V3.8 PostgreSQL: 319 tests, 5 documented skips
-Migration 030: applied once; idempotent rerun applied 0
-Readiness: 13 PASS, 0 FAIL, 11 optional SKIPs
-V3.7 standard: 306 tests, 50 database-gated skips
-V3.7 PostgreSQL: 306 tests, 5 documented skips
-Migration 029: applied once; idempotent rerun applied 0
-Readiness: 13 PASS, 0 FAIL, 10 optional SKIPs
-V3.6 standard: 294 passed, 48 database-gated skips
-V3.6 PostgreSQL: 294 passed, 5 documented skips
-Migration 028: applied once; idempotent rerun applied 0
-Readiness: 13 PASS, 0 FAIL, 9 optional SKIPs
-```
-
-```text
-V3.5 standard: 289 passed, 46 database-gated skips
-V3.5 PostgreSQL: 289 passed, 5 documented data/isolated-database skips
-Migration 027: applied once; idempotent rerun applied 0
-Deterministic fixture: same run and match IDs on rerun
-Readiness: 13 PASS, 0 FAIL, 8 optional empty-data SKIPs
-```
-
-```text
-V3.4 standard: 284 passed, 45 database-gated skips
-V3.4 PostgreSQL: 284 passed, 5 documented data/isolated-database skips
-Migration 026: applied once; idempotent rerun applied 0
-Fixed-cutoff command: same run ID, explicit empty canonical population
-Readiness: 13 PASS, 0 FAIL, 7 optional empty-data SKIPs
-```
-
-```text
-V3.3 standard: 278 passed, 43 database-gated skips
-V3.3 PostgreSQL: 278 passed, 5 documented data/isolated-database skips
-Migration 025: applied once; idempotent rerun applied 0
-Fixed-cutoff command: same run ID, explicit empty canonical population
-Readiness: 13 PASS, 0 FAIL, 6 optional empty-data SKIPs
-```
-
-```text
-V3.2 standard: 270 passed, 41 database-gated skips
-V3.2 PostgreSQL: 270 passed, 5 documented data/isolated-database skips
-Migration 024: applied once; idempotent rerun applied 0
-Fixture commands: all passed; work and reconciliation reruns idempotent
-Readiness: 13 PASS, 0 FAIL, 5 optional empty-data SKIPs
-```
-
-```text
-V3.1 standard: 259 passed, 39 database-gated skips
-V3.1 PostgreSQL: 259 passed, 5 documented data/isolated-database skips
-Migration 023: applied once; idempotent rerun applied 0
-Readiness: 11 PASS, 0 FAIL, 6 optional empty-data SKIPs
-```
-
-```text
-V2.1.4 standard: 240 passed, 36 database-gated skips
-V2.1.4 PostgreSQL: 240 passed, 5 expected data-dependent skips
-Frontend: lint passed, 39 tests passed, build passed, format passed
-Readiness: 14 PASS, 0 FAIL, 2 acceptable empty-data SKIPs
-```
-
-Historical Milestone 4.6 verification additionally covered a 176-test suite, exact
-migration/checksum agreement, a backup restore into `dhan_release_test_46`, fresh
-application of 17 migrations with a zero-change re-run, and safe HTTP runtime
-surfaces. The readiness report returned 8 PASS, 0 FAIL and 2 empty-data SKIPs on
-both normal and restored state.
-
-HTTP verification:
-
-```text
-GET /health                         -> healthy; database_ready=true
-GET /api/v1                         -> resource index
-GET /api/v1/rankings?limit=2        -> persisted ranking returned
-GET /api/v1/signals?limit=2         -> valid empty collection
-GET /api/v1/backtests?limit=2       -> valid empty collection
-```
-
-Empty signal, replay or backtest collections are valid. PostgreSQL integration tests may clean up or remove production-dependent signal-run rows. Never treat an empty list as an API defect without checking the database state.
-
-## Important Production Facts
-
-- Security-master rows processed: 215,940
-- Derivative contracts imported: 68,406
-- Rejected rows: 0
-- Security-master import is idempotent
-- Option underlyings are configured independently from the stable equity pipeline
-- Real RELIANCE option chain collection and downstream processing have been verified
-
-## Architectural Boundaries
-
-- PostgreSQL is the system of record.
-- Repositories perform database access only.
-- Services own deterministic business policy.
-- `ExpiryService` exclusively owns expiry-selection logic.
-- Option analytics operate only on persisted option-chain data.
-- Ranking, selection, risk and signals preserve source lineage.
-- Replay and backtesting use persisted data only.
-- The read API is GET-only and cannot invoke Dhan, trigger calculations or mutate state.
-- LLMs never place trades.
-- Stable equity and option pipelines remain separate.
-
-## Workflow Rules
-
-- Read the full repository ZIP and every file under `docs/` before writing code.
-- Treat the repository as the single source of truth.
-- Give complete files only, never snippets.
-- Work on one milestone at a time.
-- Run unit and PostgreSQL integration tests.
-- Perform a real production verification when the milestone has a runtime surface.
-- Update documentation before Git.
-- Ask the user to paste command output before allowing a commit.
-- Commit only after verification is green.
-- Maintain backward compatibility.
-
-## Lessons From Previous Chats
-
-1. Do not rely on the chat summary alone. Older documentation previously reported stale phases and “verification pending,” which caused unnecessary reconstruction time.
-2. Inspect `docs/NEXT_TASK.md`, `docs/PROJECT_STATUS.md`, `docs/ROADMAP.md`, `docs/DECISIONS.md`, `docs/API.md` and the relevant source/tests first.
-3. Production-dependent integration tests may skip when signal runs are absent. This is expected when explicitly coded as a skip.
-4. Test data must use isolated synthetic exchange/segment scopes. A prior derivative integration test accidentally deactivated production contracts because it reused production scope.
-5. Never use placeholder text such as `<PASTE_ID_HERE>` literally in a shell command; obtain the ID first and substitute the actual UUID.
-6. A foreground API server is not stuck. It waits for requests. Test it from a second terminal and stop it with Control+C or by killing the process bound to port 8080.
-7. Verify real production commands in addition to tests; this previously caught missing-price handling in contract selection.
-8. Do not claim completion until PostgreSQL tests and the production command pass.
-
-## Dashboard Verification
-
-- All six resource list screens returned HTTP 200 against the real local read API.
-- A persisted RELIANCE ranking detail rendered summary and child records.
-- A missing run rendered the expected dashboard HTTP 404 state.
-- PostgreSQL-enabled suite: 128 tests, OK, 2 expected production-data-dependent skips.
-
-Start with `python -m scripts.run_read_api` and `python -m scripts.run_dashboard`. See `docs/DASHBOARD.md`.
-
-## Alert Verification
-
-- PostgreSQL-enabled suite: 139 tests, OK, 2 expected production-data-dependent skips.
-- A persisted RELIANCE risk approval produced an audited console alert.
-- A persisted partial pipeline failure produced a warning alert.
-- The current empty signal collection produced a valid zero-candidate result.
-- Reprocessing the risk source reused the event and skipped its successful console delivery.
-
-Run with `python -m scripts.generate_alerts`. See `docs/ALERTS.md`.
-
-## Copilot Verification
-
-- PostgreSQL-enabled suite: 155 tests, OK, 2 expected production-data-dependent skips.
-- A RELIANCE ranking question returned persisted rank facts with exact API run/item lineage.
-- A nonexistent symbol returned an explicit insufficient-evidence answer.
-- An order-execution request was refused before retrieval or provider use.
-- The optional OpenAI adapter is isolated behind a provider protocol; local synthesis remains the default.
-
-Run with `python -m scripts.ask_copilot`. See `docs/COPILOT.md`.
-
-## Paper-Trading Verification
-
-- PostgreSQL-enabled suite: 163 tests, OK, 2 expected production-data-dependent skips.
-- The persisted lifecycle test created BUY/SELL orders and fills, opened and closed a position, calculated realized P&L and verified complete lineage plus ordered events.
-- The production CLI opened a RELIANCE paper position from a persisted signal and displayed its entry, quantity and signal ID.
-- A missing newer mark produced a concise error while leaving the OPEN position unchanged.
-- Verification-only paper and regenerated-signal records were removed afterward.
-
-Run with `python -m scripts.paper_trade`. See `docs/PAPER_TRADING.md`.
-
-## Version 2 operator workflow
+## Verification and operator commands
 
 ```bash
+python -m compileall app services scripts tests
+python -m unittest discover -s tests -v
+RUN_DB_INTEGRATION_TESTS=1 python -m unittest discover -s tests -v
 python -m services.migration_runner
-python -m scripts.materialize_feature_store
-python -m scripts.materialize_historical_outcomes
-python -m scripts.materialize_similarity_run --vector-id <UUID>
-python -m scripts.materialize_trade_opportunities
-python -m scripts.import_news_events --file fixtures/news_events.json
-python -m scripts.link_historical_events
-python -m scripts.materialize_opportunity_events
-python -m scripts.ask_trading_analyst --opportunity-id <UUID> --question "Explain the evidence."
 python -m scripts.verify_release
+python -m scripts.benchmark_recommendations
+python -m scripts.continuous_collection verify-idempotency
+python -m scripts.materialize_historical_outcomes_v2 --as-of <ISO_TIMESTAMP>
+python -m scripts.materialize_feature_store_v2 --as-of <ISO_TIMESTAMP>
+python -m scripts.materialize_opportunity_v2 --fixture
+python -m scripts.materialize_calibration_v2 --fixture
+python -m scripts.materialize_recommendation_validation --fixture
+python -m scripts.register_research_experiment --fixture
+python -m scripts.run_offline_research --fixture
+python -m scripts.evaluate_model_promotion --fixture
+python -m scripts.benchmark_v3_workloads --fixture
+python -m scripts.v3_operational_health
+python -m scripts.verify_backup_metadata
 ```
 
-Materializers are explicit derived-data writes and must be reviewed as such. API
-reads never run them. Keep `/api/v1` compatible, repositories as the database
-boundary, paper state isolated, providers tool-free and every execution path
-absent. Never call Dhan, an external provider, alerts or paper commands during
-readiness work.
+Similarity, Outcome and Feature deterministic fixtures live in their unit suites;
+their database commands require real persisted canonical/vector identities and
+must not fabricate them. Frontend closure uses `npm run lint`, `npm test`,
+`npm run build` and `npm run format:check` from `frontend/`.
 
-## Next Activity
+## Current limitations
 
-Review and commit V3.9. The approved next milestone is V3.10 — Scale and
-Operational Hardening.
-Provider activation remains blocked by every procurement, licensing, coverage and
-storage gate in `docs/V3_DATA_PROVIDER_STRATEGY.md`; no live configuration exists.
+No licensed historical population exists. DhanHQ/TrueData and specialist-source
+rights, commercial terms, credentials and budgets remain unresolved. Required
+coverage targets, 20-session live collection soak, 60-session shadow validation,
+populated million-scale benchmarks and an isolated recovery drill are incomplete.
+No recommendation is operationally trusted and no live execution exists.
 
-Current local evidence: 9 Feature Store vectors, 9 outcomes, zero classified
-expiry outcomes, one eight-match insufficient similarity run, one non-eligible
-opportunity, two fixture events and one opportunity-event context link. Never
-claim statistically reliable recommendations until sufficient classified history
-exists.
+## Exact next decision and long-term objective
 
-## Release-Hardening Implementation
+The next decision, only after owner approval of closure, is whether to authorize a
+separate licensed-data acquisition and operational-validation programme. It is not
+a software milestone and does not imply Version 4.
 
-Milestone 4.6 added a SELECT-only readiness repository and deterministic service,
-exposed by `python -m scripts.verify_release`. It audits the exact migration
-inventory and checksums, persisted lineage, operational state and absence of an
-execution schema. Empty optional datasets are explicit `SKIP` results; invariant
-violations are `FAIL` results.
-
-Use `docs/OPERATIONS_RUNBOOK.md` for startup, shutdown, monitoring, backup and
-isolated recovery. Record evidence in `docs/RELEASE_READINESS_CHECKLIST.md`.
-Never run fresh-database, restore or failure-injection work against the normal
-PostgreSQL database.
-
-All Version 1.0 release verification passed, no migration `018` was required, and
-the existing read-only, no-live-execution, Copilot and isolated-paper-trading
-safety boundaries remain unchanged.
-# V3.10 handoff
-
-V3.10 adds migration `032`, incremental/backfill orchestration, safe indexes,
-bounded bulk helpers, SELECT-only health, retention metadata and honest local
-benchmarks. No financial formula changed. Owner review is pending; no commit,
-provider activation, trusted recommendation, retention action or recovery drill
-belongs to this checkpoint.
+The long-term objective remains a private, evidence-grounded trading intelligence
+platform that can produce statistically justified, calibrated, exact-contract
+recommendations only after licensed population evidence, shadow validation,
+governance approval and safety gates support that trust—without weakening the
+no-leakage, auditability or human-approval boundaries.

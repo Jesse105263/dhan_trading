@@ -123,7 +123,7 @@ V3.2 verification evidence:
 - [x] UUIDv5 and database constraints make fixed-cutoff reruns idempotent.
 - [x] V2 outcomes, Similarity, Opportunity, Analyst, recommendations and `/api/v1` are unchanged.
 - [ ] Eighty-percent supported-population completeness is unevaluated without licensed history.
-- [ ] Repository-owner review and commit are complete.
+- [x] Repository-owner review and commit are complete (`ed0bb63`).
 
 V3.3 verification evidence:
 
@@ -145,7 +145,7 @@ V3.3 verification evidence:
 - [x] Release readiness audits counts, schema/run/anchor lineage and future leakage.
 - [x] V2 Feature Store and all current consumers remain backward compatible.
 - [ ] Core-population coverage, drift and distributions remain unevaluated without licensed history.
-- [ ] Repository-owner review and commit are complete.
+- [x] Repository-owner review and commit are complete (`b4c72f0`).
 
 V3.4 verification evidence:
 
@@ -168,7 +168,7 @@ V3.4 verification evidence:
 - [x] Weak populations are `INSUFFICIENT_EVIDENCE`.
 - [x] V2 Similarity and downstream consumers remain unchanged.
 - [ ] Population quality and million-vector performance remain unevaluated.
-- [ ] Repository-owner review and commit are complete.
+- [x] Repository-owner review and commit are complete (`fcb81a5`).
 
 V3.5 verification evidence:
 
@@ -190,7 +190,7 @@ V3.5 verification evidence:
 - [x] Feature, contract, similarity, outcome and match lineage is immutable.
 - [x] V2 Opportunity and Analyst behavior remains unchanged.
 - [ ] Population recommendation quality remains unevaluated without licensed history.
-- [ ] Repository-owner review and commit are complete.
+- [x] Repository-owner review and commit are complete (`bb5e07b`).
 
 V3.6 verification evidence:
 
@@ -208,7 +208,7 @@ V3.6 verification evidence:
 - [x] Fixture evidence remains insufficient, uncalibrated and never trusted.
 - [x] V2 behavior, `/api/v1`, providers and execution remain unchanged.
 - [ ] Licensed population quality and live trust are unevaluated.
-- [ ] Repository-owner review and commit are complete.
+- [x] Repository-owner review and commit are complete (`254e6bf`).
 
 V3.7 verification evidence: compileall passed; standard and PostgreSQL suites each
 ran 306 tests with 50 and five expected skips respectively; migration `029`
@@ -224,7 +224,7 @@ applied once and reran with zero changes; 29 checksums match; readiness reports
 - [x] Drift and suspension policies are versioned and immutable.
 - [x] Operational trust is constrained false; no execution or self-learning path exists.
 - [ ] Sixty live shadow sessions and population quality remain unevaluated.
-- [ ] Repository-owner review and commit are complete.
+- [x] Repository-owner review and commit are complete (`67ed31c`).
 
 V3.8 verification evidence: compileall passed; standard and PostgreSQL suites ran
 319 tests with 52 and five expected skips respectively; migration `030` applied
@@ -240,7 +240,7 @@ once and reran with zero changes; all 30 checksums match; readiness reports
 - [x] Roles, decisions, rollback plans and audit history are append-only.
 - [x] Offline promotion has no deployment, execution or silent retraining path.
 - [ ] Licensed population and mature shadow evidence remain unavailable.
-- [ ] Repository-owner review and commit are complete.
+- [x] Repository-owner review and commit are complete (`874ef1f`).
 
 V3.9 verification evidence: compileall passed; standard and PostgreSQL suites ran
 329 tests with 53 and five expected skips respectively; migration `031` applied
@@ -259,4 +259,22 @@ once and reran with zero changes; all 31 checksums match; readiness reports
 - [x] Financial methodology, trust and execution boundaries are unchanged.
 - [ ] Million-observation/vector targets and the 20-session soak are unverified.
 - [ ] Licensed backfill and isolated recovery drill remain unperformed.
-- [ ] Repository-owner review and commit are pending.
+- [x] Repository-owner review and commit are complete (`c5f01c9`).
+
+## Version 3 release closure
+
+- [x] Every V3.0–V3.10 implementation checkpoint is committed.
+- [x] Exactly migrations `001`–`032` exist and applied checksums match.
+- [x] Migration rerun applies zero changes; no migration `033` exists.
+- [x] Python standard and PostgreSQL suites pass.
+- [x] Frontend lint, tests, build and format check pass.
+- [x] Provider-free fixture/operator verification passes and fails closed.
+- [x] Release readiness has zero FAIL results.
+- [x] No licensed population, provider activation, recommendation trust or execution is claimed.
+- [ ] Repository-owner approval of this release-closure handoff is pending.
+
+Closure evidence on 2026-07-17: compileall passed; standard suite ran 340 tests
+with 55 expected database-gated skips; PostgreSQL suite ran 340 tests with five
+documented evidence/isolated-database skips; frontend ran 39 tests across 11
+files; migration rerun applied zero; readiness reported 13 PASS, zero FAIL and 13
+optional empty-data SKIPs.
