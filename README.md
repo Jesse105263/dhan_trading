@@ -126,3 +126,10 @@ Run the read-only Version 3 baseline report with:
 ```bash
 python -m scripts.benchmark_recommendations
 ```
+# Version 3.10 operational hardening
+
+Version 3 now includes dependency-aware incremental checkpoints, durable
+fixture-only backfill orchestration, bounded bulk helpers, SELECT-only health,
+retention metadata and local benchmark tooling. See
+`docs/V3_SCALE_OPERATIONAL_HARDENING.md`. This changes no financial methodology,
+activates no provider or execution, and does not establish recommendation trust.

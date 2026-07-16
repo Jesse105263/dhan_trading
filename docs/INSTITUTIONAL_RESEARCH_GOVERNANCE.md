@@ -29,3 +29,8 @@ The fixture comparison passes, but promotion is deliberately `REJECTED` because
 shadow sessions and human approvals are absent. Migration `031` adds immutable
 registries, replay, reports, approvals, decisions, roles, rollback and audit.
 Licensed population evidence and deployment remain absent. V3.10 is next.
+
+V3.10 adds dependency checkpoints for governance artifacts and query indexing but
+does not change experiments, comparisons, approvals, promotion or rollback. The
+Version 3 sequence is now ready for owner review; licensed evidence and offline
+validation remain prerequisites to any future explicit promotion decision.

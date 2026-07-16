@@ -39,3 +39,8 @@ V3.9 retains calibration versions as immutable lineage and cannot refit bins,
 change thresholds or reinterpret historical eligibility.
 V3.8 snapshots evaluations without changing calibration runs or gates. Eligibility
 remains research-only until 60 live shadow sessions and later governance approval.
+# V3.10 incremental boundary
+
+Calibration partitions depend on completed opportunity and outcome evidence.
+Probability, uncertainty and eligibility gates are unchanged; no trusted policy
+is activated.

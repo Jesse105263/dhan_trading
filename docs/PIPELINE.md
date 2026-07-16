@@ -207,3 +207,9 @@ V3.8 is a later explicit shadow stage: snapshot, observe, outcome, rolling repor
 then drift evaluation. It has no automatic schedule, feedback or execution edge.
 V3.9 explicitly registers, replays, compares, reports, proposes, approves and
 decides offline. No automatic feedback, retraining, deployment or execution exists.
+# Incremental V3 pipeline
+
+Canonical changes flow through Feature/Outcome, Similarity, Opportunity,
+Calibration, Validation and Governance. Each bounded partition must complete its
+declared dependencies; failure blocks downstream work and preserves its last
+committed checkpoint for explicit retry.

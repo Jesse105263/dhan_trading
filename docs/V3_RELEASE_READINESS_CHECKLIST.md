@@ -246,3 +246,17 @@ V3.9 verification evidence: compileall passed; standard and PostgreSQL suites ra
 329 tests with 53 and five expected skips respectively; migration `031` applied
 once and reran with zero changes; all 31 checksums match; readiness reports
 13 PASS, zero FAIL and twelve optional SKIPs; fixture reruns were deterministic.
+
+## V3.10 — Scale and Operational Hardening
+
+- [x] Dependency-aware deterministic incremental partitions and checkpoints exist.
+- [x] Backfills support bounded claims, dependencies, pause/resume and stale recovery.
+- [x] Attempts/checkpoints are immutable and reruns suppress duplicates.
+- [x] Migration `032` adds only safe tables and targeted indexes.
+- [x] Fixture and local PostgreSQL benchmarks distinguish measurements from targets.
+- [x] Health and backup verification are SELECT-only.
+- [x] Retention is metadata-only and cannot authorize destruction.
+- [x] Financial methodology, trust and execution boundaries are unchanged.
+- [ ] Million-observation/vector targets and the 20-session soak are unverified.
+- [ ] Licensed backfill and isolated recovery drill remain unperformed.
+- [ ] Repository-owner review and commit are pending.

@@ -450,3 +450,9 @@ self-learning would invalidate calibration and untouched evidence.
 
 Freeze inputs, compare paired untouched evidence with multiple-testing control,
 require three owner roles plus shadow/readiness, and append roles without deployment.
+# V3.10 decisions
+
+Operational lifecycle rows may change under bounded state transitions; attempt,
+checkpoint and retention history remains immutable. Native partition conversion
+is deferred pending representative volume. Retention execution and isolated
+restore drills require explicit owner approval. No Version 4 roadmap is created.

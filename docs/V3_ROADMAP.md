@@ -184,6 +184,15 @@ documented retention/capacity/recovery, clean-environment restoration and a
 20-session soak without gaps, duplicates, silent failures or lineage violations.
 Estimated effort: 3–5 weeks.
 
+Implementation status: framework complete for owner review. Migration `032`
+adds durable incremental/backfill state, immutable checkpoints and retention
+metadata plus targeted indexes. Fixture/local PostgreSQL benchmarks, SELECT-only
+health and explicit recovery controls are implemented. Million-scale targets,
+the 20-session soak, licensed backfill and recovery drill remain unverified. The
+Version 3 implementation sequence is complete only after owner approval; the
+next decision is whether to authorize licensed evidence acquisition and bounded
+validation/scale/recovery work.
+
 ## Ordering rationale
 
 The contract defines truth first; provider selection prevents licensing and schema

@@ -52,6 +52,7 @@ class ReleaseReadinessRepository:
             "calibration_v2_lineage_and_leakage": self._calibration_v2_lineage_and_leakage(),
             "live_validation_lineage_and_safety": self._live_validation_lineage_and_safety(),
             "research_governance_lineage_and_safety": self._research_governance_lineage_and_safety(),
+            "v3_scale_operational_safety": self._v3_scale_operational_safety(),
             "execution_schema_boundary": self._execution_schema_boundary(),
         }
 
@@ -386,6 +387,14 @@ class ReleaseReadinessRepository:
           UNION ALL SELECT b.rollback_id::text,(COALESCE((b.rollback_procedure->>'automatic')::boolean,TRUE)) FROM model_rollback_metadata_v3 b)
           SELECT COUNT(*),COUNT(*) FILTER(WHERE violation) FROM audited""")
         return self._metric("research_governance_lineage_and_safety",row)
+
+    def _v3_scale_operational_safety(self) -> AuditMetric:
+        row=self._fetch_one("""WITH audited AS (
+          SELECT job_id::text entity_id,(attempt_count>max_attempts OR (status='RUNNING' AND (worker_id IS NULL OR lease_expires_at IS NULL))) violation FROM v3_backfill_jobs
+          UNION ALL SELECT checkpoint_id::text,(length(batch_checksum)<>64) FROM v3_incremental_checkpoints
+          UNION ALL SELECT policy_id::text,(archive_eligible OR destructive_action_enabled OR NOT owner_approval_required) FROM v3_retention_policies)
+          SELECT COUNT(*),COUNT(*) FILTER(WHERE violation) FROM audited""")
+        return self._metric("v3_scale_operational_safety",row)
 
     def _option_chain_lineage(self) -> AuditMetric:
         row = self._fetch_one(

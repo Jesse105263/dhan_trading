@@ -92,3 +92,9 @@ V3.8 freezes every evaluation before observing later canonical paths. Mature
 shadow outcomes may support future offline research, but never silent retraining.
 V3.9 freezes dataset/model/experiment definitions and permits offline champion
 registry changes only after untouched-test, shadow and approval gates.
+# V3.10 operational preservation
+
+Incremental and bulk execution must reproduce the same point-in-time research
+result as a full deterministic materialization. Checkpoints and scheduling never
+alter splits, leakage rules, labels, costs, calibration, uncertainty, eligibility
+or governance. Scale evidence is reported separately from research quality.

@@ -348,3 +348,11 @@ non-trusted. Fixture commands call no provider or execution service.
 Apply migration `031`; register and replay reviewed immutable definitions only.
 Missing shadow evidence, audit/readiness failure or any rejection stops promotion.
 An offline champion role is not deployment; rollback is never automatic.
+# V3.10 operator procedures
+
+Use `scripts.v3_backfill` with `--fixture` for schedule/execute/idempotency
+verification. Use `scripts.v3_operational_health` for SELECT-only backlog and
+database indicators, and `scripts.verify_backup_metadata` for non-restoring
+backup metadata verification. Pause, resume and stale recovery are explicit.
+Never run destructive retention or `createdb`, `dropdb` or `pg_restore` without
+repository-owner approval.

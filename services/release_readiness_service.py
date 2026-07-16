@@ -44,6 +44,7 @@ class ReleaseReadinessService:
         "calibration_v2_lineage_and_leakage",
         "live_validation_lineage_and_safety",
         "research_governance_lineage_and_safety",
+        "v3_scale_operational_safety",
         "execution_schema_boundary",
     )
 

@@ -263,3 +263,9 @@ Operational Hardening.
 
 Existing Version 1.0 safety boundaries remain unchanged. See `docs/NEXT_TASK.md`,
 `docs/OPERATIONS_RUNBOOK.md` and `docs/RELEASE_READINESS_CHECKLIST.md`.
+# V3.10 status
+
+The Version 3 implementation sequence is complete for repository-owner review.
+Operational scale claims remain limited to measured local fixture/PostgreSQL
+workloads. Provider licensing, historical population evidence, soak testing,
+operational recommendation trust and the recovery drill remain unresolved.

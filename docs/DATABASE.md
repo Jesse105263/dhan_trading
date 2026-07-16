@@ -248,3 +248,10 @@ The snapshot schema constrains operational trust to false.
 Migration `031` adds immutable governance policies, datasets, models, experiments,
 replay observations, comparisons, reports, approvals, decisions, roles, rollback
 plans and audit history. No deployment table is added.
+# Migration 032
+
+Migration 032 adds `v3_backfill_jobs`, immutable `v3_backfill_attempts`, immutable
+`v3_incremental_checkpoints`, non-destructive `v3_retention_policies`, and safe
+query indexes. Existing applied migrations and evidence are not rewritten.
+Physical time partitioning is deferred until representative production data can
+support an online migration plan.

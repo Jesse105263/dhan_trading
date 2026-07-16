@@ -71,3 +71,9 @@ offline-only; licensed population, mature shadow evidence and deployment are abs
 - Preserve the existing database schema and `/api/v1`.
 - Do not begin a new implementation roadmap, authentication or execution work
   during review.
+# Next decision after Version 3
+
+After V3.10 owner approval, decide whether to authorize licensed evidence
+acquisition and a bounded programme for historical population validation,
+million-scale benchmarking, 20-session soak testing and isolated recovery. Do
+not infer a Version 4 roadmap or activate trusted recommendations/execution.

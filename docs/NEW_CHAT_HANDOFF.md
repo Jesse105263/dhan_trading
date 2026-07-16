@@ -289,3 +289,10 @@ PostgreSQL database.
 All Version 1.0 release verification passed, no migration `018` was required, and
 the existing read-only, no-live-execution, Copilot and isolated-paper-trading
 safety boundaries remain unchanged.
+# V3.10 handoff
+
+V3.10 adds migration `032`, incremental/backfill orchestration, safe indexes,
+bounded bulk helpers, SELECT-only health, retention metadata and honest local
+benchmarks. No financial formula changed. Owner review is pending; no commit,
+provider activation, trusted recommendation, retention action or recovery drill
+belongs to this checkpoint.

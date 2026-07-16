@@ -735,3 +735,10 @@ Official transition from script-based development to platform architecture.
 - Added documentation only: no provider was contacted, purchased, configured or
   called, and no migration, credential, dependency, collector or executable
   behavior changed.
+# V3.10 — Scale and Operational Hardening
+
+Added deterministic incremental checkpoints, leased fixture-only backfill jobs,
+bounded bulk helpers, safe query indexes, SELECT-only health/backup metadata,
+non-destructive retention policy metadata, readiness auditing and local benchmark
+commands. No financial methodology, API, recommendation trust or execution path
+changed.

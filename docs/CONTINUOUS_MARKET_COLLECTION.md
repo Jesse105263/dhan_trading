@@ -114,3 +114,8 @@ a provider or repair a gap; missing historical evidence produces abstention.
 Live validation reads only canonical revisions already collected and accepted.
 It cannot schedule work, activate a provider or repair gaps; incomplete paths stay
 unresolved or insufficient rather than being fabricated.
+# V3.10 operational integration
+
+Collection claims retain their existing behavior; migration 032 adds a covering
+claim index and downstream deterministic partition checkpoints. No live schedule,
+provider, credential or real backfill is activated.

@@ -157,3 +157,8 @@ cannot destructively mutate prior feature evidence.
 Similarity V2 reaches foundation evidence only through Feature Store V2 lineage.
 Candidate availability is bounded by the run cutoff, so late canonical revisions
 cannot enter an earlier historical analogue population.
+# V3.10 scale boundary
+
+Canonical partitions can now be scheduled and checkpointed incrementally. Raw and
+canonical immutability remains unchanged; bulk processing never overwrites source
+history and licensed acquisition remains unresolved.

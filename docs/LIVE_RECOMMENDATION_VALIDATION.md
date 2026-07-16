@@ -65,3 +65,8 @@ coverage, population metrics and operational recommendation trust remain unmet.
 V3.9 is the next milestone and owns any future explicit offline promotion process.
 V3.9 uses mature shadow evidence only for offline research. Registry promotion
 never alters snapshots or creates operational trust.
+# V3.10 incremental boundary
+
+Validation partitions depend on calibration and canonical observations. Historical
+snapshots remain immutable, drift remains fail-closed and operational trust stays
+false. The required live-session evidence remains unavailable.

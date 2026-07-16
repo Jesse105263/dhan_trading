@@ -128,3 +128,8 @@ no database evidence and returns the same run/candidate IDs on rerun.
 V3.7 consumes candidates without mutation. Historical win rate stays uncalibrated.
 V3.8 copies exact candidate fields and lineage into an immutable shadow snapshot;
 it never changes entry, stop, targets, expected value or Opportunity V2 behavior.
+# V3.10 incremental boundary
+
+Opportunity partitions depend on completed similarity partitions and retain exact
+lineage. Contract selection, levels, costs, abstentions and provisional status are
+unchanged.

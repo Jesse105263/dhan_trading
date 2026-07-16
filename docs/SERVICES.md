@@ -328,3 +328,9 @@ and evaluates eligibility without execution side effects.
 calculates outcomes/reports/drift and appends suspensions without modifying models.
 `research_governance_*` owns offline registration, paired replay, comparison,
 approval gates, role assignments, rollback plans and immutable audit history.
+# V3.10 services
+
+`V3ScaleService` owns dependency invalidation, deterministic job identity,
+bounded batches, retry rules and retention policy metadata.
+`V3ScaleRepository` owns transactional scheduling, `SKIP LOCKED` claims,
+checkpoints, stale recovery, SELECT-only health and query-plan inspection.

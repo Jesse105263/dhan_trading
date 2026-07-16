@@ -335,3 +335,9 @@ collection, broker or execution services.
 
 V3.9 is an append-only offline plane for datasets, experiments, comparisons,
 approvals and model roles. It imports no execution or deployment service.
+# V3.10 operational layer
+
+The operational layer wraps, but does not redesign, the V3 canonical-to-
+governance dependency graph. Deterministic jobs, immutable batch checkpoints and
+leased claims provide restartability; derived engines remain the owners of their
+financial calculations and immutable evidence.
